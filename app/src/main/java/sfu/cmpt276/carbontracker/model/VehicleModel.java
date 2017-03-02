@@ -1,9 +1,9 @@
 package sfu.cmpt276.carbontracker.model;
 
 /**
- * Vehicles class contains setters and getters for vehicle objects
+ * VehicleModel class contains setters and getters for vehicle objects
  */
-public class Vehicles {
+public class VehicleModel {
     private String make;
     private String model;
     private String year;

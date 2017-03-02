@@ -1,10 +1,7 @@
-package sfu.cmpt276.carbontracker;
+package sfu.cmpt276.carbontracker.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
-
-import sfu.cmpt276.carbontracker.model.Vehicles;
 
 /**
  * Carbon Model is the Singleton Class-
@@ -15,7 +12,7 @@ import sfu.cmpt276.carbontracker.model.Vehicles;
 
 public class CarbonModel {
     private static CarbonModel instance = new CarbonModel();
-    public List<Vehicles> cars = new ArrayList<>();
+    public List<VehicleModel> cars = new ArrayList<>();
 
     private CarbonModel() {
     }
@@ -24,17 +21,17 @@ public class CarbonModel {
         return instance;
     }
 
-    public void addCar(Vehicles car) {
+    public void addCar(VehicleModel car) {
         cars.add(car);
     }
 
-    public Vehicles getCar(int i) {
+    public VehicleModel getCar(int i) {
         return cars.get(i);
     }
 
     public void fillList() {
         for (int i = 0; i < 38122; i++) {
-            cars.add(new Vehicles());
+            cars.add(new VehicleModel());
         }
     }
 }

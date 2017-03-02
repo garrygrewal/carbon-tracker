@@ -10,7 +10,7 @@ import android.widget.Button;
  * Main Menu Screen
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 1014;
 
     @Override
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         btnCreateJourney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = SelectTransportation.makeIntent(MainActivity.this);
+                Intent intent = SelectVehicleActivity.makeIntent(MainMenuActivity.this);
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });

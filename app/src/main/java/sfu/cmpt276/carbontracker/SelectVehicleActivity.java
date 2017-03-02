@@ -11,6 +11,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
+import sfu.cmpt276.carbontracker.model.CarbonModel;
+
 /*
  *Select Transportation Screen-
  * currently only reads in cvs files. Still need to create
@@ -19,12 +21,12 @@ import java.nio.charset.Charset;
  */
 
 
-public class SelectTransportation extends AppCompatActivity {
+public class SelectVehicleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_transportation);
+        setContentView(R.layout.activity_select_vehicle);
 
         CarbonModel.getInstance().fillList();
         readFile();
@@ -55,6 +57,6 @@ public class SelectTransportation extends AppCompatActivity {
     }
 
     public static Intent makeIntent(Context context) {
-        return new Intent(context, SelectTransportation.class);
+        return new Intent(context, SelectVehicleActivity.class);
     }
 }
