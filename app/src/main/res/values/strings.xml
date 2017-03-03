@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CarbonTracker</string>
+    <string name="create_car_journey">Create Car Journey</string>
 </resources>
