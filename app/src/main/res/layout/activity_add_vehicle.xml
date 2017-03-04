@@ -25,4 +25,55 @@
         android:id="@+id/buttonCancel"
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/buttonAddVehicle" />
+
+    <TextView
+        android:text="Vehicle Make: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/spinnerSelectMake"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textSelectMake"
+        android:textSize="18sp" />
+
+    <TextView
+        android:text="Vehicle Model:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textSelectMake"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="44dp"
+        android:id="@+id/textSelectModel"
+        android:textSize="18sp" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerSelectModel"
+        android:layout_alignTop="@+id/textSelectModel"
+        android:layout_alignStart="@+id/buttonCancel" />
+
+    <TextView
+        android:text="Vehicle Year:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerSelectModel"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="37dp"
+        android:id="@+id/textSelectYear"
+        android:textSize="18sp" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner4"
+        android:layout_alignTop="@+id/textSelectYear"
+        android:layout_alignStart="@+id/spinnerSelectModel" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerSelectMake"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/spinnerSelectModel" />
+
 </RelativeLayout>
