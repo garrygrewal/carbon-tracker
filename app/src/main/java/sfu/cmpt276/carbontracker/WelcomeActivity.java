@@ -19,6 +19,6 @@ public class WelcomeActivity extends AppCompatActivity {
             public void run() {
                 startActivity(new Intent(WelcomeActivity.this, MainMenuActivity.class));
             }
-        }, 2000L);
+        }, 2000);
     }
 }
