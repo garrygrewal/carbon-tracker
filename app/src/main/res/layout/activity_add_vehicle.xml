@@ -11,7 +11,7 @@
     tools:context="sfu.cmpt276.carbontracker.AddVehicleActivity">
 
     <Button
-        android:text="Add Vehicle"
+        android:text="@string/add_vehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -19,7 +19,7 @@
         android:id="@+id/buttonAddVehicle" />
 
     <Button
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonCancel"
@@ -27,7 +27,7 @@
         android:layout_toStartOf="@+id/buttonAddVehicle" />
 
     <TextView
-        android:text="Vehicle Make: "
+        android:text="@string/vehicle_make"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/spinnerSelectMake"
@@ -36,7 +36,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:text="Vehicle Model:"
+        android:text="@string/vehicle_model"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textSelectMake"
@@ -53,7 +53,7 @@
         android:layout_alignStart="@+id/buttonCancel" />
 
     <TextView
-        android:text="Vehicle Year:"
+        android:text="@string/vehicle_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/spinnerSelectModel"
@@ -63,11 +63,11 @@
         android:textSize="18sp" />
 
     <Spinner
+        android:id="@+id/spinnerSelectYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner4"
-        android:layout_alignTop="@+id/textSelectYear"
-        android:layout_alignStart="@+id/spinnerSelectModel" />
+        android:layout_alignStart="@+id/spinnerSelectModel"
+        android:layout_alignTop="@+id/textSelectYear" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -75,5 +75,14 @@
         android:id="@+id/spinnerSelectMake"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/spinnerSelectModel" />
+
+    <ListView
+        android:id="@+id/listviewCars"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:footerDividersEnabled="true"
+        android:layout_below="@+id/spinnerSelectYear"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="61dp" />
 
 </RelativeLayout>

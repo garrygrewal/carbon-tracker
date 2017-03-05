@@ -601,7 +601,7 @@ Chevrolet,Blazer 1500 4WD,1993,11,16,Regular Gasoline,Manual 5-spd,5.7
 Chevrolet,Suburban 1500 4WD,1993,11,15,Regular Gasoline,Automatic 4-spd,5.7
 Chevrolet,S10 Blazer 4WD,1993,15,20,Premium Gasoline,Automatic 4-spd,4.3
 Chevrolet,S10 Blazer 4WD,1993,15,20,Regular Gasoline,Manual 5-spd,4.3
-"E. P. Dutton, Inc.",Funeral Coach,1985,15,21,Regular Gasoline,Automatic 4-spd,4.1
+"E. P. Dutton Inc.",Funeral Coach,1985,15,21,Regular Gasoline,Automatic 4-spd,4.1
 Nissan,Pathfinder 4WD,1993,14,17,Regular Gasoline,Automatic 4-spd,3
 Nissan,Pathfinder 4WD,1993,14,17,Regular Gasoline,Manual 5-spd,3
 Chrysler,Town and Country 4WD,1993,15,20,Regular Gasoline,Automatic 4-spd,3.3
@@ -652,7 +652,7 @@ Mazda,Navajo,1993,15,20,Regular Gasoline,Automatic 4-spd,4
 Mazda,Navajo,1993,16,21,Regular Gasoline,Manual 5-spd,4
 Mazda,Navajo 4x4,1993,14,18,Regular Gasoline,Automatic 4-spd,4
 Mazda,Navajo 4x4,1993,16,21,Regular Gasoline,Manual 5-spd,4
-"PAS, Inc",Pas-Typhoon,1993,13,17,Premium Gasoline,Automatic 4-spd,4.3
+"PAS Inc",Pas-Typhoon,1993,13,17,Premium Gasoline,Automatic 4-spd,4.3
 Plymouth,Voyager/Grand Voyager 4WD,1993,15,20,Regular Gasoline,Automatic 4-spd,3.3
 Subaru,Loyale AWD,1993,19,22,Regular Gasoline,Automatic 3-spd,1.8
 Subaru,Loyale AWD,1993,21,26,Regular Gasoline,Manual 5-spd,1.8
@@ -16681,12 +16681,12 @@ Chevrolet,K10 Pickup 4WD,1986,12,14,Regular Gasoline,Manual 4-spd,4.3
 Pontiac,G8,2008,17,25,Regular Gasoline,Automatic (S5),3.6
 Infiniti,EX35,2008,17,24,Premium Gasoline,Automatic (S5),3.5
 Infiniti,EX35,2008,16,23,Premium Gasoline,Automatic (S5),3.5
-"Tecstar, LP",Foose F150 Regular Cab 2WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
-"Tecstar, LP",Foose F150 Super Cab 2WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
-"Tecstar, LP",Foose F150 Super Crew 2WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
-"Tecstar, LP",Foose F150 Regular Cab 4WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
-"Tecstar, LP",Foose F150 Super Cab 4WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
-"Tecstar, LP",Foose F150 Super Crew 4WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
+"Tecstar LP",Foose F150 Regular Cab 2WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
+"Tecstar LP",Foose F150 Super Cab 2WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
+"Tecstar LP",Foose F150 Super Crew 2WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
+"Tecstar LP",Foose F150 Regular Cab 4WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
+"Tecstar LP",Foose F150 Super Cab 4WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
+"Tecstar LP",Foose F150 Super Crew 4WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
 Jaguar,XJS Convertible,1995,16,22,Premium Gasoline,Automatic 4-spd,4
 Chevrolet,K10 Pickup 4WD,1986,14,16,Regular Gasoline,Manual 4-spd,4.3
 Buick,LeSabre,1996,17,27,Regular Gasoline,Automatic 4-spd,3.8
@@ -32171,7 +32171,7 @@ CX Automotive,CX 25 Prestige,1988,16,20,Premium Gasoline,Automatic 3-spd,2.5
 Chrysler,Newport/Fifth Avenue,1985,15,20,Premium Gasoline,Automatic 3-spd,5.2
 Ford,LTD Crown Victoria,1988,15,22,Regular Gasoline,Automatic 4-spd,5
 Ford,LTD Crown Victoria,1988,11,16,Regular Gasoline,Automatic 4-spd,5.8
-"JBA Motorcars, Inc.",W-126/4 Series,1988,15,16,Regular Gasoline,Automatic 4-spd,3
+"JBA Motorcars Inc.",W-126/4 Series,1988,15,16,Regular Gasoline,Automatic 4-spd,3
 Lincoln,Continental,1988,15,23,Regular Gasoline,Automatic 4-spd,3.8
 Mercury,Grand Marquis,1988,15,22,Regular Gasoline,Automatic 4-spd,5
 Lincoln,Town Car,1988,15,22,Regular Gasoline,Automatic 4-spd,5
@@ -36059,7 +36059,7 @@ Ford,Ranger Pickup 4WD,1991,16,20,Regular Gasoline,Manual 5-spd,2.9
 Ford,Ranger Pickup 4WD,1991,15,19,Regular Gasoline,Automatic 4-spd,4
 Ford,F150 Pickup 2WD,1985,12,15,Regular Gasoline,Automatic 4-spd,5
 Ford,Ranger Pickup 4WD,1991,15,20,Regular Gasoline,Manual 5-spd,4
-"PAS, Inc",Pas-Syclone,1991,13,16,Premium Gasoline,Automatic 4-spd,4.3
+"PAS Inc",Pas-Syclone,1991,13,16,Premium Gasoline,Automatic 4-spd,4.3
 Chevrolet,C1500 Pickup 2WD,1991,15,20,Regular Gasoline,Automatic 4-spd,4.3
 Chevrolet,C1500 Pickup 2WD,1991,16,19,Regular Gasoline,Manual 4-spd,4.3
 Chevrolet,C1500 Pickup 2WD,1991,15,21,Regular Gasoline,Manual 5-spd,4.3

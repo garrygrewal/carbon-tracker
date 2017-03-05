@@ -8,6 +8,7 @@ import java.util.List;
  */
 
 public class MakeModel {
+    /*
     private String make;
     private List<ModelModel> listOfModels = new ArrayList<>();
 
@@ -27,4 +28,5 @@ public class MakeModel {
     public void addModel(String modelName, int year, double city, double highway){
         listOfModels.add(new ModelModel(modelName,year,city,highway));
     }
+    */
 }

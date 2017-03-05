@@ -4,10 +4,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Spinner;
+
+import sfu.cmpt276.carbontracker.model.CarbonModel;
 
 public class AddVehicleActivity extends AppCompatActivity {
+    private String make;
+    private String model;
+    private String year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +25,103 @@ public class AddVehicleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_vehicle);
 
         setupButtons();
+        populateSpinnerMake();
+        registerClickCallBackForMake();
+        registerClickCallBackForModel();
+        registerClickCallBackForYears();
+        registerClickCallBackForList();
+    }
+
+    public void populateSpinnerMake(){
+        ArrayAdapter<String> adapterMake = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getMakes());
+        Spinner spinnerMake = (Spinner) findViewById(R.id.spinnerSelectMake);
+        spinnerMake.setAdapter(adapterMake);
+    }
+
+    public void registerClickCallBackForMake(){
+        Spinner spinnerMake = (Spinner) findViewById(R.id.spinnerSelectMake);
+        spinnerMake.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                make = (String)parent.getItemAtPosition(position);
+                populateSpinnerModel();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    public void populateSpinnerModel(){
+        ArrayAdapter<String> adapterModel = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getModels(make));
+        Spinner spinnerModel = (Spinner) findViewById(R.id.spinnerSelectModel);
+        spinnerModel.setAdapter(adapterModel);
+        Log.d("My activity", "Just created: " +CarbonModel.getInstance().getModels(make).size());
+    }
+
+    public void registerClickCallBackForModel(){
+        Spinner spinnerModel = (Spinner) findViewById(R.id.spinnerSelectModel);
+        spinnerModel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                model = (String)parent.getItemAtPosition(position);
+                populateSpinnerYear();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    public void populateSpinnerYear(){
+        ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getYears(model));
+        Spinner spinnerYear = (Spinner) findViewById(R.id.spinnerSelectYear);
+        spinnerYear.setAdapter(adapterYear);
+    }
+
+    public void registerClickCallBackForYears(){
+        Spinner spinnerYear = (Spinner) findViewById(R.id.spinnerSelectYear);
+        spinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                year = (String)parent.getItemAtPosition(position);
+                populateListView();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    public void populateListView(){
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, CarbonModel.getInstance().getRemainingCars(make,model,year));
+
+        ListView list = (ListView) findViewById(R.id.listviewCars);
+        list.setAdapter(adapter);
+    }
+
+    public void registerClickCallBackForList(){
+        ListView list = (ListView) findViewById(R.id.listviewCars);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
     }
 
     private void setupButtons() {

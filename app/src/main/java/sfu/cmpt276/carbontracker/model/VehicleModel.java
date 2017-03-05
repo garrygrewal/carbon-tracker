@@ -7,7 +7,81 @@ import java.util.List;
 /**
  * VehicleModel class contains setters and getters for vehicle objects
  */
+
 public class VehicleModel {
+    private String make;
+    private String model;
+    private String year;
+    private double city;
+    private double highway;
+    private String fuelType;
+    private String transmission;
+    private String engineDisplacement;
+
+    public String getMake() {
+        return make;
+    }
+
+    public void setMake(String make) {
+        this.make = make;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public double getCity() {
+        return city;
+    }
+
+    public void setCity(double city) {
+        this.city = city;
+    }
+
+    public double getHighway() {
+        return highway;
+    }
+
+    public void setHighway(double highway) {
+        this.highway = highway;
+    }
+
+    public String getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public String getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(String transmission) {
+        this.transmission = transmission;
+    }
+
+    public String getEngineDisplacement() {
+        return engineDisplacement;
+    }
+
+    public void setEngineDisplacement(String engineDisplacement) {
+        this.engineDisplacement = engineDisplacement;
+    }
+    /*
     private List<MakeModel> listOfMakes = new ArrayList<>();
 
     public void addMake(String[] tokens){
@@ -32,5 +106,5 @@ public class VehicleModel {
         }
         return false;
     }
-
+    */
 }

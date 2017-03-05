@@ -17,11 +17,6 @@ import java.nio.charset.Charset;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 
-/*
- *Select Transportation Screen-
- * currently only reads in cvs files.
- */
-
 
 public class SelectVehicleActivity extends AppCompatActivity {
 
@@ -45,8 +40,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
             int i = 0;
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split(",");
-/*
-empty for now
+
                 CarbonModel.getInstance().getCar(i).setMake(tokens[0]);
                 CarbonModel.getInstance().getCar(i).setModel(tokens[1]);
                 CarbonModel.getInstance().getCar(i).setYear(tokens[2]);
@@ -61,7 +55,7 @@ empty for now
                     CarbonModel.getInstance().getCar(i).setEngineDisplacement(tokens[7] + "L");
                 }
                 CarbonModel.getInstance().addCar(CarbonModel.getInstance().getCar(i));
-                */
+
                 i++;
 
             }

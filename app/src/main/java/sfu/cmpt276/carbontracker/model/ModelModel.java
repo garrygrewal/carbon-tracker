@@ -5,6 +5,7 @@ package sfu.cmpt276.carbontracker.model;
  */
 
 public class ModelModel {
+    /*
     private String model;
     private int year;
     private double city;
@@ -16,4 +17,5 @@ public class ModelModel {
         this.city = city;
         this.highway = highway;
     }
+    */
 }
