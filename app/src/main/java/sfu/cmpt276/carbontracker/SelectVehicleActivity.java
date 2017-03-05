@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -63,6 +62,30 @@ public class SelectVehicleActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+    /******Not sure which readFile function would be better to use
+    private void readFile() {
+        InputStream is = getResources().openRawResource(R.raw.vehicles);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+        int i = 0;
+        String line = "";
+        try {
+            reader.readLine();
+
+            while ((line = reader.readLine()) != null) {
+                String[] tokens = line.split(",");
+                String makeName = tokens[0];
+                String modelName = tokens[1];
+                int year = Integer.parseInt(tokens[2]);
+                double city = Double.parseDouble(tokens[3]);
+                double highway = Double.parseDouble(tokens[4]);
+                double displ = Double.parseDouble(tokens[7]);
+
+                CarbonModel.getInstance().addMake(makeName, modelName,year, city, highway, tokens[5], tokens[6], displ);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
 
     public static Intent makeIntent(Context context) {
         return new Intent(context, SelectVehicleActivity.class);

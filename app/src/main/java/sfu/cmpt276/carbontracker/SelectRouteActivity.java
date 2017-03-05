@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
-import sfu.cmpt276.carbontracker.model.RouteModel;
+import sfu.cmpt276.carbontracker.model.Route;
 
 public class SelectRouteActivity extends AppCompatActivity {
 
@@ -34,9 +34,9 @@ public class SelectRouteActivity extends AppCompatActivity {
 
         //add pladeholder routes
         if (CarbonModel.getInstance().countRoutes() == 0) {
-            CarbonModel.getInstance().addRoute(new RouteModel("test route", 10, 25));
-            CarbonModel.getInstance().addRoute(new RouteModel("test route2", 15, 35));
-            CarbonModel.getInstance().addRoute(new RouteModel("test route3", 5, 55));
+            CarbonModel.getInstance().addRoute(new Route("test route", 10, 25));
+            CarbonModel.getInstance().addRoute(new Route("test route2", 15, 35));
+            CarbonModel.getInstance().addRoute(new Route("test route3", 5, 55));
         }
 
         listRoutes();
@@ -62,7 +62,7 @@ public class SelectRouteActivity extends AppCompatActivity {
         route_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                RouteModel clicked_route = CarbonModel.getInstance().getRoute(position);
+                Route clicked_route = CarbonModel.getInstance().getRoute(position);
 
                 Intent intent = new Intent(SelectRouteActivity.this, AddNameActivity.class);
                 intent.putExtra("route_name", clicked_route.getName());
@@ -89,7 +89,7 @@ public class SelectRouteActivity extends AppCompatActivity {
         switch (item.getTitle().toString()) {
             case "Edit":
                 // sends relevant information to AddRouteActivity
-                RouteModel clicked_route = CarbonModel.getInstance().getRoute(info.position);
+                Route clicked_route = CarbonModel.getInstance().getRoute(info.position);
                 index = info.position;
                 Intent intent = new Intent(SelectRouteActivity.this, AddRouteActivity.class);
                 intent.putExtra("name", clicked_route.getName());
@@ -144,7 +144,7 @@ public class SelectRouteActivity extends AppCompatActivity {
                     String hwy = data.getStringExtra("hwy");
                     float int_city = Float.parseFloat(city);
                     float int_hwy = Float.parseFloat(hwy);
-                    CarbonModel.getInstance().RouteList.add(new RouteModel(name, int_city, int_hwy));
+                    CarbonModel.getInstance().RouteList.add(new Route(name, int_city, int_hwy));
                     listRoutes();
                     break;
                 }
@@ -159,7 +159,7 @@ public class SelectRouteActivity extends AppCompatActivity {
                     String hwy = data.getStringExtra("hwy");
                     float num_city = Float.parseFloat(city);
                     float num_hwy = Float.parseFloat(hwy);
-                    CarbonModel.getInstance().editRoute(new RouteModel(name, num_city, num_hwy), index);
+                    CarbonModel.getInstance().editRoute(new Route(name, num_city, num_hwy), index);
                     listRoutes();
                     break;
                 }

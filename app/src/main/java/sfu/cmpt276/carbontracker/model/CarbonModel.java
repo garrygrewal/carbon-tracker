@@ -9,40 +9,43 @@ import java.util.List;
 
 public class CarbonModel {
     private static CarbonModel instance = new CarbonModel();
-    public List<VehicleModel> cars = new ArrayList<>();
-    public List<RouteModel> RouteList = new ArrayList<>();
+    private List<Make> listOfKnownMakes = new ArrayList<>();
+    private List<Route> listOfInputRoutes = new ArrayList<>();
+    private List<Vehicle> listOfInputVehicles = new ArrayList<>();
+    private List<Journey> listOfJourneys = new ArrayList<>();
+
+    public List<Vehicle> cars = new ArrayList<>();
+    public List<Route> RouteList = new ArrayList<>();
 
     private CarbonModel() {
     }
 
     public int countRoutes() {
-        return RouteList.size();
+        return listOfInputRoutes.size();
     }
 
-    public RouteModel getRoute(int index) {
-        return RouteList.get(index);
+    public Route getRoute(int index) {
+        return listOfInputRoutes.get(index);
     }
 
-    public void removeRoute(int index) {
-        RouteList.remove(index);
-    }
+    public void removeRoute(int index) { listOfInputRoutes.remove(index); }
 
-    public void editRoute(RouteModel route, int index) {
-        RouteList.remove(index);
-        RouteList.add(index, route);
+    public void editRoute(Route route, int index) {
+        listOfInputRoutes.remove(index);
+        listOfInputRoutes.add(index, route);
     }
 
     //for integrating with ArrayAdapter
     public String[] getRouteInfo() {
         String[] info = new String[countRoutes()];
         for (int i = 0; i < countRoutes(); i++) {
-            RouteModel route = getRoute(i);
+            Route route = getRoute(i);
             info[i] = route.getName() + ", " + route.getCity() + " (city), " + route.getHwy() + " (highway).";
         }
         return info;
     }
 
-    public void addRoute(RouteModel route) {
+    public void addRoute(Route route) {
         RouteList.add(route);
     }
 
@@ -57,6 +60,7 @@ public class CarbonModel {
     public VehicleModel getCar(int i) {
         return cars.get(i);
     }
+
     public List<String> getMakes(){
         List<String> makes = new ArrayList<>();
         for(int i=0; i<cars.size(); i++){
@@ -79,6 +83,12 @@ public class CarbonModel {
         return models;
     }
 
+    public void fillList() {
+        for (int i = 0; i < 38122; i++) {
+            cars.add(new VehicleModel());
+        }
+    }
+
     public List<String> getYears(String model){
         List<String> years = new ArrayList<>();
         for(int i=0; i<cars.size(); i++){
@@ -92,6 +102,19 @@ public class CarbonModel {
         return years;
     }
 
+
+    public void addMake(String makeName, String modelName,int year,double city,double highway,String fuelType,String trany,double displ){
+
+        Year makeYear = new Year(year, city, highway, fuelType, trany, displ);
+        for (Make make:listOfKnownMakes) {
+            if(make.getMake().equals(makeName)){
+                make.addModel(modelName, makeYear);
+                return;
+            }
+        }
+        listOfKnownMakes.add(new Make(makeName, modelName, makeYear));
+    }
+
     public List<String> getRemainingCars(String make, String model, String year){
         List<String> remainingCars = new ArrayList<>();
         for(int i=0; i<cars.size(); i++){
@@ -102,7 +125,7 @@ public class CarbonModel {
                         if(!remainingCars.contains(car.getTransmission())){
                             if(!remainingCars.contains(car.getEngineDisplacement())){
                                 remainingCars.add(car.getMake() +" " +car.getModel() +" " +car.getYear()
-                                                    +" " +car.getTransmission() +" " +car.getTransmission());
+                                        +" " +car.getTransmission() +" " +car.getTransmission());
                             }
                         }
                     }
@@ -112,10 +135,9 @@ public class CarbonModel {
         return remainingCars;
     }
 
-
-    public void fillList() {
-        for (int i = 0; i < 38122; i++) {
-            cars.add(new VehicleModel());
-        }
+    public void addVehicle(String vehicleName, String makeName, Model model){
+        listOfInputVehicles.add(new Vehicle(vehicleName,makeName,model));
     }
+
+
 }
