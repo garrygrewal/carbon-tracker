@@ -16,20 +16,21 @@ public class CarbonModel {
     private List<Journey> listOfJourneys = new ArrayList<>();
 
     private CarbonModel() {}
-    public List<VehicleModel> cars = new ArrayList<>();
-    public List<RouteModel> RouteList = new ArrayList<>();
+
+    public List<Vehicle> cars = new ArrayList<>();
+    public List<Route> RouteList = new ArrayList<>();
 
     public int countRoutes() {
         return listOfInputRoutes.size();
     }
 
-    public RouteModel getRoute(int index) {
+    public Route getRoute(int index) {
         return listOfInputRoutes.get(index);
     }
 
     public void removeRoute(int index) { listOfInputRoutes.remove(index); }
 
-    public void editRoute(RouteModel route, int index) {
+    public void editRoute(Route route, int index) {
         listOfInputRoutes.remove(index);
         listOfInputRoutes.add(index, route);
     }
@@ -38,17 +39,14 @@ public class CarbonModel {
     public String[] getRouteInfo() {
         String[] info = new String[countRoutes()];
         for (int i = 0; i < countRoutes(); i++) {
-            RouteModel route = getRoute(i);
+            Route route = getRoute(i);
             info[i] = route.getName() + ", " + route.getCity() + " (city), " + route.getHwy() + " (highway).";
         }
         return info;
     }
 
-    public void addRoute(RouteModel route) {
+    public void addRoute(Route route) {
         RouteList.add(route);
-    }
-
-    private CarbonModel() {
     }
 
     public static CarbonModel getInstance() {
