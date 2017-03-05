@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -18,9 +19,7 @@ import sfu.cmpt276.carbontracker.model.CarbonModel;
 
 /*
  *Select Transportation Screen-
- * currently only reads in cvs files. Still need to create
- * drop down boxes and populate them with information from
- * cvs file, and using array adapters.
+ * currently only reads in cvs files.
  */
 
 
@@ -52,7 +51,16 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 CarbonModel.getInstance().getCar(i).setYear(tokens[2]);
                 CarbonModel.getInstance().getCar(i).setCity(Double.parseDouble(tokens[3]));
                 CarbonModel.getInstance().getCar(i).setHighway(Double.parseDouble(tokens[4]));
+                CarbonModel.getInstance().getCar(i).setFuelType(tokens[5]);
+                if (CarbonModel.getInstance().getCar(i).getFuelType().equals("Electricity")) {
+                    CarbonModel.getInstance().getCar(i).setTransmission("none");
+                    CarbonModel.getInstance().getCar(i).setEngineDisplacement("none");
+                } else {
+                    CarbonModel.getInstance().getCar(i).setTransmission(tokens[6]);
+                    CarbonModel.getInstance().getCar(i).setEngineDisplacement(tokens[7] + "L");
+                }
                 CarbonModel.getInstance().addCar(CarbonModel.getInstance().getCar(i));
+
                 i++;
             }
         } catch (IOException e) {
@@ -70,7 +78,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
         btn_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (SelectVehicleActivity.this, AddVehicleActivity.class);
+                Intent intent = new Intent(SelectVehicleActivity.this, AddVehicleActivity.class);
                 startActivity(intent);
             }
         });
@@ -89,7 +97,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
 
     //navigation back button
     @Override
-    public void onBackPressed () {
+    public void onBackPressed() {
         Intent intent = new Intent();
         setResult(Activity.RESULT_CANCELED, intent);
         finish();
