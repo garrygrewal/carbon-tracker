@@ -6,8 +6,6 @@ import java.util.List;
 /**
  * Carbon Model is the Singleton Class-
  * Contains list of vehicles from cvs file.
- * Currently only being used in the Select Transportation Activity to
- * read in all vehicles from the cvs file
  */
 
 public class CarbonModel {
