@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">CarbonTracker</string>
     <string name="create_car_journey">Create Car Journey</string>
+    <string name="vehicle_year">Vehicle Year:</string>
+    <string name="add_vehicle">Add Vehicle</string>
+    <string name="cancel">Cancel</string>
+    <string name="vehicle_make">Vehicle Make:</string>
+    <string name="vehicle_model">Vehicle Model:</string>
 </resources>

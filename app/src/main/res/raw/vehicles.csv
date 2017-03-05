@@ -601,7 +601,7 @@ Chevrolet,Blazer 1500 4WD,1993,11,16,Regular Gasoline,Manual 5-spd,5.7
 Chevrolet,Suburban 1500 4WD,1993,11,15,Regular Gasoline,Automatic 4-spd,5.7
 Chevrolet,S10 Blazer 4WD,1993,15,20,Premium Gasoline,Automatic 4-spd,4.3
 Chevrolet,S10 Blazer 4WD,1993,15,20,Regular Gasoline,Manual 5-spd,4.3
-E. P. Dutton_ Inc.,Funeral Coach,1985,15,21,Regular Gasoline,Automatic 4-spd,4.1
+"E. P. Dutton Inc.",Funeral Coach,1985,15,21,Regular Gasoline,Automatic 4-spd,4.1
 Nissan,Pathfinder 4WD,1993,14,17,Regular Gasoline,Automatic 4-spd,3
 Nissan,Pathfinder 4WD,1993,14,17,Regular Gasoline,Manual 5-spd,3
 Chrysler,Town and Country 4WD,1993,15,20,Regular Gasoline,Automatic 4-spd,3.3
@@ -652,7 +652,7 @@ Mazda,Navajo,1993,15,20,Regular Gasoline,Automatic 4-spd,4
 Mazda,Navajo,1993,16,21,Regular Gasoline,Manual 5-spd,4
 Mazda,Navajo 4x4,1993,14,18,Regular Gasoline,Automatic 4-spd,4
 Mazda,Navajo 4x4,1993,16,21,Regular Gasoline,Manual 5-spd,4
-PAS_ Inc,Pas-Typhoon,1993,13,17,Premium Gasoline,Automatic 4-spd,4.3
+"PAS Inc",Pas-Typhoon,1993,13,17,Premium Gasoline,Automatic 4-spd,4.3
 Plymouth,Voyager/Grand Voyager 4WD,1993,15,20,Regular Gasoline,Automatic 4-spd,3.3
 Subaru,Loyale AWD,1993,19,22,Regular Gasoline,Automatic 3-spd,1.8
 Subaru,Loyale AWD,1993,21,26,Regular Gasoline,Manual 5-spd,1.8
@@ -5721,13 +5721,13 @@ Pontiac,Grand Prix,1999,17,27,Regular Gasoline,Automatic 4-spd,3.8
 Pontiac,Grand Prix,1999,16,25,Premium Gasoline,Automatic 4-spd,3.8
 Rolls-Royce,Silver Seraph,1999,11,15,Premium Gasoline,Automatic 5-spd,5.4
 Rolls-Royce,Silver Spur,1999,10,15,Premium Gasoline,Automatic 4-spd,6.8
-Saab,42981,1999,17,23,Regular Gasoline,Automatic 4-spd,2
+Saab,03-Sep,1999,17,23,Regular Gasoline,Automatic 4-spd,2
 Chevrolet,C10 Pickup 2WD,1985,13,17,Regular Gasoline,Automatic 4-spd,5
-Saab,42981,1999,18,25,Regular Gasoline,Manual 5-spd,2
-Saab,42981,1999,17,25,Premium Gasoline,Manual 5-spd,2
-Saab,42983,1999,17,24,Regular Gasoline,Automatic 4-spd,2.3
-Saab,42983,1999,19,28,Regular Gasoline,Manual 5-spd,2.3
-Saab,42983,1999,16,24,Regular Gasoline,Automatic 4-spd,3
+Saab,03-Sep,1999,18,25,Regular Gasoline,Manual 5-spd,2
+Saab,03-Sep,1999,17,25,Premium Gasoline,Manual 5-spd,2
+Saab,05-Sep,1999,17,24,Regular Gasoline,Automatic 4-spd,2.3
+Saab,05-Sep,1999,19,28,Regular Gasoline,Manual 5-spd,2.3
+Saab,05-Sep,1999,16,24,Regular Gasoline,Automatic 4-spd,3
 Toyota,Camry,1999,20,28,Regular Gasoline,Automatic 4-spd,2.2
 Toyota,Camry,1999,21,29,Regular Gasoline,Manual 5-spd,2.2
 Toyota,Camry,1999,17,25,Regular Gasoline,Automatic 4-spd,3
@@ -6612,17 +6612,17 @@ Pontiac,Grand Prix,2000,18,27,Regular Gasoline,Automatic 4-spd,3.1
 Pontiac,Grand Prix,2000,17,27,Regular Gasoline,Automatic 4-spd,3.8
 Chevrolet,Astro 2WD (passenger),1985,19,22,Regular Gasoline,Manual 4-spd,2.5
 Pontiac,Grand Prix,2000,16,25,Premium Gasoline,Automatic 4-spd,3.8
-Saab,42981,2000,17,24,Premium Gasoline,Automatic 4-spd,2
-Saab,42981,2000,18,23,Regular Gasoline,Automatic 4-spd,2
-Saab,42981,2000,19,27,Regular Gasoline,Manual 5-spd,2
-Saab,42981,2000,19,27,Premium Gasoline,Manual 5-spd,2
+Saab,03-Sep,2000,17,24,Premium Gasoline,Automatic 4-spd,2
+Saab,03-Sep,2000,18,23,Regular Gasoline,Automatic 4-spd,2
+Saab,03-Sep,2000,19,27,Regular Gasoline,Manual 5-spd,2
+Saab,03-Sep,2000,19,27,Premium Gasoline,Manual 5-spd,2
 Saab,9-3 Viggen,2000,18,27,Premium Gasoline,Manual 5-spd,2.3
-Saab,42983,2000,17,25,Regular Gasoline,Automatic 4-spd,2.3
-Saab,42983,2000,16,22,Premium Gasoline,Automatic 4-spd,2.3
-Saab,42983,2000,18,27,Regular Gasoline,Manual 5-spd,2.3
-Saab,42983,2000,18,25,Premium Gasoline,Manual 5-spd,2.3
+Saab,05-Sep,2000,17,25,Regular Gasoline,Automatic 4-spd,2.3
+Saab,05-Sep,2000,16,22,Premium Gasoline,Automatic 4-spd,2.3
+Saab,05-Sep,2000,18,27,Regular Gasoline,Manual 5-spd,2.3
+Saab,05-Sep,2000,18,25,Premium Gasoline,Manual 5-spd,2.3
 Chevrolet,Astro 2WD (passenger),1985,15,18,Regular Gasoline,Automatic 4-spd,4.3
-Saab,42983,2000,16,24,Premium Gasoline,Automatic 4-spd,3
+Saab,05-Sep,2000,16,24,Premium Gasoline,Automatic 4-spd,3
 Saturn,LS,2000,20,29,Regular Gasoline,Automatic 4-spd,2.2
 Saturn,LS,2000,21,30,Regular Gasoline,Manual 5-spd,2.2
 Saturn,LS,2000,18,24,Regular Gasoline,Automatic 4-spd,3
@@ -7137,8 +7137,8 @@ American Motors Corporation,Eagle 4DR Wagon,1985,15,19,Regular Gasoline,Manual 5
 Plymouth,Voyager/Grand Voyager 2WD,2000,16,23,Regular Gasoline,Automatic 4-spd,3.3
 Dodge,Caravan/Grand Caravan 2WD,2000,16,23,Regular Gasoline,Automatic 4-spd,3.3
 Chrysler,Town and Country/Voyager/Grand Voy. 2WD,2000,16,22,Regular Gasoline,Automatic 4-spd,3.3
-Nissan,Altra EV,2000,81,91,Electricity,0,0
-Toyota,RAV4 EV,2000,81,64,Electricity,0,0
+Nissan,Altra EV,2000,81,91,Electricity,,
+Toyota,RAV4 EV,2000,81,64,Electricity,,
 Acura,NSX,2001,15,22,Premium Gasoline,Automatic (S4),3
 Acura,NSX,2001,15,22,Premium Gasoline,Manual 6-spd,3.2
 Audi,TT Roadster,2001,19,27,Premium Gasoline,Manual 5-spd,1.8
@@ -7572,17 +7572,17 @@ Pontiac,Grand Prix,2001,18,26,Regular Gasoline,Automatic 4-spd,3.1
 Pontiac,Grand Prix,2001,17,28,Regular Gasoline,Automatic 4-spd,3.8
 Pontiac,Grand Prix,2001,16,26,Premium Gasoline,Automatic 4-spd,3.8
 Rolls-Royce,Silver Seraph,2001,11,15,Premium Gasoline,Automatic 5-spd,5.4
-Saab,42981,2001,18,26,Premium Gasoline,Automatic 4-spd,2
-Saab,42981,2001,18,25,Regular Gasoline,Automatic 4-spd,2
-Saab,42981,2001,19,28,Premium Gasoline,Manual 5-spd,2
-Saab,42981,2001,19,26,Regular Gasoline,Manual 5-spd,2
+Saab,03-Sep,2001,18,26,Premium Gasoline,Automatic 4-spd,2
+Saab,03-Sep,2001,18,25,Regular Gasoline,Automatic 4-spd,2
+Saab,03-Sep,2001,19,28,Premium Gasoline,Manual 5-spd,2
+Saab,03-Sep,2001,19,26,Regular Gasoline,Manual 5-spd,2
 Saab,9-3 Viggen,2001,18,28,Premium Gasoline,Manual 5-spd,2.3
 Subaru,Wagon 4WD,1985,19,22,Regular Gasoline,Automatic 3-spd,1.8
-Saab,42983,2001,18,27,Regular Gasoline,Automatic 4-spd,2.3
-Saab,42983,2001,17,24,Premium Gasoline,Automatic 4-spd,2.3
-Saab,42983,2001,19,28,Regular Gasoline,Manual 5-spd,2.3
-Saab,42983,2001,19,26,Premium Gasoline,Manual 5-spd,2.3
-Saab,42983,2001,17,24,Premium Gasoline,Automatic 4-spd,3
+Saab,05-Sep,2001,18,27,Regular Gasoline,Automatic 4-spd,2.3
+Saab,05-Sep,2001,17,24,Premium Gasoline,Automatic 4-spd,2.3
+Saab,05-Sep,2001,19,28,Regular Gasoline,Manual 5-spd,2.3
+Saab,05-Sep,2001,19,26,Premium Gasoline,Manual 5-spd,2.3
+Saab,05-Sep,2001,17,24,Premium Gasoline,Automatic 4-spd,3
 Saturn,L100/200,2001,21,30,Regular Gasoline,Automatic 4-spd,2.2
 Saturn,L100/200,2001,22,30,Regular Gasoline,Manual 5-spd,2.2
 Saturn,L300,2001,18,24,Regular Gasoline,Automatic 4-spd,3
@@ -8142,11 +8142,11 @@ Mazda,B3000 (FFV) Ethanol 2WD,2001,15,20,Regular Gasoline,Automatic 5-spd,3
 Ford,Ranger 2WD FFV,2001,15,20,Regular Gasoline,Automatic 5-spd,3
 Chrysler,Town and Country/Voyager/Grand Voy. 2WD,2001,16,22,Regular Gasoline,Automatic 4-spd,3.3
 Dodge,Caravan/Grand Caravan 2WD,2001,16,22,Regular Gasoline,Automatic 4-spd,3.3
-Toyota,RAV4 EV,2001,81,64,Electricity,0,0
-Ford,Th!nk,2001,74,58,Electricity,0,0
+Toyota,RAV4 EV,2001,81,64,Electricity,,
+Ford,Th!nk,2001,74,58,Electricity,,
 Mazda,RX-7,1986,15,22,Regular Gasoline,Automatic 4-spd,1.3
-Ford,Explorer USPS Electric,2001,45,33,Electricity,0,0
-Nissan,Hyper-Mini,2001,84,66,Electricity,0,0
+Ford,Explorer USPS Electric,2001,45,33,Electricity,,
+Nissan,Hyper-Mini,2001,84,66,Electricity,,
 Acura,NSX,2002,15,22,Premium Gasoline,Automatic (S4),3
 Acura,NSX,2002,15,22,Premium Gasoline,Manual 6-spd,3.2
 Aston Martin,Vanquish,2002,11,18,Premium Gasoline,Automatic (S6),5.9
@@ -8608,15 +8608,15 @@ Pontiac,Grand Prix,2002,16,25,Premium Gasoline,Automatic 4-spd,3.8
 Pontiac,Grand Prix,2002,18,26,Regular Gasoline,Automatic 4-spd,3.1
 Pontiac,Grand Prix,2002,17,27,Regular Gasoline,Automatic 4-spd,3.8
 Rolls-Royce,Silver Seraph,2002,11,15,Premium Gasoline,Automatic 5-spd,5.4
-Saab,42981,2002,18,27,Premium Gasoline,Automatic 4-spd,2
-Saab,42981,2002,20,30,Premium Gasoline,Manual 5-spd,2
+Saab,03-Sep,2002,18,27,Premium Gasoline,Automatic 4-spd,2
+Saab,03-Sep,2002,20,30,Premium Gasoline,Manual 5-spd,2
 Chrysler,Laser/Daytona,1986,18,22,Premium Gasoline,Automatic 3-spd,2.2
 Saab,9-3 Viggen,2002,17,26,Premium Gasoline,Manual 5-spd,2.3
-Saab,42983,2002,18,27,Premium Gasoline,Automatic 5-spd,2.3
-Saab,42983,2002,17,26,Regular Gasoline,Automatic 5-spd,2.3
-Saab,42983,2002,19,28,Regular Gasoline,Manual 5-spd,2.3
-Saab,42983,2002,19,28,Premium Gasoline,Manual 5-spd,2.3
-Saab,42983,2002,16,24,Premium Gasoline,Automatic 5-spd,3
+Saab,05-Sep,2002,18,27,Premium Gasoline,Automatic 5-spd,2.3
+Saab,05-Sep,2002,17,26,Regular Gasoline,Automatic 5-spd,2.3
+Saab,05-Sep,2002,19,28,Regular Gasoline,Manual 5-spd,2.3
+Saab,05-Sep,2002,19,28,Premium Gasoline,Manual 5-spd,2.3
+Saab,05-Sep,2002,16,24,Premium Gasoline,Automatic 5-spd,3
 Saturn,L100/200,2002,21,30,Regular Gasoline,Automatic 4-spd,2.2
 Saturn,L100/200,2002,22,30,Regular Gasoline,Manual 5-spd,2.2
 Saturn,L300,2002,18,26,Regular Gasoline,Automatic 4-spd,3
@@ -9211,8 +9211,8 @@ Ford,Ranger 2WD FFV,2002,15,20,Regular Gasoline,Automatic 5-spd,3
 Mazda,B3000 FFV 2WD,2002,15,20,Regular Gasoline,Automatic 5-spd,3
 Mercury,Mountaineer 2WD FFV,2002,14,19,Regular Gasoline,Automatic 5-spd,4
 Honda,Civic,1986,31,39,Regular Gasoline,Manual 4-spd,1.3
-Toyota,RAV4 EV,2002,87,69,Electricity,0,0
-Ford,Explorer USPS Electric,2002,45,33,Electricity,0,0
+Toyota,RAV4 EV,2002,87,69,Electricity,,
+Ford,Explorer USPS Electric,2002,45,33,Electricity,,
 Acura,NSX,2003,15,22,Premium Gasoline,Automatic (S4),3
 Acura,NSX,2003,15,22,Premium Gasoline,Manual 6-spd,3.2
 BMW Alpina,Roadster V8,2003,13,19,Premium Gasoline,Automatic 5-spd,4.8
@@ -9671,11 +9671,11 @@ Oldsmobile,Aurora,2003,15,24,Regular Gasoline,Automatic 4-spd,4
 Pontiac,Grand Prix,2003,18,26,Regular Gasoline,Automatic 4-spd,3.1
 Pontiac,Grand Prix,2003,16,25,Premium Gasoline,Automatic 4-spd,3.8
 Pontiac,Grand Prix,2003,17,27,Regular Gasoline,Automatic 4-spd,3.8
-Saab,42983,2003,17,27,Regular Gasoline,Automatic 5-spd,2.3
-Saab,42983,2003,18,27,Premium Gasoline,Automatic 5-spd,2.3
-Saab,42983,2003,19,28,Regular Gasoline,Manual 5-spd,2.3
-Saab,42983,2003,19,28,Premium Gasoline,Manual 5-spd,2.3
-Saab,42983,2003,16,24,Premium Gasoline,Automatic 5-spd,3
+Saab,05-Sep,2003,17,27,Regular Gasoline,Automatic 5-spd,2.3
+Saab,05-Sep,2003,18,27,Premium Gasoline,Automatic 5-spd,2.3
+Saab,05-Sep,2003,19,28,Regular Gasoline,Manual 5-spd,2.3
+Saab,05-Sep,2003,19,28,Premium Gasoline,Manual 5-spd,2.3
+Saab,05-Sep,2003,16,24,Premium Gasoline,Automatic 5-spd,3
 Saturn,L200,2003,21,29,Regular Gasoline,Automatic 4-spd,2.2
 Mitsubishi,Mirage,1986,21,24,Premium Gasoline,Automatic 3-spd,1.6
 Saturn,L200,2003,21,29,Regular Gasoline,Manual 5-spd,2.2
@@ -10328,7 +10328,7 @@ Honda,Civic CNG,2003,26,31,Natural Gas,Automatic (variable gear ratios),1.7
 Ford,Crown Victoria CNG,2003,12,17,Natural Gas,Automatic 4-spd,4.6
 Ford,F150 Dual-fuel 2WD (CNG),2003,11,15,Regular Gasoline,Automatic 4-spd,5.4
 Ford,F150 Dual-fuel 4WD (CNG),2003,11,14,Regular Gasoline,Automatic 4-spd,5.4
-Toyota,RAV4 EV,2003,87,69,Electricity,0,0
+Toyota,RAV4 EV,2003,87,69,Electricity,,
 MINI,Cooper S,2003,22,31,Premium Gasoline,Manual 6-spd,1.6
 MINI,Cooper,2003,22,29,Premium Gasoline,Automatic (variable gear ratios),1.6
 MINI,Cooper,2003,25,33,Premium Gasoline,Manual 5-spd,1.6
@@ -10891,10 +10891,10 @@ Plymouth,Turismo,1985,26,36,Regular Gasoline,Manual 4-spd,1.6
 Ford,Escort,1986,31,39,Diesel,Manual 5-spd,2
 Pontiac,Grand Prix,2004,16,26,Premium Gasoline,Automatic 4-spd,3.8
 Rolls-Royce,Phantom,2004,11,17,Premium Gasoline,Automatic (S6),6.7
-Saab,42983,2004,18,27,Regular Gasoline,Manual 5-spd,2.3
-Saab,42983,2004,18,27,Premium Gasoline,Manual 5-spd,2.3
-Saab,42983,2004,17,26,Regular Gasoline,Automatic (S5),2.3
-Saab,42983,2004,17,25,Premium Gasoline,Automatic (S5),2.3
+Saab,05-Sep,2004,18,27,Regular Gasoline,Manual 5-spd,2.3
+Saab,05-Sep,2004,18,27,Premium Gasoline,Manual 5-spd,2.3
+Saab,05-Sep,2004,17,26,Regular Gasoline,Automatic (S5),2.3
+Saab,05-Sep,2004,17,25,Premium Gasoline,Automatic (S5),2.3
 Saturn,L300,2004,21,31,Regular Gasoline,Automatic 4-spd,2.2
 Saturn,L300,2004,18,26,Regular Gasoline,Automatic 4-spd,3
 Suzuki,Verona,2004,17,25,Regular Gasoline,Automatic 4-spd,2.5
@@ -12139,8 +12139,8 @@ Pontiac,Grand Prix,2005,17,26,Premium Gasoline,Automatic 4-spd,3.8
 Pontiac,Grand Prix,2005,18,27,Regular Gasoline,Automatic 4-spd,3.8
 Pontiac,Grand Prix,2005,16,24,Premium Gasoline,Automatic (S4),3.8
 Rolls-Royce,Phantom,2005,11,17,Premium Gasoline,Automatic (S6),6.7
-Saab,42983,2005,18,28,Premium Gasoline,Manual 5-spd,2.3
-Saab,42983,2005,17,26,Premium Gasoline,Automatic (S5),2.3
+Saab,05-Sep,2005,18,28,Premium Gasoline,Manual 5-spd,2.3
+Saab,05-Sep,2005,17,26,Premium Gasoline,Automatic (S5),2.3
 Saturn,L300,2005,18,26,Regular Gasoline,Automatic 4-spd,3
 Suzuki,Verona,2005,18,25,Regular Gasoline,Automatic 4-spd,2.5
 Audi,5000 S,1986,16,20,Regular Gasoline,Automatic 3-spd,2.2
@@ -14050,7 +14050,7 @@ Acura,TSX,2006,19,28,Premium Gasoline,Manual 6-spd,2.4
 Volkswagen,GTI,2006,22,29,Premium Gasoline,Automatic (S6),2
 Volkswagen,GTI,2006,21,29,Premium Gasoline,Manual 6-spd,2
 Cadillac,STS-V,2006,12,19,Premium Gasoline,Automatic (S6),4.4
-Saab,42983,2006,16,26,Premium Gasoline,Automatic (S5),2.3
+Saab,05-Sep,2006,16,26,Premium Gasoline,Automatic (S5),2.3
 Plymouth,Colt Vista,1986,20,22,Regular Gasoline,Automatic 3-spd,2
 Saab,9-5 SportCombi,2006,16,26,Premium Gasoline,Automatic (S5),2.3
 Audi,A3 quattro,2006,18,25,Premium Gasoline,Automatic (S6),3.2
@@ -14083,7 +14083,7 @@ Kia,Optima (2006 New Model),2006,21,31,Regular Gasoline,Automatic 5-spd,2.4
 Kia,Optima (2006 New Model),2006,21,31,Regular Gasoline,Manual 5-spd,2.4
 Kia,Optima (2006 New Model),2006,20,28,Regular Gasoline,Automatic 5-spd,2.7
 Pontiac,Sunbird Wagon,1986,23,34,Regular Gasoline,Manual 5-spd,1.8
-Saab,42983,2006,18,27,Premium Gasoline,Manual 5-spd,2.3
+Saab,05-Sep,2006,18,27,Premium Gasoline,Manual 5-spd,2.3
 Maybach,57S,2006,10,15,Premium Gasoline,Automatic 5-spd,6
 Mitsubishi,Lancer Sportback,2006,20,26,Regular Gasoline,Automatic 4-spd,2.4
 Saab,9-5 SportCombi,2006,18,27,Premium Gasoline,Manual 5-spd,2.3
@@ -16681,12 +16681,12 @@ Chevrolet,K10 Pickup 4WD,1986,12,14,Regular Gasoline,Manual 4-spd,4.3
 Pontiac,G8,2008,17,25,Regular Gasoline,Automatic (S5),3.6
 Infiniti,EX35,2008,17,24,Premium Gasoline,Automatic (S5),3.5
 Infiniti,EX35,2008,16,23,Premium Gasoline,Automatic (S5),3.5
-Tecstar_ LP,Foose F150 Regular Cab 2WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
-Tecstar_ LP,Foose F150 Super Cab 2WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
-Tecstar_ LP,Foose F150 Super Crew 2WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
-Tecstar_ LP,Foose F150 Regular Cab 4WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
-Tecstar_ LP,Foose F150 Super Cab 4WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
-Tecstar_ LP,Foose F150 Super Crew 4WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
+"Tecstar LP",Foose F150 Regular Cab 2WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
+"Tecstar LP",Foose F150 Super Cab 2WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
+"Tecstar LP",Foose F150 Super Crew 2WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
+"Tecstar LP",Foose F150 Regular Cab 4WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
+"Tecstar LP",Foose F150 Super Cab 4WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
+"Tecstar LP",Foose F150 Super Crew 4WD,2008,11,15,Premium Gasoline,Automatic 4-spd,5.4
 Jaguar,XJS Convertible,1995,16,22,Premium Gasoline,Automatic 4-spd,4
 Chevrolet,K10 Pickup 4WD,1986,14,16,Regular Gasoline,Manual 4-spd,4.3
 Buick,LeSabre,1996,17,27,Regular Gasoline,Automatic 4-spd,3.8
@@ -19090,7 +19090,7 @@ GMC,Safari 2WD (passenger),1986,15,19,Regular Gasoline,Manual 4-spd,4.3
 Ford,F150 Pickup 2WD,1984,13,17,Regular Gasoline,Manual 4-spd,5
 Ford,F150 Pickup 2WD,1984,11,12,Regular Gasoline,Automatic 3-spd,5.8
 Ford,F150 Pickup 2WD,1984,11,15,Regular Gasoline,Manual 4-spd,5.8
-Ford,F150 Pickup 2WD,1984,11,12,Regular Gasoline,0,5.8
+Ford,F150 Pickup 2WD,1984,11,12,Regular Gasoline,,5.8
 Ford,F150 Pickup 2WD,1984,11,12,Regular Gasoline,Automatic 3-spd,5.8
 Ford,F250 Pickup 2WD,1984,12,15,Regular Gasoline,Automatic 3-spd,4.9
 Ford,F250 Pickup 2WD,1984,14,15,Regular Gasoline,Manual 3-spd,4.9
@@ -19121,7 +19121,7 @@ GMC,C15 Pickup 2WD,1984,18,22,Diesel,Manual 4-spd,6.2
 GMC,C15 Pickup 2WD,1984,18,20,Diesel,Manual 4-spd,6.2
 Toyota,Van 2WD,1986,19,22,Regular Gasoline,Manual 5-spd,2.2
 GMC,C25 Pickup 2WD,1984,13,17,Regular Gasoline,Automatic 4-spd,4.1
-GMC,C25 Pickup 2WD,1984,13,15,Regular Gasoline,0,4.1
+GMC,C25 Pickup 2WD,1984,13,15,Regular Gasoline,,4.1
 GMC,C25 Pickup 2WD,1984,13,17,Regular Gasoline,Automatic 4-spd,5
 GMC,C25 Pickup 2WD,1984,12,15,Regular Gasoline,Manual 4-spd,5
 GMC,C25 Pickup 2WD,1984,17,22,Diesel,Automatic 4-spd,6.2
@@ -21397,8 +21397,8 @@ Chevrolet,G30 Van 2WD (cargo),1995,11,14,Regular Gasoline,Automatic 4-spd,5.7
 GMC,Vandura G35 2WD (cargo),1995,11,14,Regular Gasoline,Automatic 4-spd,5.7
 Porsche,944,1987,17,22,Regular Gasoline,Automatic 3-spd,2.5
 Isuzu,Pickup 2WD,1995,16,20,Regular Gasoline,Manual 5-spd,2.6
-Subaru,RX Turbo,1985,22,28,Regular Gasoline,Manual 5-spd,0
-Subaru,RX Turbo,1985,21,27,Regular Gasoline,Manual 5-spd,0
+Subaru,RX Turbo,1985,22,28,Regular Gasoline,Manual 5-spd,NA
+Subaru,RX Turbo,1985,21,27,Regular Gasoline,Manual 5-spd,NA
 Mercedes-Benz,SLK300,2010,19,26,Premium Gasoline,Automatic 7-spd,3.5
 Mercedes-Benz,SLK350,2010,17,25,Premium Gasoline,Manual 6-spd,3.5
 Mercedes-Benz,SLK350,2010,18,25,Premium Gasoline,Automatic 7-spd,3.5
@@ -23001,22 +23001,22 @@ Jeep,Patriot 4WD,2011,21,26,Regular Gasoline,Automatic (variable gear ratios),2.
 Jeep,Patriot 4WD,2011,22,27,Regular Gasoline,Manual 5-spd,2.4
 Nissan,Murano AWD,2011,18,23,Regular Gasoline,Automatic (variable gear ratios),3.5
 Porsche,Cayenne S Hybrid,2011,20,24,Premium Gasoline,Automatic 8-spd,3
-Ford,Ranger Pickup 2WD,2001,62,54,Electricity,Automatic (A1),0
-Ford,Ranger Pickup 2WD,2000,62,54,Electricity,Automatic (A1),0
-Ford,Ranger Pickup 2WD,2000,59,52,Electricity,Automatic (A1),0
-GMC,EV1,1999,79,94,Electricity,Automatic (A1),0
-GMC,EV1,1999,35,39,Electricity,Automatic (A1),0
+Ford,Ranger Pickup 2WD,2001,62,54,Electricity,Automatic (A1),
+Ford,Ranger Pickup 2WD,2000,62,54,Electricity,Automatic (A1),
+Ford,Ranger Pickup 2WD,2000,59,52,Electricity,Automatic (A1),
+GMC,EV1,1999,79,94,Electricity,Automatic (A1),
+GMC,EV1,1999,35,39,Electricity,Automatic (A1),
 Pontiac,Firefly,1987,36,43,Regular Gasoline,Manual 5-spd,1
-Honda,EV Plus,1999,49,46,Electricity,Automatic (A1),0
-Ford,Ranger Pickup 2WD,1999,62,54,Electricity,Automatic (A1),0
-Ford,Ranger Pickup 2WD,1999,50,44,Electricity,Automatic (A1),0
-Dodge,Caravan/Grand Caravan 2WD,1999,37,33,Electricity,Automatic (A1),0
-Plymouth,Voyager/Grand Voyager 2WD,1999,37,33,Electricity,Automatic (A1),0
-Honda,EV Plus,1998,49,46,Electricity,Automatic (A1),0
-Chevrolet,S10 Electric,1998,52,58,Electricity,Automatic (A1),0
-Chevrolet,S10 Electric,1998,28,28,Electricity,Automatic (A1),0
-MINI,MiniE,2008,102,94,Electricity,Automatic (A1),0
-Nissan,Leaf,2011,106,92,Electricity,Automatic (A1),0
+Honda,EV Plus,1999,49,46,Electricity,Automatic (A1),
+Ford,Ranger Pickup 2WD,1999,62,54,Electricity,Automatic (A1),
+Ford,Ranger Pickup 2WD,1999,50,44,Electricity,Automatic (A1),
+Dodge,Caravan/Grand Caravan 2WD,1999,37,33,Electricity,Automatic (A1),
+Plymouth,Voyager/Grand Voyager 2WD,1999,37,33,Electricity,Automatic (A1),
+Honda,EV Plus,1998,49,46,Electricity,Automatic (A1),
+Chevrolet,S10 Electric,1998,52,58,Electricity,Automatic (A1),
+Chevrolet,S10 Electric,1998,28,28,Electricity,Automatic (A1),
+MINI,MiniE,2008,102,94,Electricity,Automatic (A1),
+Nissan,Leaf,2011,106,92,Electricity,Automatic (A1),
 Pontiac,Sunbird Convertible,1987,18,24,Premium Gasoline,Automatic 3-spd,2
 Chevrolet,Volt,2011,35,40,Premium Gasoline,Auto (AV),1.4
 Nissan,370Z,2011,19,26,Premium Gasoline,Automatic (S7),3.7
@@ -23112,8 +23112,8 @@ Ford,Explorer 4WD,2011,17,23,Regular Gasoline,Automatic 6-spd,3.5
 Ford,Explorer 4WD,2011,17,23,Regular Gasoline,Automatic (S6),3.5
 Jeep,Compass 4WD,2011,20,23,Regular Gasoline,Automatic (variable gear ratios),2.4
 Volkswagen,Touareg Hybrid,2011,20,24,Premium Gasoline,Automatic (S8),3
-smart,fortwo electric drive cabriolet,2011,94,79,Electricity,Automatic (A1),0
-smart,fortwo electric drive coupe,2011,94,79,Electricity,Automatic (A1),0
+smart,fortwo electric drive cabriolet,2011,94,79,Electricity,Automatic (A1),
+smart,fortwo electric drive coupe,2011,94,79,Electricity,Automatic (A1),
 Mercedes-Benz,CL550 4matic,2011,15,23,Premium Gasoline,Automatic 7-spd,4.7
 Mercedes-Benz,CL600,2011,12,18,Premium Gasoline,Automatic 5-spd,5.5
 Mercedes-Benz,CL63 AMG,2011,15,21,Premium Gasoline,Automatic 7-spd,5.5
@@ -23771,7 +23771,7 @@ Bitter Gmbh and Co. Kg,Bitter SC,1987,14,20,Premium Gasoline,Manual 5-spd,3.9
 MINI,Cooper S Clubman,2012,25,33,Premium Gasoline,Automatic (S6),1.6
 MINI,Cooper S Clubman,2012,26,34,Premium Gasoline,Manual 6-spd,1.6
 MINI,John Cooper Works Clubman,2012,25,32,Premium Gasoline,Manual 6-spd,1.6
-Mitsubishi,i-MiEV,2012,126,99,Electricity,Automatic (A1),0
+Mitsubishi,i-MiEV,2012,126,99,Electricity,Automatic (A1),
 Acura,TSX,2012,21,29,Premium Gasoline,Manual 6-spd,2.4
 Acura,TSX,2012,22,31,Premium Gasoline,Automatic (S5),2.4
 Acura,TSX,2012,19,28,Premium Gasoline,Automatic (S5),3.5
@@ -24015,8 +24015,8 @@ Chevrolet,Beretta,1987,18,24,Regular Gasoline,Automatic 3-spd,2.8
 GMC,Savana 3500 2WD (Passenger),2012,11,17,Regular Gasoline,Automatic 6-spd,4.8
 GMC,Savana 2500 2WD (Passenger),2012,11,16,Regular Gasoline,Automatic 6-spd,6
 GMC,Savana 3500 2WD (Passenger),2012,10,15,Regular Gasoline,Automatic 6-spd,6
-Azure Dynamics,Transit Connect Electric Van,2012,62,62,Electricity,Automatic (A1),0
-Azure Dynamics,Transit Connect Electric Wagon,2012,62,62,Electricity,Automatic (A1),0
+Azure Dynamics,Transit Connect Electric Van,2012,62,62,Electricity,Automatic (A1),
+Azure Dynamics,Transit Connect Electric Wagon,2012,62,62,Electricity,Automatic (A1),
 Honda,Odyssey,2012,18,27,Regular Gasoline,Automatic 5-spd,3.5
 Honda,Odyssey,2012,19,27,Regular Gasoline,Automatic 6-spd,3.5
 Toyota,Sienna 2WD,2012,19,24,Regular Gasoline,Automatic (S6),2.7
@@ -24305,7 +24305,7 @@ Nissan,Xterra 4WD,2012,16,20,Regular Gasoline,Manual 6-spd,4
 Nissan,Armada 4WD,2012,12,18,Regular Gasoline,Automatic 5-spd,5.6
 Toyota,4Runner 4WD,2012,17,22,Regular Gasoline,Automatic (S5),4
 Toyota,4Runner 4WD,2012,17,22,Regular Gasoline,Automatic (S5),4
-Nissan,Leaf,2012,106,92,Electricity,Automatic (A1),0
+Nissan,Leaf,2012,106,92,Electricity,Automatic (A1),
 Mitsubishi,Outlander Sport 2WD,2012,25,30,Regular Gasoline,Auto(AV-S6),2
 Mitsubishi,Outlander Sport 2WD,2012,24,30,Regular Gasoline,Manual 5-spd,2
 Mitsubishi,Outlander Sport 4WD,2012,23,28,Regular Gasoline,Auto(AV-S6),2
@@ -24436,9 +24436,9 @@ Kia,Sorento 2WD,2013,20,25,Regular Gasoline,Automatic 6-spd,3.5
 Kia,Sorento 4WD,2013,20,26,Regular Gasoline,Automatic 6-spd,2.4
 Kia,Sorento 4WD,2013,21,26,Regular Gasoline,Automatic 6-spd,2.4
 Kia,Sorento 4WD,2013,18,24,Regular Gasoline,Automatic 6-spd,3.5
-BMW,Active E,2011,107,96,Electricity,Automatic (A1),0
-CODA Automotive,CODA,2012,77,68,Electricity,Automatic (A1),0
-Ford,Focus Electric,2012,110,99,Electricity,Automatic (variable gear ratios),0
+BMW,Active E,2011,107,96,Electricity,Automatic (A1),
+CODA Automotive,CODA,2012,77,68,Electricity,Automatic (A1),
+Ford,Focus Electric,2012,110,99,Electricity,Automatic (variable gear ratios),
 Mercedes-Benz,SLK250,2012,23,32,Premium Gasoline,Automatic 7-spd,1.8
 Ford,Tempo,1987,19,28,Regular Gasoline,Manual 5-spd,2.3
 Mercedes-Benz,SLK250,2012,22,32,Premium Gasoline,Manual 6-spd,1.8
@@ -24748,7 +24748,7 @@ Toyota,Venza AWD,2013,20,26,Regular Gasoline,Automatic (S6),2.7
 Toyota,Venza AWD,2013,18,25,Regular Gasoline,Automatic (S6),3.5
 Cadillac,SRX 2WD,2013,17,24,Regular Gasoline,Automatic (S6),3.6
 Cadillac,SRX AWD,2013,16,23,Regular Gasoline,Automatic (S6),3.6
-Tesla,Model S,2012,88,90,Electricity,Automatic (A1),0
+Tesla,Model S,2012,88,90,Electricity,Automatic (A1),
 Audi,TT Roadster quattro,2013,22,31,Premium Gasoline,Auto(AM-S6),2
 Mercedes-Benz,SLK250,2013,22,32,Premium Gasoline,Manual 6-spd,1.8
 Mazda,626,1987,19,26,Regular Gasoline,Manual 5-spd,2
@@ -25253,7 +25253,7 @@ Jeep,Wrangler Unlimited 4WD,2013,16,20,Regular Gasoline,Automatic 5-spd,3.6
 Jeep,Wrangler 4WD,2013,17,21,Regular Gasoline,Manual 6-spd,3.6
 Jeep,Wrangler Unlimited 4WD,2013,16,21,Regular Gasoline,Manual 6-spd,3.6
 Lexus,RX 350 AWD,2013,18,26,Regular Gasoline,Automatic (S8),3.5
-Ford,Focus Electric,2013,110,99,Electricity,Automatic (A1),0
+Ford,Focus Electric,2013,110,99,Electricity,Automatic (A1),
 Lamborghini,Aventador Coupe,2013,11,18,Premium Gasoline,Auto(AM-S7),6.5
 Ferrari,California,2013,14,19,Premium Gasoline,Auto(AM7),4.3
 Fiat,500,2013,28,33,Premium Gasoline,Manual 5-spd,1.4
@@ -25519,7 +25519,7 @@ Toyota,4Runner 4WD,2013,17,21,Regular Gasoline,Automatic (S5),4
 Toyota,4Runner 4WD,2013,17,21,Regular Gasoline,Automatic (S5),4
 Toyota,Sequoia 4WD,2013,13,17,Regular Gasoline,Automatic (S6),5.7
 Toyota,Sequoia 4WD FFV,2013,13,17,Regular Gasoline,Automatic (S6),5.7
-Honda,Fit EV,2013,132,105,Electricity,Automatic (A1),0
+Honda,Fit EV,2013,132,105,Electricity,Automatic (A1),
 Nissan,Versa,2013,31,40,Regular Gasoline,Automatic (variable gear ratios),1.6
 Nissan,Versa,2013,27,35,Regular Gasoline,Manual 5-spd,1.6
 Nissan,Versa,2013,26,35,Regular Gasoline,Automatic 4-spd,1.6
@@ -25564,10 +25564,10 @@ Audi,Q5 Hybrid,2013,24,30,Premium Gasoline,Automatic (S8),2
 Mazda,CX-9 4WD,2013,16,22,Regular Gasoline,Automatic (S6),3.7
 Infiniti,QX56 2WD,2013,14,20,Premium Gasoline,Automatic (S7),5.6
 Infiniti,QX56 4WD,2013,14,20,Premium Gasoline,Automatic (S7),5.6
-smart,fortwo electric drive convertible,2013,122,93,Electricity,Automatic (A1),0
-smart,fortwo electric drive coupe,2013,122,93,Electricity,Automatic (A1),0
-Scion,iQ EV,2013,138,105,Electricity,Automatic (variable gear ratios),0
-Toyota,RAV4 EV,2012,78,74,Electricity,Automatic (variable gear ratios),0
+smart,fortwo electric drive convertible,2013,122,93,Electricity,Automatic (A1),
+smart,fortwo electric drive coupe,2013,122,93,Electricity,Automatic (A1),
+Scion,iQ EV,2013,138,105,Electricity,Automatic (variable gear ratios),
+Toyota,RAV4 EV,2012,78,74,Electricity,Automatic (variable gear ratios),
 Lotus,Evora,2013,18,26,Premium Gasoline,Manual 6-spd,3.5
 Volkswagen,Golf,1987,23,31,Regular Gasoline,Manual 5-spd,1.8
 Lotus,Evora,2013,17,26,Premium Gasoline,Manual 6-spd,3.5
@@ -25599,7 +25599,7 @@ Land Rover,Range Rover Evoque,2013,20,27,Premium Gasoline,Automatic (S6),2
 Nissan,Murano AWD,2013,18,23,Regular Gasoline,Automatic (variable gear ratios),3.5
 Toyota,Prius Plug-in Hybrid,2013,51,49,Regular Gasoline,Automatic (variable gear ratios),1.8
 Ford,C-MAX Energi Plug-in Hybrid,2013,40,36,Regular Gasoline,Automatic (variable gear ratios),2
-CODA Automotive,CODA,2013,77,68,Electricity,Automatic (A1),0
+CODA Automotive,CODA,2013,77,68,Electricity,Automatic (A1),
 Mercedes-Benz,SL65 AMG,2013,14,21,Premium Gasoline,Automatic 7-spd,6
 Mercedes-Benz,SLS AMG GT Coupe,2013,13,19,Premium Gasoline,Auto(AM7),6.2
 Volkswagen,GTI/Golf GT,1987,23,28,Regular Gasoline,Manual 5-spd,1.8
@@ -25622,7 +25622,7 @@ Nissan,Pathfinder 2WD,2013,20,25,Regular Gasoline,Automatic (variable gear ratio
 Audi,Q5,2013,18,26,Premium Gasoline,Automatic (S8),3
 Nissan,Pathfinder 4WD,2013,19,25,Regular Gasoline,Automatic (variable gear ratios),3.5
 Land Rover,LR4,2013,13,17,Premium Gasoline,Automatic (S6),5
-Mitsubishi,i-MiEV,2013,126,99,Electricity,Automatic (A1),0
+Mitsubishi,i-MiEV,2013,126,99,Electricity,Automatic (A1),
 Mercedes-Benz,C350 4matic Coupe,2012,19,27,Premium Gasoline,Automatic 7-spd,3.5
 Volkswagen,Jetta,1987,23,31,Regular Gasoline,Manual 5-spd,1.8
 BMW,650i Convertible xDrive,2012,15,19,Premium Gasoline,Automatic (S8),4.4
@@ -25632,8 +25632,8 @@ BMW,ActiveHybrid 5,2012,23,30,Premium Gasoline,Automatic (S8),3
 Honda,Crosstour 2WD,2012,21,29,Regular Gasoline,Automatic 5-spd,2.4
 Mercedes-Benz,ML350 4matic,2012,18,23,Premium Gasoline,Automatic 7-spd,3.5
 Volkswagen,Jetta Hybrid,2013,41,48,Premium Gasoline,Auto(AM-S7),1.4
-Tesla,Model S (60 kW-hr battery pack),2013,94,97,Electricity,Automatic (A1),0
-Tesla,Model S (85 kW-hr battery pack),2013,88,90,Electricity,Automatic (A1),0
+Tesla,Model S (60 kW-hr battery pack),2013,94,97,Electricity,Automatic (A1),
+Tesla,Model S (85 kW-hr battery pack),2013,88,90,Electricity,Automatic (A1),
 Audi,RS 5 Cabriolet,2013,16,22,Premium Gasoline,Auto(AM-S7),4.2
 Volkswagen,Jetta GLI 16v,1987,21,26,Regular Gasoline,Manual 5-spd,1.8
 Jaguar,XF,2013,19,30,Premium Gasoline,Automatic (S8),2
@@ -25650,7 +25650,7 @@ Volkswagen,Jetta GLI/Wolfsburg Edition,1987,21,24,Regular Gasoline,Automatic 3-s
 Land Rover,LR2,2013,17,24,Premium Gasoline,Automatic (S6),2
 Land Rover,Range Rover,2013,13,19,Premium Gasoline,Automatic (S8),5
 Land Rover,Range Rover,2013,14,20,Premium Gasoline,Automatic (S8),5
-BYD,e6,2012,60,64,Electricity,Automatic (A1),0
+BYD,e6,2012,60,64,Electricity,Automatic (A1),
 Aston Martin,V8 Vantage,2013,13,19,Premium Gasoline,Manual 6-spd,4.7
 Aston Martin,V8 Vantage,2013,14,21,Premium Gasoline,Auto(AM7),4.7
 Aston Martin,V8 Vantage S,2013,13,19,Premium Gasoline,Manual 6-spd,4.7
@@ -25664,8 +25664,8 @@ Buick,Encore AWD,2013,23,29,Regular Gasoline,Automatic (S6),1.4
 Hyundai,Santa Fe 4WD,2013,18,24,Regular Gasoline,Automatic 6-spd,3.3
 Nissan,Murano CrossCabriolet,2013,17,22,Premium Gasoline,Automatic (variable gear ratios),3.5
 BMW,X5 xDrive35d,2013,19,26,Diesel,Automatic (S6),3
-Fiat,500e,2013,122,108,Electricity,Automatic (A1),0
-Toyota,RAV4 EV,2013,78,74,Electricity,Automatic (variable gear ratios),0
+Fiat,500e,2013,122,108,Electricity,Automatic (A1),
+Toyota,RAV4 EV,2013,78,74,Electricity,Automatic (variable gear ratios),
 Ford,Fusion Energi Plug-in Hybrid,2013,40,36,Regular Gasoline,Automatic (variable gear ratios),2
 Mazda,6,2014,25,36,Regular Gasoline,Manual 6-spd,2.5
 Mazda,626,1985,23,29,Regular Gasoline,Manual 5-spd,2
@@ -25843,7 +25843,7 @@ BMW,X6 xDrive35i,2014,17,24,Premium Gasoline,Automatic (S8),3
 BMW,X6 xDrive50i,2014,14,21,Premium Gasoline,Automatic (S8),4.4
 BMW,X6 M,2014,13,17,Premium Gasoline,Automatic (S6),4.4
 Honda,Accord Plug-in Hybrid,2014,47,46,Regular Gasoline,Automatic (variable gear ratios),2
-Nissan,Leaf,2013,129,102,Electricity,Automatic (A1),0
+Nissan,Leaf,2013,129,102,Electricity,Automatic (A1),
 Jaguar,F-Type V8 S Convertible,2014,16,23,Premium Gasoline,Automatic (S8),5
 Buick,Century,1987,19,29,Regular Gasoline,Automatic 3-spd,2.5
 Porsche,Boxster S,2014,20,27,Premium Gasoline,Manual 6-spd,3.4
@@ -25901,7 +25901,7 @@ Acura,ILX Hybrid,2014,38,38,Premium Gasoline,Auto(AV-S7),1.5
 Mercedes-Benz,E550 4matic,2014,18,24,Premium Gasoline,Automatic 7-spd,4.7
 Subaru,Legacy AWD,2014,24,32,Regular Gasoline,Automatic (variable gear ratios),2.5
 Buick,Regal,1987,15,23,Premium Gasoline,Automatic 4-spd,3.8
-Tesla,Model S (40 kW-hr battery pack),2013,93,96,Electricity,Automatic (A1),0
+Tesla,Model S (40 kW-hr battery pack),2013,93,96,Electricity,Automatic (A1),
 Audi,TT Roadster quattro,2014,22,31,Premium Gasoline,Auto(AM-S6),2
 Bugatti,Veyron,2014,8,15,Premium Gasoline,Auto(AM-S7),8
 Jaguar,F-Type Convertible,2014,20,28,Premium Gasoline,Automatic (S8),3
@@ -25932,7 +25932,7 @@ Scion,iQ,2014,36,37,Regular Gasoline,Automatic (variable gear ratios),1.3
 Audi,RS 5,2014,16,23,Premium Gasoline,Auto(AM-S7),4.2
 Audi,TT Coupe quattro,2014,22,31,Premium Gasoline,Auto(AM-S6),2
 Buick,Riviera,1987,16,25,Regular Gasoline,Automatic 4-spd,3.8
-Chevrolet,Spark EV,2014,128,109,Electricity,Automatic (A1),0
+Chevrolet,Spark EV,2014,128,109,Electricity,Automatic (A1),
 Buick,Verano,2014,20,31,Regular Gasoline,Manual 6-spd,2
 Cadillac,ATS,2014,22,32,Regular Gasoline,Automatic (S6),2.5
 Cadillac,ATS,2014,21,30,Regular Gasoline,Automatic (S6),2
@@ -26212,7 +26212,7 @@ Ferrari,F12,2013,12,16,Premium Gasoline,Auto(AM7),6.3
 Ferrari,F12,2013,12,16,Premium Gasoline,Auto(AM7),6.3
 Dodge,Dart,2013,21,30,Regular Gasoline,Automatic 6-spd,2.4
 Jaguar,XJ LWB,2013,17,27,Premium Gasoline,Automatic (S8),3
-Honda,Fit EV,2014,132,105,Electricity,Automatic (A1),0
+Honda,Fit EV,2014,132,105,Electricity,Automatic (A1),
 Mazda,6,2014,28,39,Regular Gasoline,Automatic (S6),2.5
 Chevrolet,Corvette,2014,17,28,Premium Gasoline,Manual 7-spd,6.2
 Mazda,MX-5,2014,22,27,Premium Gasoline,Manual 5-spd,2
@@ -26457,7 +26457,7 @@ Jeep,Wrangler Unlimited 4WD,2014,16,21,Regular Gasoline,Manual 6-spd,3.6
 Jeep,Wrangler 4WD,2014,17,21,Regular Gasoline,Automatic 5-spd,3.6
 Porsche,Cayenne S Hybrid,2014,20,24,Premium Gasoline,Automatic 8-spd,3
 Mercedes-Benz,560SEL,1987,12,15,Premium Gasoline,Automatic 4-spd,5.6
-Ford,Focus Electric,2014,110,99,Electricity,Automatic (A1),0
+Ford,Focus Electric,2014,110,99,Electricity,Automatic (A1),
 SRT,Viper,2014,12,19,Premium Gasoline,Manual 6-spd,8.4
 Infiniti,Q60 AWD Coupe,2014,18,25,Premium Gasoline,Automatic (S7),3.7
 Infiniti,Q60 Convertible,2014,18,25,Premium Gasoline,Automatic (S7),3.7
@@ -26737,9 +26737,9 @@ Land Rover,Range Rover FFV,2014,17,23,Premium Gasoline,Automatic (S8),3
 Pontiac,6000,1987,18,24,Regular Gasoline,Automatic 3-spd,2.8
 Land Rover,Range Rover Sport FFV,2014,14,19,Premium Gasoline,Automatic (S8),5
 Lexus,LX 570,2014,12,17,Premium Gasoline,Automatic (S6),5.7
-Fiat,500e,2014,122,108,Electricity,Automatic (A1),0
-smart,fortwo electric drive convertible,2014,122,93,Electricity,Automatic (A1),0
-smart,fortwo electric drive coupe,2014,122,93,Electricity,Automatic (A1),0
+Fiat,500e,2014,122,108,Electricity,Automatic (A1),
+smart,fortwo electric drive convertible,2014,122,93,Electricity,Automatic (A1),
+smart,fortwo electric drive coupe,2014,122,93,Electricity,Automatic (A1),
 Honda,Accord Hybrid,2014,49,45,Regular Gasoline,Automatic (variable gear ratios),2
 Mercedes-Benz,E250 Bluetec,2014,28,40,Diesel,Automatic 7-spd,2.1
 Mercedes-Benz,E250 Bluetec 4matic,2014,27,37,Diesel,Automatic 7-spd,2.1
@@ -26774,7 +26774,7 @@ Nissan,Armada 2WD,2014,13,19,Regular Gasoline,Automatic 5-spd,5.6
 Dodge,Durango AWD,2014,14,22,Midgrade Gasoline,Automatic 8-spd,5.7
 Nissan,Armada 4WD,2014,12,18,Regular Gasoline,Automatic 5-spd,5.6
 Nissan,Armada 4WD,2014,12,18,Regular Gasoline,Automatic 5-spd,5.6
-Toyota,RAV4 EV,2014,78,74,Electricity,Automatic (variable gear ratios),0
+Toyota,RAV4 EV,2014,78,74,Electricity,Automatic (variable gear ratios),
 Honda,CR-Z,2014,35,38,Regular Gasoline,Auto(AV-S7),1.5
 Honda,CR-Z,2014,31,37,Regular Gasoline,Manual 6-spd,1.5
 Lexus,IS 350 C,2014,19,27,Premium Gasoline,Automatic (S6),3.5
@@ -27069,7 +27069,7 @@ BMW,228i,2014,23,35,Premium Gasoline,Automatic (S8),2
 Ford,C-MAX Hybrid FWD,2014,41,36,Regular Gasoline,Automatic (variable gear ratios),2
 Ford,Transit Connect Van 2WD,2014,22,29,Regular Gasoline,Automatic (S6),1.6
 Nissan,NV200 Cargo Van,2014,24,25,Regular Gasoline,Automatic (variable gear ratios),2
-Nissan,Leaf,2014,126,101,Electricity,Automatic (A1),0
+Nissan,Leaf,2014,126,101,Electricity,Automatic (A1),
 Oldsmobile,Firenza,1985,21,29,Regular Gasoline,Automatic 3-spd,1.8
 Mercury,Grand Marquis,1987,16,24,Regular Gasoline,Automatic 4-spd,5
 Jaguar,F-Type V8 S Convertible,2015,16,23,Premium Gasoline,Automatic (S8),5
@@ -27151,8 +27151,8 @@ Audi,A3,2015,23,33,Premium Gasoline,Auto(AM-S6),1.8
 Honda,Civic,2014,29,37,Regular Gasoline,Automatic (variable gear ratios),1.8
 Honda,Civic,2014,22,31,Premium Gasoline,Manual 6-spd,2.4
 Honda,Civic HF,2014,31,40,Regular Gasoline,Automatic (variable gear ratios),1.8
-Tesla,Model S (85 kW-hr battery pack),2014,88,90,Electricity,Automatic (A1),0
-Tesla,Model S (60 kW-hr battery pack),2014,94,97,Electricity,Automatic (A1),0
+Tesla,Model S (85 kW-hr battery pack),2014,88,90,Electricity,Automatic (A1),
+Tesla,Model S (60 kW-hr battery pack),2014,94,97,Electricity,Automatic (A1),
 Chrysler,200 AWD,2015,18,28,Regular Gasoline,Automatic 9-spd,3.6
 Lexus,RX 350,2015,18,25,Regular Gasoline,Automatic (S6),3.5
 Lexus,RX 450h,2015,31,28,Premium Gasoline,Auto(AV-S6),3.5
@@ -27243,9 +27243,9 @@ Honda,Fit,2015,33,40,Regular Gasoline,Automatic (variable gear ratios),1.5
 Porsche,918 Spyder,2015,20,24,Premium Gasoline,Auto(AM-S7),4.6
 BMW,428i xDrive Convertible,2014,21,32,Premium Gasoline,Automatic (S8),2
 MINI,Cooper S (3-doors),2014,26,34,Premium Gasoline,Automatic (S6),2
-BYD,e6,2014,61,65,Electricity,Automatic (A1),0
+BYD,e6,2014,61,65,Electricity,Automatic (A1),
 Buick,Skyhawk Wagon,1987,23,33,Regular Gasoline,Manual 5-spd,2
-BYD,e6,2013,61,65,Electricity,Automatic (A1),0
+BYD,e6,2013,61,65,Electricity,Automatic (A1),
 MINI,Cooper Roadster,2015,27,33,Premium Gasoline,Manual 6-spd,1.6
 MINI,Cooper Coupe,2015,29,36,Premium Gasoline,Manual 6-spd,1.6
 MINI,Cooper S Roadster,2015,26,34,Premium Gasoline,Manual 6-spd,1.6
@@ -27291,7 +27291,7 @@ Mercedes-Benz,S550 4matic,2015,16,26,Premium Gasoline,Automatic 7-spd,4.7
 Oldsmobile,Firenza,1985,22,27,Regular Gasoline,Automatic 3-spd,2
 Chevrolet,Cavalier Wagon,1987,18,24,Regular Gasoline,Automatic 3-spd,2.8
 Land Rover,LR2,2015,17,24,Premium Gasoline,Automatic (S9),2
-Mitsubishi,i-MiEV,2014,126,99,Electricity,Automatic (A1),0
+Mitsubishi,i-MiEV,2014,126,99,Electricity,Automatic (A1),
 BMW,650i Coupe,2015,17,24,Premium Gasoline,Automatic (S8),4.4
 BMW,650i Convertible,2015,17,24,Premium Gasoline,Automatic (S8),4.4
 BMW,M6 Coupe,2015,15,22,Premium Gasoline,Manual 6-spd,4.4
@@ -27309,7 +27309,7 @@ Infiniti,QX50 AWD,2015,17,24,Premium Gasoline,Automatic (S7),3.7
 Volvo,V60 PoleStar AWD,2015,18,27,Regular Gasoline,Automatic (S6),3
 Infiniti,QX70 RWD,2015,17,24,Premium Gasoline,Automatic (S7),3.7
 Infiniti,QX70 AWD,2015,16,22,Premium Gasoline,Automatic (S7),3.7
-Nissan,Leaf,2015,126,101,Electricity,Automatic (A1),0
+Nissan,Leaf,2015,126,101,Electricity,Automatic (A1),
 McLaren Automotive,MP4-12C Coupe,2014,15,22,Premium Gasoline,Automatic 7-spd,3.8
 Nissan,Maxima Wagon,1987,16,22,Regular Gasoline,Automatic 4-spd,3
 McLaren Automotive,MP4-12C Spider,2014,15,22,Premium Gasoline,Automatic 7-spd,3.8
@@ -27529,7 +27529,7 @@ Mercedes-Benz,GLK350 4matic,2015,18,24,Premium Gasoline,Automatic 7-spd,3.5
 Volvo,XC60 AWD,2015,18,25,Regular Gasoline,Automatic (S6),2.5
 Audi,Q7,2015,16,22,Premium Gasoline,Automatic (S8),3
 Mitsubishi,Space Wagon,1987,20,22,Regular Gasoline,Automatic 3-spd,2
-Chevrolet,Spark EV,2015,128,109,Electricity,Automatic (A1),0
+Chevrolet,Spark EV,2015,128,109,Electricity,Automatic (A1),
 Hyundai,Santa Fe Ultimate 2WD,2014,18,23,Regular Gasoline,Automatic 6-spd,3.3
 Hyundai,Santa Fe Ultimate 4WD,2014,17,22,Regular Gasoline,Automatic 6-spd,3.3
 Cadillac,ATS,2015,19,29,Regular Gasoline,Manual 6-spd,2
@@ -27623,8 +27623,8 @@ Kia,Sportage FWD,2015,21,28,Regular Gasoline,Automatic 6-spd,2.4
 Kia,Sportage FWD,2015,20,26,Regular Gasoline,Automatic 6-spd,2
 Kia,Sportage AWD,2015,19,26,Regular Gasoline,Automatic 6-spd,2.4
 Kia,Sportage AWD,2015,19,24,Regular Gasoline,Automatic 6-spd,2
-Fiat,500e,2015,122,108,Electricity,Automatic (A1),0
-BMW,i3 BEV,2014,137,111,Electricity,Automatic (A1),0
+Fiat,500e,2015,122,108,Electricity,Automatic (A1),
+BMW,i3 BEV,2014,137,111,Electricity,Automatic (A1),
 Porsche,911 Carrera Cabriolet,2015,21,28,Premium Gasoline,Auto(AM-S7),3.4
 Cadillac,ATS,2015,21,29,Regular Gasoline,Automatic (S6),2
 Pontiac,Sunbird Wagon,1987,22,30,Regular Gasoline,Manual 4-spd,2
@@ -27667,7 +27667,7 @@ Mitsubishi,Outlander 4WD,2015,24,29,Regular Gasoline,Auto(AV-S6),2.4
 Mitsubishi,Outlander 4WD,2015,20,27,Premium Gasoline,Automatic (S6),3
 Mitsubishi,Outlander Sport 4WD,2015,24,30,Regular Gasoline,Auto(AV-S6),2
 Chevrolet,Volt,2015,35,40,Premium Gasoline,Automatic (variable gear ratios),1.4
-Mercedes-Benz,B-Class Electric Drive,2014,85,83,Electricity,Automatic (A1),0
+Mercedes-Benz,B-Class Electric Drive,2014,85,83,Electricity,Automatic (A1),
 Nissan,370Z,2015,19,26,Premium Gasoline,Automatic (S7),3.7
 Nissan,370Z,2015,18,25,Premium Gasoline,Manual 6-spd,3.7
 Subaru,Wagon,1987,21,24,Regular Gasoline,Automatic 3-spd,1.8
@@ -28060,7 +28060,7 @@ BMW,i8,2014,28,29,Premium Gasoline,Automatic 6-spd,1.5
 Peugeot,505,1985,22,23,Diesel,Automatic 3-spd,2.5
 Ford,Taurus Wagon,1987,19,27,Regular Gasoline,Manual 5-spd,2.5
 McLaren Automotive,P1,2014,16,20,Premium Gasoline,Automatic 7-spd,3.8
-Kia,Soul Electric,2015,120,92,Electricity,Automatic (A1),0
+Kia,Soul Electric,2015,120,92,Electricity,Automatic (A1),
 Chevrolet,Corvette,2015,16,29,Premium Gasoline,Automatic (S8),6.2
 Ferrari,F12,2015,12,16,Premium Gasoline,Auto(AM7),6.3
 McLaren Automotive,650S Coupe,2015,16,22,Premium Gasoline,Automatic 7-spd,3.8
@@ -28328,7 +28328,7 @@ Mercedes-Benz,E550 Coupe,2015,18,26,Premium Gasoline,Automatic 7-spd,4.7
 Mercedes-Benz,E350 Convertible,2015,20,28,Premium Gasoline,Automatic 7-spd,3.5
 Mercedes-Benz,E550 Convertible,2015,17,25,Premium Gasoline,Automatic 7-spd,4.7
 Mercedes-Benz,S63 AMG 4matic Coupe,2015,15,23,Premium Gasoline,Automatic 7-spd,5.5
-Volkswagen,e-Golf,2015,126,105,Electricity,Automatic (A1),0
+Volkswagen,e-Golf,2015,126,105,Electricity,Automatic (A1),
 Volvo,240 DL/240 GL Wagon,1987,19,26,Regular Gasoline,Manual 5-spd,2.3
 Mercedes-Benz,E350,2015,20,28,Premium Gasoline,Automatic 7-spd,3.5
 Mercedes-Benz,E250 Bluetec 4matic,2015,27,37,Diesel,Automatic 7-spd,2.1
@@ -28338,8 +28338,8 @@ Nissan,NV200 Cargo Van,2015,24,26,Regular Gasoline,Automatic (variable gear rati
 Land Rover,Range Rover Evoque,2015,21,29,Premium Gasoline,Automatic (S9),2
 Mercedes-Benz,GLK250 Bluetec 4matic,2015,24,32,Diesel,Automatic 7-spd,2.1
 Mercedes-Benz,G550,2015,12,15,Premium Gasoline,Automatic 7-spd,5.5
-smart,fortwo electric drive convertible,2015,122,93,Electricity,Automatic (A1),0
-smart,fortwo electric drive coupe,2015,122,93,Electricity,Automatic (A1),0
+smart,fortwo electric drive convertible,2015,122,93,Electricity,Automatic (A1),
+smart,fortwo electric drive coupe,2015,122,93,Electricity,Automatic (A1),
 Volvo,740/760 Wagon,1987,17,20,Regular Gasoline,Automatic 4-spd,2.3
 Ford,Mustang Convertible,2015,15,23,Regular Gasoline,Automatic (S6),5
 Ford,Mustang Convertible,2015,20,29,Regular Gasoline,Automatic (S6),2.3
@@ -28452,7 +28452,7 @@ Mercedes-Benz,S65 AMG Coupe,2015,13,20,Premium Gasoline,Automatic 7-spd,6
 Mercedes-Benz,CLA250,2015,26,37,Premium Gasoline,Auto(AM7),2
 Hyundai,Elantra GT,2015,24,33,Regular Gasoline,Manual 6-spd,2
 Chevrolet,S10 Pickup 2WD,1987,18,25,Regular Gasoline,Automatic 4-spd,2.5
-Mercedes-Benz,B-Class Electric Drive,2015,85,82,Electricity,Automatic (A1),0
+Mercedes-Benz,B-Class Electric Drive,2015,85,82,Electricity,Automatic (A1),
 Ford,Focus FWD,2015,29,38,Regular Gasoline,Manual 6-spd,1
 Ford,Focus FWD,2015,27,38,Regular Gasoline,Auto(AM6),2
 Ford,Focus FWD,2015,26,37,Regular Gasoline,Automatic (S6),2
@@ -28463,7 +28463,7 @@ Ford,Focus FWD FFV,2015,26,37,Regular Gasoline,Automatic (S6),2
 Ford,Focus FWD FFV,2015,26,35,Regular Gasoline,Manual 5-spd,2
 Ford,Focus SFE FWD,2015,30,41,Regular Gasoline,Manual 6-spd,1
 Chevrolet,S10 Pickup 2WD,1987,19,24,Regular Gasoline,Manual 4-spd,2.5
-Ford,Focus Electric,2015,110,99,Electricity,Automatic (A1),0
+Ford,Focus Electric,2015,110,99,Electricity,Automatic (A1),
 Nissan,Sentra,2015,27,35,Regular Gasoline,Manual 6-spd,1.8
 Nissan,Sentra,2015,29,37,Regular Gasoline,Automatic (variable gear ratios),1.8
 Nissan,Sentra FE,2015,30,38,Regular Gasoline,Automatic (variable gear ratios),1.8
@@ -28474,7 +28474,7 @@ Nissan,Titan 4WD,2015,12,17,Regular Gasoline,Automatic 5-spd,5.6
 Volvo,V60 CC FWD,2015,24,31,Regular Gasoline,Automatic (S8),2
 Volvo,V60 CC AWD,2015,20,28,Regular Gasoline,Automatic (S6),2.5
 Chevrolet,S10 Pickup 2WD,1987,20,26,Regular Gasoline,Manual 5-spd,2.5
-Tesla,Model S (85 kW-hr battery pack),2015,88,90,Electricity,Automatic (A1),0
+Tesla,Model S (85 kW-hr battery pack),2015,88,90,Electricity,Automatic (A1),
 Mazda,6,2016,26,37,Regular Gasoline,Automatic (S6),2.5
 Mazda,6,2016,28,38,Regular Gasoline,Automatic (S6),2.5
 Mazda,6,2016,25,36,Regular Gasoline,Manual 6-spd,2.5
@@ -28489,7 +28489,7 @@ Kia,Sorento AWD,2016,19,25,Regular Gasoline,Automatic (S6),2
 Kia,Sorento AWD,2016,21,25,Regular Gasoline,Automatic (S6),2.4
 Kia,Sorento AWD,2016,17,23,Regular Gasoline,Automatic (S6),3.3
 Mazda,CX-5 4WD,2016,24,29,Regular Gasoline,Automatic (S6),2.5
-Tesla,Model S AWD (85 kW-hr battery pack),2014,86,94,Electricity,Automatic (A1),0
+Tesla,Model S AWD (85 kW-hr battery pack),2014,86,94,Electricity,Automatic (A1),
 Audi,A7 quattro,2016,20,29,Premium Gasoline,Automatic (S8),3
 Audi,A6 quattro,2016,20,29,Premium Gasoline,Automatic (S8),3
 Honda,HR-V 2WD,2016,25,33,Regular Gasoline,Manual 6-spd,1.8
@@ -28504,16 +28504,16 @@ Mercedes-Benz,C300,2015,25,33,Premium Gasoline,Automatic 7-spd,2
 Nissan,Rogue Select FWD,2015,23,28,Regular Gasoline,Automatic (variable gear ratios),2.5
 Land Rover,Discovery Sport,2015,20,26,Premium Gasoline,Automatic (S9),2
 Nissan,Rogue Select AWD,2015,22,26,Regular Gasoline,Automatic (variable gear ratios),2.5
-Tesla,Model S AWD - P85D,2015,89,98,Electricity,Automatic (A1),0
-Tesla,Model S AWD - 85D,2015,95,106,Electricity,Automatic (A1),0
+Tesla,Model S AWD - P85D,2015,89,98,Electricity,Automatic (A1),
+Tesla,Model S AWD - 85D,2015,95,106,Electricity,Automatic (A1),
 Chevrolet,S10 Pickup 2WD,1987,16,21,Regular Gasoline,Manual 4-spd,2.8
 Jaguar,F-Type Coupe,2016,19,27,Premium Gasoline,Automatic (S8),3
 Jaguar,F-Type Convertible,2016,19,27,Premium Gasoline,Automatic (S8),3
 Jaguar,F-Type S Coupe,2016,19,27,Premium Gasoline,Automatic (S8),3
 Jaguar,F-Type S Convertible,2016,19,27,Premium Gasoline,Automatic (S8),3
 Bentley,Mulsanne,2016,11,18,Premium Gasoline,Automatic (S8),6.8
-BMW,i3 BEV,2015,137,111,Electricity,Automatic (A1),0
-Tesla,Model S (60 kW-hr battery pack),2015,94,97,Electricity,Automatic (A1),0
+BMW,i3 BEV,2015,137,111,Electricity,Automatic (A1),
+Tesla,Model S (60 kW-hr battery pack),2015,94,97,Electricity,Automatic (A1),
 Kia,Sportage SX FWD,2015,20,26,Regular Gasoline,Automatic (S6),2
 Kia,Sportage SX AWD,2015,19,25,Regular Gasoline,Automatic (S6),2
 Chevrolet,S10 Pickup 2WD,1987,16,22,Regular Gasoline,Manual 5-spd,2.8
@@ -28632,7 +28632,7 @@ Acura,MDX 4WD,2016,18,26,Premium Gasoline,Automatic (S9),3.5
 Ford,Edge FWD,2015,21,29,Regular Gasoline,Automatic (S6),2
 Jeep,Renegade 2WD,2015,24,31,Premium Gasoline,Manual 6-spd,1.4
 Jeep,Renegade 4WD,2015,24,31,Premium Gasoline,Manual 6-spd,1.4
-Tesla,Model S AWD - 70D,2015,101,102,Electricity,Automatic (A1),0
+Tesla,Model S AWD - 70D,2015,101,102,Electricity,Automatic (A1),
 Mazda,2,2016,31,40,Regular Gasoline,Manual 6-spd,1.5
 Mazda,2,2016,33,41,Regular Gasoline,Automatic (S6),1.5
 Subaru,WRX,2016,18,24,Premium Gasoline,Auto(AV-S8),2
@@ -29095,7 +29095,7 @@ Isuzu,Pickup 4WD,1987,17,22,Regular Gasoline,Manual 5-spd,2.3
 Jeep,Cherokee Trailhawk 4WD,2016,19,25,Regular Gasoline,Automatic 9-spd,2.4
 Mercedes-Benz,GLE350 4matic,2016,18,22,Premium Gasoline,Automatic 7-spd,3.5
 Mercedes-Benz,GLE350 4matic,2016,18,22,Premium Gasoline,Automatic 7-spd,3.5
-Kia,Soul Electric,2016,120,92,Electricity,Automatic (A1),0
+Kia,Soul Electric,2016,120,92,Electricity,Automatic (A1),
 Mercedes-Benz,SL550,2016,16,24,Premium Gasoline,Automatic 7-spd,4.7
 Mercedes-Benz,AMG SL65,2016,14,21,Premium Gasoline,Automatic 7-spd,6
 Mercedes-Benz,SLK300,2016,25,32,Premium Gasoline,Automatic 9-spd,2
@@ -29346,8 +29346,8 @@ Mercedes-Benz,AMG GLE63,2016,13,17,Premium Gasoline,Automatic 7-spd,5.5
 Mercedes-Benz,GLE400 4matic,2016,18,22,Premium Gasoline,Automatic 7-spd,3
 Mercedes-Benz,GL450 4matic,2016,17,21,Premium Gasoline,Automatic 7-spd,3
 Volkswagen,Touareg,2016,17,23,Regular Gasoline,Automatic (S8),3.6
-Tesla,Model S AWD - 90D,2015,95,106,Electricity,Automatic (A1),0
-Tesla,Model S AWD - P90D,2015,89,98,Electricity,Automatic (A1),0
+Tesla,Model S AWD - 90D,2015,95,106,Electricity,Automatic (A1),
+Tesla,Model S AWD - P90D,2015,89,98,Electricity,Automatic (A1),
 BMW,228i,2016,23,35,Premium Gasoline,Automatic (S8),2
 BMW,M4 Convertible,2016,17,24,Premium Gasoline,Auto(AM-S7),3
 Chevrolet,R20 (C20) Pickup 2WD,1987,12,17,Regular Gasoline,Automatic 4-spd,5
@@ -29400,7 +29400,7 @@ Subaru,Impreza Sport AWD,2016,27,35,Regular Gasoline,Auto(AV-S6),2
 Subaru,XV Crosstrek AWD,2016,23,30,Regular Gasoline,Manual 5-spd,2
 Subaru,XV Crosstrek AWD,2016,26,33,Regular Gasoline,Auto(AV-S6),2
 Subaru,XV Crosstrek Hybrid AWD,2016,29,33,Regular Gasoline,Auto(AV-S6),2
-Volkswagen,e-Golf,2016,126,105,Electricity,Automatic (A1),0
+Volkswagen,e-Golf,2016,126,105,Electricity,Automatic (A1),
 Roush Performance,Stage 3 Mustang,2015,13,23,Premium Gasoline,Automatic (S6),5
 Roush Performance,Stage 3 Mustang,2015,13,23,Premium Gasoline,Manual 6-spd,5
 Fiat,500,2016,27,33,Premium Gasoline,Automatic 6-spd,1.4
@@ -29429,8 +29429,8 @@ Lexus,GX 460,2016,15,20,Premium Gasoline,Automatic (S6),4.6
 Toyota,4Runner 4WD,2016,17,21,Regular Gasoline,Automatic (S5),4
 Toyota,4Runner 4WD,2016,17,21,Regular Gasoline,Automatic (S5),4
 Dodge,Dakota Pickup 2WD,1987,16,19,Regular Gasoline,Automatic 3-spd,3.9
-smart,fortwo electric drive convertible,2016,122,93,Electricity,Automatic (A1),0
-smart,fortwo electric drive coupe,2016,122,93,Electricity,Automatic (A1),0
+smart,fortwo electric drive convertible,2016,122,93,Electricity,Automatic (A1),
+smart,fortwo electric drive coupe,2016,122,93,Electricity,Automatic (A1),
 Cadillac,ELR,2016,31,33,Premium Gasoline,Automatic (variable gear ratios),1.4
 Chevrolet,Volt,2016,43,42,Regular Gasoline,Automatic (variable gear ratios),1.5
 Aston Martin,V8 Vantage,2016,13,19,Premium Gasoline,Manual 6-spd,4.7
@@ -29554,10 +29554,10 @@ Dodge,Charger SRT8,2016,15,25,Premium Gasoline,Automatic 8-spd,6.4
 Dodge,Charger,2016,19,30,Regular Gasoline,Automatic 8-spd,3.6
 Dodge,Charger,2016,19,30,Regular Gasoline,Automatic 8-spd,3.6
 Mercedes-Benz,Metris (Passenger Van),2016,20,23,Premium Gasoline,Automatic 7-spd,2
-Ford,Focus Electric,2016,110,99,Electricity,Automatic (A1),0
-Tesla,Model X AWD - 90D,2016,90,94,Electricity,Automatic (A1),0
+Ford,Focus Electric,2016,110,99,Electricity,Automatic (A1),
+Tesla,Model X AWD - 90D,2016,90,94,Electricity,Automatic (A1),
 Dodge,D100/D150 Pickup 2WD,1987,10,14,Regular Gasoline,Manual 4-spd,5.2
-Tesla,Model X AWD - P90D,2016,89,90,Electricity,Automatic (A1),0
+Tesla,Model X AWD - P90D,2016,89,90,Electricity,Automatic (A1),
 Ford,Focus FWD,2016,30,41,Regular Gasoline,Manual 6-spd,1
 Ford,Focus FWD FFV,2016,27,39,Regular Gasoline,Auto(AM6),2
 Ford,Focus FWD FFV,2016,26,37,Regular Gasoline,Auto(AM-S6),2
@@ -29574,8 +29574,8 @@ Honda,CR-V 2WD,2016,26,32,Regular Gasoline,Automatic (variable gear ratios),2.4
 Mercedes-Benz,GLA250 4matic,2016,24,32,Premium Gasoline,Auto(AM7),2
 Volvo,XC90 FWD,2016,22,26,Premium Gasoline,Automatic (S8),2
 Volvo,XC90 AWD,2016,22,25,Premium Gasoline,Automatic (S8),2
-Chevrolet,Spark EV,2016,128,109,Electricity,Automatic (A1),0
-Mercedes-Benz,B250e,2016,85,82,Electricity,Automatic (A1),0
+Chevrolet,Spark EV,2016,128,109,Electricity,Automatic (A1),
+Mercedes-Benz,B250e,2016,85,82,Electricity,Automatic (A1),
 Hyundai,Sonata Plug-in Hybrid,2016,38,41,Regular Gasoline,Auto(AM6),2
 Jaguar,XF AWD,2016,20,28,Premium Gasoline,Automatic (S8),3
 Chevrolet,Sprint,1985,39,47,Regular Gasoline,Manual 5-spd,1
@@ -29653,8 +29653,8 @@ Lexus,NX 200t AWD,2016,22,28,Premium Gasoline,Automatic (S6),2
 Lexus,NX 200t AWD F Sport,2016,22,27,Premium Gasoline,Automatic (S6),2
 Mercedes-Benz,GLA250 4matic,2016,24,32,Premium Gasoline,Auto(AM7),2
 Lexus,LX 570,2016,13,18,Premium Gasoline,Automatic (S8),5.7
-Nissan,Leaf (24 kW-hr battery pack),2016,126,101,Electricity,Automatic (A1),0
-Nissan,Leaf (30 kW-hr battery pack),2016,124,101,Electricity,Automatic (A1),0
+Nissan,Leaf (24 kW-hr battery pack),2016,126,101,Electricity,Automatic (A1),
+Nissan,Leaf (30 kW-hr battery pack),2016,124,101,Electricity,Automatic (A1),
 BMW,X5 xDrive40e,2016,23,25,Premium Gasoline,Automatic (S8),2
 Ferrari,488 GTB,2016,15,22,Premium Gasoline,Auto(AM7),3.9
 Dodge,D250 Pickup 2WD,1987,11,14,Regular Gasoline,Manual 4-spd,5.2
@@ -29752,7 +29752,7 @@ Lexus,GS 350 F Sport,2016,19,27,Premium Gasoline,Automatic (S8),3.5
 Nissan,Pathfinder 2WD,2016,20,27,Regular Gasoline,Automatic (variable gear ratios),3.5
 Nissan,Pathfinder 4WD,2016,19,26,Regular Gasoline,Automatic (variable gear ratios),3.5
 Nissan,Pathfinder 4WD Platinum,2016,19,26,Regular Gasoline,Automatic (variable gear ratios),3.5
-Fiat,500e,2016,121,103,Electricity,Automatic (A1),0
+Fiat,500e,2016,121,103,Electricity,Automatic (A1),
 Toyota,Sienna 2WD,2016,18,25,Regular Gasoline,Automatic (S6),3.5
 Toyota,Sienna AWD,2016,16,23,Regular Gasoline,Automatic (S6),3.5
 Mercedes-Benz,GLC300,2016,22,28,Premium Gasoline,Automatic 9-spd,2
@@ -29816,7 +29816,7 @@ Dodge,Durango AWD,2016,14,22,Midgrade Gasoline,Automatic 8-spd,5.7
 Jeep,Grand Cherokee SRT8 4WD,2016,13,19,Premium Gasoline,Automatic 8-spd,6.4
 Jeep,Grand Cherokee 4WD,2016,18,25,Regular Gasoline,Automatic 8-spd,3.6
 Jeep,Grand Cherokee 4WD,2016,14,22,Midgrade Gasoline,Automatic 8-spd,5.7
-BMW,i3 BEV,2016,137,111,Electricity,Automatic (A1),0
+BMW,i3 BEV,2016,137,111,Electricity,Automatic (A1),
 Hyundai,Santa Fe Sport FWD,2017,20,28,Regular Gasoline,Automatic (S6),2
 Hyundai,Santa Fe Sport Ultimate FWD,2017,20,27,Regular Gasoline,Automatic (S6),2
 Hyundai,Santa Fe Sport AWD,2017,19,26,Regular Gasoline,Automatic (S6),2
@@ -29834,17 +29834,17 @@ Hyundai,Santa Fe Ultimate FWD,2017,17,23,Regular Gasoline,Automatic (S6),3.3
 Ford,F250 Pickup 2WD,1987,12,14,Regular Gasoline,Manual 4-spd,5
 Hyundai,Santa Fe AWD,2017,18,24,Regular Gasoline,Automatic (S6),3.3
 Hyundai,Santa Fe Ultimate AWD,2017,17,22,Regular Gasoline,Automatic (S6),3.3
-Tesla,Model S (70 kW-hr battery pack),2016,88,90,Electricity,Automatic (A1),0
-Tesla,Model S (85 kW-hr battery pack),2016,88,90,Electricity,Automatic (A1),0
-Tesla,Model S (90 kW-hr battery pack),2016,88,90,Electricity,Automatic (A1),0
-Tesla,Model S (90 kW-hr battery pack),2015,88,90,Electricity,Automatic (A1),0
+Tesla,Model S (70 kW-hr battery pack),2016,88,90,Electricity,Automatic (A1),
+Tesla,Model S (85 kW-hr battery pack),2016,88,90,Electricity,Automatic (A1),
+Tesla,Model S (90 kW-hr battery pack),2016,88,90,Electricity,Automatic (A1),
+Tesla,Model S (90 kW-hr battery pack),2015,88,90,Electricity,Automatic (A1),
 Nissan,NV200 NYC Taxi,2016,23,26,Regular Gasoline,Automatic (variable gear ratios),2
-Tesla,Model S AWD - 70D,2016,101,102,Electricity,Automatic (A1),0
-Tesla,Model S AWD - 85D,2016,95,106,Electricity,Automatic (A1),0
+Tesla,Model S AWD - 70D,2016,101,102,Electricity,Automatic (A1),
+Tesla,Model S AWD - 85D,2016,95,106,Electricity,Automatic (A1),
 Ford,F250 Pickup 2WD,1987,11,13,Regular Gasoline,Automatic 3-spd,5.8
-Tesla,Model S AWD - 90D,2016,101,107,Electricity,Automatic (A1),0
-Tesla,Model S AWD - P85D,2016,89,98,Electricity,Automatic (A1),0
-Tesla,Model S AWD - P90D,2016,91,100,Electricity,Automatic (A1),0
+Tesla,Model S AWD - 90D,2016,101,107,Electricity,Automatic (A1),
+Tesla,Model S AWD - P85D,2016,89,98,Electricity,Automatic (A1),
+Tesla,Model S AWD - P90D,2016,91,100,Electricity,Automatic (A1),
 Hyundai,Santa Fe Sport FWD,2017,21,27,Regular Gasoline,Automatic (S6),2.4
 Hyundai,Santa Fe Sport AWD,2017,20,26,Regular Gasoline,Automatic (S6),2.4
 MINI,Cooper Convertible,2016,27,36,Premium Gasoline,Automatic (S6),1.5
@@ -29900,7 +29900,7 @@ GMC,R15 Pickup 2WD,1987,15,17,Regular Gasoline,Automatic 3-spd,4.3
 Mitsubishi,Mirage,2017,33,41,Regular Gasoline,Manual 5-spd,1.2
 Mitsubishi,Mirage,2017,37,43,Regular Gasoline,Automatic (variable gear ratios),1.2
 Chrysler,Pacifica,2017,18,28,Regular Gasoline,Automatic 9-spd,3.6
-Mitsubishi,i-MiEV,2017,121,102,Electricity,Automatic (A1),0
+Mitsubishi,i-MiEV,2017,121,102,Electricity,Automatic (A1),
 Ferrari,F60 America,2016,11,15,Premium Gasoline,Auto(AM7),6.3
 Ferrari,F60 America,2016,12,15,Premium Gasoline,Auto(AM7),6.3
 Audi,S8,2016,15,25,Premium Gasoline,Automatic (S8),4
@@ -30042,9 +30042,9 @@ Porsche,Cayenne GTS,2017,16,23,Premium Gasoline,Automatic (S8),3.6
 Infiniti,Q50,2016,19,28,Premium Gasoline,Automatic (S7),3
 GMC,R25 Pickup 2WD,1987,14,15,Regular Gasoline,Automatic 3-spd,4.3
 Infiniti,Q50 AWD,2016,19,27,Premium Gasoline,Automatic (S7),3
-Tesla,Model S (75 kW-hr battery pack),2016,97,100,Electricity,Automatic (A1),0
-Tesla,Model S AWD - 75D,2016,102,105,Electricity,Automatic (A1),0
-Tesla,Model X AWD - 75D,2016,91,95,Electricity,Automatic (A1),0
+Tesla,Model S (75 kW-hr battery pack),2016,97,100,Electricity,Automatic (A1),
+Tesla,Model S AWD - 75D,2016,102,105,Electricity,Automatic (A1),
+Tesla,Model X AWD - 75D,2016,91,95,Electricity,Automatic (A1),
 Porsche,911 Turbo,2017,19,24,Premium Gasoline,Auto(AM-S7),3.8
 Porsche,911 Turbo Cabriolet,2017,19,24,Premium Gasoline,Auto(AM-S7),3.8
 Porsche,911 Turbo S,2017,19,24,Premium Gasoline,Auto(AM-S7),3.8
@@ -30458,11 +30458,11 @@ BMW,X6 sDrive35i,2017,18,25,Premium Gasoline,Automatic (S8),3
 BMW,X5 xDrive35i,2017,18,24,Premium Gasoline,Automatic (S8),3
 BMW,X6 xDrive35i,2017,18,24,Premium Gasoline,Automatic (S8),3
 Volkswagen,Touareg,2017,17,23,Regular Gasoline,Automatic (S8),3.6
-Fiat,500e,2017,121,103,Electricity,Automatic (A1),0
+Fiat,500e,2017,121,103,Electricity,Automatic (A1),
 Porsche,Cayenne S e-Hybrid,2017,21,24,Premium Gasoline,Auto(AM8),3
 Renault,Alliance/Encore,1985,25,33,Regular Gasoline,Manual 5-spd,1.7
 Chevrolet,V20 Pickup 4WD,1987,15,19,Diesel,Automatic 4-spd,6.2
-BYD,e6,2016,73,71,Electricity,Automatic (A1),0
+BYD,e6,2016,73,71,Electricity,Automatic (A1),
 Dodge,Viper,2017,12,19,Premium Gasoline,Manual 6-spd,8.4
 Ferrari,F12 Berlinetta,2017,12,16,Premium Gasoline,Auto(AM7),6.3
 Mercedes-Benz,SLC300,2017,25,32,Premium Gasoline,Automatic 9-spd,2
@@ -30685,9 +30685,9 @@ BMW,X6 M,2017,14,19,Premium Gasoline,Automatic (S8),4.4
 Ferrari,Mondial,1985,9,15,Regular Gasoline,Manual 5-spd,2.9
 Saab,900,1985,16,19,Regular Gasoline,Automatic 3-spd,2
 Ford,F150 Pickup 4WD,1987,13,13,Regular Gasoline,Automatic 3-spd,4.9
-BMW,i3 BEV (60  Amp-hour battery),2017,137,111,Electricity,Automatic (A1),0
-BMW,i3 BEV (94 Amp-hour battery),2017,129,106,Electricity,Automatic (A1),0
-Mercedes-Benz,B250e,2017,85,82,Electricity,Automatic (A1),0
+BMW,i3 BEV (60  Amp-hour battery),2017,137,111,Electricity,Automatic (A1),
+BMW,i3 BEV (94 Amp-hour battery),2017,129,106,Electricity,Automatic (A1),
+Mercedes-Benz,B250e,2017,85,82,Electricity,Automatic (A1),
 Ferrari,488 Spider,2016,15,22,Premium Gasoline,Auto(AM7),3.9
 Ferrari,488 Spider,2016,16,22,Premium Gasoline,Auto(AM7),3.9
 Audi,TT Roadster quattro,2017,23,30,Regular Gasoline,Auto(AM-S6),2
@@ -30870,13 +30870,13 @@ Jaguar,F-Pace,2017,26,33,Diesel,Automatic (S8),2
 Nissan,Pathfinder 4WD,2017,19,26,Regular Gasoline,Automatic (variable gear ratios),3.5
 Nissan,Pathfinder 4WD Platinum,2017,19,26,Regular Gasoline,Automatic (variable gear ratios),3.5
 Lexus,RX 450h AWD,2017,31,28,Premium Gasoline,Auto(AV-S6),3.5
-Kia,Soul Electric,2017,120,92,Electricity,Automatic (A1),0
+Kia,Soul Electric,2017,120,92,Electricity,Automatic (A1),
 BMW,X5 xDrive40e,2017,23,25,Premium Gasoline,Automatic (S8),2
 GMC,T15 (S15) Pickup 4WD,1987,14,20,Regular Gasoline,Automatic 4-spd,2.8
-Tesla,Model S (60 kW-hr battery pack),2016,98,101,Electricity,Automatic (A1),0
-Tesla,Model S AWD - 60D,2016,101,107,Electricity,Automatic (A1),0
-Tesla,Model S AWD - P100D,2016,92,105,Electricity,Automatic (A1),0
-Tesla,Model X AWD - 60D,2016,91,94,Electricity,Automatic (A1),0
+Tesla,Model S (60 kW-hr battery pack),2016,98,101,Electricity,Automatic (A1),
+Tesla,Model S AWD - 60D,2016,101,107,Electricity,Automatic (A1),
+Tesla,Model S AWD - P100D,2016,92,105,Electricity,Automatic (A1),
+Tesla,Model X AWD - 60D,2016,91,94,Electricity,Automatic (A1),
 Mazda,MX-5,2017,26,33,Premium Gasoline,Manual 6-spd,2
 Mazda,MX-5,2017,26,35,Premium Gasoline,Automatic (S6),2
 Audi,A3 Cabriolet quattro,2017,22,30,Regular Gasoline,Auto(AM-S6),2
@@ -30891,7 +30891,7 @@ Fiat,500 X AWD,2017,21,29,Regular Gasoline,Automatic 9-spd,2.4
 Jeep,Renegade 4WD,2017,24,31,Premium Gasoline,Manual 6-spd,1.4
 Chevrolet,Silverado C15 2WD,2017,16,22,Regular Gasoline,Automatic 8-spd,5.3
 GMC,Sierra C15 2WD,2017,16,22,Regular Gasoline,Automatic 8-spd,5.3
-Chevrolet,Bolt,2017,128,110,Electricity,Automatic (A1),0
+Chevrolet,Bolt,2017,128,110,Electricity,Automatic (A1),
 Lexus,RC 300 AWD,2017,19,26,Premium Gasoline,Automatic (S6),3.5
 Lexus,RC 350,2017,19,28,Premium Gasoline,Automatic (S8),3.5
 GMC,T15 (S15) Pickup 4WD,1987,15,21,Regular Gasoline,Manual 5-spd,2.8
@@ -31158,11 +31158,11 @@ Toyota,Highlander AWD,2017,19,26,Regular Gasoline,Automatic (S8),3.5
 Toyota,Highlander Hybrid 4WD,2017,29,27,Regular Gasoline,Auto(AV-S6),3.5
 Toyota,Highlander Hybrid 4WD LE Plus,2017,30,28,Regular Gasoline,Auto(AV-S6),3.5
 Toyota,Highlander AWD LE,2017,20,27,Regular Gasoline,Automatic (S8),3.5
-Nissan,Leaf,2017,124,101,Electricity,Automatic (A1),0
+Nissan,Leaf,2017,124,101,Electricity,Automatic (A1),
 BMW,328d,2017,31,43,Diesel,Automatic (S8),2
 Jeep,J-10 Pickup Truck 4WD,1987,10,12,Regular Gasoline,Automatic 3-spd,5.9
 MINI,John Cooper Works Clubman All4,2017,21,31,Premium Gasoline,Manual 6-spd,2
-Hyundai,Ioniq Electric,2017,150,122,Electricity,Automatic (A1),0
+Hyundai,Ioniq Electric,2017,150,122,Electricity,Automatic (A1),
 Porsche,911 Carrera GTS,2017,18,26,Premium Gasoline,Manual 7-spd,3
 Porsche,911 Carrera GTS,2017,20,26,Premium Gasoline,Auto(AM-S7),3
 Porsche,911 Carrera GTS Cabriolet,2017,18,26,Premium Gasoline,Manual 7-spd,3
@@ -31239,12 +31239,12 @@ Porsche,Macan Turbo Kit,2017,17,23,Premium Gasoline,Auto(AM-S7),3.6
 Mercedes-Benz,C350e,2016,28,32,Premium Gasoline,Automatic 7-spd,2
 Subaru,Sedan,1985,27,33,Regular Gasoline,Manual 4-spd,1.8
 Toyota,Truck 4WD,1987,16,20,Regular Gasoline,Manual 5-spd,2.4
-Tesla,Model X AWD - P100D,2016,81,92,Electricity,Automatic (A1),0
+Tesla,Model X AWD - P100D,2016,81,92,Electricity,Automatic (A1),
 MINI,Cooper Countryman All4,2017,22,32,Premium Gasoline,Manual 6-spd,1.5
 BMW,M760i xDrive,2017,13,20,Premium Gasoline,Automatic (S8),6.6
 Land Rover,Range Rover,2017,17,23,Premium Gasoline,Automatic (S8),3
 Land Rover,Range Rover Sport,2017,17,23,Premium Gasoline,Automatic (S8),3
-Ford,Focus Electric,2017,118,96,Electricity,Automatic (A1),0
+Ford,Focus Electric,2017,118,96,Electricity,Automatic (A1),
 Ford,C-MAX Energi Plug-In Hybrid,2017,41,38,Regular Gasoline,Automatic (variable gear ratios),2
 Ford,GT,2017,11,18,Premium Gasoline,Auto(AM7),3.5
 Toyota,Prius c,2017,48,43,Regular Gasoline,Automatic (variable gear ratios),1.5
@@ -31264,22 +31264,22 @@ Chevrolet,Astro 2WD (cargo),1987,17,22,Regular Gasoline,Automatic 4-spd,2.5
 Land Rover,Range Rover Sport,2017,22,28,Diesel,Automatic (S8),3
 Volkswagen,Golf Alltrack,2017,22,32,Regular Gasoline,Manual 6-spd,1.8
 Volkswagen,Golf SportWagen 4motion,2017,22,32,Regular Gasoline,Manual 6-spd,1.8
-Tesla,Model S AWD - 60D,2017,101,107,Electricity,Automatic (A1),0
-Tesla,Model S AWD - 75D,2017,102,105,Electricity,Automatic (A1),0
-Tesla,Model S AWD - P100D,2017,92,105,Electricity,Automatic (A1),0
-Tesla,Model X AWD - 60D,2017,91,94,Electricity,Automatic (A1),0
-Tesla,Model X AWD - 75D,2017,91,95,Electricity,Automatic (A1),0
-Tesla,Model X AWD - 90D,2017,90,94,Electricity,Automatic (A1),0
-Tesla,Model X AWD - P90D,2017,89,90,Electricity,Automatic (A1),0
+Tesla,Model S AWD - 60D,2017,101,107,Electricity,Automatic (A1),
+Tesla,Model S AWD - 75D,2017,102,105,Electricity,Automatic (A1),
+Tesla,Model S AWD - P100D,2017,92,105,Electricity,Automatic (A1),
+Tesla,Model X AWD - 60D,2017,91,94,Electricity,Automatic (A1),
+Tesla,Model X AWD - 75D,2017,91,95,Electricity,Automatic (A1),
+Tesla,Model X AWD - 90D,2017,90,94,Electricity,Automatic (A1),
+Tesla,Model X AWD - P90D,2017,89,90,Electricity,Automatic (A1),
 Chevrolet,Astro 2WD (cargo),1987,18,23,Regular Gasoline,Manual 4-spd,2.5
-Tesla,Model X AWD - P100D,2017,81,92,Electricity,Automatic (A1),0
+Tesla,Model X AWD - P100D,2017,81,92,Electricity,Automatic (A1),
 Toyota,Prius Prime,2017,55,53,Regular Gasoline,Automatic (variable gear ratios),1.8
 Chevrolet,Camaro,2017,12,20,Premium Gasoline,Automatic (S10),6.2
 Dodge,Challenger GT,2017,18,27,Regular Gasoline,Automatic 8-spd,3.6
 Jeep,New Compass 4WD,2017,22,30,Regular Gasoline,Automatic 9-spd,2.4
 Mercedes-Benz,AMG GLE43 4matic,2017,17,23,Premium Gasoline,Automatic 9-spd,3
 Mercedes-Benz,G550 4x4 (Special Off-Road Model),2017,11,11,Premium Gasoline,Automatic 7-spd,4
-Tesla,Model S AWD - P90D,2017,92,100,Electricity,Automatic (A1),0
+Tesla,Model S AWD - P90D,2017,92,100,Electricity,Automatic (A1),
 Subaru,Impreza 4-Door,2017,24,32,Regular Gasoline,Manual 5-spd,2
 Subaru,Impreza Sport 4-Door,2017,23,31,Regular Gasoline,Manual 5-spd,2
 Chevrolet,Astro 2WD (cargo),1987,19,24,Regular Gasoline,Manual 5-spd,2.5
@@ -31292,7 +31292,7 @@ BMW,540i,2017,20,30,Premium Gasoline,Automatic (S8),3
 BMW,540i xDrive,2017,20,29,Premium Gasoline,Automatic (S8),3
 Mitsubishi,Outlander Sport 2WD,2017,23,28,Regular Gasoline,Automatic (AV-S6),2.4
 Mitsubishi,Outlander Sport 4WD,2017,22,27,Regular Gasoline,Automatic (AV-S6),2.4
-Volkswagen,e-Golf,2017,126,111,Electricity,Automatic (A1),0
+Volkswagen,e-Golf,2017,126,111,Electricity,Automatic (A1),
 Chevrolet,Astro 2WD (cargo),1987,15,20,Regular Gasoline,Automatic 4-spd,4.3
 Jeep,New Compass 2WD,2017,22,31,Regular Gasoline,Automatic 6-spd,2.4
 Chevrolet,Equinox FWD,2018,26,32,Regular Gasoline,Automatic 6-spd,1.5
@@ -32171,7 +32171,7 @@ CX Automotive,CX 25 Prestige,1988,16,20,Premium Gasoline,Automatic 3-spd,2.5
 Chrysler,Newport/Fifth Avenue,1985,15,20,Premium Gasoline,Automatic 3-spd,5.2
 Ford,LTD Crown Victoria,1988,15,22,Regular Gasoline,Automatic 4-spd,5
 Ford,LTD Crown Victoria,1988,11,16,Regular Gasoline,Automatic 4-spd,5.8
-JBA Motorcars_ Inc.,W-126/4 Series,1988,15,16,Regular Gasoline,Automatic 4-spd,3
+"JBA Motorcars Inc.",W-126/4 Series,1988,15,16,Regular Gasoline,Automatic 4-spd,3
 Lincoln,Continental,1988,15,23,Regular Gasoline,Automatic 4-spd,3.8
 Mercury,Grand Marquis,1988,15,22,Regular Gasoline,Automatic 4-spd,5
 Lincoln,Town Car,1988,15,22,Regular Gasoline,Automatic 4-spd,5
@@ -36059,7 +36059,7 @@ Ford,Ranger Pickup 4WD,1991,16,20,Regular Gasoline,Manual 5-spd,2.9
 Ford,Ranger Pickup 4WD,1991,15,19,Regular Gasoline,Automatic 4-spd,4
 Ford,F150 Pickup 2WD,1985,12,15,Regular Gasoline,Automatic 4-spd,5
 Ford,Ranger Pickup 4WD,1991,15,20,Regular Gasoline,Manual 5-spd,4
-PAS_ Inc,Pas-Syclone,1991,13,16,Premium Gasoline,Automatic 4-spd,4.3
+"PAS Inc",Pas-Syclone,1991,13,16,Premium Gasoline,Automatic 4-spd,4.3
 Chevrolet,C1500 Pickup 2WD,1991,15,20,Regular Gasoline,Automatic 4-spd,4.3
 Chevrolet,C1500 Pickup 2WD,1991,16,19,Regular Gasoline,Manual 4-spd,4.3
 Chevrolet,C1500 Pickup 2WD,1991,15,21,Regular Gasoline,Manual 5-spd,4.3
