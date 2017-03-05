@@ -46,14 +46,17 @@ public class SelectVehicleActivity extends AppCompatActivity {
             int i = 0;
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split(",");
-
+/*
+empty for now
                 CarbonModel.getInstance().getCar(i).setMake(tokens[0]);
                 CarbonModel.getInstance().getCar(i).setModel(tokens[1]);
                 CarbonModel.getInstance().getCar(i).setYear(tokens[2]);
                 CarbonModel.getInstance().getCar(i).setCity(Double.parseDouble(tokens[3]));
                 CarbonModel.getInstance().getCar(i).setHighway(Double.parseDouble(tokens[4]));
                 CarbonModel.getInstance().addCar(CarbonModel.getInstance().getCar(i));
+                */
                 i++;
+
             }
         } catch (IOException e) {
             e.printStackTrace();
