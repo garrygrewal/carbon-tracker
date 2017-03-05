@@ -54,4 +54,34 @@
         android:layout_marginTop="50dp"
         android:id="@+id/textRouteHwy"
         android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/route_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textRouteCity"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textRouteName"
+        android:ems="10"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/route_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textRouteCity"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textRouteCity"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/route_hwy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/route_city"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textRouteHwy"
+        android:ems="10"
+        android:inputType="numberDecimal" />
 </RelativeLayout>

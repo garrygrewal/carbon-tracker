@@ -23,6 +23,11 @@ public class CarbonModel {
 
     public void removeRoute(int index) { RouteList.remove(index); }
 
+    public void editRoute(RouteModel route, int index) {
+        RouteList.remove(index);
+        RouteList.add(index, route);
+    }
+
     //for integrating with ArrayAdapter
     public String[] getRouteInfo() {
         String[] info = new String[countRoutes()];

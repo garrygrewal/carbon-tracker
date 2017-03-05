@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,15 +24,20 @@ import sfu.cmpt276.carbontracker.model.RouteModel;
 
 public class SelectRouteActivity extends AppCompatActivity {
 
+    //position of route in list to be edited
+    int index;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_route);
 
         //add pladeholder routes
-        CarbonModel.getInstance().addRoute(new RouteModel("test route", 10, 25));
-        CarbonModel.getInstance().addRoute(new RouteModel("test route2", 15, 35));
-        CarbonModel.getInstance().addRoute(new RouteModel("test route3", 5, 55));
+        if (CarbonModel.getInstance().countRoutes() == 0) {
+            CarbonModel.getInstance().addRoute(new RouteModel("test route", 10, 25));
+            CarbonModel.getInstance().addRoute(new RouteModel("test route2", 15, 35));
+            CarbonModel.getInstance().addRoute(new RouteModel("test route3", 5, 55));
+        }
 
         listRoutes();
         onListClick();
@@ -84,11 +90,11 @@ public class SelectRouteActivity extends AppCompatActivity {
             case "Edit":
                 // sends relevant information to AddRouteActivity
                 RouteModel clicked_route = CarbonModel.getInstance().getRoute(info.position);
-                Intent intent = new Intent(SelectRouteActivity.this, AddNameActivity.class);
+                index = info.position;
+                Intent intent = new Intent(SelectRouteActivity.this, AddRouteActivity.class);
                 intent.putExtra("name", clicked_route.getName());
-                intent.putExtra("city", clicked_route.getCity());
-                intent.putExtra("hwy", clicked_route.getHwy());
-                intent.putExtra("position", info.position);
+                intent.putExtra("city", String.valueOf(clicked_route.getCity()));
+                intent.putExtra("hwy", String.valueOf(clicked_route.getHwy()));
                 startActivityForResult(intent, 24);
                 break;
             case "Delete":
@@ -98,7 +104,6 @@ public class SelectRouteActivity extends AppCompatActivity {
             default:
                 return false;
         }
-
         return true;
     }
 
@@ -109,7 +114,7 @@ public class SelectRouteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SelectRouteActivity.this, AddRouteActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 32);
             }
         });
 
@@ -125,6 +130,44 @@ public class SelectRouteActivity extends AppCompatActivity {
         });
     }
 
+    //activity callback
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            //add new route
+            case 32: {
+                if (resultCode == Activity.RESULT_OK) {
+                    String name = data.getStringExtra("name");
+                    String city = data.getStringExtra("city");
+                    String hwy = data.getStringExtra("hwy");
+                    float int_city = Float.parseFloat(city);
+                    float int_hwy = Float.parseFloat(hwy);
+                    CarbonModel.getInstance().RouteList.add(new RouteModel(name, int_city, int_hwy));
+                    listRoutes();
+                    break;
+                }
+                else
+                    break;
+            }
+            //edit route
+            case 24: {
+                if (resultCode == Activity.RESULT_OK) {
+                    String name = data.getStringExtra("name");
+                    String city = data.getStringExtra("city");
+                    String hwy = data.getStringExtra("hwy");
+                    float num_city = Float.parseFloat(city);
+                    float num_hwy = Float.parseFloat(hwy);
+                    CarbonModel.getInstance().editRoute(new RouteModel(name, num_city, num_hwy), index);
+                    listRoutes();
+                    break;
+                }
+                else
+                    break;
+            }
+        }
+    }
 
     //navigation back button
     @Override
