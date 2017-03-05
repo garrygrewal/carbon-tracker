@@ -9,6 +9,10 @@ public class VehicleModel {
     private String year;
     private double city;
     private double highway;
+    private String fuelType;
+    private String transmission;
+    private String engineDisplacement;
+
 
     public String getMake() {
         return make;
@@ -48,5 +52,29 @@ public class VehicleModel {
 
     public void setHighway(double highway) {
         this.highway = highway;
+    }
+
+    public String getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public String getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(String transmission) {
+        this.transmission = transmission;
+    }
+
+    public String getEngineDisplacement() {
+        return engineDisplacement;
+    }
+
+    public void setEngineDisplacement(String engineDisplacement) {
+        this.engineDisplacement = engineDisplacement;
     }
 }
