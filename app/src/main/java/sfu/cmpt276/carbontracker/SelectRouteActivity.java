@@ -32,10 +32,10 @@ public class SelectRouteActivity extends AppCompatActivity {
         //routeCollection.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         //    @Override
         //    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //        RouteModel clicked_route = RouteCollection.getRoute(position);
+        //        Route clicked_route = RouteCollection.getRoute(position);
 
                 Intent intent = new Intent(SelectRouteActivity.this, AddNameActivity.class);
-        //        intent.putExtra("info", RouteModel.getInfo());
+        //        intent.putExtra("info", Route.getInfo());
                 startActivity(intent);
     }
 

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,6 +15,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
+import sfu.cmpt276.carbontracker.model.Model;
 
 /*
  *Select Transportation Screen-
@@ -29,8 +29,6 @@ public class SelectVehicleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_vehicle);
-
-        CarbonModel.getInstance().fillList();
         readFile();
         setupButtons();
     }
@@ -38,15 +36,25 @@ public class SelectVehicleActivity extends AppCompatActivity {
     private void readFile() {
         InputStream is = getResources().openRawResource(R.raw.vehicles);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-
+        int i = 0;
         String line = "";
         try {
             reader.readLine();
-            int i = 0;
+
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split(",");
+                int year = Integer.parseInt(tokens[2]);
+                double city = Double.parseDouble(tokens[3]);
+                double highway = Double.parseDouble(tokens[4]);
+                double displ = Double.parseDouble(tokens[7]);
+
+                Model carModel = new Model(tokens[1],year,city,highway,tokens[5],tokens[6],displ);
+                CarbonModel.getInstance().addMake(tokens[0], carModel);
+               if(i == 600){
+                   System.out.println("fucl");
+               }
 /*
-empty for now
+OLD CODE
                 CarbonModel.getInstance().getCar(i).setMake(tokens[0]);
                 CarbonModel.getInstance().getCar(i).setModel(tokens[1]);
                 CarbonModel.getInstance().getCar(i).setYear(tokens[2]);
@@ -63,6 +71,7 @@ empty for now
                 CarbonModel.getInstance().addCar(CarbonModel.getInstance().getCar(i));
                 */
                 i++;
+
 
             }
         } catch (IOException e) {

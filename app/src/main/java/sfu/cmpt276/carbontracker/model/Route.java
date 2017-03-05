@@ -4,11 +4,11 @@ package sfu.cmpt276.carbontracker.model;
  * Created by Lester on 3/4/2017.
  */
 
-public class RouteModel {
+public class Route {
     private double cityStreetsDistance;
     private double highwayRoadsDistance;
 
-    public RouteModel(double cityStreetsDistance, double highwayRoadsDistance) {
+    public Route(double cityStreetsDistance, double highwayRoadsDistance) {
         this.cityStreetsDistance = cityStreetsDistance;
         this.highwayRoadsDistance = highwayRoadsDistance;
     }
