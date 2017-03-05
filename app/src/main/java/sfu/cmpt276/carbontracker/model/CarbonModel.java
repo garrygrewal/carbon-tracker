@@ -11,7 +11,7 @@ import java.util.List;
 public class CarbonModel {
     private static CarbonModel instance = new CarbonModel();
     public List<VehicleModel> cars = new ArrayList<>();
-
+    public List<RouteModel> listOfInputRoutes = new ArrayList<>();
     private CarbonModel() {
     }
 
