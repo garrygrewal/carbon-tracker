@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,6 +15,8 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
+import sfu.cmpt276.carbontracker.model.Model;
+import sfu.cmpt276.carbontracker.model.Year;
 
 /*
  *Select Transportation Screen-
@@ -29,8 +30,6 @@ public class SelectVehicleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_vehicle);
-
-        CarbonModel.getInstance().fillList();
         readFile();
         setupButtons();
     }
@@ -38,32 +37,21 @@ public class SelectVehicleActivity extends AppCompatActivity {
     private void readFile() {
         InputStream is = getResources().openRawResource(R.raw.vehicles);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-
+        int i = 0;
         String line = "";
         try {
             reader.readLine();
-            int i = 0;
+
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split(",");
-/*
-empty for now
-                CarbonModel.getInstance().getCar(i).setMake(tokens[0]);
-                CarbonModel.getInstance().getCar(i).setModel(tokens[1]);
-                CarbonModel.getInstance().getCar(i).setYear(tokens[2]);
-                CarbonModel.getInstance().getCar(i).setCity(Double.parseDouble(tokens[3]));
-                CarbonModel.getInstance().getCar(i).setHighway(Double.parseDouble(tokens[4]));
-                CarbonModel.getInstance().getCar(i).setFuelType(tokens[5]);
-                if (CarbonModel.getInstance().getCar(i).getFuelType().equals("Electricity")) {
-                    CarbonModel.getInstance().getCar(i).setTransmission("none");
-                    CarbonModel.getInstance().getCar(i).setEngineDisplacement("none");
-                } else {
-                    CarbonModel.getInstance().getCar(i).setTransmission(tokens[6]);
-                    CarbonModel.getInstance().getCar(i).setEngineDisplacement(tokens[7] + "L");
-                }
-                CarbonModel.getInstance().addCar(CarbonModel.getInstance().getCar(i));
-                */
-                i++;
+                String makeName = tokens[0];
+                String modelName = tokens[1];
+                int year = Integer.parseInt(tokens[2]);
+                double city = Double.parseDouble(tokens[3]);
+                double highway = Double.parseDouble(tokens[4]);
+                double displ = Double.parseDouble(tokens[7]);
 
+                CarbonModel.getInstance().addMake(makeName, modelName,year, city, highway, tokens[5], tokens[6], displ);
             }
         } catch (IOException e) {
             e.printStackTrace();
