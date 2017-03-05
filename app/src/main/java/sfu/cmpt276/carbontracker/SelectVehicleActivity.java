@@ -31,6 +31,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_vehicle);
         readFile();
         setupButtons();
+        CarbonModel.getInstance().printListOfKnownMakes();
     }
 
     private void readFile() {
@@ -50,9 +51,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
 
                 Model carModel = new Model(tokens[1],year,city,highway,tokens[5],tokens[6],displ);
                 CarbonModel.getInstance().addMake(tokens[0], carModel);
-               if(i == 600){
-                   System.out.println("fucl");
-               }
+
 /*
 OLD CODE
                 CarbonModel.getInstance().getCar(i).setMake(tokens[0]);
