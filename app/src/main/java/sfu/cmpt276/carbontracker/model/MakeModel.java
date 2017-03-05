@@ -15,13 +15,7 @@ public class MakeModel {
         this.make = make;
         listOfModels.add(new ModelModel(modelName,year,city,highway));
     }
-    public boolean checkIfMakeExists(String make){
-        if(this.make == make) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
     public String getMake() {
         return make;
     }
