@@ -5,27 +5,36 @@ package sfu.cmpt276.carbontracker.model;
  */
 
 public class RouteModel {
-    private double cityStreetsDistance;
-    private double highwayRoadsDistance;
+    private String name;
+    private float city;
+    private float hwy;
 
-    public RouteModel(double cityStreetsDistance, double highwayRoadsDistance) {
-        this.cityStreetsDistance = cityStreetsDistance;
-        this.highwayRoadsDistance = highwayRoadsDistance;
+
+    public RouteModel(String in_name, float in_city, float in_hwy) {
+        this.name = in_name;
+        this.city = in_city;
+        this.hwy = in_hwy;
     }
 
-    public double getCityStreetsDistance() {
-        return cityStreetsDistance;
+    public String getName() { return name; }
+
+    public void setName(String in_name) {
+        this.name = in_name;
     }
 
-    public void setCityStreetsDistance(double cityStreetsDistance) {
-        this.cityStreetsDistance = cityStreetsDistance;
+    public float getCity() {
+        return city;
     }
 
-    public double getHighwayRoadsDistance() {
-        return highwayRoadsDistance;
+    public void setCity(float cityStreetsDistance) {
+        this.city = cityStreetsDistance;
     }
 
-    public void setHighwayRoadsDistance(double highwayRoadsDistance) {
-        this.highwayRoadsDistance = highwayRoadsDistance;
+    public float getHwy() {
+        return hwy;
+    }
+
+    public void setHwy(float highwayRoadsDistance) {
+        this.hwy = highwayRoadsDistance;
     }
 }
