@@ -50,9 +50,8 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 double city = Double.parseDouble(tokens[3]);
                 double highway = Double.parseDouble(tokens[4]);
                 double displ = Double.parseDouble(tokens[7]);
-                Year modelYear = new Year(year, city, highway, tokens[5], tokens[6], displ);
 
-                CarbonModel.getInstance().addMake(makeName, modelName, modelYear);
+                CarbonModel.getInstance().addMake(makeName, modelName,year, city, highway, tokens[5], tokens[6], displ);
             }
         } catch (IOException e) {
             e.printStackTrace();

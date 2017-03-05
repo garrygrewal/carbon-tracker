@@ -53,14 +53,16 @@ public class CarbonModel {
         return instance;
     }
 
-    public void addMake(String makeName, String modelName, Year year){
+    public void addMake(String makeName, String modelName,int year,double city,double highway,String fuelType,String trany,double displ){
+
+        Year makeYear = new Year(year, city, highway, fuelType, trany, displ);
         for (Make make:listOfKnownMakes) {
             if(make.getMake().equals(makeName)){
-                make.addModel(modelName, year);
+                make.addModel(modelName, makeYear);
                 return;
             }
         }
-        listOfKnownMakes.add(new Make(makeName, modelName, year));
+        listOfKnownMakes.add(new Make(makeName, modelName, makeYear));
     }
 
 
