@@ -1,7 +1,7 @@
 package sfu.cmpt276.carbontracker.model;
 
 /**
- * Created by Lester on 3/4/2017.
+ * Contains the Car model and various data about the model
  */
 
 public class Model {

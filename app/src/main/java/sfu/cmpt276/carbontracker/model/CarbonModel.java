@@ -13,7 +13,7 @@ public class CarbonModel {
     private List<Make> listOfKnownMakes = new ArrayList<>();
     private List<Route> listOfInputRoutes = new ArrayList<>();
     private List<Vehicle> listOfInputVehicles = new ArrayList<>();
-
+    private List<Journey> listOfJourneys = new ArrayList<>();
 
     private CarbonModel() {}
 

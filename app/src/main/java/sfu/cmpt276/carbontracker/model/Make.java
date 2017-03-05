@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Lester on 3/4/2017.
+ * Holds the Make and has a list of Models manufactured by the maker.
  */
 
 public class Make {
