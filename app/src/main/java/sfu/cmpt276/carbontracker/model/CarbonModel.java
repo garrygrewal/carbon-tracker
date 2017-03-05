@@ -11,7 +11,32 @@ import java.util.List;
 public class CarbonModel {
     private static CarbonModel instance = new CarbonModel();
     public List<VehicleModel> cars = new ArrayList<>();
-    public List<RouteModel> listOfInputRoutes = new ArrayList<>();
+    public List<RouteModel> RouteList = new ArrayList<>();
+
+    public int countRoutes() {
+        return RouteList.size();
+    }
+
+    public RouteModel getRoute(int index) {
+        return RouteList.get(index);
+    }
+
+    public void removeRoute(int index) { RouteList.remove(index); }
+
+    //for integrating with ArrayAdapter
+    public String[] getRouteInfo() {
+        String[] info = new String[countRoutes()];
+        for (int i = 0; i < countRoutes(); i++) {
+            RouteModel route = getRoute(i);
+            info[i] = route.getName() + ", " + route.getCity() + " (city), " + route.getHwy() + " (highway).";
+        }
+        return info;
+    }
+
+    public void addRoute(RouteModel route) {
+        RouteList.add(route);
+    }
+
     private CarbonModel() {
     }
 
