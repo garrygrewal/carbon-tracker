@@ -1,52 +1,27 @@
 package sfu.cmpt276.carbontracker.model;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * VehicleModel class contains setters and getters for vehicle objects
  */
 public class VehicleModel {
-    private String make;
-    private String model;
-    private String year;
-    private double city;
-    private double highway;
+    private List<MakeModel> listOfMakes = new ArrayList<>();
 
-    public String getMake() {
-        return make;
+    public void addMake(String[] tokens){
+
     }
 
-    public void setMake(String make) {
-        this.make = make;
+    public boolean checkIfMakeExists(String make){
+        Iterator<MakeModel> iterator = listOfMakes.iterator();
+        while(iterator.hasNext()){
+            if(iterator.next().checkIfMakeExists(make)){
+                return true;
+            }
+        }
+        return false;
     }
 
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public double getCity() {
-        return city;
-    }
-
-    public void setCity(double city) {
-        this.city = city;
-    }
-
-    public double getHighway() {
-        return highway;
-    }
-
-    public void setHighway(double highway) {
-        this.highway = highway;
-    }
 }
