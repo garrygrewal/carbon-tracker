@@ -12,9 +12,9 @@ public class Make {
     private String make;
     private List<Model> listOfModels = new ArrayList<>();
 
-    public Make(String make, Model model) {
-        this.make = make;
-        addModel(model);
+    public Make(String makeName, String modelName, Year year) {
+        this.make = makeName;
+        addModel(modelName, year);
     }
 
 
@@ -22,8 +22,15 @@ public class Make {
         this.make = make;
     }
 
-    public void addModel(Model model){
-        listOfModels.add(model);
+    public void addModel(String modelName, Year year){
+        for (Model carModel: listOfModels) {
+            if(carModel.getModel().equals(modelName)){
+                carModel.addYear(year);
+                return;
+            }
+        }
+            listOfModels.add(new Model(modelName,year));
+
     }
 
     public String getMake() {

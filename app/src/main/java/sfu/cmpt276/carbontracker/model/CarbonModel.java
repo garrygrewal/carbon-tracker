@@ -21,18 +21,17 @@ public class CarbonModel {
         return instance;
     }
 
-    public void addMake(String makeName, Model model){
-        boolean makeExists = false;
+    public void addMake(String makeName, String modelName, Year year){
         for (Make make:listOfKnownMakes) {
             if(make.getMake().equals(makeName)){
-                make.addModel(model);
-                makeExists = true;
+                make.addModel(modelName, year);
+                return;
             }
         }
-        if(makeExists == false){
-            listOfKnownMakes.add(new Make(makeName, model));
-        }
+        listOfKnownMakes.add(new Make(makeName, modelName, year));
     }
+
+
     public void addVehicle(String vehicleName, String makeName, Model model){
         listOfInputVehicles.add(new Vehicle(vehicleName,makeName,model));
     }

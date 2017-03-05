@@ -16,6 +16,7 @@ import java.nio.charset.Charset;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 import sfu.cmpt276.carbontracker.model.Model;
+import sfu.cmpt276.carbontracker.model.Year;
 
 /*
  *Select Transportation Screen-
@@ -43,13 +44,15 @@ public class SelectVehicleActivity extends AppCompatActivity {
 
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split(",");
+                String makeName = tokens[0];
+                String modelName = tokens[1];
                 int year = Integer.parseInt(tokens[2]);
                 double city = Double.parseDouble(tokens[3]);
                 double highway = Double.parseDouble(tokens[4]);
                 double displ = Double.parseDouble(tokens[7]);
+                Year modelYear = new Year(year, city, highway, tokens[5], tokens[6], displ);
 
-                Model carModel = new Model(tokens[1],year,city,highway,tokens[5],tokens[6],displ);
-                CarbonModel.getInstance().addMake(tokens[0], carModel);
+                CarbonModel.getInstance().addMake(makeName, modelName, modelYear);
             }
         } catch (IOException e) {
             e.printStackTrace();
