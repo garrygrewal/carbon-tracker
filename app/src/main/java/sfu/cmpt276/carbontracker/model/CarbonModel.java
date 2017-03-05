@@ -38,10 +38,4 @@ public class CarbonModel {
     }
 
 
-    public void printListOfKnownMakes(){
-        for(Make make: listOfKnownMakes){
-            System.out.println(make.getMake());
-        }
-    }
-
 }

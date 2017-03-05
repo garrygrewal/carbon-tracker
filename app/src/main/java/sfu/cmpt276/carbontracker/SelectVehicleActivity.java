@@ -31,7 +31,6 @@ public class SelectVehicleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_vehicle);
         readFile();
         setupButtons();
-        CarbonModel.getInstance().printListOfKnownMakes();
     }
 
     private void readFile() {
@@ -51,27 +50,6 @@ public class SelectVehicleActivity extends AppCompatActivity {
 
                 Model carModel = new Model(tokens[1],year,city,highway,tokens[5],tokens[6],displ);
                 CarbonModel.getInstance().addMake(tokens[0], carModel);
-
-/*
-OLD CODE
-                CarbonModel.getInstance().getCar(i).setMake(tokens[0]);
-                CarbonModel.getInstance().getCar(i).setModel(tokens[1]);
-                CarbonModel.getInstance().getCar(i).setYear(tokens[2]);
-                CarbonModel.getInstance().getCar(i).setCity(Double.parseDouble(tokens[3]));
-                CarbonModel.getInstance().getCar(i).setHighway(Double.parseDouble(tokens[4]));
-                CarbonModel.getInstance().getCar(i).setFuelType(tokens[5]);
-                if (CarbonModel.getInstance().getCar(i).getFuelType().equals("Electricity")) {
-                    CarbonModel.getInstance().getCar(i).setTransmission("none");
-                    CarbonModel.getInstance().getCar(i).setEngineDisplacement("none");
-                } else {
-                    CarbonModel.getInstance().getCar(i).setTransmission(tokens[6]);
-                    CarbonModel.getInstance().getCar(i).setEngineDisplacement(tokens[7] + "L");
-                }
-                CarbonModel.getInstance().addCar(CarbonModel.getInstance().getCar(i));
-                */
-                i++;
-
-
             }
         } catch (IOException e) {
             e.printStackTrace();
