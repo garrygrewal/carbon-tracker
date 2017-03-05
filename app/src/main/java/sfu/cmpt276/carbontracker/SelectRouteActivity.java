@@ -28,14 +28,14 @@ public class SelectRouteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_route);
 
-        listRoutes();
-        onListClick();
-        setupButtons();
-
         //add pladeholder routes
         CarbonModel.getInstance().addRoute(new RouteModel("test route", 10, 25));
         CarbonModel.getInstance().addRoute(new RouteModel("test route2", 15, 35));
         CarbonModel.getInstance().addRoute(new RouteModel("test route3", 5, 55));
+
+        listRoutes();
+        onListClick();
+        setupButtons();
     }
 
     //listView existing routes
@@ -52,16 +52,21 @@ public class SelectRouteActivity extends AppCompatActivity {
 
     //clicking on a route in the list
     private void onListClick() {
-        //ListView route_list = (ListView) findViewById(R.id.route_list);
-        //routeCollection.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        //    @Override
-        //    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //        RouteModel clicked_route = RouteCollection.getRoute(position);
+        final ListView route_list = (ListView) findViewById(R.id.listViewRoutes);
+        route_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                RouteModel clicked_route = CarbonModel.getInstance().getRoute(position);
 
                 Intent intent = new Intent(SelectRouteActivity.this, AddNameActivity.class);
-        //        intent.putExtra("info", RouteModel.getInfo());
+                intent.putExtra("route_name", clicked_route.getName());
+                intent.putExtra("route_city", clicked_route.getCity());
+                intent.putExtra("route_hwy", clicked_route.getHwy());
                 startActivity(intent);
+            }
+        });
     }
+
 
     //CONTEXT MENU
     @Override
@@ -79,7 +84,7 @@ public class SelectRouteActivity extends AppCompatActivity {
             case "Edit":
                 // sends relevant information to AddRouteActivity
                 RouteModel clicked_route = CarbonModel.getInstance().getRoute(info.position);
-                Intent intent = new Intent(SelectRouteActivity.this, AddRouteActivity.class);
+                Intent intent = new Intent(SelectRouteActivity.this, AddNameActivity.class);
                 intent.putExtra("name", clicked_route.getName());
                 intent.putExtra("city", clicked_route.getCity());
                 intent.putExtra("hwy", clicked_route.getHwy());
