@@ -19,7 +19,7 @@
         android:id="@+id/buttonAddVehicle" />
 
     <Button
-        android:text="Cancel"
+        android:text="*skip to SelectRouteActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonCancel"
@@ -42,6 +42,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/textSelectVehicle"
         android:layout_alignStart="@+id/textSelectVehicle"
-        android:id="@+id/ListViewVehicles" />
+        android:id="@+id/ListViewVehicles"
+        android:layout_above="@+id/buttonAddVehicle" />
 
 </RelativeLayout>

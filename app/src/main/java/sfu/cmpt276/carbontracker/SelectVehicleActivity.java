@@ -79,9 +79,14 @@ public class SelectVehicleActivity extends AppCompatActivity {
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                setResult(Activity.RESULT_CANCELED, intent);
-                finish();
+//////////////////REMOVE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //temporary, for testing only
+                Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
+                startActivity(intent);
+
+                //Intent intent = new Intent();
+                //setResult(Activity.RESULT_CANCELED, intent);
+                //finish();
             }
         });
     }
