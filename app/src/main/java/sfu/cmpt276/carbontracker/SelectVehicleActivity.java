@@ -52,12 +52,12 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 CarbonModel.getInstance().getCar(i).setCity(Double.parseDouble(tokens[3]));
                 CarbonModel.getInstance().getCar(i).setHighway(Double.parseDouble(tokens[4]));
                 CarbonModel.getInstance().getCar(i).setFuelType(tokens[5]);
-                if(CarbonModel.getInstance().getCar(i).getFuelType().equals("Electricity")){
+                if (CarbonModel.getInstance().getCar(i).getFuelType().equals("Electricity")) {
                     CarbonModel.getInstance().getCar(i).setTransmission("none");
                     CarbonModel.getInstance().getCar(i).setEngineDisplacement("none");
-                }else {
+                } else {
                     CarbonModel.getInstance().getCar(i).setTransmission(tokens[6]);
-                    CarbonModel.getInstance().getCar(i).setEngineDisplacement(tokens[7]);
+                    CarbonModel.getInstance().getCar(i).setEngineDisplacement(tokens[7] + "L");
                 }
                 CarbonModel.getInstance().addCar(CarbonModel.getInstance().getCar(i));
 
@@ -78,7 +78,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
         btn_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (SelectVehicleActivity.this, AddVehicleActivity.class);
+                Intent intent = new Intent(SelectVehicleActivity.this, AddVehicleActivity.class);
                 startActivity(intent);
             }
         });
@@ -97,7 +97,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
 
     //navigation back button
     @Override
-    public void onBackPressed () {
+    public void onBackPressed() {
         Intent intent = new Intent();
         setResult(Activity.RESULT_CANCELED, intent);
         finish();
