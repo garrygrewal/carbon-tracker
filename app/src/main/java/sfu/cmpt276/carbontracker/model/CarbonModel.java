@@ -15,7 +15,6 @@ public class CarbonModel {
     private List<Journey> listOfJourneys = new ArrayList<>();
 
     public List<Vehicle> cars = new ArrayList<>();
-    public List<Route> RouteList = new ArrayList<>();
 
     private CarbonModel() {
     }
@@ -46,7 +45,7 @@ public class CarbonModel {
     }
 
     public void addRoute(Route route) {
-        RouteList.add(route);
+        listOfInputRoutes.add(route);
     }
 
     public static CarbonModel getInstance() {

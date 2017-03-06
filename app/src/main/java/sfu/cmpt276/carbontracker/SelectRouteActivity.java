@@ -144,7 +144,7 @@ public class SelectRouteActivity extends AppCompatActivity {
                     String hwy = data.getStringExtra("hwy");
                     float int_city = Float.parseFloat(city);
                     float int_hwy = Float.parseFloat(hwy);
-                    CarbonModel.getInstance().RouteList.add(new Route(name, int_city, int_hwy));
+                    CarbonModel.getInstance().addRoute(new Route(name, int_city, int_hwy));
                     listRoutes();
                     break;
                 }
