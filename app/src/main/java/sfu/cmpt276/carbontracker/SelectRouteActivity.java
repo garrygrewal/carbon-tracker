@@ -98,7 +98,9 @@ public class SelectRouteActivity extends AppCompatActivity {
                 startActivityForResult(intent, 24);
                 break;
             case "Delete":
-                CarbonModel.getInstance().removeRoute(info.position);
+                CarbonModel.getInstance().hideRoute(info.position);
+                //does not actually delete
+                //CarbonModel.getInstance().removeRoute(info.position);
                 listRoutes();
                 break;
             default:
