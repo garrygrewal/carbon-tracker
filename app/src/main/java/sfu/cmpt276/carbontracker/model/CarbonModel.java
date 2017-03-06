@@ -3,6 +3,8 @@ package sfu.cmpt276.carbontracker.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.media.CamcorderProfile.get;
+
 /**
  * Carbon Model is the Singleton Class-
  */
@@ -11,19 +13,30 @@ public class CarbonModel {
     private static CarbonModel instance = new CarbonModel();
     private List<Make> listOfKnownMakes = new ArrayList<>();
     private List<Route> listOfInputRoutes = new ArrayList<>();
+    private List<Integer> listOfHiddenRoutes = new ArrayList<>();
     private List<Vehicle> listOfInputVehicles = new ArrayList<>();
     private List<Journey> listOfJourneys = new ArrayList<>();
+
 
     public List<Vehicle> cars = new ArrayList<>();
 
     private CarbonModel() {
     }
 
+    public void hideRoute(int index) {
+        listOfHiddenRoutes.add(index);
+    }
+
     public int countRoutes() {
-        return listOfInputRoutes.size();
+        return (listOfInputRoutes.size() - listOfHiddenRoutes.size());
     }
 
     public Route getRoute(int index) {
+        for (int i=0; i<listOfHiddenRoutes.size(); i++) {
+            if (listOfHiddenRoutes.get(i) <= index) {
+                index++;
+            }
+        }
         return listOfInputRoutes.get(index);
     }
 
