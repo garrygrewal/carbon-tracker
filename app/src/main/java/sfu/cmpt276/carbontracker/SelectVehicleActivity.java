@@ -24,7 +24,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_vehicle);
 
-        CarbonModel.getInstance().fillList();
+        CarbonModel.getInstance().fillList(getFileRows());
         readFile();
         setupButtons();
     }
@@ -62,6 +62,24 @@ public class SelectVehicleActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    private int getFileRows(){
+        InputStream is = getResources().openRawResource(R.raw.vehicles);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+        int rows=-1;
+        String line = "";
+
+        try {
+            while((line = reader.readLine()) != null)
+            {
+                rows++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return rows;
+    }
+
     /******Not sure which readFile function would be better to use
     private void readFile() {
         InputStream is = getResources().openRawResource(R.raw.vehicles);
