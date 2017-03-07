@@ -22,7 +22,8 @@
         <activity android:name=".AddRouteActivity" />
         <activity android:name=".AddNameActivity" />
         <activity android:name=".ConfirmActivity" />
-        <activity android:name=".TotalFootprintActivity"></activity>
+        <activity android:name=".PieTotalFootprintActivity" />
+        <activity android:name=".BarTotalFootprintActivity"></activity>
     </application>
 
 </manifest>

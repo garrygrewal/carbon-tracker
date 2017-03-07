@@ -18,6 +18,9 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        /////////////////////////////////////////////
+    // CODE USED FOR TESTING REMOVE BEFORE SUBMISSION //
+        //////////////////////////////////////////////
 
         setupButtons();
     }
@@ -38,7 +41,7 @@ public class MainMenuActivity extends AppCompatActivity {
         btn_total.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (MainMenuActivity.this, TotalFootprintActivity.class);
+                Intent intent = new Intent (MainMenuActivity.this, PieTotalFootprintActivity.class);
                 startActivity(intent);
             }
         });

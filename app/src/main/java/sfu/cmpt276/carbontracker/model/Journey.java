@@ -8,8 +8,9 @@ public class Journey {
     private String journeyName;
     private Vehicle vehicle;
     private Route route;
-    private double co2PerCity;
-    private double co2PerHighway;
+    private float co2PerCity;
+    private float co2PerHighway;
+    private float totalCO2Emission = 0;
 
     private final double GASOLINE_CO2_EMISSION = 8.89;
     private final double ELECTRIC_CO2_EMISSION = 0;
@@ -53,6 +54,10 @@ public class Journey {
         return co2PerHighway;
     }
 
+    public float getTotalCO2Emission() {
+        return totalCO2Emission;
+    }
+
     public void calculateCarbonEmissions() {
         double highwayMilesPerGallon = vehicle.getHighway();
         double cityMilesPerGallon = vehicle.getCity();
@@ -66,8 +71,23 @@ public class Journey {
         } else {
             throw new IllegalArgumentException(); //crash
         }
-        co2PerCity = (route.getCity() / cityMilesPerGallon) * co2EmittedPerGallonOfFuel;
-        co2PerHighway = (route.getHwy() / highwayMilesPerGallon) * co2EmittedPerGallonOfFuel;
+        co2PerCity = (float)  ((route.getCity() / cityMilesPerGallon) * co2EmittedPerGallonOfFuel);
+        co2PerHighway = (float) ((route.getHwy() / highwayMilesPerGallon) * co2EmittedPerGallonOfFuel);
+        totalCO2Emission = co2PerCity+co2PerHighway;
     }
 
+
+    public static void main(String[] args){
+        Route route = new Route("testRoute", 100, 200);
+        Vehicle car = new Vehicle();
+        car.setCity(100);
+        car.setHighway(100);
+        car.setFuelType("Diesel");
+
+        Journey journey = new Journey("test",car,route);
+        journey.calculateCarbonEmissions();
+        System.out.println("" + journey.getCo2PerCity());
+        System.out.println("" + journey.getCo2PerHighway());
+
+    }
 }

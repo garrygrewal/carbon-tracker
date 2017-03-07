@@ -23,7 +23,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_vehicle);
-
+        CarbonModel.getInstance().initiateTest();
         CarbonModel.getInstance().fillList();
         readFile();
         setupButtons();

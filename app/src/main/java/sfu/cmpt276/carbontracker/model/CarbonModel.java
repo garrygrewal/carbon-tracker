@@ -1,6 +1,7 @@
 package sfu.cmpt276.carbontracker.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static android.media.CamcorderProfile.get;
@@ -143,6 +144,34 @@ public class CarbonModel {
 
     public void calculateCarbonEmissions(Journey journey){
         journey.calculateCarbonEmissions();
+    }
+
+    public int getSizeOfJourneysList(){
+        return listOfJourneys.size();
+    }
+    public String getJourneyName(int i){
+        return listOfJourneys.get(i).getJourneyName();
+    }
+    public float getJourneyTotalCO2Emissions(int i){
+        return listOfJourneys.get(i).getTotalCO2Emission();
+    }
+    /////////////////////////////////////////////
+// CODE USED FOR TESTING REMOVE BEFORE SUBMISSION //
+    //////////////////////////////////////////////
+    public void initiateTest() {
+        Route route = new Route("testRoute", 100, 200);
+        Vehicle car = new Vehicle();
+        String name;
+        car.setCity(100);
+        car.setHighway(100);
+        car.setFuelType("Diesel");
+        for(int i = 0; i < 4; i++) {
+            name = "test" + String.valueOf(i);
+            Journey journey = new Journey(name, car, route);
+            journey.calculateCarbonEmissions();
+            listOfJourneys.add(journey);
+        }
+
     }
 
 /*
