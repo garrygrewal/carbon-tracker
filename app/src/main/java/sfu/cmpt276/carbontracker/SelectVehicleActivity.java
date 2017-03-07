@@ -29,8 +29,8 @@ public class SelectVehicleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_vehicle);
 
-        CarbonModel.getInstance().fillList();
-        readFile();
+        //CarbonModel.getInstance().fillList();
+        //readFile();
         listCars();
         setupButtons();
     }
@@ -43,7 +43,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
         car_list.setAdapter(adapter);
 
         //Context Menu for long press
-        registerForContextMenu(car_list);
+        //registerForContextMenu(car_list);
     }
 
     private void readFile() {

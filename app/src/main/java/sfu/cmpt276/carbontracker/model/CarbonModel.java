@@ -66,6 +66,7 @@ public class CarbonModel {
     }
 
 
+
     //for integrating with ArrayAdapter
     public String[] getCarInfo() {
         String[] info = new String[cars.size()];
