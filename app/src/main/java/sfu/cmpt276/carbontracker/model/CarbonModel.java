@@ -170,21 +170,17 @@ public class CarbonModel {
 
     public List<Vehicle> getRemainingCars(String make, String model, String year){
         List<String> remainingCars = new ArrayList<>();
-        List<String> outputCars = new ArrayList<>();
         List<Vehicle> vehiclesLeft = new ArrayList<>();
         for(int i=0; i<cars.size(); i++){
             Vehicle car = getCar(i);
             if(make.equals(car.getMake())){
                 if(model.equals(car.getModel())){
                     if(year.equals(car.getYear())){
-                        vehiclesLeft.add(car);
                         if(!remainingCars.contains(car.getTransmission())){
                             if(!remainingCars.contains(car.getEngineDisplacement())){
                                 remainingCars.add(car.getTransmission());
                                 remainingCars.add(car.getEngineDisplacement());
-                                outputCars.add(car.getMake() +", " +car.getModel() +", " +car.getYear()
-                                        +", " + car.getFuelType() +", " +car.getTransmission() +", "
-                                        +car.getEngineDisplacement());
+                                vehiclesLeft.add(car);
                             }
                         }
                     }

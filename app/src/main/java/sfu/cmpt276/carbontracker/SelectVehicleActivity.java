@@ -39,7 +39,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
 
     //clicking on a vehicle in the list
     private void onListClick() {
-        final ListView route_list = (ListView) findViewById(R.id.listviewCars);
+        final ListView route_list = (ListView) findViewById(R.id.ListViewVehicles);
         route_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

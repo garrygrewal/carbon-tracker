@@ -10,8 +10,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,24 +136,41 @@ public class AddVehicleActivity extends AppCompatActivity {
                 String engineDisplacement=CarbonModel.getInstance().getEngineDiplacementFromRemain(make,model,year);
                 */
                 Vehicle vehicle = outputCars.get(position);
-                Intent intent=new Intent(AddVehicleActivity.this, SelectVehicleActivity.class);
+                EditText carNameText = (EditText) findViewById(R.id.car_name);
+                vehicle.setName(carNameText.getText().toString());
 
-                intent.putExtra("vehicle_name", "PLACEHOLDER NAME");
-                intent.putExtra("vehicle_make", vehicle.getMake());
-                intent.putExtra("vehicle_model", vehicle.getModel());
-                intent.putExtra("vehicle_year", vehicle.getYear());
-                intent.putExtra("vehicle_city", Double.toString(vehicle.getCity()));
-                intent.putExtra("vehicle_hwy", Double.toString(vehicle.getHighway()));
-                intent.putExtra("vehicle_fuel", vehicle.getYear());
-                intent.putExtra("vehicle_transmission",vehicle.getTransmission());
-                intent.putExtra("vehicle_engineDisplacement",vehicle.getEngineDisplacement());
-                setResult(Activity.RESULT_OK, intent);
-                finish();
-                // startActivity(intent);
+                if (checkInput(vehicle.getName()) == 0) {
+                    setResult(Activity.RESULT_CANCELED);
+                }else {
 
+                    Intent intent = new Intent(AddVehicleActivity.this, SelectVehicleActivity.class);
+
+
+                    intent.putExtra("vehicle_name", vehicle.getName());
+                    intent.putExtra("vehicle_make", vehicle.getMake());
+                    intent.putExtra("vehicle_model", vehicle.getModel());
+                    intent.putExtra("vehicle_year", vehicle.getYear());
+                    intent.putExtra("vehicle_city", Double.toString(vehicle.getCity()));
+                    intent.putExtra("vehicle_hwy", Double.toString(vehicle.getHighway()));
+                    intent.putExtra("vehicle_fuel", vehicle.getYear());
+                    intent.putExtra("vehicle_transmission", vehicle.getTransmission());
+                    intent.putExtra("vehicle_engineDisplacement", vehicle.getEngineDisplacement());
+                    setResult(Activity.RESULT_OK, intent);
+                    finish();
+                    // startActivity(intent);
+                }
 
             }
         });
+    }
+    private int checkInput(String name) {
+        //check if input is valid
+        if (name.equals(null) || name.replaceAll("\\s+", "").equals("")) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Car name cannot be empty.", Toast.LENGTH_SHORT);
+            toast.show();
+            return 0;
+        }
+        return 1;
     }
 
     private void setupButtons() {
