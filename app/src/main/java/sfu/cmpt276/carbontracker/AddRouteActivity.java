@@ -64,6 +64,7 @@ public class AddRouteActivity extends AppCompatActivity {
     }
 
     private void AddNewRoute() {
+        //extract data from UI
         EditText in_name = (EditText) findViewById(route_name);
         String name = in_name.getText().toString();
         EditText in_city = (EditText) findViewById(route_city);
