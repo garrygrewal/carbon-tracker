@@ -11,56 +11,49 @@
     tools:context="sfu.cmpt276.carbontracker.AddVehicleActivity">
 
     <Button
-        android:text="@string/add_vehicle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/buttonAddVehicle" />
-
-    <Button
         android:text="@string/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonCancel"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/buttonAddVehicle" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:text="@string/vehicle_make"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/spinnerSelectMake"
-        android:layout_alignParentStart="true"
         android:id="@+id/textSelectMake"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/car_name"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="@string/vehicle_model"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textSelectMake"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="44dp"
         android:id="@+id/textSelectModel"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_marginTop="37dp"
+        android:layout_below="@+id/spinnerSelectMake"
+        android:layout_alignParentStart="true" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerSelectModel"
         android:layout_alignTop="@+id/textSelectModel"
-        android:layout_alignStart="@+id/buttonCancel" />
+        android:layout_toEndOf="@+id/textSelectModel" />
 
     <TextView
         android:text="@string/vehicle_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinnerSelectModel"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="37dp"
         android:id="@+id/textSelectYear"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/spinnerSelectModel"
+        android:layout_alignParentStart="true" />
 
     <Spinner
         android:id="@+id/spinnerSelectYear"
@@ -73,16 +66,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerSelectMake"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/spinnerSelectModel" />
+        android:layout_alignTop="@+id/textSelectMake"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/textSelectModel" />
 
     <ListView
         android:id="@+id/listviewCars"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:footerDividersEnabled="true"
-        android:layout_below="@+id/spinnerSelectYear"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="61dp" />
+        android:layout_below="@+id/spinnerSelectYear"
+        android:layout_above="@+id/buttonCancel" />
+
+    <TextView
+        android:id="@+id/textNickName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/car_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:inputType="text" />
 
 </RelativeLayout>

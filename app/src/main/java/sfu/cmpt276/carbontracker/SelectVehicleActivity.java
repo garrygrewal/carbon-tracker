@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,9 +18,12 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
+import sfu.cmpt276.carbontracker.model.Vehicle;
 
 
 public class SelectVehicleActivity extends AppCompatActivity {
+
+    //public static final int REQUEST_CODE = 1555;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +33,34 @@ public class SelectVehicleActivity extends AppCompatActivity {
         CarbonModel.getInstance().fillList(getFileRows());
         CarbonModel.getInstance().initiateTest();
         readFile();
+        listCars();
+        onListClick();
         setupButtons();
+    }
+
+    //clicking on a vehicle in the list
+    private void onListClick() {
+        final ListView route_list = (ListView) findViewById(R.id.ListViewVehicles);
+        route_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                
+                Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
+                intent.putExtra("vehicle_index", position);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void listCars() {
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.list_route, CarbonModel.getInstance().getCarInfo());
+        ListView car_list = (ListView) findViewById(R.id.ListViewVehicles);
+
+        //List Adapter
+        car_list.setAdapter(adapter);
+
+        //Context Menu for long press
+        //registerForContextMenu(car_list);
     }
 
     private void readFile() {
@@ -110,14 +143,27 @@ public class SelectVehicleActivity extends AppCompatActivity {
         return new Intent(context, SelectVehicleActivity.class);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 30:
+                if(resultCode==Activity.RESULT_OK){
+                    CarbonModel.getInstance().addVehicle(data.getStringExtra("vehicle_name"), data.getStringExtra("vehicle_make"),data.getStringExtra("vehicle_model"),data.getStringExtra("vehicle_year"),data.getStringExtra("vehicle_city"),data.getStringExtra("vehicle_hwy"),data.getStringExtra("vehicle_fuel"),data.getStringExtra("vehicle_transmission"),data.getStringExtra("vehicle_engineDisplacement"));
+                    listCars();
+                    break;
+                }
+        }
+    }
+
     private void setupButtons() {
         //add new vehicle button
         Button btn_new = (Button) findViewById(R.id.buttonAddVehicle);
         btn_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SelectVehicleActivity.this, AddVehicleActivity.class);
-                startActivity(intent);
+                Intent intent = AddVehicleActivity.makeIntent(SelectVehicleActivity.this);
+                startActivityForResult(intent, 30);
             }
         });
 

@@ -8,4 +8,6 @@
     <string name="vehicle_model">Vehicle Model:</string>
     <string name="show_graph">Show Graph</string>
     <string name="back_to_main_menu">Back to Main Menu</string>
+    <string name="name">Name:</string>
+    <string name="car_name">Car Name</string>
 </resources>
