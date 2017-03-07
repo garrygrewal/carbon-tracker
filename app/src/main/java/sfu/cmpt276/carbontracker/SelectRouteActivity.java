@@ -67,6 +67,7 @@ public class SelectRouteActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(SelectRouteActivity.this, AddNameActivity.class);
                 intent.putExtra("route_index", position);
+                intent.putExtra("vehicle_index", intent.getIntExtra("vehicle_index", 0));
                 //intent.putExtra("route_name", clicked_route.getName());
                 //intent.putExtra("route_city", clicked_route.getCity());
                 //intent.putExtra("route_hwy", clicked_route.getHwy());
