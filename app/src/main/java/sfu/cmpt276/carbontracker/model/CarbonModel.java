@@ -135,8 +135,8 @@ public class CarbonModel {
         return outputCars;
     }
 
-    public void fillList() {
-        for (int i = 0; i < 38122; i++) {
+    public void fillList(int rows) {
+        for (int i = 0; i < rows; i++) {
             cars.add(new Vehicle());
         }
     }
