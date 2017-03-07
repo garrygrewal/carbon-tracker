@@ -124,15 +124,9 @@ public class AddVehicleActivity extends AppCompatActivity {
                 //extract data from UI
                 ListView listVehicles=(ListView)findViewById(R.id.listviewCars);
                 String getClickedVehicle=CarbonModel.getInstance().getRemainingCars(make,model,year).get(position);
+
                 String transmission=CarbonModel.getInstance().getTransmissionFromRemain(make,model,year);
                 String engineDisplacement=CarbonModel.getInstance().getEngineDiplacementFromRemain(make,model,year);
-
-                Vehicle clicked_vehicle=new Vehicle();
-                clicked_vehicle.setMake(make);
-                clicked_vehicle.setModel(model);
-                clicked_vehicle.setYear(year);
-                clicked_vehicle.setTransmission(transmission);
-                clicked_vehicle.setEngineDisplacement(engineDisplacement);
 
                 Intent intent=new Intent(AddVehicleActivity.this,SelectVehicleActivity.class);
                 intent.putExtra("vehicle make",make);
@@ -141,7 +135,8 @@ public class AddVehicleActivity extends AppCompatActivity {
                 intent.putExtra("vehicle transmission",transmission);
                 intent.putExtra("vehicle engineDisplacement",engineDisplacement);
                 setResult(Activity.RESULT_OK, intent);
-                startActivity(intent);
+                finish();
+                // startActivity(intent);
 
 
             }

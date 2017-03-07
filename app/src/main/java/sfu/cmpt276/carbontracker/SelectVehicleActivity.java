@@ -29,9 +29,9 @@ public class SelectVehicleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_vehicle);
 
-        //CarbonModel.getInstance().fillList();
+        CarbonModel.getInstance().fillList();
         //readFile();
-        listCars();
+        //listCars();
         setupButtons();
     }
 
