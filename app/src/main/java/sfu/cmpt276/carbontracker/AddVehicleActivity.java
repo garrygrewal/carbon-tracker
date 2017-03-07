@@ -1,6 +1,7 @@
 package sfu.cmpt276.carbontracker;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
+import sfu.cmpt276.carbontracker.model.Vehicle;
 
 public class AddVehicleActivity extends AppCompatActivity {
     private String make;
@@ -119,12 +121,35 @@ public class AddVehicleActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //extract data from UI
+                ListView listVehicles=(ListView)findViewById(R.id.listviewCars);
+                String getClickedVehicle=CarbonModel.getInstance().getRemainingCars(make,model,year).get(position);
+                String transmission=CarbonModel.getInstance().getTransmissionFromRemain(make,model,year);
+                String engineDisplacement=CarbonModel.getInstance().getEngineDiplacementFromRemain(make,model,year);
+
+                Vehicle clicked_vehicle=new Vehicle();
+                clicked_vehicle.setMake(make);
+                clicked_vehicle.setModel(model);
+                clicked_vehicle.setYear(year);
+                clicked_vehicle.setTransmission(transmission);
+                clicked_vehicle.setEngineDisplacement(engineDisplacement);
+
+                Intent intent=new Intent(AddVehicleActivity.this,SelectVehicleActivity.class);
+                intent.putExtra("vehicle make",make);
+                intent.putExtra("vehicle model",model);
+                intent.putExtra("vehicle year",year);
+                intent.putExtra("vehicle transmission",transmission);
+                intent.putExtra("vehicle engineDisplacement",engineDisplacement);
+                setResult(Activity.RESULT_OK, intent);
+                startActivity(intent);
+
 
             }
         });
     }
 
     private void setupButtons() {
+        /*add button now not necessary with short click to go back to select vehicle activity
         //add vehicle button
         Button btn_ok = (Button) findViewById(R.id.buttonAddVehicle);
         btn_ok.setOnClickListener(new View.OnClickListener() {
@@ -136,7 +161,7 @@ public class AddVehicleActivity extends AppCompatActivity {
                 Intent intent = new Intent (AddVehicleActivity.this, SelectVehicleActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         //cancel button
         Button btn_cancel = (Button) findViewById(R.id.buttonCancel);
@@ -148,6 +173,9 @@ public class AddVehicleActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    public static Intent makeIntent(Context context) {
+        return new Intent(context, AddVehicleActivity.class);
     }
     //navigation back button
     @Override

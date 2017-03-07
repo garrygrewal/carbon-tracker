@@ -65,6 +65,18 @@ public class CarbonModel {
         return instance;
     }
 
+
+    //for integrating with ArrayAdapter
+    public String[] getCarInfo() {
+        String[] info = new String[cars.size()];
+        for (int i = 0; i < cars.size(); i++) {
+            Vehicle vehicle = getCar(i);
+            info[i] = vehicle.getMake() + ", " + vehicle.getModel()  +
+                    vehicle.getYear() + "year"+vehicle.getTransmission()+
+                    vehicle.getEngineDisplacement();
+        }
+        return info;
+    }
     public void addCar(Vehicle car) {
         cars.add(car);
     }
@@ -114,6 +126,36 @@ public class CarbonModel {
         return years;
     }
 
+    //get transmission from remaining cars
+    public String getTransmissionFromRemain(String make,String model,String year){
+        String transmission="";
+        for(int i=0; i<cars.size(); i++){
+            Vehicle car = getCar(i);
+            if(make.equals(car.getMake())){
+                if(model.equals(car.getModel())){
+                    if(year.equals(car.getYear())){
+                        transmission=car.getTransmission();
+                    }
+                }
+            }
+        }
+        return transmission;
+    }
+
+    public String getEngineDiplacementFromRemain(String make,String model,String year){
+        String engineDisplacement="";
+        for(int i=0; i<cars.size(); i++){
+            Vehicle car = getCar(i);
+            if(make.equals(car.getMake())){
+                if(model.equals(car.getModel())){
+                    if(year.equals(car.getYear())){
+                        engineDisplacement=car.getTransmission();
+                    }
+                }
+            }
+        }
+        return engineDisplacement;
+    }
     public List<String> getRemainingCars(String make, String model, String year){
         List<String> remainingCars = new ArrayList<>();
         for(int i=0; i<cars.size(); i++){
@@ -125,6 +167,7 @@ public class CarbonModel {
                             if(!remainingCars.contains(car.getEngineDisplacement())){
                                 remainingCars.add(car.getMake() +" " +car.getModel() +" " +car.getYear()
                                         +" " +car.getTransmission() +" " +car.getEngineDisplacement());
+
                             }
                         }
                     }
