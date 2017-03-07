@@ -7,23 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import sfu.cmpt276.carbontracker.model.CarbonModel;
-
-public class PieTotalFootprintActivity extends AppCompatActivity {
+public class TotalFootprintActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pie_total_footprint);
+        setContentView(R.layout.activity_total_footprint);
         setupButtons();
     }
 
@@ -37,6 +26,15 @@ public class PieTotalFootprintActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 setResult(Activity.RESULT_CANCELED, intent);
                 finish();
+            }
+        });
+
+        Button btn_graph = (Button) findViewById(R.id.buttonPieGraph);
+        btn_graph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (TotalFootprintActivity.this, PieGraphActivity.class);
+                startActivity(intent);
             }
         });
     }

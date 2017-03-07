@@ -1,7 +1,6 @@
 package sfu.cmpt276.carbontracker.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static android.media.CamcorderProfile.get;
@@ -157,9 +156,6 @@ public class CarbonModel {
         journey.calculateCarbonEmissions();
     }
 
-    public int countJourneys() {
-        return (listOfJourneys.size());
-    }
 
     public Journey getJourney(int index) {
         return listOfJourneys.get(index);
@@ -167,7 +163,7 @@ public class CarbonModel {
 
     public int newJourneyIndex() {
         int i;
-        for (i = 0; i < countJourneys(); i++) {
+        for (i = 0; i < getSizeOfJourneysList(); i++) {
             if (getJourney(i).getJourneyName() == "temp") {
                 break;
             }
@@ -181,8 +177,8 @@ public class CarbonModel {
 
     //for integrating with ArrayAdapter
     public String[] getJourneyInfo() {
-        String[] info = new String[countJourneys()];
-        for (int i = 0; i < countJourneys(); i++) {
+        String[] info = new String[getSizeOfJourneysList()];
+        for (int i = 0; i < getSizeOfJourneysList(); i++) {
             Journey journey = getJourney(i);
             info[i] = journey.getJourneyName() + ", " + journey.getVehicle().getName() + ", " + journey.getRoute().getName() + ".";
         }
@@ -198,12 +194,12 @@ public class CarbonModel {
         return listOfJourneys.size();
     }
 
-    public String getJourneyName(int i) {
-        return listOfJourneys.get(i).getJourneyName();
+    public String getJourneyName(int index) {
+        return listOfJourneys.get(index).getJourneyName();
     }
 
-    public float getJourneyTotalCO2Emissions(int i) {
-        return listOfJourneys.get(i).getTotalCO2Emission();
+    public float getJourneyTotalCO2Emissions(int index) {
+        return listOfJourneys.get(index).getTotalCO2Emission();
     }
 
     /////////////////////////////////////////////
