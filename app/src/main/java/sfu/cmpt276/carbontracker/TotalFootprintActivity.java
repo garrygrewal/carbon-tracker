@@ -25,29 +25,8 @@ public class PieTotalFootprintActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pie_total_footprint);
         setupButtons();
-        setupPieChart();
     }
 
-    private void setupPieChart() {
-        //populating a list of PieEntries;
-        List<PieEntry> pieEntries = new ArrayList<>();
-
-        for(int i = 0; i < CarbonModel.getInstance().getSizeOfJourneysList(); i++){
-            pieEntries.add(new PieEntry(CarbonModel.getInstance().getJourneyTotalCO2Emissions(i)
-                    , CarbonModel.getInstance().getJourneyName(i)));
-        }
-        PieDataSet dataSet = new PieDataSet(pieEntries, "Total CO2 Emissions");
-        dataSet.setColors(ColorTemplate.PASTEL_COLORS);
-        PieData data = new PieData(dataSet);
-
-        // Get the chart
-
-        PieChart chart = (PieChart) findViewById(R.id.piechart);
-        chart.setData(data);
-        chart.animateY(1000);
-        chart.invalidate();
-
-    }
 
     private void setupButtons() {
         //back to main menu button
