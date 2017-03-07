@@ -234,10 +234,11 @@ public class CarbonModel {
         String[] info = new String[getSizeOfJourneysList()];
         for (int i = 0; i < getSizeOfJourneysList(); i++) {
             Journey journey = getJourney(i);
-            info[i] = journey.getJourneyName() + ", " + journey.getVehicle().getName() + ", " + journey.getRoute().getName() + ".";
+            info[i] = "Date ," + journey.getJourneyName() + ", " + journey.getVehicle().getName() + ", " + journey.getRoute().getName() + ".";
         }
         return info;
     }
+
 
     public void deleteJourney(int index) {
         listOfJourneys.remove(index);
@@ -274,7 +275,7 @@ public class CarbonModel {
         }
 
     }
-}
+
 /*
     public void addMake(String makeName, String modelName,int year,double city,double highway,String fuelType,String trany,double displ){
 
@@ -308,8 +309,6 @@ public class CarbonModel {
         listOfInputVehicles.add(vehicle);
     }
 
-    public Vehicle getVehicle(int index) {
-        return listOfInputVehicles.get(index);
-    }
+
 }
 

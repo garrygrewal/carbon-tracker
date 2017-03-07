@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -24,6 +26,16 @@ public class PieGraphActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pie_graph);
 
         setupPieChart();
+    }
+    private void listJourneys() {
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.list_journey, CarbonModel.getInstance().getJourneyInfo());
+        ListView journey_list = (ListView) findViewById(R.id.journeyList);
+
+        //List Adapter
+        journey_list.setAdapter(adapter);
+
+        //Context Menu for long press
+        registerForContextMenu(journey_list);
     }
 
     private void setupPieChart() {

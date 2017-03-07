@@ -9,7 +9,6 @@ import java.util.List;
  */
 
 public class Vehicle {
-    private String name;
     private String make;
     private String name;
     private String model;

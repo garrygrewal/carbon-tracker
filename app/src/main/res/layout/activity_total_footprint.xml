@@ -10,21 +10,29 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="sfu.cmpt276.carbontracker.TotalFootprintActivity">
 
-    <Button
-        android:text="@string/back_to_main_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+    <ListView
+        android:id="@+id/listViewTotalFootprint"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
         android:layout_alignParentStart="true"
-        android:id="@+id/buttonCancel" />
+        android:layout_alignParentTop="true" />
 
     <Button
         android:id="@+id/buttonPieGraph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/buttonCancel"
-        android:layout_marginEnd="35dp"
-        android:text="@string/show_graph" />
+        android:layout_width="150dp"
+        android:layout_height="62dp"
+        android:text="@string/show_graph"
+        android:layout_alignBaseline="@+id/buttonCancel"
+        android:layout_alignBottom="@+id/buttonCancel"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/buttonCancel"
+        android:layout_width="150dp"
+        android:layout_height="62dp"
+        android:layout_weight="1"
+        android:text="@string/back_to_main_menu"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

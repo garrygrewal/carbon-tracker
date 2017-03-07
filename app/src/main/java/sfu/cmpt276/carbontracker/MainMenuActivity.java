@@ -28,21 +28,11 @@ public class MainMenuActivity extends AppCompatActivity {
         /////////////////////////////////////////////
     // CODE USED FOR TESTING REMOVE BEFORE SUBMISSION //
         //////////////////////////////////////////////
+        CarbonModel.getInstance().initiateTest();
 
-        listJourneys();
         setupButtons();
     }
 
-    private void listJourneys() {
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.list_journey, CarbonModel.getInstance().getJourneyInfo());
-        ListView journey_list = (ListView) findViewById(R.id.journeyList);
-
-        //List Adapter
-        journey_list.setAdapter(adapter);
-
-        //Context Menu for long press
-        registerForContextMenu(journey_list);
-    }
 
     private void setupButtons() {
         //create journey button
@@ -62,30 +52,10 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent (MainMenuActivity.this, TotalFootprintActivity.class);
                 startActivity(intent);
+
             }
         });
 
-    }
-
-    //CONTEXT MENU
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        menu.setHeaderTitle("Journey Options");
-        menu.add(0, v.getId(), 0, "Delete");
-    }
-    @Override
-    public boolean onContextItemSelected(MenuItem item){
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        switch (item.getTitle().toString()) {
-            case "Delete":
-                CarbonModel.getInstance().deleteJourney(info.position);
-                listJourneys();
-                break;
-            default:
-                return false;
-        }
-        return true;
     }
 
     //navigation back button

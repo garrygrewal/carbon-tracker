@@ -1,5 +1,6 @@
 package sfu.cmpt276.carbontracker.model;
 
+
 /**
  * Holds the Journey data
  */
@@ -11,6 +12,7 @@ public class Journey {
     private float co2PerCity;
     private float co2PerHighway;
     private float totalCO2Emission = 0;
+    private Day date;
 
     private final double GASOLINE_CO2_EMISSION = 8.89;
     private final double ELECTRIC_CO2_EMISSION = 0;
@@ -52,6 +54,13 @@ public class Journey {
 
     public double getCo2PerHighway() {
         return co2PerHighway;
+    }
+    public void setDate(int year, int month, int day){
+        date = new Day(year, month, day);
+    }
+
+    public String getDate(){
+        return date.getString();
     }
 
     public float getTotalCO2Emission() {
