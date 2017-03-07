@@ -9,6 +9,7 @@ import java.util.List;
  */
 
 public class Vehicle {
+    private String name;
     private String make;
     private String model;
     private String year;
@@ -80,6 +81,13 @@ public class Vehicle {
 
     public void setEngineDisplacement(String engineDisplacement) {
         this.engineDisplacement = engineDisplacement;
+    }
+
+    public void setName(String in_name) {
+        this.name = in_name;
+    }
+    public String getName() {
+        return name;
     }
     /*
     private List<MakeModel> listOfMakes = new ArrayList<>();

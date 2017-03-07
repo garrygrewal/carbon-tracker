@@ -1,5 +1,7 @@
 package sfu.cmpt276.carbontracker.model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,13 +73,22 @@ public class CarbonModel {
     public String[] getCarInfo() {
         String[] info = new String[countCars()];
         for (int i = 0; i < countCars(); i++) {
-            Vehicle vehicle = getCar(i);
-            info[i] = vehicle.getMake() + ", " + vehicle.getModel()  +
-                    vehicle.getYear() + "year"+vehicle.getTransmission()+
+            Vehicle vehicle = getVehicle(i);
+            info[i] = vehicle.getName() + ", " + vehicle.getMake() + ", " + vehicle.getModel() + ", " + vehicle.getYear() + ", " + vehicle.getCity() + ", " + vehicle.getHighway() + ", " + vehicle.getFuelType() + ", " + vehicle.getTransmission() + ", " + vehicle.getEngineDisplacement();
                     vehicle.getEngineDisplacement();
         }
         return info;
     }
+    public String[] getRemainingCarInfo(List<Vehicle> vehicles) {
+        String[] info = new String[vehicles.size()];
+        for (int i = 0; i < vehicles.size(); i++) {
+            Vehicle vehicle = vehicles.get(i);
+            info[i] = vehicle.getMake() + ", " + vehicle.getModel() + ", " + vehicle.getYear() + ", " + vehicle.getCity() + ", " + vehicle.getHighway() + ", " + vehicle.getFuelType() + ", " + vehicle.getTransmission() + ", " + vehicle.getEngineDisplacement();
+            vehicle.getEngineDisplacement();
+        }
+        return info;
+    }
+
     public int countCars(){
         return listOfInputVehicles.size();
     }
@@ -156,20 +167,23 @@ public class CarbonModel {
         }
         return engineDisplacement;
     }
-    public List<String> getRemainingCars(String make, String model, String year){
+
+    public List<Vehicle> getRemainingCars(String make, String model, String year){
         List<String> remainingCars = new ArrayList<>();
         List<String> outputCars = new ArrayList<>();
+        List<Vehicle> vehiclesLeft = new ArrayList<>();
         for(int i=0; i<cars.size(); i++){
             Vehicle car = getCar(i);
             if(make.equals(car.getMake())){
                 if(model.equals(car.getModel())){
                     if(year.equals(car.getYear())){
+                        vehiclesLeft.add(car);
                         if(!remainingCars.contains(car.getTransmission())){
                             if(!remainingCars.contains(car.getEngineDisplacement())){
                                 remainingCars.add(car.getTransmission());
                                 remainingCars.add(car.getEngineDisplacement());
-                                outputCars.add(car.getMake() +" " +car.getModel() +" " +car.getYear()
-                                        +" - " + car.getFuelType() +" " +car.getTransmission() +" "
+                                outputCars.add(car.getMake() +", " +car.getModel() +", " +car.getYear()
+                                        +", " + car.getFuelType() +", " +car.getTransmission() +", "
                                         +car.getEngineDisplacement());
                             }
                         }
@@ -177,7 +191,7 @@ public class CarbonModel {
                 }
             }
         }
-        return outputCars;
+        return vehiclesLeft;
     }
 
     public void fillList(int rows) {
@@ -203,10 +217,29 @@ public class CarbonModel {
         }
         listOfKnownMakes.add(new Make(makeName, modelName, makeYear));
     }
-
-    public void addVehicle(String vehicleName, String makeName, Model model){
-        listOfInputVehicles.add(new Vehicle(vehicleName,makeName,model));
-    }
 */
+    public void addVehicle(String name, String make, String model, String year, String city, String hwy, String fuelType, String transmission, String displacement){
+        Vehicle vehicle = new Vehicle();
+
+        vehicle.setName(name);
+        vehicle.setMake(make);
+        vehicle.setModel(model);
+        vehicle.setYear(year);
+        vehicle.setCity(Double.parseDouble(city));
+        vehicle.setHighway(Double.parseDouble(hwy));
+        vehicle.setFuelType(fuelType);
+        if (fuelType.equals("Electricity")) {
+            vehicle.setTransmission("none");
+            vehicle.setEngineDisplacement("none");
+        } else {
+            vehicle.setTransmission(transmission);
+            vehicle.setEngineDisplacement(displacement);
+        }
+        listOfInputVehicles.add(vehicle);
+    }
+
+    public Vehicle getVehicle(int index) {
+        return listOfInputVehicles.get(index);
+    }
 
 }

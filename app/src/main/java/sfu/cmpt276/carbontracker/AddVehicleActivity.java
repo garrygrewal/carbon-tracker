@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 import sfu.cmpt276.carbontracker.model.Vehicle;
 
@@ -20,6 +23,7 @@ public class AddVehicleActivity extends AppCompatActivity {
     private String make;
     private String model;
     private String year;
+    private List<Vehicle> outputCars = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,32 +111,40 @@ public class AddVehicleActivity extends AppCompatActivity {
     }
 
     public void populateListView(){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, CarbonModel.getInstance().getRemainingCars(make,model,year));
+        outputCars = CarbonModel.getInstance().getRemainingCars(make, model, year);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, CarbonModel.getInstance().getRemainingCarInfo(outputCars));
 
         ListView list = (ListView) findViewById(R.id.listviewCars);
         list.setAdapter(adapter);
     }
 
     public void registerClickCallBackForList(){
-        ListView list = (ListView) findViewById(R.id.listviewCars);
+        final ListView list = (ListView) findViewById(R.id.listviewCars);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //extract data from UI
+                /*
                 ListView listVehicles=(ListView)findViewById(R.id.listviewCars);
                 String getClickedVehicle=CarbonModel.getInstance().getRemainingCars(make,model,year).get(position);
 
-                String transmission=CarbonModel.getInstance().getTransmissionFromRemain(make,model,year);
+                String transmission=CarbonModel.getInstance().getTransmissionFromRemain(make,model,year).get(position);
                 String engineDisplacement=CarbonModel.getInstance().getEngineDiplacementFromRemain(make,model,year);
+                */
+                Vehicle vehicle = outputCars.get(position);
+                Intent intent=new Intent(AddVehicleActivity.this, SelectVehicleActivity.class);
 
-                Intent intent=new Intent(AddVehicleActivity.this,SelectVehicleActivity.class);
-                intent.putExtra("vehicle make",make);
-                intent.putExtra("vehicle model",model);
-                intent.putExtra("vehicle year",year);
-                intent.putExtra("vehicle transmission",transmission);
-                intent.putExtra("vehicle engineDisplacement",engineDisplacement);
+                intent.putExtra("vehicle_name", "PLACEHOLDER NAME");
+                intent.putExtra("vehicle_make", vehicle.getMake());
+                intent.putExtra("vehicle_model", vehicle.getModel());
+                intent.putExtra("vehicle_year", vehicle.getYear());
+                intent.putExtra("vehicle_city", Double.toString(vehicle.getCity()));
+                intent.putExtra("vehicle_hwy", Double.toString(vehicle.getHighway()));
+                intent.putExtra("vehicle_fuel", vehicle.getYear());
+                intent.putExtra("vehicle_transmission",vehicle.getTransmission());
+                intent.putExtra("vehicle_engineDisplacement",vehicle.getEngineDisplacement());
                 setResult(Activity.RESULT_OK, intent);
                 finish();
                 // startActivity(intent);
