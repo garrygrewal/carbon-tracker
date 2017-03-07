@@ -140,6 +140,11 @@ public class CarbonModel {
         }
     }
 
+
+    public void calculateCarbonEmissions(Journey journey){
+        journey.calculateCarbonEmissions();
+    }
+
 /*
     public void addMake(String makeName, String modelName,int year,double city,double highway,String fuelType,String trany,double displ){
 
