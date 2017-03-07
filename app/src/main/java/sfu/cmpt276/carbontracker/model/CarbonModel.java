@@ -89,16 +89,12 @@ public class CarbonModel {
         for(int i=0; i<cars.size(); i++){
             Vehicle car = getCar(i);
             if(make.equals(car.getMake())){
-                models.add(car.getModel());
+                if(!models.contains(car.getModel())) {
+                    models.add(car.getModel());
+                }
             }
         }
         return models;
-    }
-
-    public void fillList() {
-        for (int i = 0; i < 38122; i++) {
-            cars.add(new Vehicle());
-        }
     }
 
     public List<String> getYears(String model){
@@ -116,6 +112,7 @@ public class CarbonModel {
 
     public List<String> getRemainingCars(String make, String model, String year){
         List<String> remainingCars = new ArrayList<>();
+        List<String> outputCars = new ArrayList<>();
         for(int i=0; i<cars.size(); i++){
             Vehicle car = getCar(i);
             if(make.equals(car.getMake())){
@@ -123,15 +120,24 @@ public class CarbonModel {
                     if(year.equals(car.getYear())){
                         if(!remainingCars.contains(car.getTransmission())){
                             if(!remainingCars.contains(car.getEngineDisplacement())){
-                                remainingCars.add(car.getMake() +" " +car.getModel() +" " +car.getYear()
-                                        +" " +car.getTransmission() +" " +car.getEngineDisplacement());
+                                remainingCars.add(car.getTransmission());
+                                remainingCars.add(car.getEngineDisplacement());
+                                outputCars.add(car.getMake() +" " +car.getModel() +" " +car.getYear()
+                                        +" - " + car.getFuelType() +" " +car.getTransmission() +" "
+                                        +car.getEngineDisplacement());
                             }
                         }
                     }
                 }
             }
         }
-        return remainingCars;
+        return outputCars;
+    }
+
+    public void fillList() {
+        for (int i = 0; i < 38122; i++) {
+            cars.add(new Vehicle());
+        }
     }
 
 /*
