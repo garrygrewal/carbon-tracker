@@ -18,7 +18,7 @@ public class CarbonModel {
     private List<Journey> listOfJourneys = new ArrayList<>();
 
 
-    //public List<Vehicle> cars = new ArrayList<>();
+    public List<Vehicle> cars = new ArrayList<>();
 
     private CarbonModel() {
     }
@@ -82,16 +82,16 @@ public class CarbonModel {
         return listOfInputVehicles.size();
     }
     public void addCar(Vehicle car) {
-        listOfInputVehicles.add(car);
+        cars.add(car);
     }
 
     public Vehicle getCar(int i) {
-        return listOfInputVehicles.get(i);
+        return cars.get(i);
     }
 
     public List<String> getMakes(){
         List<String> makes = new ArrayList<>();
-        for(int i=0; i<listOfInputVehicles.size(); i++){
+        for(int i=0; i<cars.size(); i++){
             Vehicle car = getCar(i);
             if(!makes.contains(car.getMake())){
                 makes.add(car.getMake());
@@ -102,24 +102,20 @@ public class CarbonModel {
 
     public List<String> getModels(String make){
         List<String> models = new ArrayList<>();
-        for(int i=0; i<countCars(); i++){
+        for(int i=0; i<cars.size(); i++){
             Vehicle car = getCar(i);
             if(make.equals(car.getMake())){
-                models.add(car.getModel());
+                if(!models.contains(car.getModel())) {
+                    models.add(car.getModel());
+                }
             }
         }
         return models;
     }
 
-    public void fillList() {
-        for (int i = 0; i < 38122; i++) {
-            listOfInputVehicles.add(new Vehicle());
-        }
-    }
-
     public List<String> getYears(String model){
         List<String> years = new ArrayList<>();
-        for(int i=0; i<countCars(); i++){
+        for(int i=0; i<cars.size(); i++){
             Vehicle car = getCar(i);
             if(model.equals(car.getModel())){
                 if(!years.contains(car.getYear())){
@@ -162,23 +158,37 @@ public class CarbonModel {
     }
     public List<String> getRemainingCars(String make, String model, String year){
         List<String> remainingCars = new ArrayList<>();
-        for(int i=0; i<countCars(); i++){
+        List<String> outputCars = new ArrayList<>();
+        for(int i=0; i<cars.size(); i++){
             Vehicle car = getCar(i);
             if(make.equals(car.getMake())){
                 if(model.equals(car.getModel())){
                     if(year.equals(car.getYear())){
                         if(!remainingCars.contains(car.getTransmission())){
                             if(!remainingCars.contains(car.getEngineDisplacement())){
-                                remainingCars.add(car.getMake() +" " +car.getModel() +" " +car.getYear()
-                                        +" " +car.getTransmission() +" " +car.getEngineDisplacement());
-
+                                remainingCars.add(car.getTransmission());
+                                remainingCars.add(car.getEngineDisplacement());
+                                outputCars.add(car.getMake() +" " +car.getModel() +" " +car.getYear()
+                                        +" - " + car.getFuelType() +" " +car.getTransmission() +" "
+                                        +car.getEngineDisplacement());
                             }
                         }
                     }
                 }
             }
         }
-        return remainingCars;
+        return outputCars;
+    }
+
+    public void fillList(int rows) {
+        for (int i = 0; i < rows; i++) {
+            cars.add(new Vehicle());
+        }
+    }
+
+
+    public void calculateCarbonEmissions(Journey journey){
+        journey.calculateCarbonEmissions();
     }
 
 /*

@@ -63,7 +63,6 @@ public class AddVehicleActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getModels(make));
         Spinner spinnerModel = (Spinner) findViewById(R.id.spinnerSelectModel);
         spinnerModel.setAdapter(adapterModel);
-        Log.d("My activity", "Just created: " +CarbonModel.getInstance().getModels(make).size());
     }
 
     public void registerClickCallBackForModel(){
