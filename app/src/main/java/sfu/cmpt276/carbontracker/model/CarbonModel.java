@@ -65,6 +65,10 @@ public class CarbonModel {
         return instance;
     }
 
+    public Vehicle getVehicle(int index) {
+        return listOfInputVehicles.get(index);
+    }
+
     public void addCar(Vehicle car) {
         cars.add(car);
     }
@@ -140,10 +144,52 @@ public class CarbonModel {
         }
     }
 
+    public void newJourney(Vehicle in_vehicle, Route in_route) {
+        String temp_name = "temp";
+        listOfJourneys.add(new Journey(temp_name, in_vehicle, in_route));
+    }
+
 
     public void calculateCarbonEmissions(Journey journey){
         journey.calculateCarbonEmissions();
     }
+
+    public int countJourneys() {
+        return (listOfJourneys.size());
+    }
+
+    public Journey getJourney(int index) {
+        return listOfJourneys.get(index);
+    }
+
+    public int newJourneyIndex() {
+        int i;
+        for (i=0; i<countJourneys(); i++) {
+            if (getJourney(i).getJourneyName() == "temp") {
+                break;
+            }
+        }
+        return i;
+    }
+
+    public void addJourneyName(int index, String name) {
+        getJourney(index).setJourneyName(name);
+    }
+
+    //for integrating with ArrayAdapter
+    public String[] getJourneyInfo() {
+            String[] info = new String[countJourneys()];
+            for (int i = 0; i < countJourneys(); i++) {
+                Journey journey = getJourney(i);
+                info[i] = journey.getJourneyName() + ", " + journey.getVehicle().getName() + ", " + journey.getRoute().getName() + ".";
+            }
+            return info;
+        }
+
+    public void deleteJourney(int index) {
+        listOfJourneys.remove(index);
+    }
+}
 
 /*
     public void addMake(String makeName, String modelName,int year,double city,double highway,String fuelType,String trany,double displ){
@@ -163,4 +209,4 @@ public class CarbonModel {
     }
 */
 
-}
+

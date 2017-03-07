@@ -25,4 +25,83 @@
         android:id="@+id/buttonCancel"
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/buttonAddJourney" />
+
+    <TextView
+        android:id="@+id/textJourneyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Name this Journey: "
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/journeyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/city_emissions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonCancel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="135dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/hwy_emissions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/city_emissions"
+        android:layout_alignTop="@+id/city_emissions"
+        android:layout_marginTop="21dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textCityEmissions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/city_emissions"
+        android:text="City Emissions" />
+
+    <TextView
+        android:id="@+id/textHwyEmissions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textCityEmissions"
+        android:text="Highway Emissions" />
+
+    <TextView
+        android:id="@+id/textCombinedEmis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Emissions for this Journey"
+        android:layout_below="@+id/hwy_emissions"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="34dp" />
+
+    <TextView
+        android:id="@+id/textVehicleName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/journeyName"
+        android:layout_marginTop="48dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textRouteName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textVehicleName"
+        android:layout_marginTop="36dp"
+        android:text="TextView" />
 </RelativeLayout>
