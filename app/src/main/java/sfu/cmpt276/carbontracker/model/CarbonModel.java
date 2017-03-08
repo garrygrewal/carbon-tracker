@@ -322,5 +322,16 @@ public class CarbonModel {
     }
 
 
+    public String getRouteName(int index) {
+        return listOfInputRoutes.get(index).getName();
+    }
+
+    public float getRouteCityDistance(int index) {
+        return listOfInputRoutes.get(index).getCity();
+    }
+
+    public float getRouteHwyDistance(int index) {
+        return listOfInputRoutes.get(index).getHwy();
+    }
 }
 

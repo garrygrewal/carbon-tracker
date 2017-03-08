@@ -61,10 +61,8 @@ public class MainMenuActivity extends AppCompatActivity {
     //navigation back button
     @Override
     public void onBackPressed () {
-        Intent intent = new Intent();
-        setResult(Activity.RESULT_CANCELED, intent);
 
-        System.exit(0);
-        //moveTaskToBack(true); sends the app to background instead
+        //System.exit(0);
+        moveTaskToBack(true);// sends the app to background instead
     }
 }

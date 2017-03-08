@@ -97,9 +97,9 @@ public class SelectRouteActivity extends AppCompatActivity {
                 Route clicked_route = CarbonModel.getInstance().getRoute(info.position);
                 index = info.position;
                 Intent intent = new Intent(SelectRouteActivity.this, AddRouteActivity.class);
-                intent.putExtra("name", clicked_route.getName());
-                intent.putExtra("city", String.valueOf(clicked_route.getCity()));
-                intent.putExtra("hwy", String.valueOf(clicked_route.getHwy()));
+                intent.putExtra("name", CarbonModel.getInstance().getRouteName(info.position));
+                intent.putExtra("city", String.valueOf(CarbonModel.getInstance().getRouteCityDistance(info.position)));
+                intent.putExtra("hwy", String.valueOf(CarbonModel.getInstance().getRouteHwyDistance(info.position)));
                 startActivityForResult(intent, 24);
                 break;
             case "Delete":
