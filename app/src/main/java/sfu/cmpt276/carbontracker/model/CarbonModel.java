@@ -234,7 +234,8 @@ public class CarbonModel {
         String[] info = new String[getSizeOfJourneysList()];
         for (int i = 0; i < getSizeOfJourneysList(); i++) {
             Journey journey = getJourney(i);
-            info[i] = "Date ," + journey.getJourneyName() + ", " + journey.getVehicle().getName() + ", " + journey.getRoute().getName() + ".";
+            journey.calculateCarbonEmissions();
+            info[i] = "Date ," + journey.getJourneyName() + ", " + journey.getVehicle().getName() + ", " + journey.getRoute().getName() + ", " + journey.getTotalCO2Emission();
         }
         return info;
     }
