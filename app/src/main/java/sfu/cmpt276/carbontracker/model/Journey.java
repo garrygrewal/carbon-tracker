@@ -1,6 +1,8 @@
 package sfu.cmpt276.carbontracker.model;
 
 
+import android.util.Log;
+
 /**
  * Holds the Journey data
  */

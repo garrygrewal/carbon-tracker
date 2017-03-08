@@ -1,6 +1,7 @@
 package sfu.cmpt276.carbontracker.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static android.media.CamcorderProfile.get;
@@ -15,8 +16,8 @@ public class CarbonModel {
     private List<Route> listOfInputRoutes = new ArrayList<>();
     private List<Integer> listOfHiddenRoutes = new ArrayList<>();
     private List<Vehicle> listOfInputVehicles = new ArrayList<>();
+    private List<Integer> listOfHiddenVehicles=new ArrayList<>();
     private List<Journey> listOfJourneys = new ArrayList<>();
-
 
     public List<Vehicle> cars = new ArrayList<>();
 
@@ -68,11 +69,23 @@ public class CarbonModel {
     }
 
     public Vehicle getVehicle(int index) {
+        for(int i=0;i<listOfHiddenVehicles.size();i++){
+            if (listOfHiddenVehicles.get(i)<=index){
+                index++;
+            }
+        }
         return listOfInputVehicles.get(index);
     }
-
-
-
+    public void hideVehicle(int index){
+        listOfHiddenVehicles.add(index);
+    }
+    public void editVehicle(Vehicle vehicle,int index){
+        listOfInputVehicles.remove(index);
+        listOfInputVehicles.add(index,vehicle);
+    }
+    public int countCars(){
+        return listOfInputVehicles.size()-listOfHiddenVehicles.size();
+    }
     //for integrating with ArrayAdapter
     public String[] getCarInfo() {
         String[] info = new String[countCars()];
@@ -93,9 +106,6 @@ public class CarbonModel {
         return info;
     }
 
-    public int countCars(){
-        return listOfInputVehicles.size();
-    }
     public void addCar(Vehicle car) {
         cars.add(car);
     }
@@ -104,7 +114,7 @@ public class CarbonModel {
         return cars.get(i);
     }
 
-    public List<String> getMakes() {
+    public List<String> getMakes(int index) {
         List<String> makes = new ArrayList<>();
         for (int i = 0; i < cars.size(); i++) {
             Vehicle car = getCar(i);
@@ -112,10 +122,19 @@ public class CarbonModel {
                 makes.add(car.getMake());
             }
         }
+        Collections.sort(makes);
+
+        if(index >= 0){
+            int indexfound = makes.indexOf(listOfInputVehicles.get(index).getMake());
+            makes.remove(indexfound);
+            makes.add(0,listOfInputVehicles.get(index).getMake());
+
+        }
+
         return makes;
     }
 
-    public List<String> getModels(String make) {
+    public List<String> getModels(String make, int index) {
         List<String> models = new ArrayList<>();
         for (int i = 0; i < cars.size(); i++) {
             Vehicle car = getCar(i);
@@ -125,10 +144,18 @@ public class CarbonModel {
                 }
             }
         }
+
+        Collections.sort(models);
+        if(index >= 0){
+            int indexfound = models.indexOf(listOfInputVehicles.get(index).getModel());
+            models.remove(indexfound);
+            models.add(0,listOfInputVehicles.get(index).getModel());
+
+        }
         return models;
     }
 
-    public List<String> getYears(String model) {
+    public List<String> getYears(String model, int index) {
         List<String> years = new ArrayList<>();
         for (int i = 0; i < cars.size(); i++) {
             Vehicle car = getCar(i);
@@ -137,6 +164,13 @@ public class CarbonModel {
                     years.add(car.getYear());
                 }
             }
+        }
+        Collections.sort(years);
+        if(index >= 0){
+            int indexfound = years.indexOf(listOfInputVehicles.get(index).getYear());
+            years.remove(indexfound);
+            years.add(0,listOfInputVehicles.get(index).getYear());
+
         }
         return years;
     }
@@ -258,6 +292,7 @@ public class CarbonModel {
         return listOfJourneys.get(index).getTotalCO2Emission();
     }
 
+    /*
     /////////////////////////////////////////////
 // CODE USED FOR TESTING REMOVE BEFORE SUBMISSION //
     //////////////////////////////////////////////
@@ -276,6 +311,7 @@ public class CarbonModel {
         }
 
     }
+    */
 
 /*
     public void addMake(String makeName, String modelName,int year,double city,double highway,String fuelType,String trany,double displ){
@@ -310,6 +346,30 @@ public class CarbonModel {
         listOfInputVehicles.add(vehicle);
     }
 
+    public String getVehicleName(int index){
+        return listOfInputVehicles.get(index).getName();
+    }
+    public String getVehicleMake(int index){
+        return listOfInputVehicles.get(index).getMake();
+    }
+    public String getVehicleModel(int index){
+        return listOfInputVehicles.get(index).getModel();
+    }
+    public String getVehicleYear(int index){
+        return listOfInputVehicles.get(index).getYear();
+    }
 
+
+    public String getRouteName(int index) {
+        return listOfInputRoutes.get(index).getName();
+    }
+
+    public float getRouteCityDistance(int index) {
+        return listOfInputRoutes.get(index).getCity();
+    }
+
+    public float getRouteHwyDistance(int index) {
+        return listOfInputRoutes.get(index).getHwy();
+    }
 }
 

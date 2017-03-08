@@ -26,6 +26,7 @@ public class AddVehicleActivity extends AppCompatActivity {
     private String make;
     private String model;
     private String year;
+    private int index;
     private List<Vehicle> outputCars = new ArrayList<>();
 
     @Override
@@ -38,16 +39,34 @@ public class AddVehicleActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         setupButtons();
-        populateSpinnerMake();
+        Intent intent = getIntent();
+        index = intent.getIntExtra("index",-1);
+        populateSpinnerMake(index);
         registerClickCallBackForMake();
         registerClickCallBackForModel();
         registerClickCallBackForYears();
         registerClickCallBackForList();
+        extractDataFromIntent();
     }
 
-    public void populateSpinnerMake(){
+    private void extractDataFromIntent() {
+
+
+        if((index >= 0)){
+            String name = CarbonModel.getInstance().getVehicleName(index);
+            EditText input_name = (EditText) findViewById(R.id.car_name);
+            input_name.setText(name);
+            make = CarbonModel.getInstance().getVehicleMake(index);
+            model = CarbonModel.getInstance().getVehicleModel(index);
+            year = CarbonModel.getInstance().getVehicleYear(index);
+            populateListView();
+        }
+    }
+
+
+    public void populateSpinnerMake(int index){
         ArrayAdapter<String> adapterMake = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getMakes());
+                android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getMakes(index));
         Spinner spinnerMake = (Spinner) findViewById(R.id.spinnerSelectMake);
         spinnerMake.setAdapter(adapterMake);
     }
@@ -71,7 +90,7 @@ public class AddVehicleActivity extends AppCompatActivity {
 
     public void populateSpinnerModel(){
         ArrayAdapter<String> adapterModel = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getModels(make));
+                android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getModels(make, index));
         Spinner spinnerModel = (Spinner) findViewById(R.id.spinnerSelectModel);
         spinnerModel.setAdapter(adapterModel);
     }
@@ -95,7 +114,7 @@ public class AddVehicleActivity extends AppCompatActivity {
 
     public void populateSpinnerYear(){
         ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getYears(model));
+                android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getYears(model, index));
         Spinner spinnerYear = (Spinner) findViewById(R.id.spinnerSelectYear);
         spinnerYear.setAdapter(adapterYear);
     }
@@ -140,6 +159,7 @@ public class AddVehicleActivity extends AppCompatActivity {
                 String transmission=CarbonModel.getInstance().getTransmissionFromRemain(make,model,year).get(position);
                 String engineDisplacement=CarbonModel.getInstance().getEngineDiplacementFromRemain(make,model,year);
                 */
+
                 Vehicle vehicle = outputCars.get(position);
                 EditText carNameText = (EditText) findViewById(R.id.car_name);
                 vehicle.setName(carNameText.getText().toString());
@@ -147,23 +167,22 @@ public class AddVehicleActivity extends AppCompatActivity {
                 if (checkInput(vehicle.getName()) == 0) {
                     setResult(Activity.RESULT_CANCELED);
                 }else {
-
-                    Intent intent = new Intent(AddVehicleActivity.this, SelectVehicleActivity.class);
-
-
+                    Intent intent=new Intent();
                     intent.putExtra("vehicle_name", vehicle.getName());
                     intent.putExtra("vehicle_make", vehicle.getMake());
                     intent.putExtra("vehicle_model", vehicle.getModel());
                     intent.putExtra("vehicle_year", vehicle.getYear());
                     intent.putExtra("vehicle_city", Double.toString(vehicle.getCity()));
                     intent.putExtra("vehicle_hwy", Double.toString(vehicle.getHighway()));
-                    intent.putExtra("vehicle_fuel", vehicle.getYear());
+                    intent.putExtra("vehicle_fuel", vehicle.getFuelType());
                     intent.putExtra("vehicle_transmission", vehicle.getTransmission());
                     intent.putExtra("vehicle_engineDisplacement", vehicle.getEngineDisplacement());
+                    Log.d("TAGGGGGG","YOU Clicked on a car in the listView at position :"+position+"!!!!!!!!!");
                     setResult(Activity.RESULT_OK, intent);
+                   // Log.d("TAGGGGGG","YOU Clicked on a car in the listView at position :"+position+"!!!!!!!!!");
                     finish();
-                    // startActivity(intent);
                 }
+
 
             }
         });
