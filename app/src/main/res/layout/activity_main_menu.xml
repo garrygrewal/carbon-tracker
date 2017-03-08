@@ -19,7 +19,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="Display Carbon Footprint"
+        android:text="@string/display_carbon_footprint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonDisplayTotal"
