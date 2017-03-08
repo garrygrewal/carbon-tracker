@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -63,11 +64,12 @@ public class SelectRouteActivity extends AppCompatActivity {
         route_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Route clicked_route = CarbonModel.getInstance().getRoute(position);
+                Intent get = getIntent();
+                int car_index = get.getIntExtra("car_index", 0);
 
                 Intent intent = new Intent(SelectRouteActivity.this, AddNameActivity.class);
                 intent.putExtra("route_index", position);
-                intent.putExtra("vehicle_index", intent.getIntExtra("vehicle_index", 0));
+                intent.putExtra("vehicle_index", car_index);
                 //intent.putExtra("route_name", clicked_route.getName());
                 //intent.putExtra("route_city", clicked_route.getCity());
                 //intent.putExtra("route_hwy", clicked_route.getHwy());

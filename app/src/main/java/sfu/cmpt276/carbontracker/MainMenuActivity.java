@@ -19,7 +19,7 @@ import sfu.cmpt276.carbontracker.model.CarbonModel;
  */
 
 public class MainMenuActivity extends AppCompatActivity {
-    private static final int REQUEST_CODE = 1014;
+    //private static final int REQUEST_CODE = 1014;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class MainMenuActivity extends AppCompatActivity {
         /////////////////////////////////////////////
     // CODE USED FOR TESTING REMOVE BEFORE SUBMISSION //
         //////////////////////////////////////////////
-        CarbonModel.getInstance().initiateTest();
+        //CarbonModel.getInstance().initiateTest();
 
         setupButtons();
     }

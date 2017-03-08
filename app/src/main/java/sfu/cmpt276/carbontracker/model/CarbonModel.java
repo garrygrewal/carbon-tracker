@@ -258,6 +258,7 @@ public class CarbonModel {
         return listOfJourneys.get(index).getTotalCO2Emission();
     }
 
+    /*
     /////////////////////////////////////////////
 // CODE USED FOR TESTING REMOVE BEFORE SUBMISSION //
     //////////////////////////////////////////////
@@ -276,6 +277,7 @@ public class CarbonModel {
         }
 
     }
+    */
 
 /*
     public void addMake(String makeName, String modelName,int year,double city,double highway,String fuelType,String trany,double displ){

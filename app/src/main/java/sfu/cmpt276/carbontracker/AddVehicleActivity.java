@@ -152,7 +152,7 @@ public class AddVehicleActivity extends AppCompatActivity {
                     intent.putExtra("vehicle_year", vehicle.getYear());
                     intent.putExtra("vehicle_city", Double.toString(vehicle.getCity()));
                     intent.putExtra("vehicle_hwy", Double.toString(vehicle.getHighway()));
-                    intent.putExtra("vehicle_fuel", vehicle.getYear());
+                    intent.putExtra("vehicle_fuel", vehicle.getFuelType());
                     intent.putExtra("vehicle_transmission", vehicle.getTransmission());
                     intent.putExtra("vehicle_engineDisplacement", vehicle.getEngineDisplacement());
                     setResult(Activity.RESULT_OK, intent);

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,7 +46,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 
                 Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
-                intent.putExtra("vehicle_index", position);
+                intent.putExtra("car_index", position);
                 startActivity(intent);
             }
         });
@@ -171,14 +172,9 @@ public class SelectVehicleActivity extends AppCompatActivity {
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//////////////////REMOVE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //temporary, for testing only
-                Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
-                startActivity(intent);
-
-                //Intent intent = new Intent();
-                //setResult(Activity.RESULT_CANCELED, intent);
-                //finish();
+                Intent intent = new Intent();
+                setResult(Activity.RESULT_CANCELED, intent);
+                finish();
             }
         });
     }
