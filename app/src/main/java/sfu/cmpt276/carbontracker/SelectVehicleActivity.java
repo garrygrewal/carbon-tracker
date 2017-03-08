@@ -106,7 +106,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
         car_list.setAdapter(adapter);
 
         //Context Menu for long press
-        //registerForContextMenu(car_list);
+        registerForContextMenu(car_list);
     }
 
     private void readFile() {

@@ -19,12 +19,12 @@
         android:id="@+id/buttonAddVehicle" />
 
     <Button
-        android:text="*skip to SelectRouteActivity"
+        android:id="@+id/buttonCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonCancel"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/buttonAddVehicle" />
+        android:layout_toStartOf="@+id/buttonAddVehicle"
+        android:text="Cancel" />
 
     <TextView
         android:text="Select a vehicle for journey"
