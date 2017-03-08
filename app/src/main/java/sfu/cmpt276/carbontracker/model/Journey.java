@@ -1,16 +1,16 @@
 package sfu.cmpt276.carbontracker.model;
 
 
-import android.util.Log;
-
 /**
  * Holds the Journey data
  */
 
 public class Journey {
     private String journeyName;
-    private Vehicle vehicle;
-    private Route route;
+    private int vehicleIndex;
+    private int routeIndex;
+    //private Vehicle vehicle;
+    //private Route route;
     private float co2PerCity;
     private float co2PerHighway;
     private float totalCO2Emission = 0;
@@ -20,10 +20,10 @@ public class Journey {
     private final double ELECTRIC_CO2_EMISSION = 0;
     private final double DIESEL_CO2_EMISSION = 10.16;
 
-    public Journey(String journeyName, Vehicle vehicle, Route route) {
+    public Journey(String journeyName, int vehicle_index, int route_index) {
         this.journeyName = journeyName;
-        this.vehicle = vehicle;
-        this.route = route;
+        this.vehicleIndex = vehicle_index;
+        this.routeIndex = route_index;
     }
 
     public String getJourneyName() {
@@ -35,27 +35,27 @@ public class Journey {
     }
 
     public Vehicle getVehicle() {
-        return vehicle;
+        return CarbonModel.getInstance().getVehicle(vehicleIndex);
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public void setVehicle(int vehicle) {
+        this.vehicleIndex = vehicle;
     }
 
     public Route getRoute() {
-        return route;
+        return CarbonModel.getInstance().getRoute(routeIndex);
     }
 
-    public void setRoute(Route route) {
-        this.route = route;
+    public void setRoute(int route) {
+        this.routeIndex = route;
     }
 
     public double getCo2PerCity() {
-        return co2PerCity;
+        return CarbonModel.getInstance().getVehicle(vehicleIndex).getCity();
     }
 
     public double getCo2PerHighway() {
-        return co2PerHighway;
+        return CarbonModel.getInstance().getVehicle(vehicleIndex).getHighway();
     }
     public void setDate(int year, int month, int day){
         date = new Day(year, month, day);
@@ -70,24 +70,24 @@ public class Journey {
     }
 
     public void calculateCarbonEmissions() {
-        double highwayMilesPerGallon = vehicle.getHighway();
-        double cityMilesPerGallon = vehicle.getCity();
+        double highwayMilesPerGallon = CarbonModel.getInstance().getVehicle(vehicleIndex).getHighway();
+        double cityMilesPerGallon = CarbonModel.getInstance().getVehicle(vehicleIndex).getCity();
         double co2EmittedPerGallonOfFuel;
-        if (vehicle.getFuelType().toLowerCase().contains("gasoline")) {
+        if (CarbonModel.getInstance().getVehicle(vehicleIndex).getFuelType().toLowerCase().contains("gasoline")) {
             co2EmittedPerGallonOfFuel = GASOLINE_CO2_EMISSION;
-        } else if (vehicle.getFuelType().toLowerCase().contains("electricity")) {
+        } else if (CarbonModel.getInstance().getVehicle(vehicleIndex).getFuelType().toLowerCase().contains("electricity")) {
             co2EmittedPerGallonOfFuel = ELECTRIC_CO2_EMISSION;
-        } else if (vehicle.getFuelType().toLowerCase().contains("diesel")) {
+        } else if (CarbonModel.getInstance().getVehicle(vehicleIndex).getFuelType().toLowerCase().contains("diesel")) {
             co2EmittedPerGallonOfFuel = DIESEL_CO2_EMISSION;
         } else {
             throw new IllegalArgumentException(); //crash
         }
-        co2PerCity = (float)  ((route.getCity() / cityMilesPerGallon) * co2EmittedPerGallonOfFuel);
-        co2PerHighway = (float) ((route.getHwy() / highwayMilesPerGallon) * co2EmittedPerGallonOfFuel);
+        co2PerCity = (float)  ((CarbonModel.getInstance().getRoute(routeIndex).getCity() / cityMilesPerGallon) * co2EmittedPerGallonOfFuel);
+        co2PerHighway = (float) ((CarbonModel.getInstance().getRoute(routeIndex).getHwy() / highwayMilesPerGallon) * co2EmittedPerGallonOfFuel);
         totalCO2Emission = co2PerCity+co2PerHighway;
     }
 
-
+/*
     public static void main(String[] args){
         Route route = new Route("testRoute", 100, 200);
         Vehicle car = new Vehicle();
@@ -101,4 +101,5 @@ public class Journey {
         System.out.println("" + journey.getCo2PerHighway());
 
     }
+    */
 }

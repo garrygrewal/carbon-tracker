@@ -68,7 +68,7 @@ public class AddNameActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int route_index = intent.getIntExtra("route_index", 0);
         int vehicle_index = intent.getIntExtra("vehicle_index", 0);
-        CarbonModel.getInstance().newJourney(CarbonModel.getInstance().getVehicle(vehicle_index), CarbonModel.getInstance().getRoute(route_index));
+        CarbonModel.getInstance().newJourney(vehicle_index, route_index);
     }
 
     private void setupButtons() {

@@ -16,6 +16,7 @@ public class CarbonModel {
     private List<Integer> listOfHiddenRoutes = new ArrayList<>();
     private List<Vehicle> listOfInputVehicles = new ArrayList<>();
     private List<Integer> listOfHiddenVehicles=new ArrayList<>();
+    //private List<Journey> listOfJourneys = new ArrayList<>();
     private List<Journey> listOfJourneys = new ArrayList<>();
 
     public List<Vehicle> cars = new ArrayList<>();
@@ -28,15 +29,10 @@ public class CarbonModel {
     }
 
     public int countRoutes() {
-        return (listOfInputRoutes.size() - listOfHiddenRoutes.size());
+        return (listOfInputRoutes.size());
     }
 
     public Route getRoute(int index) {
-        for (int i = 0; i < listOfHiddenRoutes.size(); i++) {
-            if (listOfHiddenRoutes.get(i) <= index) {
-                index++;
-            }
-        }
         return listOfInputRoutes.get(index);
     }
 
@@ -68,11 +64,6 @@ public class CarbonModel {
     }
 
     public Vehicle getVehicle(int index) {
-        for(int i=0;i<listOfHiddenVehicles.size();i++){
-            if (listOfHiddenVehicles.get(i)<=index){
-                index++;
-            }
-        }
         return listOfInputVehicles.get(index);
     }
     public void hideVehicle(int index){
@@ -83,7 +74,7 @@ public class CarbonModel {
         listOfInputVehicles.add(index,vehicle);
     }
     public int countCars(){
-        return listOfInputVehicles.size()-listOfHiddenVehicles.size();
+        return listOfInputVehicles.size();
     }
     //for integrating with ArrayAdapter
     public String[] getCarInfo() {
@@ -208,18 +199,25 @@ public class CarbonModel {
             cars.add(new Vehicle());
         }
     }
-
+/*
     public void newJourney(Vehicle in_vehicle, Route in_route) {
         String temp_name = "temp";
         listOfJourneys.add(new Journey(temp_name, in_vehicle, in_route));
     }
-
+*/
+    public void newJourney(int in_vehicle, int in_route) {
+        String temp_name = "temp";
+        listOfJourneys.add(new Journey(temp_name, in_vehicle, in_route));
+    }
 
     public void calculateCarbonEmissions(Journey journey) {
         journey.calculateCarbonEmissions();
     }
 
 
+    //public Journey getJourney(int index) {
+    //    return listOfJourneys.get(index);
+    //}
     public Journey getJourney(int index) {
         return listOfJourneys.get(index);
     }
@@ -242,6 +240,7 @@ public class CarbonModel {
     public String[] getJourneyInfo() {
         String[] info = new String[getSizeOfJourneysList()];
         for (int i = 0; i < getSizeOfJourneysList(); i++) {
+            //Journey journey = getJourney(i);
             Journey journey = getJourney(i);
             journey.calculateCarbonEmissions();
             info[i] = "Date ," + journey.getJourneyName() + ", " + journey.getVehicle().getName() + ", " + journey.getRoute().getName() + ", " + journey.getTotalCO2Emission();
