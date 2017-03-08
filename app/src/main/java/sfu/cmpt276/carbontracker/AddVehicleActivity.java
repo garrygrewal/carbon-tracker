@@ -135,6 +135,7 @@ public class AddVehicleActivity extends AppCompatActivity {
                 String transmission=CarbonModel.getInstance().getTransmissionFromRemain(make,model,year).get(position);
                 String engineDisplacement=CarbonModel.getInstance().getEngineDiplacementFromRemain(make,model,year);
                 */
+
                 Vehicle vehicle = outputCars.get(position);
                 EditText carNameText = (EditText) findViewById(R.id.car_name);
                 vehicle.setName(carNameText.getText().toString());
@@ -142,10 +143,7 @@ public class AddVehicleActivity extends AppCompatActivity {
                 if (checkInput(vehicle.getName()) == 0) {
                     setResult(Activity.RESULT_CANCELED);
                 }else {
-
-                    Intent intent = new Intent(AddVehicleActivity.this, SelectVehicleActivity.class);
-
-
+                    Intent intent=new Intent();
                     intent.putExtra("vehicle_name", vehicle.getName());
                     intent.putExtra("vehicle_make", vehicle.getMake());
                     intent.putExtra("vehicle_model", vehicle.getModel());
@@ -155,10 +153,12 @@ public class AddVehicleActivity extends AppCompatActivity {
                     intent.putExtra("vehicle_fuel", vehicle.getFuelType());
                     intent.putExtra("vehicle_transmission", vehicle.getTransmission());
                     intent.putExtra("vehicle_engineDisplacement", vehicle.getEngineDisplacement());
+                    Log.d("TAGGGGGG","YOU Clicked on a car in the listView at position :"+position+"!!!!!!!!!");
                     setResult(Activity.RESULT_OK, intent);
+                   // Log.d("TAGGGGGG","YOU Clicked on a car in the listView at position :"+position+"!!!!!!!!!");
                     finish();
-                    // startActivity(intent);
                 }
+
 
             }
         });
