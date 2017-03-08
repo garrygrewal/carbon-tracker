@@ -1,11 +1,18 @@
 package sfu.cmpt276.carbontracker;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
+import android.icu.util.Calendar;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,11 +36,11 @@ public class AddNameActivity extends AppCompatActivity {
     }
 
     private void showVehicleAndRoute() {
-        TextView vehicle = (TextView) findViewById(R.id.textVehicleName);
-        TextView route = (TextView) findViewById(R.id.textRouteName);
+        TextView vehicle_name = (TextView) findViewById(R.id.textVehicleName);
+        TextView route_name = (TextView) findViewById(R.id.textRouteName);
         Journey thisJourney = CarbonModel.getInstance().getJourney(new_journey_index);
-        vehicle.setText(thisJourney.getVehicle().getName());
-        route.setText(thisJourney.getRoute().getName());
+        vehicle_name.setText(thisJourney.getVehicle().getName());
+        route_name.setText(thisJourney.getRoute().getName());
     }
 
     private void addName() {
@@ -50,7 +57,10 @@ public class AddNameActivity extends AppCompatActivity {
         TextView city_emis = (TextView) findViewById(R.id.city_emissions);
         city_emis.setText(Double.toString(journey.getCo2PerCity()));
         TextView hwy_emis = (TextView) findViewById(R.id.hwy_emissions);
-        city_emis.setText(Double.toString(journey.getCo2PerHighway()));
+        hwy_emis.setText(Double.toString(journey.getCo2PerHighway()));
+        TextView total_emis = (TextView) findViewById(R.id.total_emissions);
+        total_emis.setText(Double.toString(journey.getTotalCO2Emission()));
+
     }
 
 
@@ -62,6 +72,29 @@ public class AddNameActivity extends AppCompatActivity {
     }
 
     private void setupButtons() {
+        //date picker
+        final EditText date = (EditText) findViewById(R.id.date);
+        date.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                int mYear = c.get(Calendar.YEAR); // current year
+                int mMonth = c.get(Calendar.MONTH); // current month
+                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+                // date picker dialog
+                Dialog datePickerDialog = new DatePickerDialog(AddNameActivity.this, new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                // set day of month , month and year value in the edit text
+                                date.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                CarbonModel.getInstance().getJourney(new_journey_index).setDate(year, monthOfYear, dayOfMonth);
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
+            }
+        });
+
         //add journey button
         Button btn_ok = (Button) findViewById(R.id.buttonAddJourney);
         btn_ok.setOnClickListener(new View.OnClickListener() {

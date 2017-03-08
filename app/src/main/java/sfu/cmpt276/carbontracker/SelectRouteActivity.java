@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -63,11 +64,12 @@ public class SelectRouteActivity extends AppCompatActivity {
         route_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Route clicked_route = CarbonModel.getInstance().getRoute(position);
+                Intent get = getIntent();
+                int car_index = get.getIntExtra("car_index", 0);
 
                 Intent intent = new Intent(SelectRouteActivity.this, AddNameActivity.class);
                 intent.putExtra("route_index", position);
-                intent.putExtra("vehicle_index", intent.getIntExtra("vehicle_index", 0));
+                intent.putExtra("vehicle_index", car_index);
                 //intent.putExtra("route_name", clicked_route.getName());
                 //intent.putExtra("route_city", clicked_route.getCity());
                 //intent.putExtra("route_hwy", clicked_route.getHwy());
@@ -95,9 +97,9 @@ public class SelectRouteActivity extends AppCompatActivity {
                 Route clicked_route = CarbonModel.getInstance().getRoute(info.position);
                 index = info.position;
                 Intent intent = new Intent(SelectRouteActivity.this, AddRouteActivity.class);
-                intent.putExtra("name", clicked_route.getName());
-                intent.putExtra("city", String.valueOf(clicked_route.getCity()));
-                intent.putExtra("hwy", String.valueOf(clicked_route.getHwy()));
+                intent.putExtra("name", CarbonModel.getInstance().getRouteName(info.position));
+                intent.putExtra("city", String.valueOf(CarbonModel.getInstance().getRouteCityDistance(info.position)));
+                intent.putExtra("hwy", String.valueOf(CarbonModel.getInstance().getRouteHwyDistance(info.position)));
                 startActivityForResult(intent, 24);
                 break;
             case "Delete":
