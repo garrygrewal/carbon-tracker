@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_select_transportation"
     android:layout_width="match_parent"
@@ -8,41 +9,87 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="sfu.cmpt276.carbontracker.SelectVehicleActivity">
+    tools:context="sfu.cmpt276.carbontracker.SelectVehicleActivity"
+    android:orientation="vertical">
 
-    <Button
-        android:text="Add New Vehicle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/buttonAddVehicle" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/buttonCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/buttonAddVehicle"
-        android:text="Cancel" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TextView
-        android:text="Select a vehicle for journey"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="14dp"
-        android:id="@+id/textSelectVehicle"
-        android:textSize="20sp" />
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/logo" />
 
-    <ListView
+            <TextView
+                android:id="@+id/textSelectVehicle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4.17"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Select Vehicle for Journey"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="408dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ListView
+                android:id="@+id/ListViewVehicles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/buttonAddVehicle"
+                android:layout_alignStart="@+id/textSelectVehicle"
+                android:layout_below="@+id/textSelectVehicle" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textSelectVehicle"
-        android:layout_alignStart="@+id/textSelectVehicle"
-        android:id="@+id/ListViewVehicles"
-        android:layout_above="@+id/buttonAddVehicle" />
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toStartOf="@+id/buttonAddVehicle"
+                android:layout_weight="1"
+                android:text="*skip to SelectRouteActivity" />
+
+            <Button
+                android:id="@+id/buttonAddVehicle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_weight="1"
+                android:text="Add New Vehicle" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

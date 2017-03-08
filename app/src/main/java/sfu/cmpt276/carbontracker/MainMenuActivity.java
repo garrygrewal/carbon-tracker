@@ -25,11 +25,6 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        /////////////////////////////////////////////
-    // CODE USED FOR TESTING REMOVE BEFORE SUBMISSION //
-        //////////////////////////////////////////////
-        //CarbonModel.getInstance().initiateTest();
-
         setupButtons();
     }
 
@@ -61,10 +56,8 @@ public class MainMenuActivity extends AppCompatActivity {
     //navigation back button
     @Override
     public void onBackPressed () {
-        Intent intent = new Intent();
-        setResult(Activity.RESULT_CANCELED, intent);
 
-        System.exit(0);
-        //moveTaskToBack(true); sends the app to background instead
+        //System.exit(0);
+        moveTaskToBack(true);// sends the app to background instead
     }
 }

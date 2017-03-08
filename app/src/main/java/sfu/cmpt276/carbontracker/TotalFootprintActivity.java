@@ -81,8 +81,6 @@ public class TotalFootprintActivity extends AppCompatActivity {
     //navigation back button
     @Override
     public void onBackPressed () {
-        Intent intent = new Intent();
-        setResult(Activity.RESULT_CANCELED, intent);
         finish();
     }
 }
