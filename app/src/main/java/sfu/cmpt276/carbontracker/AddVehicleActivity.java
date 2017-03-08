@@ -25,6 +25,7 @@ public class AddVehicleActivity extends AppCompatActivity {
     private String make;
     private String model;
     private String year;
+    private int index;
     private List<Vehicle> outputCars = new ArrayList<>();
 
     @Override
@@ -33,16 +34,34 @@ public class AddVehicleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_vehicle);
 
         setupButtons();
-        populateSpinnerMake();
+        Intent intent = getIntent();
+        index = intent.getIntExtra("index",-1);
+        populateSpinnerMake(index);
         registerClickCallBackForMake();
         registerClickCallBackForModel();
         registerClickCallBackForYears();
         registerClickCallBackForList();
+        extractDataFromIntent();
     }
 
-    public void populateSpinnerMake(){
+    private void extractDataFromIntent() {
+
+
+        if((index >= 0)){
+            String name = CarbonModel.getInstance().getVehicleName(index);
+            EditText input_name = (EditText) findViewById(R.id.car_name);
+            input_name.setText(name);
+            make = CarbonModel.getInstance().getVehicleMake(index);
+            model = CarbonModel.getInstance().getVehicleModel(index);
+            year = CarbonModel.getInstance().getVehicleYear(index);
+            populateListView();
+        }
+    }
+
+
+    public void populateSpinnerMake(int index){
         ArrayAdapter<String> adapterMake = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getMakes());
+                android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getMakes(index));
         Spinner spinnerMake = (Spinner) findViewById(R.id.spinnerSelectMake);
         spinnerMake.setAdapter(adapterMake);
     }
@@ -66,7 +85,7 @@ public class AddVehicleActivity extends AppCompatActivity {
 
     public void populateSpinnerModel(){
         ArrayAdapter<String> adapterModel = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getModels(make));
+                android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getModels(make, index));
         Spinner spinnerModel = (Spinner) findViewById(R.id.spinnerSelectModel);
         spinnerModel.setAdapter(adapterModel);
     }
@@ -90,7 +109,7 @@ public class AddVehicleActivity extends AppCompatActivity {
 
     public void populateSpinnerYear(){
         ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getYears(model));
+                android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getYears(model, index));
         Spinner spinnerYear = (Spinner) findViewById(R.id.spinnerSelectYear);
         spinnerYear.setAdapter(adapterYear);
     }

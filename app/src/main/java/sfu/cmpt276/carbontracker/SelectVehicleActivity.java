@@ -70,24 +70,15 @@ public class SelectVehicleActivity extends AppCompatActivity {
         switch (item.getTitle().toString()) {
             case "Edit":
                 // sends relevant information to AddVehicleActivity
-                Vehicle clicked_vehicle = CarbonModel.getInstance().getVehicle(info.position);
                 index = info.position;
                 Intent intent = new Intent(SelectVehicleActivity.this, AddVehicleActivity.class);
-                /*
-                intent.putExtra("edit_name",clicked_vehicle.getName());
-                intent.putExtra("edit_make",clicked_vehicle.getMake());
-                intent.putExtra("edit_model",clicked_vehicle.getModel());
-                intent.putExtra("edit_year",clicked_vehicle.getYear());
-                intent.putExtra("edit_transmission",clicked_vehicle.getTransmission());
-                intent.putExtra("edit_engineDisplacement",clicked_vehicle.getEngineDisplacement());
-                intent.putExtra("edit_city",clicked_vehicle.getCity());
-                intent.putExtra("edit_hwy",clicked_vehicle.getHighway());
-                */
+
+                intent.putExtra("index",index);
 
                 startActivityForResult(intent, 1100);
                 break;
             case "Delete":
-                CarbonModel.getInstance().hideRoute(info.position);
+                CarbonModel.getInstance().hideVehicle(info.position);
                 //does not actually delete
                 //CarbonModel.getInstance().removeRoute(info.position);
                 listCars();
@@ -106,7 +97,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
         car_list.setAdapter(adapter);
 
         //Context Menu for long press
-        //registerForContextMenu(car_list);
+        registerForContextMenu(car_list);
     }
 
     private void readFile() {
