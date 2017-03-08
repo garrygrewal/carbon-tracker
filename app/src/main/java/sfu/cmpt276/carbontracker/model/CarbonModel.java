@@ -15,8 +15,8 @@ public class CarbonModel {
     private List<Route> listOfInputRoutes = new ArrayList<>();
     private List<Integer> listOfHiddenRoutes = new ArrayList<>();
     private List<Vehicle> listOfInputVehicles = new ArrayList<>();
+    private List<Integer> listOfHiddenVehicles=new ArrayList<>();
     private List<Journey> listOfJourneys = new ArrayList<>();
-
 
     public List<Vehicle> cars = new ArrayList<>();
 
@@ -68,11 +68,23 @@ public class CarbonModel {
     }
 
     public Vehicle getVehicle(int index) {
+        for(int i=0;i<listOfHiddenVehicles.size();i++){
+            if (listOfHiddenVehicles.get(i)<=index){
+                index++;
+            }
+        }
         return listOfInputVehicles.get(index);
     }
-
-
-
+    public void hideVehicle(int index){
+        listOfHiddenVehicles.add(index);
+    }
+    public void editVehicle(Vehicle vehicle,int index){
+        listOfInputVehicles.remove(index);
+        listOfInputVehicles.add(index,vehicle);
+    }
+    public int countCars(){
+        return listOfInputVehicles.size()-listOfHiddenVehicles.size();
+    }
     //for integrating with ArrayAdapter
     public String[] getCarInfo() {
         String[] info = new String[countCars()];
@@ -93,9 +105,6 @@ public class CarbonModel {
         return info;
     }
 
-    public int countCars(){
-        return listOfInputVehicles.size();
-    }
     public void addCar(Vehicle car) {
         cars.add(car);
     }
