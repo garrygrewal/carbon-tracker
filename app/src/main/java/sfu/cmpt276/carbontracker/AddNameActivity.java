@@ -117,6 +117,9 @@ public class AddNameActivity extends AppCompatActivity {
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //delete premade route
+                CarbonModel.getInstance().deleteJourney(new_journey_index);
+
                 Intent intent = new Intent();
                 setResult(Activity.RESULT_CANCELED, intent);
                 finish();
@@ -140,6 +143,9 @@ public class AddNameActivity extends AppCompatActivity {
     //navigation back button
     @Override
     public void onBackPressed () {
+        //delete premade route
+        CarbonModel.getInstance().deleteJourney(new_journey_index);
+
         Intent intent = new Intent();
         setResult(Activity.RESULT_CANCELED, intent);
         finish();
