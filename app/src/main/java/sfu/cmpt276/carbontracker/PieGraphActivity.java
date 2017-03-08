@@ -27,6 +27,7 @@ public class PieGraphActivity extends AppCompatActivity {
 
         setupPieChart();
     }
+    /*JourneyList removed from mainMenu. Does not exist anymore?
     private void listJourneys() {
         ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.list_journey, CarbonModel.getInstance().getJourneyInfo());
         ListView journey_list = (ListView) findViewById(R.id.journeyList);
@@ -36,7 +37,7 @@ public class PieGraphActivity extends AppCompatActivity {
 
         //Context Menu for long press
         registerForContextMenu(journey_list);
-    }
+    }*/
 
     private void setupPieChart() {
         //populating a list of PieEntries;
