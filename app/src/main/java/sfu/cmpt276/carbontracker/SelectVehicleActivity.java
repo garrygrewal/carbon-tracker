@@ -87,7 +87,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1100);
                 break;
             case "Delete":
-                CarbonModel.getInstance().hideVehicle(info.position);
+                CarbonModel.getInstance().hideRoute(info.position);
                 //does not actually delete
                 //CarbonModel.getInstance().removeRoute(info.position);
                 listCars();
