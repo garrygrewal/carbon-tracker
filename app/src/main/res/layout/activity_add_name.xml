@@ -27,13 +27,14 @@
         android:layout_toStartOf="@+id/buttonAddJourney" />
 
     <TextView
-        android:id="@+id/textJourneyName"
+        android:id="@+id/textNameThisJourney"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textHwyEmissions"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:text="Name this Journey: "
-        android:textSize="16sp" />
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/journeyName"
@@ -49,44 +50,55 @@
         android:id="@+id/city_emissions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonCancel"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="135dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="18sp"
+        android:layout_toEndOf="@+id/buttonCancel"
+        android:layout_below="@+id/textRoute" />
 
     <TextView
         android:id="@+id/hwy_emissions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textHwyEmissions"
         android:layout_alignStart="@+id/city_emissions"
-        android:layout_alignTop="@+id/city_emissions"
-        android:layout_marginTop="21dp"
-        android:text="TextView" />
+        android:layout_alignTop="@+id/textHwyEmissions"
+        android:text="TextView"
+        android:textSize="18sp"
+        android:layout_alignEnd="@+id/date" />
 
     <TextView
         android:id="@+id/total_emissions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="TextView"
+        android:layout_alignBottom="@+id/textCombinedEmis"
+        android:layout_alignEnd="@+id/hwy_emissions"
+        android:layout_alignStart="@+id/hwy_emissions"
         android:layout_alignTop="@+id/textCombinedEmis"
-        android:layout_toEndOf="@+id/textCombinedEmis" />
+        android:text="TextView"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textCityEmissions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/hwy_emissions"
+        android:layout_alignEnd="@+id/textHwyEmissions"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/city_emissions"
-        android:text="City Emissions" />
+        android:layout_below="@+id/textRoute"
+        android:layout_marginBottom="15dp"
+        android:text="City          Emissions"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textHwyEmissions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Highway Emissions"
+        android:textSize="18sp"
+        android:layout_below="@+id/textRoute"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textCityEmissions"
-        android:text="Highway Emissions" />
+        android:layout_marginTop="59dp"
+        android:layout_alignEnd="@+id/textCombinedEmis" />
 
     <TextView
         android:id="@+id/textCombinedEmis"
@@ -94,7 +106,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/hwy_emissions"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="40dp"
+        android:layout_toStartOf="@+id/date"
         android:text="Total Emissions for this Journey"
         android:textSize="16sp" />
 
@@ -103,28 +116,64 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:layout_above="@+id/textRouteName"
-        android:layout_alignParentStart="true" />
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/textTransportationMode"
+        android:layout_alignBottom="@+id/textTransportationMode"
+        android:layout_alignStart="@+id/city_emissions" />
 
     <TextView
         android:id="@+id/textRouteName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/textRoute"
+        android:layout_alignBottom="@+id/textRoute"
+        android:layout_alignStart="@+id/city_emissions" />
 
     <EditText
         android:id="@+id/date"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/journeyName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="27dp"
         android:hint="Select Date"
         android:padding="15dp"
         android:textSize="18sp"
         android:focusable="false"
-        android:imeOptions="actionDone"/>
+        android:imeOptions="actionDone"
+        android:layout_below="@+id/journeyName"
+        android:layout_alignStart="@+id/journeyName" />
+
+    <TextView
+        android:id="@+id/textSelectDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/date"
+        android:layout_alignBottom="@+id/date"
+        android:layout_alignParentStart="true"
+        android:text="Select a Date"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textTransportationMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textNameThisJourney"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/date"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="19dp"
+        android:text="Transportation mode"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textTransportationMode"
+        android:layout_marginBottom="20dp"
+        android:text="Route"
+        android:textSize="18sp" />
 
 </RelativeLayout>
