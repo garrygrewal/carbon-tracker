@@ -55,7 +55,7 @@ public class CarbonModel {
         String[] info = new String[countRoutes()];
         for (int i = 0; i < countRoutes(); i++) {
             Route route = getRoute(i);
-            info[i] = route.getName() + ", " + route.getCity() + " (city), " + route.getHwy() + " (highway).";
+            info[i] = route.getName() + ", " + route.getCity() + " (km), " + route.getHwy() + " (km).";
         }
         return info;
     }
@@ -91,7 +91,7 @@ public class CarbonModel {
         String[] info = new String[countCars()];
         for (int i = 0; i < countCars(); i++) {
             Vehicle vehicle = getVehicle(i);
-            info[i] = vehicle.getName() + ", " + vehicle.getMake() + ", " + vehicle.getModel() + ", " + vehicle.getYear() + ", " + vehicle.getCity() + ", " + vehicle.getHighway() + ", " + vehicle.getFuelType() + ", " + vehicle.getTransmission() + ", " + vehicle.getEngineDisplacement();
+            info[i] = vehicle.getName() + ", " + vehicle.getMake() + ", " + vehicle.getModel() + ", " + vehicle.getYear() + ", "  + vehicle.getFuelType() + ", " + vehicle.getTransmission() + ", " + vehicle.getEngineDisplacement();
                     vehicle.getEngineDisplacement();
         }
         return info;
@@ -292,40 +292,6 @@ public class CarbonModel {
         return listOfJourneys.get(index).getTotalCO2Emission();
     }
 
-    /*
-    /////////////////////////////////////////////
-// CODE USED FOR TESTING REMOVE BEFORE SUBMISSION //
-    //////////////////////////////////////////////
-    public void initiateTest() {
-        Route route = new Route("testRoute", 100, 200);
-        Vehicle car = new Vehicle();
-        String name;
-        car.setCity(100);
-        car.setHighway(100);
-        car.setFuelType("Diesel");
-        for (int i = 0; i < 4; i++) {
-            name = "test" + String.valueOf(i);
-            Journey journey = new Journey(name, car, route);
-            journey.calculateCarbonEmissions();
-            listOfJourneys.add(journey);
-        }
-
-    }
-    */
-
-/*
-    public void addMake(String makeName, String modelName,int year,double city,double highway,String fuelType,String trany,double displ){
-
-        Year makeYear = new Year(year, city, highway, fuelType, trany, displ);
-        for (Make make:listOfKnownMakes) {
-            if(make.getMake().equals(makeName)){
-                make.addModel(modelName, makeYear);
-                return;
-            }
-        }
-        listOfKnownMakes.add(new Make(makeName, modelName, makeYear));
-    }
-*/
     public void addVehicle(String name, String make, String model, String year, String city, String hwy, String fuelType, String transmission, String displacement){
         Vehicle vehicle = new Vehicle();
 
