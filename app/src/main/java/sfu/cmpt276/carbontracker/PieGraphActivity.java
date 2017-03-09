@@ -49,6 +49,7 @@ public class PieGraphActivity extends AppCompatActivity {
         }
         PieDataSet dataSet = new PieDataSet(pieEntries, "Total CO2 Emissions");
         dataSet.setColors(ColorTemplate.PASTEL_COLORS);
+        dataSet.setValueTextSize(20);
         PieData data = new PieData(dataSet);
 
         // Get the chart
