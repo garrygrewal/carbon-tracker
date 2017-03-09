@@ -33,14 +33,6 @@ public class SelectRouteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_route);
 
-        //REMOVE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //add pladeholder routes
-        if (CarbonModel.getInstance().countRoutes() == 0) {
-            CarbonModel.getInstance().addRoute(new Route("test route", 10, 25));
-            CarbonModel.getInstance().addRoute(new Route("test route2", 15, 35));
-            CarbonModel.getInstance().addRoute(new Route("test route3", 5, 55));
-        }
-
         listRoutes();
         onListClick();
         setupButtons();
@@ -70,9 +62,6 @@ public class SelectRouteActivity extends AppCompatActivity {
                 Intent intent = new Intent(SelectRouteActivity.this, AddNameActivity.class);
                 intent.putExtra("route_index", position);
                 intent.putExtra("vehicle_index", car_index);
-                //intent.putExtra("route_name", clicked_route.getName());
-                //intent.putExtra("route_city", clicked_route.getCity());
-                //intent.putExtra("route_hwy", clicked_route.getHwy());
                 startActivity(intent);
             }
         });
