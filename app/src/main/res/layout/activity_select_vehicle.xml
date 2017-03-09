@@ -78,8 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_toStartOf="@+id/buttonAddVehicle"
-                android:layout_weight="1"
-                android:text="*skip to SelectRouteActivity" />
+                android:text="Cancel" />
 
             <Button
                 android:id="@+id/buttonAddVehicle"
