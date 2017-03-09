@@ -167,7 +167,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
             //edit clicked vehicle
             case 1100:
                 if(resultCode==Activity.RESULT_OK){
-                    Vehicle edited_vehicle=new Vehicle();
+                    Vehicle edited_vehicle = new Vehicle();
                     edited_vehicle.setName(data.getStringExtra("vehicle_name"));
                     edited_vehicle.setMake(data.getStringExtra("vehicle_make"));
                     edited_vehicle.setYear(data.getStringExtra("vehicle_model"));
