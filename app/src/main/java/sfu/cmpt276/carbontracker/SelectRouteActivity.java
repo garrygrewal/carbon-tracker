@@ -33,14 +33,6 @@ public class SelectRouteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_route);
 
-        //REMOVE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //add pladeholder routes
-        //if (CarbonModel.getInstance().countRoutes() == 0) {
-         //   CarbonModel.getInstance().addRoute(new Route("test route", 10, 25));
-         //   CarbonModel.getInstance().addRoute(new Route("test route2", 15, 35));
-         //   CarbonModel.getInstance().addRoute(new Route("test route3", 5, 55));
-        //}
-
         listRoutes();
         onListClick();
         setupButtons();
@@ -50,7 +42,7 @@ public class SelectRouteActivity extends AppCompatActivity {
     private void listRoutes () {
         ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.list_route, CarbonModel.getInstance().getRouteInfo());
         ListView route_list = (ListView) findViewById(R.id.listViewRoutes);
-
+        
         //List Adapter
         route_list.setAdapter(adapter);
 
