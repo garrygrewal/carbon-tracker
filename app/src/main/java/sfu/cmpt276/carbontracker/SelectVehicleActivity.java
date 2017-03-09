@@ -27,7 +27,6 @@ import sfu.cmpt276.carbontracker.model.Vehicle;
 
 public class SelectVehicleActivity extends AppCompatActivity {
 
-    //public static final int REQUEST_CODE = 1555;
     int index;
 
     @Override
