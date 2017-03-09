@@ -37,9 +37,9 @@ public class AddNameActivity extends AppCompatActivity {
     private void showVehicleAndRoute() {
         TextView vehicle_name = (TextView) findViewById(R.id.textVehicleName);
         TextView route_name = (TextView) findViewById(R.id.textRouteName);
-        Journey thisJourney = CarbonModel.getInstance().getJourney(new_journey_index);
-        vehicle_name.setText(thisJourney.getVehicle().getName());
-        route_name.setText(thisJourney.getRoute().getName());
+
+        vehicle_name.setText( CarbonModel.getInstance().getJourneyVehicleName(new_journey_index));
+        route_name.setText( CarbonModel.getInstance().getJourneyRouteName(new_journey_index));
     }
 
     private void addName() {
@@ -67,7 +67,7 @@ public class AddNameActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int route_index = intent.getIntExtra("route_index", 0);
         int vehicle_index = intent.getIntExtra("vehicle_index", 0);
-        CarbonModel.getInstance().newJourney(CarbonModel.getInstance().getVehicle(vehicle_index), CarbonModel.getInstance().getRoute(route_index));
+        CarbonModel.getInstance().newJourney(vehicle_index, route_index);
     }
 
     private void setupButtons() {

@@ -10,20 +10,22 @@ import android.util.Log;
 public class Journey {
     private String journeyName;
     private Vehicle vehicle;
+
+    private int vehicleIndex;
+
     private Route route;
+    private int routeIndex;
     private float co2PerCity;
     private float co2PerHighway;
     private float totalCO2Emission = 0;
     private Day date;
 
-    private final double GASOLINE_CO2_EMISSION = 8.89;
-    private final double ELECTRIC_CO2_EMISSION = 0;
-    private final double DIESEL_CO2_EMISSION = 10.16;
 
-    public Journey(String journeyName, Vehicle vehicle, Route route) {
+
+    public Journey(String journeyName, int vehicleIndex, int routeIndex) {
         this.journeyName = journeyName;
-        this.vehicle = vehicle;
-        this.route = route;
+        this.vehicleIndex = vehicleIndex;
+        this.routeIndex = routeIndex;
     }
 
     public String getJourneyName() {
@@ -34,20 +36,17 @@ public class Journey {
         this.journeyName = journeyName;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+
+    public void setCo2PerCity(float co2PerCity) {
+        this.co2PerCity = co2PerCity;
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public void setCo2PerHighway(float co2PerHighway) {
+        this.co2PerHighway = co2PerHighway;
     }
 
-    public Route getRoute() {
-        return route;
-    }
-
-    public void setRoute(Route route) {
-        this.route = route;
+    public void setTotalCO2Emission(float totalCO2Emission) {
+        this.totalCO2Emission = totalCO2Emission;
     }
 
     public double getCo2PerCity() {
@@ -65,40 +64,24 @@ public class Journey {
         return date.getString();
     }
 
+    public int getVehicleIndex() {
+        return vehicleIndex;
+    }
+
+    public void setVehicleIndex(int vehicleIndex) {
+        this.vehicleIndex = vehicleIndex;
+    }
+
+    public int getRouteIndex() {
+        return routeIndex;
+    }
+
+    public void setRouteIndex(int routeIndex) {
+        this.routeIndex = routeIndex;
+    }
+
     public float getTotalCO2Emission() {
         return totalCO2Emission;
     }
 
-    public void calculateCarbonEmissions() {
-        double highwayMilesPerGallon = vehicle.getHighway();
-        double cityMilesPerGallon = vehicle.getCity();
-        double co2EmittedPerGallonOfFuel;
-        if (vehicle.getFuelType().toLowerCase().contains("gasoline")) {
-            co2EmittedPerGallonOfFuel = GASOLINE_CO2_EMISSION;
-        } else if (vehicle.getFuelType().toLowerCase().contains("electricity")) {
-            co2EmittedPerGallonOfFuel = ELECTRIC_CO2_EMISSION;
-        } else if (vehicle.getFuelType().toLowerCase().contains("diesel")) {
-            co2EmittedPerGallonOfFuel = DIESEL_CO2_EMISSION;
-        } else {
-            throw new IllegalArgumentException(); //crash
-        }
-        co2PerCity = (float)  ((route.getCity() / cityMilesPerGallon) * co2EmittedPerGallonOfFuel);
-        co2PerHighway = (float) ((route.getHwy() / highwayMilesPerGallon) * co2EmittedPerGallonOfFuel);
-        totalCO2Emission = co2PerCity+co2PerHighway;
-    }
-
-
-    public static void main(String[] args){
-        Route route = new Route("testRoute", 100, 200);
-        Vehicle car = new Vehicle();
-        car.setCity(100);
-        car.setHighway(100);
-        car.setFuelType("Diesel");
-
-        Journey journey = new Journey("test",car,route);
-        journey.calculateCarbonEmissions();
-        System.out.println("" + journey.getCo2PerCity());
-        System.out.println("" + journey.getCo2PerHighway());
-
-    }
 }

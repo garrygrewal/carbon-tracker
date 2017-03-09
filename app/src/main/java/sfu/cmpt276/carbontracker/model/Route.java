@@ -1,7 +1,7 @@
 package sfu.cmpt276.carbontracker.model;
 
 /**
- * Created by Lester on 3/4/2017.
+ * Contains the route information such as the city distance and the highway distance along with the name of the route.
  */
 
 public class Route {
