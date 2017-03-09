@@ -128,13 +128,20 @@ public class AddNameActivity extends AppCompatActivity {
 
     private int checkInput() {
         EditText in_name = (EditText) findViewById(R.id.journeyName);
+        EditText in_date = (EditText) findViewById(R.id.date);
         String name = in_name.getText().toString();
         //check if input is valid
         if (name.equals(null) || name.replaceAll("\\s+", "").equals("")) {
             Toast toast = Toast.makeText(getApplicationContext(), "Journey name cannot be empty.", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
-        } else
+        }
+        else if (in_date.equals(null)) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please select date.", Toast.LENGTH_SHORT);
+            toast.show();
+            return 0;
+        }
+        else
             return 1;
     }
 
