@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -39,41 +38,48 @@ public class AddVehicleActivity extends AppCompatActivity {
 
         setupButtons();
         Intent intent = getIntent();
-        index = intent.getIntExtra("index",-1);
+        index = intent.getIntExtra("index", -1);
         extractDataFromIntent();
-        populateSpinnerMake();
+        populateSpinnerMake(index);
         registerClickCallBackForMake();
         registerClickCallBackForModel();
         registerClickCallBackForYears();
         registerClickCallBackForList();
-
     }
 
     private void extractDataFromIntent() {
 
 
-        if((index >= 0)){
+        if ((index >= 0)) {
             String name = CarbonModel.getInstance().getVehicleName(index);
             EditText input_name = (EditText) findViewById(R.id.car_name);
             input_name.setText(name);
+            make = CarbonModel.getInstance().getVehicleMake(index);
+            model = CarbonModel.getInstance().getVehicleModel(index);
+            year = CarbonModel.getInstance().getVehicleYear(index);
+            populateListView();
         }
     }
 
 
-    public void populateSpinnerMake(){
+    public void populateSpinnerMake(int index) {
         ArrayAdapter<String> adapterMake = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getMakes(index));
         Spinner spinnerMake = (Spinner) findViewById(R.id.spinnerSelectMake);
         spinnerMake.setAdapter(adapterMake);
+        if ((index >= 0)) {
+            int spinnerPosition = adapterMake.getPosition(make);
+            spinnerMake.setSelection(spinnerPosition);
+        }
     }
 
-    public void registerClickCallBackForMake(){
+    public void registerClickCallBackForMake() {
         Spinner spinnerMake = (Spinner) findViewById(R.id.spinnerSelectMake);
-        spinnerMake.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+        spinnerMake.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                make = (String)parent.getItemAtPosition(position);
+                make = (String) parent.getItemAtPosition(position);
                 populateSpinnerModel();
             }
 
@@ -84,21 +90,24 @@ public class AddVehicleActivity extends AppCompatActivity {
         });
     }
 
-    public void populateSpinnerModel(){
+    public void populateSpinnerModel() {
         ArrayAdapter<String> adapterModel = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getModels(make, index));
         Spinner spinnerModel = (Spinner) findViewById(R.id.spinnerSelectModel);
         spinnerModel.setAdapter(adapterModel);
-
+        if ((index >= 0)) {
+            int spinnerPosition = adapterModel.getPosition(model);
+            spinnerModel.setSelection(spinnerPosition);
+        }
     }
 
-    public void registerClickCallBackForModel(){
+    public void registerClickCallBackForModel() {
         Spinner spinnerModel = (Spinner) findViewById(R.id.spinnerSelectModel);
-        spinnerModel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+        spinnerModel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                model = (String)parent.getItemAtPosition(position);
+                model = (String) parent.getItemAtPosition(position);
                 populateSpinnerYear();
             }
 
@@ -109,20 +118,24 @@ public class AddVehicleActivity extends AppCompatActivity {
         });
     }
 
-    public void populateSpinnerYear(){
+    public void populateSpinnerYear() {
         ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getYears(model, index));
         Spinner spinnerYear = (Spinner) findViewById(R.id.spinnerSelectYear);
         spinnerYear.setAdapter(adapterYear);
+        if ((index >= 0)) {
+            int spinnerPosition = adapterYear.getPosition(year);
+            spinnerYear.setSelection(spinnerPosition);
+        }
     }
 
-    public void registerClickCallBackForYears(){
+    public void registerClickCallBackForYears() {
         Spinner spinnerYear = (Spinner) findViewById(R.id.spinnerSelectYear);
-        spinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+        spinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                year = (String)parent.getItemAtPosition(position);
+                year = (String) parent.getItemAtPosition(position);
                 populateListView();
             }
 
@@ -133,7 +146,7 @@ public class AddVehicleActivity extends AppCompatActivity {
         });
     }
 
-    public void populateListView(){
+    public void populateListView() {
         outputCars = CarbonModel.getInstance().getRemainingCars(make, model, year);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, CarbonModel.getInstance().getRemainingCarInfo(outputCars));
@@ -142,9 +155,9 @@ public class AddVehicleActivity extends AppCompatActivity {
         list.setAdapter(adapter);
     }
 
-    public void registerClickCallBackForList(){
+    public void registerClickCallBackForList() {
         final ListView list = (ListView) findViewById(R.id.listviewCars);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -154,8 +167,8 @@ public class AddVehicleActivity extends AppCompatActivity {
 
                 if (checkInput(vehicle.getName()) == 0) {
                     setResult(Activity.RESULT_CANCELED);
-                }else {
-                    Intent intent=new Intent();
+                } else {
+                    Intent intent = new Intent();
                     intent.putExtra("vehicle_name", vehicle.getName());
                     intent.putExtra("vehicle_make", vehicle.getMake());
                     intent.putExtra("vehicle_model", vehicle.getModel());
@@ -173,6 +186,7 @@ public class AddVehicleActivity extends AppCompatActivity {
             }
         });
     }
+
     private int checkInput(String name) {
         //check if input is valid
         if (name.equals(null) || name.replaceAll("\\s+", "").equals("")) {
@@ -195,12 +209,14 @@ public class AddVehicleActivity extends AppCompatActivity {
             }
         });
     }
+
     public static Intent makeIntent(Context context) {
         return new Intent(context, AddVehicleActivity.class);
     }
+
     //navigation back button
     @Override
-    public void onBackPressed () {
+    public void onBackPressed() {
         Intent intent = new Intent();
         setResult(Activity.RESULT_CANCELED, intent);
         finish();

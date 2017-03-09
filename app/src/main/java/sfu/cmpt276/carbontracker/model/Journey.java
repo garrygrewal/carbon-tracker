@@ -4,22 +4,17 @@ package sfu.cmpt276.carbontracker.model;
 import android.util.Log;
 
 /**
- * Holds the Journey data
+ * Journey Class, holds the journey information
  */
 
 public class Journey {
     private String journeyName;
-    private Vehicle vehicle;
-
     private int vehicleIndex;
-
-    private Route route;
     private int routeIndex;
     private float co2PerCity;
     private float co2PerHighway;
     private float totalCO2Emission = 0;
     private Day date;
-
 
 
     public Journey(String journeyName, int vehicleIndex, int routeIndex) {
@@ -56,11 +51,12 @@ public class Journey {
     public double getCo2PerHighway() {
         return co2PerHighway;
     }
-    public void setDate(int year, int month, int day){
+
+    public void setDate(int year, int month, int day) {
         date = new Day(year, month, day);
     }
 
-    public String getDate(){
+    public String getDate() {
         return date.getString();
     }
 
@@ -68,16 +64,8 @@ public class Journey {
         return vehicleIndex;
     }
 
-    public void setVehicleIndex(int vehicleIndex) {
-        this.vehicleIndex = vehicleIndex;
-    }
-
     public int getRouteIndex() {
         return routeIndex;
-    }
-
-    public void setRouteIndex(int routeIndex) {
-        this.routeIndex = routeIndex;
     }
 
     public float getTotalCO2Emission() {

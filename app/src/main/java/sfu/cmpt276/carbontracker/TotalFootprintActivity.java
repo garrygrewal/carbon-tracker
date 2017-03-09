@@ -51,7 +51,7 @@ public class TotalFootprintActivity extends AppCompatActivity {
         btn_graph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (TotalFootprintActivity.this, PieGraphActivity.class);
+                Intent intent = new Intent(TotalFootprintActivity.this, PieGraphActivity.class);
                 startActivity(intent);
             }
         });
@@ -65,8 +65,9 @@ public class TotalFootprintActivity extends AppCompatActivity {
         menu.setHeaderTitle("Journey Options");
         menu.add(0, v.getId(), 0, "Delete");
     }
+
     @Override
-    public boolean onContextItemSelected(MenuItem item){
+    public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getTitle().toString()) {
             case "Delete":
@@ -78,9 +79,10 @@ public class TotalFootprintActivity extends AppCompatActivity {
         }
         return true;
     }
+
     //navigation back button
     @Override
-    public void onBackPressed () {
+    public void onBackPressed() {
         finish();
     }
 }

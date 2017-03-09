@@ -1,7 +1,7 @@
 package sfu.cmpt276.carbontracker.model;
 
 /**
- * Created by Lester on 3/7/2017.
+ * Day Class, holds a day of the year
  */
 
 public class Day {
@@ -19,24 +19,12 @@ public class Day {
         return year;
     }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
-
     public int getMonth() {
         return month;
     }
 
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
     public int getDate() {
         return date;
-    }
-
-    public void setDate(int date) {
-        this.date = date;
     }
 
     public String getString() {
