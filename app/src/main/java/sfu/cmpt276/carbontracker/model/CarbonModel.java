@@ -122,14 +122,14 @@ public class CarbonModel {
                 makes.add(car.getMake());
             }
         }
+        /*
         Collections.sort(makes);
-
         if(index >= 0){
             int indexfound = makes.indexOf(listOfInputVehicles.get(index).getMake());
             makes.remove(indexfound);
             makes.add(0,listOfInputVehicles.get(index).getMake());
-
         }
+        */
 
         return makes;
     }
@@ -144,7 +144,7 @@ public class CarbonModel {
                 }
             }
         }
-
+        /*
         Collections.sort(models);
         if(index >= 0){
             int indexfound = models.indexOf(listOfInputVehicles.get(index).getModel());
@@ -152,7 +152,9 @@ public class CarbonModel {
             models.add(0,listOfInputVehicles.get(index).getModel());
 
         }
+        */
         return models;
+
     }
 
     public List<String> getYears(String model, int index) {
@@ -165,6 +167,7 @@ public class CarbonModel {
                 }
             }
         }
+        /*
         Collections.sort(years);
         if(index >= 0){
             int indexfound = years.indexOf(listOfInputVehicles.get(index).getYear());
@@ -172,7 +175,9 @@ public class CarbonModel {
             years.add(0,listOfInputVehicles.get(index).getYear());
 
         }
+        */
         return years;
+
     }
 
     //get transmission after select make,model, year
