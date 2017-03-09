@@ -151,35 +151,6 @@ public class SelectVehicleActivity extends AppCompatActivity {
         return rows;
     }
 
-    /******Not sure which readFile function would be better to use
-    private void readFile() {
-        InputStream is = getResources().openRawResource(R.raw.vehicles);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-        int i = 0;
-        String line = "";
-        try {
-            reader.readLine();
-
-            while ((line = reader.readLine()) != null) {
-                String[] tokens = line.split(",");
-                String makeName = tokens[0];
-                String modelName = tokens[1];
-                int year = Integer.parseInt(tokens[2]);
-                double city = Double.parseDouble(tokens[3]);
-                double highway = Double.parseDouble(tokens[4]);
-                double displ = Double.parseDouble(tokens[7]);
-
-                CarbonModel.getInstance().addMake(makeName, modelName,year, city, highway, tokens[5], tokens[6], displ);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    public static Intent makeIntent(Context context) {
-        return new Intent(context, SelectVehicleActivity.class);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -194,7 +165,6 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 else
                     break;
             //edit clicked vehicle
-
             case 1100:
                 if(resultCode==Activity.RESULT_OK){
                     Vehicle edited_vehicle = new Vehicle();

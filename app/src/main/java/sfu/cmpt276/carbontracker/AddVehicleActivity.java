@@ -35,7 +35,6 @@ public class AddVehicleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_vehicle);
 
         //prevents keyboard from appearing when activity stars
-        //stops focus going to editText when activity starts
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         setupButtons();
@@ -149,15 +148,6 @@ public class AddVehicleActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //extract data from UI
-                /*
-                ListView listVehicles=(ListView)findViewById(R.id.listviewCars);
-                String getClickedVehicle=CarbonModel.getInstance().getRemainingCars(make,model,year).get(position);
-
-                String transmission=CarbonModel.getInstance().getTransmissionFromRemain(make,model,year).get(position);
-                String engineDisplacement=CarbonModel.getInstance().getEngineDiplacementFromRemain(make,model,year);
-                */
-
                 Vehicle vehicle = outputCars.get(position);
                 EditText carNameText = (EditText) findViewById(R.id.car_name);
                 vehicle.setName(carNameText.getText().toString());
@@ -175,9 +165,7 @@ public class AddVehicleActivity extends AppCompatActivity {
                     intent.putExtra("vehicle_fuel", vehicle.getFuelType());
                     intent.putExtra("vehicle_transmission", vehicle.getTransmission());
                     intent.putExtra("vehicle_engineDisplacement", vehicle.getEngineDisplacement());
-                    Log.d("TAGGGGGG","YOU Clicked on a car in the listView at position :"+position+"!!!!!!!!!");
                     setResult(Activity.RESULT_OK, intent);
-                   // Log.d("TAGGGGGG","YOU Clicked on a car in the listView at position :"+position+"!!!!!!!!!");
                     finish();
                 }
 
@@ -196,20 +184,6 @@ public class AddVehicleActivity extends AppCompatActivity {
     }
 
     private void setupButtons() {
-        /*add button now not necessary with short click to go back to select vehicle activity
-        //add vehicle button
-        Button btn_ok = (Button) findViewById(R.id.buttonAddVehicle);
-        btn_ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //check if input is valid
-                //save to shared preferences
-
-                Intent intent = new Intent (AddVehicleActivity.this, SelectVehicleActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
         //cancel button
         Button btn_cancel = (Button) findViewById(R.id.buttonCancel);
         btn_cancel.setOnClickListener(new View.OnClickListener() {

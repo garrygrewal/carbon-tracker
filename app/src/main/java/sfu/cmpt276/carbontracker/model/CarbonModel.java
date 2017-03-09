@@ -55,7 +55,7 @@ public class CarbonModel {
         String[] info = new String[countRoutes()];
         for (int i = 0; i < countRoutes(); i++) {
             Route route = getRoute(i);
-            info[i] = route.getName() + ", " + route.getCity() + " (city), " + route.getHwy() + " (highway).";
+            info[i] = route.getName() + ", " + route.getCity() + " (km), " + route.getHwy() + " (km).";
         }
         return info;
     }
@@ -96,7 +96,7 @@ public class CarbonModel {
         for (int i = 0; i < countCars(); i++) {
             Vehicle vehicle = getVehicle(i);
             info[i] = vehicle.getName() + ", " + vehicle.getMake() + ", " + vehicle.getModel() + ", " + vehicle.getYear() + ", " + vehicle.getCity() + ", " + vehicle.getHighway() + ", " + vehicle.getFuelType() + ", " + vehicle.getTransmission() + ", " + vehicle.getEngineDisplacement();
-            vehicle.getEngineDisplacement();
+                    vehicle.getEngineDisplacement();
         }
         return info;
     }
