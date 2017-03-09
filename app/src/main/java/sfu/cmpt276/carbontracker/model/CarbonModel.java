@@ -96,7 +96,7 @@ public class CarbonModel {
         for (int i = 0; i < countCars(); i++) {
             Vehicle vehicle = getVehicle(i);
             info[i] = vehicle.getName() + ", " + vehicle.getMake() + ", " + vehicle.getModel() + ", " + vehicle.getYear() + ", " + vehicle.getCity() + ", " + vehicle.getHighway() + ", " + vehicle.getFuelType() + ", " + vehicle.getTransmission() + ", " + vehicle.getEngineDisplacement();
-                    vehicle.getEngineDisplacement();
+            vehicle.getEngineDisplacement();
         }
         return info;
     }
@@ -369,4 +369,3 @@ public class CarbonModel {
         return listOfInputVehicles.get((listOfJourneys.get(journeyIndex).getVehicleIndex())).getName();
     }
 }
-
