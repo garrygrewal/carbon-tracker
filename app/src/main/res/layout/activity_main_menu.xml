@@ -41,7 +41,7 @@
                     android:layout_height="64dp"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="Carbon Tracker"
+                    android:text="@string/carbon_tracker"
                     android:textAlignment="viewStart"
                     android:textAllCaps="false"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"

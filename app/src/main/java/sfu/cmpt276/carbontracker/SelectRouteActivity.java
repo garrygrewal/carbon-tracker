@@ -33,6 +33,13 @@ public class SelectRouteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_route);
 
+        /*
+        CarbonModel.getInstance().addRoute(new Route("fdsaf", 0, 0));
+        CarbonModel.getInstance().addRoute(new Route("fdsaf", 0, 0));
+
+        CarbonModel.getInstance().addRoute(new Route("fdsaf", 0, 0));
+*/
+
         listRoutes();
         onListClick();
         setupButtons();
@@ -45,7 +52,6 @@ public class SelectRouteActivity extends AppCompatActivity {
         if(route_list.getAdapter()==null) {
             TextView textView = new TextView(this);
             textView.setText(R.string.headersForRoute);
-            //textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             route_list.addHeaderView(textView);
         }
         //List Adapter
