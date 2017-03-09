@@ -12,13 +12,16 @@ import static android.media.CamcorderProfile.get;
 
 public class CarbonModel {
     private static CarbonModel instance = new CarbonModel();
-    private List<Make> listOfKnownMakes = new ArrayList<>();
     private List<Route> listOfInputRoutes = new ArrayList<>();
     private List<Integer> listOfHiddenRoutes = new ArrayList<>();
     private List<Vehicle> listOfInputVehicles = new ArrayList<>();
     private List<Integer> listOfHiddenVehicles=new ArrayList<>();
     private List<Journey> listOfJourneys = new ArrayList<>();
 
+
+    private final double GASOLINE_CO2_EMISSION = 8.89;
+    private final double ELECTRIC_CO2_EMISSION = 0;
+    private final double DIESEL_CO2_EMISSION = 10.16;
     public List<Vehicle> cars = new ArrayList<>();
 
     private CarbonModel() {
@@ -41,13 +44,9 @@ public class CarbonModel {
         return listOfInputRoutes.get(index);
     }
 
-    public void removeRoute(int index) {
-        listOfInputRoutes.remove(index);
-    }
-
     public void editRoute(Route route, int index) {
-        listOfInputRoutes.remove(index);
-        listOfInputRoutes.add(index, route);
+        listOfInputRoutes.remove(getRealRouteIndex(index));
+        listOfInputRoutes.add(getRealRouteIndex(index), route);
     }
 
     //for integrating with ArrayAdapter
@@ -79,10 +78,12 @@ public class CarbonModel {
     public void hideVehicle(int index){
         listOfHiddenVehicles.add(index);
     }
+
     public void editVehicle(Vehicle vehicle,int index){
-        listOfInputVehicles.remove(index);
-        listOfInputVehicles.add(index,vehicle);
+        listOfInputVehicles.remove(getRealVehicleIndex(index));
+        listOfInputVehicles.add(getRealVehicleIndex(index),vehicle);
     }
+
     public int countCars(){
         return listOfInputVehicles.size()-listOfHiddenVehicles.size();
     }
@@ -125,14 +126,13 @@ public class CarbonModel {
         Collections.sort(makes);
 
         if(index >= 0){
-            int indexfound = makes.indexOf(listOfInputVehicles.get(index).getMake());
-            makes.remove(indexfound);
-            makes.add(0,listOfInputVehicles.get(index).getMake());
-
+            String old = listOfInputVehicles.get(getRealVehicleIndex(index)).getMake();
+            makes.remove(old);
+            makes.add(0,old);
         }
-
         return makes;
     }
+
 
     public List<String> getModels(String make, int index) {
         List<String> models = new ArrayList<>();
@@ -147,10 +147,9 @@ public class CarbonModel {
 
         Collections.sort(models);
         if(index >= 0){
-            int indexfound = models.indexOf(listOfInputVehicles.get(index).getModel());
-            models.remove(indexfound);
-            models.add(0,listOfInputVehicles.get(index).getModel());
-
+            String old = listOfInputVehicles.get(getRealVehicleIndex(index)).getModel();
+            models.remove(old);
+            models.add(0,old);
         }
         return models;
     }
@@ -167,10 +166,9 @@ public class CarbonModel {
         }
         Collections.sort(years);
         if(index >= 0){
-            int indexfound = years.indexOf(listOfInputVehicles.get(index).getYear());
-            years.remove(indexfound);
-            years.add(0,listOfInputVehicles.get(index).getYear());
-
+            String old = listOfInputVehicles.get(getRealVehicleIndex(index)).getYear();
+            years.remove(old);
+            years.add(0,old);
         }
         return years;
     }
@@ -234,14 +232,51 @@ public class CarbonModel {
         }
     }
 
-    public void newJourney(Vehicle in_vehicle, Route in_route) {
+    public void newJourney(int in_vehicle, int in_route) {
         String temp_name = "temp";
-        listOfJourneys.add(new Journey(temp_name, in_vehicle, in_route));
+        listOfJourneys.add(new Journey(temp_name, getRealVehicleIndex(in_vehicle),getRealRouteIndex(in_route)));
+    }
+
+    private int getRealRouteIndex(int indexWithoutAccountingHidden) {
+        for (int i = 0; i < listOfHiddenRoutes.size(); i++) {
+            if (listOfHiddenRoutes.get(i) <= indexWithoutAccountingHidden) {
+                indexWithoutAccountingHidden++;
+            }
+        }
+        return indexWithoutAccountingHidden;
+    }
+
+    private int getRealVehicleIndex(int indexWithoutAccountingHidden) {
+        for (int i = 0; i < listOfHiddenVehicles.size(); i++) {
+            if (listOfHiddenVehicles.get(i) <= indexWithoutAccountingHidden) {
+                indexWithoutAccountingHidden++;
+            }
+        }
+        return indexWithoutAccountingHidden;
     }
 
 
     public void calculateCarbonEmissions(Journey journey) {
-        journey.calculateCarbonEmissions();
+        double highwayMilesPerGallon = listOfInputVehicles.get(journey.getVehicleIndex()).getHighway();
+        double cityMilesPerGallon = listOfInputVehicles.get(journey.getVehicleIndex()).getCity();
+        double co2EmittedPerGallonOfFuel;
+
+        if (listOfInputVehicles.get(journey.getVehicleIndex()).getFuelType().toLowerCase().contains("gasoline")) {
+            co2EmittedPerGallonOfFuel = GASOLINE_CO2_EMISSION;
+        } else if (listOfInputVehicles.get(journey.getVehicleIndex()).getFuelType().toLowerCase().contains("electricity")) {
+            co2EmittedPerGallonOfFuel = ELECTRIC_CO2_EMISSION;
+        } else if (listOfInputVehicles.get(journey.getVehicleIndex()).getFuelType().toLowerCase().contains("diesel")) {
+            co2EmittedPerGallonOfFuel = DIESEL_CO2_EMISSION;
+        } else {
+            throw new IllegalArgumentException(); //crash
+        }
+        float co2PerCity = (float)  ((listOfInputRoutes.get(journey.getRouteIndex()).getCity() / cityMilesPerGallon) * co2EmittedPerGallonOfFuel);
+        float co2PerHighway = (float) ((listOfInputRoutes.get(journey.getRouteIndex()).getHwy() / highwayMilesPerGallon) * co2EmittedPerGallonOfFuel);
+        float totalCO2Emission = co2PerCity+co2PerHighway;
+
+        journey.setCo2PerCity(co2PerCity);
+        journey.setCo2PerHighway(co2PerHighway);
+        journey.setTotalCO2Emission(totalCO2Emission);
     }
 
 
@@ -268,8 +303,8 @@ public class CarbonModel {
         String[] info = new String[getSizeOfJourneysList()];
         for (int i = 0; i < getSizeOfJourneysList(); i++) {
             Journey journey = getJourney(i);
-            journey.calculateCarbonEmissions();
-            info[i] = "Date ," + journey.getJourneyName() + ", " + journey.getVehicle().getName() + ", " + journey.getRoute().getName() + ", " + journey.getTotalCO2Emission();
+            calculateCarbonEmissions(journey);
+            info[i] = journey.getDate()+ ", " + journey.getJourneyName() + ", " + listOfInputVehicles.get(journey.getVehicleIndex()).getName() + ", " + listOfInputRoutes.get(journey.getRouteIndex()).getName() + ", " + journey.getTotalCO2Emission();
         }
         return info;
     }
@@ -370,6 +405,14 @@ public class CarbonModel {
 
     public float getRouteHwyDistance(int index) {
         return listOfInputRoutes.get(index).getHwy();
+    }
+
+    public String getJourneyRouteName(int journeyIndex) {
+        return listOfInputRoutes.get((listOfJourneys.get(journeyIndex).getRouteIndex())).getName();
+    }
+
+    public String getJourneyVehicleName(int journeyIndex) {
+        return listOfInputVehicles.get((listOfJourneys.get(journeyIndex).getVehicleIndex())).getName();
     }
 }
 
