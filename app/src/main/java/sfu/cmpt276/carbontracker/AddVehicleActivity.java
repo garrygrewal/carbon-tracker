@@ -38,15 +38,16 @@ public class AddVehicleActivity extends AppCompatActivity {
         //stops focus going to editText when activity starts
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+
         setupButtons();
         Intent intent = getIntent();
         index = intent.getIntExtra("index",-1);
+        extractDataFromIntent();
         populateSpinnerMake(index);
         registerClickCallBackForMake();
         registerClickCallBackForModel();
         registerClickCallBackForYears();
         registerClickCallBackForList();
-        extractDataFromIntent();
     }
 
     private void extractDataFromIntent() {
@@ -69,6 +70,10 @@ public class AddVehicleActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getMakes(index));
         Spinner spinnerMake = (Spinner) findViewById(R.id.spinnerSelectMake);
         spinnerMake.setAdapter(adapterMake);
+        if((index >= 0)){
+            int spinnerPosition = adapterMake.getPosition(make);
+            spinnerMake.setSelection(spinnerPosition);
+        }
     }
 
     public void registerClickCallBackForMake(){
@@ -93,6 +98,11 @@ public class AddVehicleActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getModels(make, index));
         Spinner spinnerModel = (Spinner) findViewById(R.id.spinnerSelectModel);
         spinnerModel.setAdapter(adapterModel);
+
+        if((index >= 0)){
+            int spinnerPosition = adapterModel.getPosition(model);
+            spinnerModel.setSelection(spinnerPosition);
+        }
     }
 
     public void registerClickCallBackForModel(){
@@ -117,6 +127,10 @@ public class AddVehicleActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item, CarbonModel.getInstance().getYears(model, index));
         Spinner spinnerYear = (Spinner) findViewById(R.id.spinnerSelectYear);
         spinnerYear.setAdapter(adapterYear);
+        if((index >= 0)){
+            int spinnerPosition = adapterYear.getPosition(year);
+            spinnerYear.setSelection(spinnerPosition);
+        }
     }
 
     public void registerClickCallBackForYears(){
