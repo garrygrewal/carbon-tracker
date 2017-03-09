@@ -22,6 +22,7 @@ import sfu.cmpt276.carbontracker.model.Journey;
 public class AddNameActivity extends AppCompatActivity {
 
     private int new_journey_index;
+    boolean dateEntered = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,7 @@ public class AddNameActivity extends AppCompatActivity {
                     }
                 }, mYear, mMonth, mDay);
                 datePickerDialog.show();
+                dateEntered = true;
             }
         });
 
@@ -130,12 +132,21 @@ public class AddNameActivity extends AppCompatActivity {
         EditText in_name = (EditText) findViewById(R.id.journeyName);
         String name = in_name.getText().toString();
         //check if input is valid
+        //
+        if(dateEntered == false){
+        Toast toast = Toast.makeText(getApplicationContext(), "Please enter a date." ,Toast.LENGTH_SHORT);
+        toast.show();
+        return 0;
+         }
+
         if (name.equals(null) || name.replaceAll("\\s+", "").equals("")) {
             Toast toast = Toast.makeText(getApplicationContext(), "Journey name cannot be empty.", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         } else
             return 1;
+
+
     }
 
     //navigation back button
