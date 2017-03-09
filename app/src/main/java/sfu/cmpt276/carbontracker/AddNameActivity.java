@@ -64,6 +64,8 @@ public class AddNameActivity extends AppCompatActivity {
 
 
     private void premakeJourney() {
+        new_journey_index = CarbonModel.getInstance().newJourneyIndex();
+
         Intent intent = getIntent();
         int route_index = intent.getIntExtra("route_index", 0);
         int vehicle_index = intent.getIntExtra("vehicle_index", 0);

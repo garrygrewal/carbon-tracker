@@ -14,16 +14,16 @@
         android:id="@+id/listViewTotalFootprint"
         android:layout_width="match_parent"
         android:layout_height="400dp"
+        android:layout_below="@+id/listViewHeader"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:layout_above="@+id/buttonPieGraph" />
 
     <Button
         android:id="@+id/buttonPieGraph"
         android:layout_width="150dp"
         android:layout_height="62dp"
         android:text="@string/show_graph"
-        android:layout_alignBaseline="@+id/buttonCancel"
-        android:layout_alignBottom="@+id/buttonCancel"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
     <Button
@@ -34,5 +34,15 @@
         android:text="@string/back_to_main_menu"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/listViewHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Date, Journey Name, Vehicle Name, Route Name, Total Emissions"
+        android:textSize="11sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
