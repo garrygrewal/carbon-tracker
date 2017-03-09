@@ -11,7 +11,7 @@
     tools:context="sfu.cmpt276.carbontracker.AddNameActivity">
 
     <Button
-        android:text="Add Journey"
+        android:text="@string/add_journey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -19,7 +19,7 @@
         android:id="@+id/buttonAddJourney" />
 
     <Button
-        android:text="Cancel"
+        android:text="@string/canceladdjourney"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonCancel"
@@ -33,7 +33,7 @@
         android:layout_alignEnd="@+id/textHwyEmissions"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="Name this Journey: "
+        android:text="@string/name_this_journey"
         android:textSize="18sp" />
 
     <EditText
@@ -50,7 +50,7 @@
         android:id="@+id/city_emissions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/textview"
         android:textSize="18sp"
         android:layout_toEndOf="@+id/buttonCancel"
         android:layout_below="@+id/textRoute" />
@@ -62,7 +62,7 @@
         android:layout_alignBottom="@+id/textHwyEmissions"
         android:layout_alignStart="@+id/city_emissions"
         android:layout_alignTop="@+id/textHwyEmissions"
-        android:text="TextView"
+        android:text="@string/show_hwy_emission"
         android:textSize="18sp"
         android:layout_alignEnd="@+id/date" />
 
@@ -74,7 +74,7 @@
         android:layout_alignEnd="@+id/hwy_emissions"
         android:layout_alignStart="@+id/hwy_emissions"
         android:layout_alignTop="@+id/textCombinedEmis"
-        android:text="TextView"
+        android:text="@string/show_total_emission"
         android:textSize="18sp" />
 
     <TextView
@@ -86,14 +86,14 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textRoute"
         android:layout_marginBottom="15dp"
-        android:text="City          Emissions"
+        android:text="@string/city_emissions"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textHwyEmissions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Highway Emissions"
+        android:text="@string/highway_emissions"
         android:textSize="18sp"
         android:layout_below="@+id/textRoute"
         android:layout_alignParentStart="true"
@@ -108,14 +108,14 @@
         android:layout_below="@+id/hwy_emissions"
         android:layout_marginTop="40dp"
         android:layout_toStartOf="@+id/date"
-        android:text="Total Emissions for this Journey"
+        android:text="@string/total_emissions_for_this_journey"
         android:textSize="16sp" />
 
     <TextView
         android:id="@+id/textVehicleName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/show_vehicle_name"
         android:textSize="18sp"
         android:layout_alignBaseline="@+id/textTransportationMode"
         android:layout_alignBottom="@+id/textTransportationMode"
@@ -125,7 +125,7 @@
         android:id="@+id/textRouteName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/show_route_name"
         android:textSize="18sp"
         android:layout_alignBaseline="@+id/textRoute"
         android:layout_alignBottom="@+id/textRoute"
@@ -136,7 +136,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
-        android:hint="Select Date"
+        android:hint="@string/select_date"
         android:padding="15dp"
         android:textSize="18sp"
         android:focusable="false"
@@ -151,7 +151,7 @@
         android:layout_alignBaseline="@+id/date"
         android:layout_alignBottom="@+id/date"
         android:layout_alignParentStart="true"
-        android:text="Select a Date"
+        android:text="@string/select_a_date"
         android:textSize="18sp" />
 
     <TextView
@@ -163,7 +163,7 @@
         android:layout_below="@+id/date"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="19dp"
-        android:text="Transportation mode"
+        android:text="@string/transportation_mode"
         android:textSize="18sp" />
 
     <TextView
@@ -173,7 +173,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textTransportationMode"
         android:layout_marginBottom="20dp"
-        android:text="Route"
+        android:text="@string/route"
         android:textSize="18sp" />
 
 

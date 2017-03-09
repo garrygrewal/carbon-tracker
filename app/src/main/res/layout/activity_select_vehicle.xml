@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4.17"
                 android:fontFamily="sans-serif-condensed"
-                android:text="Select Vehicle for Journey"
+                android:text="@string/select_vehicle_for_journey"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                 android:textSize="20sp" />
 
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_toStartOf="@+id/buttonAddVehicle"
-                android:text="Cancel" />
+                android:text="@string/cancelSelectVehicle" />
 
             <Button
                 android:id="@+id/buttonAddVehicle"
@@ -87,7 +87,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_weight="1"
-                android:text="Add New Vehicle" />
+                android:text="@string/add_new_vehicle" />
         </LinearLayout>
     </LinearLayout>
 
