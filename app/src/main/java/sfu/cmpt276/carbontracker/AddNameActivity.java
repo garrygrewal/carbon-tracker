@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+
 import java.util.Calendar;
-import android.os.Build;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -38,8 +38,8 @@ public class AddNameActivity extends AppCompatActivity {
         TextView vehicle_name = (TextView) findViewById(R.id.textVehicleName);
         TextView route_name = (TextView) findViewById(R.id.textRouteName);
 
-        vehicle_name.setText( CarbonModel.getInstance().getJourneyVehicleName(new_journey_index));
-        route_name.setText( CarbonModel.getInstance().getJourneyRouteName(new_journey_index));
+        vehicle_name.setText(CarbonModel.getInstance().getJourneyVehicleName(new_journey_index));
+        route_name.setText(CarbonModel.getInstance().getJourneyRouteName(new_journey_index));
     }
 
     private void addName() {
@@ -82,13 +82,13 @@ public class AddNameActivity extends AppCompatActivity {
                 int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
                 // date picker dialog
                 Dialog datePickerDialog = new DatePickerDialog(AddNameActivity.this, new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                // set day of month , month and year value in the edit text
-                                date.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                                CarbonModel.getInstance().getJourney(new_journey_index).setDate(year, monthOfYear, dayOfMonth);
-                            }
-                        }, mYear, mMonth, mDay);
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        // set day of month , month and year value in the edit text
+                        date.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                        CarbonModel.getInstance().getJourney(new_journey_index).setDate(year, monthOfYear, dayOfMonth);
+                    }
+                }, mYear, mMonth, mDay);
                 datePickerDialog.show();
             }
         });
@@ -129,18 +129,17 @@ public class AddNameActivity extends AppCompatActivity {
         EditText in_name = (EditText) findViewById(R.id.journeyName);
         String name = in_name.getText().toString();
         //check if input is valid
-        if (name.equals(null) || name.replaceAll("\\s+","").equals("")) {
+        if (name.equals(null) || name.replaceAll("\\s+", "").equals("")) {
             Toast toast = Toast.makeText(getApplicationContext(), "Journey name cannot be empty.", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
-        }
-        else
+        } else
             return 1;
     }
 
     //navigation back button
     @Override
-    public void onBackPressed () {
+    public void onBackPressed() {
         //delete premade route
         CarbonModel.getInstance().deleteJourney(new_journey_index);
 

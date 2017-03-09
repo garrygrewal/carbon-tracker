@@ -1,13 +1,8 @@
 package sfu.cmpt276.carbontracker;
 
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -35,13 +30,13 @@ public class PieGraphActivity extends AppCompatActivity {
         //populating a list of PieEntries;
         List<PieEntry> pieEntries = new ArrayList<>();
 
-        for(int i = 0; i < CarbonModel.getInstance().getSizeOfJourneysList(); i++){
+        for (int i = 0; i < CarbonModel.getInstance().getSizeOfJourneysList(); i++) {
             pieEntries.add(new PieEntry(CarbonModel.getInstance().getJourneyTotalCO2Emissions(i)
                     , CarbonModel.getInstance().getJourneyName(i)));
         }
         PieDataSet dataSet = new PieDataSet(pieEntries, "Total CO2 Emissions");
         dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-        dataSet.setValueTextSize(11f);
+        dataSet.setValueTextSize(20f);
         dataSet.setValueFormatter(new PercentFormatter());
         PieData data = new PieData(dataSet);
 
@@ -74,20 +69,10 @@ public class PieGraphActivity extends AppCompatActivity {
 
         chart.invalidate();
     }
-    private SpannableString generateCenterSpannableText() {
 
-        SpannableString s = new SpannableString("Carbon\nModel");
-        s.setSpan(new RelativeSizeSpan(1.7f), 0, 14, 0);
-        s.setSpan(new StyleSpan(Typeface.NORMAL), 14, s.length() - 15, 0);
-        s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, s.length() - 15, 0);
-        s.setSpan(new RelativeSizeSpan(.8f), 14, s.length() - 15, 0);
-        s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 14, s.length(), 0);
-        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
-        return s;
-    }
 
     @Override
-    public void onBackPressed () {
+    public void onBackPressed() {
         finish();
     }
 }

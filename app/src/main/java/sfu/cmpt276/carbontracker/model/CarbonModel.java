@@ -24,7 +24,6 @@ public class CarbonModel {
     private final double DIESEL_CO2_EMISSION = 10.16;
 
 
-
     private CarbonModel() {
     }
 

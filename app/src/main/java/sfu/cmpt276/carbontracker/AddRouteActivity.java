@@ -88,17 +88,15 @@ public class AddRouteActivity extends AppCompatActivity {
     //check if input is valid
     private int checkInput(String name, String city, String hwy) {
         //check if input is valid
-        if (name.equals(null) || name.replaceAll("\\s+","").equals("")) {
+        if (name.equals(null) || name.replaceAll("\\s+", "").equals("")) {
             Toast toast = Toast.makeText(getApplicationContext(), "Route name cannot be empty.", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
-        }
-        else if (city.equals(null) || city.equals("") || hwy.equals(null) || hwy.equals("")) {
+        } else if (city.equals(null) || city.equals("") || hwy.equals(null) || hwy.equals("")) {
             Toast toast = Toast.makeText(getApplicationContext(), "Distance cannot be empty.", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
-        }
-        else if (Math.signum(Float.parseFloat(city)) == 0 || Math.signum(Float.parseFloat(hwy)) == 0) {
+        } else if (Math.signum(Float.parseFloat(city)) == 0 || Math.signum(Float.parseFloat(hwy)) == 0) {
             Toast toast = Toast.makeText(getApplicationContext(), "Distance cannot be 0.", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
@@ -108,7 +106,7 @@ public class AddRouteActivity extends AppCompatActivity {
 
     //navigation back button
     @Override
-    public void onBackPressed () {
+    public void onBackPressed() {
         Intent intent = new Intent();
         setResult(Activity.RESULT_CANCELED, intent);
         finish();

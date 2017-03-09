@@ -1,25 +1,17 @@
 package sfu.cmpt276.carbontracker;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 
-import sfu.cmpt276.carbontracker.model.CarbonModel;
 
 /*
  * Main Menu Screen
  */
 
 public class MainMenuActivity extends AppCompatActivity {
-    //private static final int REQUEST_CODE = 1014;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +27,7 @@ public class MainMenuActivity extends AppCompatActivity {
         btn_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (MainMenuActivity.this, SelectVehicleActivity.class);
+                Intent intent = new Intent(MainMenuActivity.this, SelectVehicleActivity.class);
                 startActivity(intent);
             }
         });
@@ -45,7 +37,7 @@ public class MainMenuActivity extends AppCompatActivity {
         btn_total.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (MainMenuActivity.this, TotalFootprintActivity.class);
+                Intent intent = new Intent(MainMenuActivity.this, TotalFootprintActivity.class);
                 startActivity(intent);
 
             }
@@ -55,7 +47,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     //navigation back button
     @Override
-    public void onBackPressed () {
+    public void onBackPressed() {
 
         //System.exit(0);
         moveTaskToBack(true);// sends the app to background instead
