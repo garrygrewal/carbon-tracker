@@ -96,7 +96,7 @@ public class AddRouteActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(getApplicationContext(), "Distance cannot be empty.", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
-        } else if (Math.signum(Float.parseFloat(city)) == 0 || Math.signum(Float.parseFloat(hwy)) == 0) {
+        } else if (Math.signum(Float.parseFloat(city)) == 0 && Math.signum(Float.parseFloat(hwy)) == 0) {
             Toast toast = Toast.makeText(getApplicationContext(), "Distance cannot be 0.", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
