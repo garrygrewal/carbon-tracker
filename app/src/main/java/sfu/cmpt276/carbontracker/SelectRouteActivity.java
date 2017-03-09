@@ -1,24 +1,16 @@
 package sfu.cmpt276.carbontracker;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 import sfu.cmpt276.carbontracker.model.Route;
@@ -39,10 +31,10 @@ public class SelectRouteActivity extends AppCompatActivity {
     }
 
     //listView existing routes
-    private void listRoutes () {
+    private void listRoutes() {
         ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.list_route, CarbonModel.getInstance().getRouteInfo());
         ListView route_list = (ListView) findViewById(R.id.listViewRoutes);
-        
+
         //List Adapter
         route_list.setAdapter(adapter);
 
@@ -76,8 +68,9 @@ public class SelectRouteActivity extends AppCompatActivity {
         menu.add(0, v.getId(), 0, "Edit");
         menu.add(0, v.getId(), 0, "Delete");
     }
+
     @Override
-    public boolean onContextItemSelected(MenuItem item){
+    public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
         switch (item.getTitle().toString()) {
@@ -128,7 +121,7 @@ public class SelectRouteActivity extends AppCompatActivity {
 
     //activity callback
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
@@ -143,8 +136,7 @@ public class SelectRouteActivity extends AppCompatActivity {
                     CarbonModel.getInstance().addRoute(new Route(name, int_city, int_hwy));
                     listRoutes();
                     break;
-                }
-                else
+                } else
                     break;
             }
             //edit route
@@ -158,8 +150,7 @@ public class SelectRouteActivity extends AppCompatActivity {
                     CarbonModel.getInstance().editRoute(new Route(name, num_city, num_hwy), index);
                     listRoutes();
                     break;
-                }
-                else
+                } else
                     break;
             }
         }
@@ -167,7 +158,7 @@ public class SelectRouteActivity extends AppCompatActivity {
 
     //navigation back button
     @Override
-    public void onBackPressed () {
+    public void onBackPressed() {
         Intent intent = new Intent();
         setResult(Activity.RESULT_CANCELED, intent);
         finish();

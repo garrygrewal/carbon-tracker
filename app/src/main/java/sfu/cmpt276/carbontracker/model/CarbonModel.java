@@ -22,7 +22,7 @@ public class CarbonModel {
     private final double GASOLINE_CO2_EMISSION = 8.89;
     private final double ELECTRIC_CO2_EMISSION = 0;
     private final double DIESEL_CO2_EMISSION = 10.16;
-
+    private final double kmToMiles = 0.621371;
 
 
     private CarbonModel() {
@@ -255,8 +255,8 @@ public class CarbonModel {
         } else {
             throw new IllegalArgumentException(); //crash
         }
-        float co2PerCity = (float) ((listOfInputRoutes.get(journey.getRouteIndex()).getCity() / cityMilesPerGallon) * co2EmittedPerGallonOfFuel);
-        float co2PerHighway = (float) ((listOfInputRoutes.get(journey.getRouteIndex()).getHwy() / highwayMilesPerGallon) * co2EmittedPerGallonOfFuel);
+        float co2PerCity = (float) (((listOfInputRoutes.get(journey.getRouteIndex()).getCity() * kmToMiles) / cityMilesPerGallon) * co2EmittedPerGallonOfFuel);
+        float co2PerHighway = (float) (((listOfInputRoutes.get(journey.getRouteIndex()).getHwy()* kmToMiles) / highwayMilesPerGallon) * co2EmittedPerGallonOfFuel);
         float totalCO2Emission = co2PerCity + co2PerHighway;
 
         journey.setCo2PerCity(co2PerCity);
@@ -289,7 +289,8 @@ public class CarbonModel {
         for (int i = 0; i < getSizeOfJourneysList(); i++) {
             Journey journey = getJourney(i);
             calculateCarbonEmissions(journey);
-            info[i] = journey.getDate() + ", " + journey.getJourneyName() + ", " + listOfInputVehicles.get(journey.getVehicleIndex()).getName() + ", " + listOfInputRoutes.get(journey.getRouteIndex()).getName() + ", " + journey.getTotalCO2Emission();
+            info[i] = journey.getDate() + ", " + journey.getJourneyName() + ", " + listOfInputVehicles.get(journey.getVehicleIndex()).getName()
+                    + ", " + listOfInputRoutes.get(journey.getRouteIndex()).getName() + ", " + journey.getTotalCO2Emission() + " kgC02";
         }
         return info;
     }
@@ -369,4 +370,3 @@ public class CarbonModel {
         return listOfInputVehicles.get((listOfJourneys.get(journeyIndex).getVehicleIndex())).getName();
     }
 }
-

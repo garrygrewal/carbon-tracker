@@ -1,7 +1,7 @@
 package sfu.cmpt276.carbontracker.model;
 
 /**
- * Contains the route information such as the city distance and the highway distance along with the name of the route.
+ * Route Class, Contains the route information such as the city distance and the highway distance along with the name of the route.
  */
 
 public class Route {
@@ -16,7 +16,9 @@ public class Route {
         this.hwy = in_hwy;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
     public void setName(String in_name) {
         this.name = in_name;
@@ -26,15 +28,7 @@ public class Route {
         return city;
     }
 
-    public void setCity(float cityStreetsDistance) {
-        this.city = cityStreetsDistance;
-    }
-
     public float getHwy() {
         return hwy;
-    }
-
-    public void setHwy(float highwayRoadsDistance) {
-        this.hwy = highwayRoadsDistance;
     }
 }
