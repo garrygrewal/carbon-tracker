@@ -135,14 +135,15 @@
         android:id="@+id/date"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:hint="@string/select_date"
-        android:padding="15dp"
-        android:textSize="18sp"
-        android:focusable="false"
-        android:imeOptions="actionDone"
+        android:layout_alignStart="@+id/journeyName"
         android:layout_below="@+id/journeyName"
-        android:layout_alignStart="@+id/journeyName" />
+        android:layout_marginTop="27dp"
+        android:focusable="false"
+        android:hint="@string/select_date"
+        android:imeOptions="actionDone"
+        android:padding="15dp"
+        android:textAlignment="center"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textSelectDate"

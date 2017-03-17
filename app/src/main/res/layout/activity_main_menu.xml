@@ -38,7 +38,7 @@
                 <TextView
                     android:id="@+id/titleCarbonTracker"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-condensed"
                     android:text="@string/carbon_tracker"
@@ -56,13 +56,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
@@ -74,6 +72,40 @@
                 android:layout_weight="1"
                 android:text="@string/create_car_journey" />
 
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonAddNewBill"
+                android:layout_width="161dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_new_bill" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <Button
                 android:id="@+id/buttonDisplayTotal"
                 android:layout_width="match_parent"
@@ -83,7 +115,6 @@
                 android:layout_weight="1"
                 android:text="@string/display_carbon_footprint" />
         </LinearLayout>
-
     </LinearLayout>
 
 </LinearLayout>

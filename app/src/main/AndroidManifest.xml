@@ -22,7 +22,8 @@
         <activity android:name=".AddRouteActivity" />
         <activity android:name=".AddNameActivity" />
         <activity android:name=".TotalFootprintActivity" />
-        <activity android:name=".PieGraphActivity"></activity>
+        <activity android:name=".PieGraphActivity" />
+        <activity android:name=".AddBillActivity"></activity>
     </application>
 
 </manifest>

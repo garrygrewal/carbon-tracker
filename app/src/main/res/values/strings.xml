@@ -39,4 +39,7 @@
     <string name="select_vehicle_for_journey">Select Vehicle for Journey</string>
     <string name="cancelSelectVehicle">Cancel</string>
     <string name="add_new_vehicle">Add New Vehicle</string>
+    <string name="add_new_bill">Add New Bill</string>
+    <string name="of_people"># of People</string>
+    <string name="of_people_in_household"># of people in household</string>
 </resources>
