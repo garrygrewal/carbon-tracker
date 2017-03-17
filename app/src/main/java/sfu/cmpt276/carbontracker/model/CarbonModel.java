@@ -11,12 +11,14 @@ import static android.media.CamcorderProfile.get;
 
 public class CarbonModel {
     private static CarbonModel instance = new CarbonModel();
+
     private List<Route> listOfInputRoutes = new ArrayList<>();
     private List<Integer> listOfHiddenRoutes = new ArrayList<>();
     private List<Vehicle> listOfInputVehicles = new ArrayList<>();
     private List<Integer> listOfHiddenVehicles = new ArrayList<>();
     private List<Journey> listOfJourneys = new ArrayList<>();
-    public List<Vehicle> listOfKnownCars = new ArrayList<>();
+    private List<Vehicle> listOfKnownCars = new ArrayList<>();
+    private List<Bill> listOfBills = new ArrayList<>();
 
 
     private final double GASOLINE_CO2_EMISSION = 8.89;
@@ -217,6 +219,10 @@ public class CarbonModel {
         }
     }
 
+    public void newBill(){
+        listOfBills.add(new Bill(0,0,0,0));
+    }
+
     public void newJourney(int in_vehicle, int in_route) {
         String temp_name = "temp";
         listOfJourneys.add(new Journey(temp_name, getRealVehicleIndex(in_vehicle), getRealRouteIndex(in_route)));
@@ -269,6 +275,20 @@ public class CarbonModel {
         return listOfJourneys.get(index);
     }
 
+    public Bill getBill(int index){
+        return listOfBills.get(index);
+    }
+
+    public int newBillIndex(){
+        int i;
+        for(i = 0; i<getSizeOfBillsList(); i++){
+            if(getBill(i).getNumberOfPeople() == 0){
+                break;
+            }
+        }
+        return i;
+    }
+
     public int newJourneyIndex() {
         int i;
         for (i = 0; i < getSizeOfJourneysList(); i++) {
@@ -300,6 +320,13 @@ public class CarbonModel {
         listOfJourneys.remove(index);
     }
 
+    public void deleteBill(int index){
+        listOfBills.remove(index);
+    }
+
+    public int getSizeOfBillsList(){
+        return listOfBills.size();
+    }
 
     public int getSizeOfJourneysList() {
         return listOfJourneys.size();
@@ -308,6 +335,7 @@ public class CarbonModel {
     public String getJourneyName(int index) {
         return listOfJourneys.get(index).getJourneyName();
     }
+
 
     public float getJourneyTotalCO2Emissions(int index) {
         return listOfJourneys.get(index).getTotalCO2Emission();

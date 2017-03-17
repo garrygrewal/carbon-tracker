@@ -91,7 +91,7 @@
                 android:layout_width="161dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/add_new_bill" />
+                android:text="@string/create_new_bill" />
         </LinearLayout>
     </LinearLayout>
 

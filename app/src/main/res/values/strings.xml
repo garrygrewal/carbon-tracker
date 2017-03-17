@@ -42,4 +42,12 @@
     <string name="add_new_bill">Add New Bill</string>
     <string name="of_people"># of People</string>
     <string name="of_people_in_household"># of people in household</string>
+    <string name="natural_gas_use_gj">Natural Gas Use (GJ):</string>
+    <string name="electricity_use_kwh">Electricity Use (kWh):</string>
+    <string name="electricity_in_kwh">Electricity in kWh</string>
+    <string name="natural_gas_in_gj">Natural Gas in GJ</string>
+    <string name="emissions_per_person">Emissions Per Person:</string>
+    <string name="create_new_bill">Create New Bill</string>
+    <string name="add_bill">Add Bill</string>
+    <string name="cancelBill">Cancel</string>
 </resources>
