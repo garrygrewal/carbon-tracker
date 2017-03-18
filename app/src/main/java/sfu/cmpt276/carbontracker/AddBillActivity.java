@@ -34,59 +34,18 @@ public class AddBillActivity extends AppCompatActivity {
         setupButtons();
         premakeBill();
         showEmissions();
+        showTotalDays();
     }
 
-    private void addNewBill() {
-        //calculate emissons per day or for entire billing period?
-        CarbonModel.getInstance().getBill(new_bill_index).setPeriod();
-        Log.d("my app", "Bill period in days: " + CarbonModel.getInstance().getBill(new_bill_index).getPeriod());
-        Log.d("my app", "Bill natural gas ems: " + CarbonModel.getInstance().getBill(new_bill_index).getNaturalGas());
-        Log.d("my app", "Bill electricity ems: " + CarbonModel.getInstance().getBill(new_bill_index).getElectricity());
-    }
+    private void showTotalDays(){
+        final TextView totalDays = (TextView) findViewById(R.id.textDays);
 
-    private void showEmissions() {
-        final EditText editElectricityUse = (EditText) findViewById(R.id.editTextElectricity);
-        final EditText editNaturalGasUse = (EditText) findViewById(R.id.editTextNaturalGas);
-        final EditText editNumberOfPeople = (EditText) findViewById(R.id.editTextNumberOfPeople);
-        final TextView displayElectricityEmissions = (TextView) findViewById(R.id.textUserElectricityEmissions);
-        final TextView displayNaturalGasEmissions = (TextView) findViewById(R.id.textUserNaturalGasEmissions);
-
-        editNumberOfPeople.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String naturalGasUse = editNaturalGasUse.getText().toString();
-                String electricityUse = editElectricityUse.getText().toString();
-                try {
-                    CarbonModel.getInstance().getBill(new_bill_index).setNumberOfPeople(Integer.parseInt(editNumberOfPeople.getText().toString()));
-                    if (naturalGasUse.length() == 0) {
-                        displayNaturalGasEmissions.setText("");
-                    } else {
-                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGas(Float.parseFloat((editNaturalGasUse.getText().toString())));
-                        float naturalGas = CarbonModel.getInstance().getBill(new_bill_index).calculateNaturalGasPerPerson();
-                        displayNaturalGasEmissions.setText("" + naturalGas + "kg of CO2");
-                    }
-                } catch (NumberFormatException e) {
-                }
-                try {
-                    if (electricityUse.length() == 0) {
-                        displayElectricityEmissions.setText("");
-                    } else {
-                        CarbonModel.getInstance().getBill(new_bill_index).setElectricity(Float.parseFloat((editElectricityUse.getText().toString())));
-                        float electricity = CarbonModel.getInstance().getBill(new_bill_index).calculateElectricityPerPerson();
-                        displayElectricityEmissions.setText("" + electricity + "kg of CO2");
-                    }
-                } catch (NumberFormatException e) {
-                }
-            }
-        });
+        if(dateStartEntered && dateEndEntered){
+            CarbonModel.getInstance().getBill(new_bill_index).setPeriod();
+            String period = Integer.toString(CarbonModel.getInstance().getBill(new_bill_index).getPeriod());
+            Log.d("my app", "Bill period in days: " + CarbonModel.getInstance().getBill(new_bill_index).getPeriod());
+            totalDays.setText(period);
+        }
     }
 
     private void premakeBill() {
@@ -95,9 +54,12 @@ public class AddBillActivity extends AppCompatActivity {
     }
 
     private void setupButtons() {
-        final EditText startDate = (EditText) findViewById(R.id.startDate);
+        final TextView emissionsStartDate = (TextView) findViewById(R.id.textEmissionsStartDate);
+        final TextView emissionsEndDate = (TextView) findViewById(R.id.textEmissionsEndDate);
+        final EditText editStartDate = (EditText) findViewById(R.id.startDate);
+        final EditText editEndDate = (EditText) findViewById(R.id.endDate);
 
-        startDate.setOnClickListener(new View.OnClickListener() {
+        editStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar c = Calendar.getInstance();
@@ -109,7 +71,7 @@ public class AddBillActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         // set day of month , month and year value in the edit text
-                        startDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                        editStartDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                         CarbonModel.getInstance().getBill(new_bill_index).setStartDate(year, monthOfYear, dayOfMonth);
                     }
                 }, mYear, mMonth, mDay);
@@ -118,9 +80,25 @@ public class AddBillActivity extends AppCompatActivity {
             }
         });
 
-        final EditText endDate = (EditText) findViewById(R.id.endDate);
+        editStartDate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        endDate.setOnClickListener(new View.OnClickListener() {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String startDate = editStartDate.getText().toString();
+                emissionsStartDate.setText(startDate);
+            }
+        });
+
+        editEndDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar c = Calendar.getInstance();
@@ -132,12 +110,30 @@ public class AddBillActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         // set day of month , month and year value in the edit text
-                        endDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                        editEndDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                         CarbonModel.getInstance().getBill(new_bill_index).setEndDate(year, monthOfYear, dayOfMonth);
                     }
                 }, mYear, mMonth, mDay);
                 datePickerDialog.show();
                 dateEndEntered = true;
+            }
+        });
+
+        editEndDate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String endDate = editEndDate.getText().toString();
+                emissionsEndDate.setText(endDate);
             }
         });
 
@@ -148,7 +144,6 @@ public class AddBillActivity extends AppCompatActivity {
                 if (checkInput() == 0) {
                     setResult(Activity.RESULT_CANCELED);
                 } else {
-                    addNewBill();
                     Intent intent = new Intent(AddBillActivity.this, MainMenuActivity.class);
                     startActivity(intent);
                 }
@@ -216,5 +211,110 @@ public class AddBillActivity extends AppCompatActivity {
         Intent intent = new Intent();
         setResult(Activity.RESULT_CANCELED, intent);
         finish();
+    }
+
+    private void showEmissions() {
+        final EditText editElectricityUse = (EditText) findViewById(R.id.editTextElectricity);
+        final EditText editNaturalGasUse = (EditText) findViewById(R.id.editTextNaturalGas);
+        final EditText editNumberOfPeople = (EditText) findViewById(R.id.editTextNumberOfPeople);
+        final TextView displayElectricityEmissions = (TextView) findViewById(R.id.textUserElectricityEmissions);
+        final TextView displayNaturalGasEmissions = (TextView) findViewById(R.id.textUserNaturalGasEmissions);
+
+        editElectricityUse.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String electricityUse = editElectricityUse.getText().toString();
+                String numberOfPeople = editNumberOfPeople.getText().toString();
+                try {
+                    CarbonModel.getInstance().getBill(new_bill_index).setNumberOfPeople(Integer.parseInt(numberOfPeople));
+                    if (electricityUse.length() == 0 || numberOfPeople.length() == 0) {
+                        displayElectricityEmissions.setText("");
+                    } else {
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricity(Float.parseFloat((editElectricityUse.getText().toString())));
+                        float electricity = CarbonModel.getInstance().getBill(new_bill_index).calculateElectricityPerPerson();
+                        displayElectricityEmissions.setText("" + electricity + "kg of CO2");
+                    }
+                } catch (NumberFormatException e) {
+                }
+            }
+        });
+
+        editNaturalGasUse.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String naturalGasUse = editNaturalGasUse.getText().toString();
+                String numberOfPeople = editNumberOfPeople.getText().toString();
+                try {
+                    CarbonModel.getInstance().getBill(new_bill_index).setNumberOfPeople(Integer.parseInt(numberOfPeople));
+                    if (naturalGasUse.length() == 0 || numberOfPeople.length() == 0) {
+                        displayNaturalGasEmissions.setText("");
+                    } else {
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGas(Float.parseFloat((editNaturalGasUse.getText().toString())));
+                        float naturalGas = CarbonModel.getInstance().getBill(new_bill_index).calculateNaturalGasPerPerson();
+                        displayNaturalGasEmissions.setText("" + naturalGas + "kg of CO2");
+                    }
+                } catch (NumberFormatException e) {
+                }
+            }
+        });
+
+        editNumberOfPeople.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String naturalGasUse = editNaturalGasUse.getText().toString();
+                String electricityUse = editElectricityUse.getText().toString();
+                String numberOfPeople = editNumberOfPeople.getText().toString();
+                try {
+                    CarbonModel.getInstance().getBill(new_bill_index).setNumberOfPeople(Integer.parseInt(numberOfPeople));
+                    if (naturalGasUse.length() == 0 || numberOfPeople.length() == 0) {
+                        displayNaturalGasEmissions.setText("");
+                    } else {
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGas(Float.parseFloat((editNaturalGasUse.getText().toString())));
+                        float naturalGas = CarbonModel.getInstance().getBill(new_bill_index).calculateNaturalGasPerPerson();
+                        displayNaturalGasEmissions.setText("" + naturalGas + "kg of CO2");
+                    }
+                } catch (NumberFormatException e) {
+                }
+                try {
+                    CarbonModel.getInstance().getBill(new_bill_index).setNumberOfPeople(Integer.parseInt(numberOfPeople));
+                    if (electricityUse.length() == 0 || numberOfPeople.length() == 0) {
+                        displayElectricityEmissions.setText("");
+                    } else {
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricity(Float.parseFloat((editElectricityUse.getText().toString())));
+                        float electricity = CarbonModel.getInstance().getBill(new_bill_index).calculateElectricityPerPerson();
+                        displayElectricityEmissions.setText("" + electricity + "kg of CO2");
+                    }
+                } catch (NumberFormatException e) {
+                }
+            }
+        });
     }
 }

@@ -50,4 +50,9 @@
     <string name="create_new_bill">Create New Bill</string>
     <string name="add_bill">Add Bill</string>
     <string name="cancelBill">Cancel</string>
+    <string name="natural_gas_emissions">Natural Gas Emissions:</string>
+    <string name="electricity_emissions">Electricity Emissions:</string>
+    <string name="to">To:</string>
+    <string name="from">From:</string>
+    <string name="total_emissions_per_person">Total Emissions Per Person</string>
 </resources>
