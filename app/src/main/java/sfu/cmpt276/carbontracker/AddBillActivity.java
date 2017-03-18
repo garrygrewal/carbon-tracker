@@ -6,11 +6,14 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -30,32 +33,68 @@ public class AddBillActivity extends AppCompatActivity {
 
         setupButtons();
         premakeBill();
+        showEmissions();
     }
 
-    private void addNewBill(){
-        EditText editElectricityUse = (EditText) findViewById(R.id.editTextElectricity);
-        Float electricityUse = Float.valueOf(editElectricityUse.getText().toString());
-        CarbonModel.getInstance().getBill(new_bill_index).setElectricity(electricityUse);
-
-        EditText editNaturalGasUse = (EditText) findViewById(R.id.editTextNaturalGas);
-        Float naturalGasUse = Float.valueOf(editNaturalGasUse.getText().toString());
-        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGas(naturalGasUse);
-
-        EditText editNumberOfPeople = (EditText) findViewById(R.id.editTextNumberOfPeople);
-        int numberOfPeople = Integer.parseInt(editNumberOfPeople.getText().toString());
-        CarbonModel.getInstance().getBill(new_bill_index).setNumberOfPeople(numberOfPeople);
-
-
+    private void addNewBill() {
+        //calculate emissons per day or for entire billing period?
         CarbonModel.getInstance().getBill(new_bill_index).setPeriod();
         Log.d("my app", "Bill period in days: " + CarbonModel.getInstance().getBill(new_bill_index).getPeriod());
+        Log.d("my app", "Bill natural gas ems: " + CarbonModel.getInstance().getBill(new_bill_index).getNaturalGas());
+        Log.d("my app", "Bill electricity ems: " + CarbonModel.getInstance().getBill(new_bill_index).getElectricity());
     }
 
-    private void premakeBill(){
+    private void showEmissions() {
+        final EditText editElectricityUse = (EditText) findViewById(R.id.editTextElectricity);
+        final EditText editNaturalGasUse = (EditText) findViewById(R.id.editTextNaturalGas);
+        final EditText editNumberOfPeople = (EditText) findViewById(R.id.editTextNumberOfPeople);
+        final TextView displayElectricityEmissions = (TextView) findViewById(R.id.textUserElectricityEmissions);
+        final TextView displayNaturalGasEmissions = (TextView) findViewById(R.id.textUserNaturalGasEmissions);
+
+        editNumberOfPeople.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String naturalGasUse = editNaturalGasUse.getText().toString();
+                String electricityUse = editElectricityUse.getText().toString();
+                try {
+                    CarbonModel.getInstance().getBill(new_bill_index).setNumberOfPeople(Integer.parseInt(editNumberOfPeople.getText().toString()));
+                    if (naturalGasUse.length() == 0) {
+                        displayNaturalGasEmissions.setText("");
+                    } else {
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGas(Float.parseFloat((editNaturalGasUse.getText().toString())));
+                        float naturalGas = CarbonModel.getInstance().getBill(new_bill_index).calculateNaturalGasPerPerson();
+                        displayNaturalGasEmissions.setText("" + naturalGas + "kg of CO2");
+                    }
+                } catch (NumberFormatException e) {
+                }
+                try {
+                    if (electricityUse.length() == 0) {
+                        displayElectricityEmissions.setText("");
+                    } else {
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricity(Float.parseFloat((editElectricityUse.getText().toString())));
+                        float electricity = CarbonModel.getInstance().getBill(new_bill_index).calculateElectricityPerPerson();
+                        displayElectricityEmissions.setText("" + electricity + "kg of CO2");
+                    }
+                } catch (NumberFormatException e) {
+                }
+            }
+        });
+    }
+
+    private void premakeBill() {
         new_bill_index = CarbonModel.getInstance().newBillIndex();
         CarbonModel.getInstance().newBill();
     }
 
-    private void setupButtons(){
+    private void setupButtons() {
         final EditText startDate = (EditText) findViewById(R.id.startDate);
 
         startDate.setOnClickListener(new View.OnClickListener() {
@@ -139,36 +178,32 @@ public class AddBillActivity extends AppCompatActivity {
         EditText in_numberOfPeople = (EditText) findViewById(R.id.editTextNumberOfPeople);
 
         //check if input is valid
-        if(dateStartEntered == false || dateEndEntered == false){
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a date." ,Toast.LENGTH_SHORT);
+        if (dateStartEntered == false || dateEndEntered == false) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a date.", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
-        if(in_electricity.getText().toString().trim().isEmpty()){
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter your electricity usage" ,Toast.LENGTH_SHORT);
-            toast.show();
-            return 0;
-        }
-
-        if(in_naturalGas.getText().toString().trim().isEmpty()){
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter your natural gas usage" ,Toast.LENGTH_SHORT);
+        if (in_electricity.getText().toString().trim().isEmpty()) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please enter your electricity usage", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
 
-        if(in_numberOfPeople.getText().toString().trim().isEmpty() || Integer.parseInt(in_numberOfPeople.getText().toString()) == 0){
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter the number of people in your household" ,Toast.LENGTH_SHORT);
+        if (in_naturalGas.getText().toString().trim().isEmpty()) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please enter your natural gas usage", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
 
-        else if (in_dateStart.equals("Select Date") || in_dateEnd.equals("Select Date")) {
+        if (in_numberOfPeople.getText().toString().trim().isEmpty() || Integer.parseInt(in_numberOfPeople.getText().toString()) == 0) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please enter the number of people in your household", Toast.LENGTH_SHORT);
+            toast.show();
+            return 0;
+        } else if (in_dateStart.equals("Select Date") || in_dateEnd.equals("Select Date")) {
             Toast toast = Toast.makeText(getApplicationContext(), "Please select date.", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
-        }
-
-        else {
+        } else {
             return 1;
         }
     }

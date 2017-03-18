@@ -1,20 +1,19 @@
 package sfu.cmpt276.carbontracker.model;
 
 
-
 public class Bill {
     private float electricity;
     private float naturalGas;
     private int numberOfPeople;
-    public Day startDate;
-    public Day endDate;
+    private Day startDate;
+    private Day endDate;
     private int period;
 
-    public Bill(float electricity, float naturalGas, int numberOfPeople, int period){
-        this.electricity=electricity;
-        this.naturalGas=naturalGas;
-        this.numberOfPeople=numberOfPeople;
-        this.period=period;
+    public Bill(float electricity, float naturalGas, int numberOfPeople, int period) {
+        this.electricity = electricity;
+        this.naturalGas = naturalGas;
+        this.numberOfPeople = numberOfPeople;
+        this.period = period;
     }
 
     public float getElectricity() {
@@ -63,5 +62,18 @@ public class Bill {
 
     public void setPeriod() {
         period = endDate.daysFrom(startDate);
+    }
+
+    public float calculateNaturalGasPerPerson() {
+        double naturalGasToKg = 56.1;
+        naturalGas = (float) ((naturalGas / numberOfPeople) * naturalGasToKg);
+        return naturalGas;
+    }
+
+    public float calculateElectricityPerPerson() {
+        double electricityToKg = 9000;
+        double kwhTogwh = 0.000001;
+        electricity = (float) (((electricity / numberOfPeople) * kwhTogwh) * electricityToKg);
+        return electricity;
     }
 }
