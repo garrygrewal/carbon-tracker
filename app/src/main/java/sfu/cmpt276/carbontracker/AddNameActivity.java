@@ -186,8 +186,8 @@ public class AddNameActivity extends AppCompatActivity {
         //delete premade route
         CarbonModel.getInstance().deleteJourney(new_journey_index);
 
-        Intent intent = new Intent();
+        Intent intent = new Intent(AddNameActivity.this, SelectRouteActivity.class);
         setResult(Activity.RESULT_CANCELED, intent);
-        finish();
+        startActivity(intent);
     }
 }

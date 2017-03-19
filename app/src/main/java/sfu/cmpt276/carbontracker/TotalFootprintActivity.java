@@ -90,6 +90,9 @@ public class TotalFootprintActivity extends AppCompatActivity {
     //navigation back button
     @Override
     public void onBackPressed() {
-        finish();
+
+        Intent intent = new Intent(TotalFootprintActivity.this, MainMenuActivity.class);
+        setResult(Activity.RESULT_CANCELED, intent);
+        startActivity(intent);
     }
 }
