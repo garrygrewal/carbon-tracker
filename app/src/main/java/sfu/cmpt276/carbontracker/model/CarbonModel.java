@@ -228,9 +228,13 @@ public class CarbonModel {
         listOfBills.add(new Bill(0,0,0,0));
     }
 
+//    public void newJourney(int in_vehicle, int in_route) {
+//        String temp_name = "temp";
+//        listOfJourneys.add(new Journey(temp_name, getRealVehicleIndex(in_vehicle), getRealRouteIndex(in_route)));
+//    }
     public void newJourney(int in_vehicle, int in_route) {
         String temp_name = "temp";
-        listOfJourneys.add(new Journey(temp_name, getRealVehicleIndex(in_vehicle), getRealRouteIndex(in_route)));
+        listOfJourneys.add(new Journey(temp_name, (in_vehicle), (in_route)));
     }
 
     private int getRealRouteIndex(int indexWithoutAccountingHidden) {
@@ -242,7 +246,7 @@ public class CarbonModel {
         return indexWithoutAccountingHidden;
     }
 
-    private int getRealVehicleIndex(int indexWithoutAccountingHidden) {
+    public int getRealVehicleIndex(int indexWithoutAccountingHidden) {
         for (int i = 0; i < listOfHiddenVehicles.size(); i++) {
             if (listOfHiddenVehicles.get(i) <= indexWithoutAccountingHidden) {
                 indexWithoutAccountingHidden++;

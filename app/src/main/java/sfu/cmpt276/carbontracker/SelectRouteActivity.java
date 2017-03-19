@@ -48,12 +48,12 @@ public class SelectRouteActivity extends AppCompatActivity {
         route_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent get = getIntent();
-                int car_index = get.getIntExtra("car_index", 0);
+                Intent getIntent = getIntent();
+                int idx = getIntent.getIntExtra("car_index", 0);
 
                 Intent intent = new Intent(SelectRouteActivity.this, AddNameActivity.class);
                 intent.putExtra("route_index", position);
-                intent.putExtra("vehicle_index", car_index);
+                intent.putExtra("vehicle_index", idx);
                 startActivity(intent);
             }
         });

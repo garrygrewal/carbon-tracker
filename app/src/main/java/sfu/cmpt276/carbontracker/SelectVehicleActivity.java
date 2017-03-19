@@ -44,7 +44,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
-                intent.putExtra("car_index", position);
+                intent.putExtra("car_index", CarbonModel.getInstance().getRealVehicleIndex(position));
                 startActivity(intent);
             }
         });
@@ -137,9 +137,9 @@ public class SelectVehicleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CarbonModel.getInstance().addVehicle("Walk", "n/a", "n/a", "n/a", "0", "0", "n/a", "n/a", "n/a");
-                int idx = CarbonModel.getInstance().countAllCars();
+                int idx = CarbonModel.getInstance().countAllCars()-1;
                 Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
-                intent.putExtra("index", idx);
+                intent.putExtra("car_index", idx);
                 CarbonModel.getInstance().hideVehicle(idx);
                 startActivity(intent);
             }
@@ -153,9 +153,9 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 // Conversion base : 1 mpg = 6553.55772216 g/km CO2
                 // - Assume 89g of CO2 emissions per km of bus travel.
                 CarbonModel.getInstance().addVehicle("Bus", "n/a", "n/a", "n/a", "73.63548002427", "73.63548002427", "other", "n/a", "n/a");
-                int idx = CarbonModel.getInstance().countAllCars();
+                int idx = CarbonModel.getInstance().countAllCars()-1;
                 Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
-                intent.putExtra("index", idx);
+                intent.putExtra("car_index", idx);
                 CarbonModel.getInstance().hideVehicle(idx);
                 startActivity(intent);
             }
@@ -170,9 +170,9 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 // NEED MORE RESEARCH
                 // PLACEHOLDER CO2----------------------------------------------------------------------------------------------------------------------------------------------------------
                 CarbonModel.getInstance().addVehicle("SkyTrain", "n/a", "n/a", "n/a", "57.89", "57.89", "other", "n/a", "n/a");
-                int idx = CarbonModel.getInstance().countAllCars();
+                int idx = CarbonModel.getInstance().countAllCars()-1;
                 Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
-                intent.putExtra("index", idx);
+                intent.putExtra("car_index", idx);
                 CarbonModel.getInstance().hideVehicle(idx);
                 startActivity(intent);
             }

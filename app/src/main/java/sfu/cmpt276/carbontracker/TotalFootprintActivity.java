@@ -63,6 +63,7 @@ public class TotalFootprintActivity extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.setHeaderTitle("Journey Options");
+        menu.add(0, v.getId(), 0, "Edit");
         menu.add(0, v.getId(), 0, "Delete");
     }
 
@@ -70,6 +71,12 @@ public class TotalFootprintActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getTitle().toString()) {
+            case "Edit":
+                // sends relevant information to AddVehicleActivity
+                Intent intent = new Intent(TotalFootprintActivity.this, SelectVehicleActivity.class);
+                intent.putExtra("journey_index", info.position);
+                startActivity(intent);
+                break;
             case "Delete":
                 CarbonModel.getInstance().deleteJourney(info.position);
                 listJourneys();
