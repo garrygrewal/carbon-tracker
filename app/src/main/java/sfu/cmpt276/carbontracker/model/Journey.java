@@ -57,7 +57,7 @@ public class Journey {
     }
 
     public String getDate() {
-        return date.getString();
+        return this.date.getString();
     }
 
     public int getVehicleIndex() {

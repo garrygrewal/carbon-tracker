@@ -410,4 +410,14 @@ public class CarbonModel {
     public String getJourneyVehicleName(int journeyIndex) {
         return listOfInputVehicles.get((listOfJourneys.get(journeyIndex).getVehicleIndex())).getName();
     }
+
+    public String getJourneyDate(int journeyIndex) {
+        return (listOfJourneys.get(journeyIndex)).getDate();
+    }
+
+    public void editJourney(int index, int vehicle_index, int route_index) {
+        listOfJourneys.add(new Journey(listOfJourneys.get(index).getJourneyName(), vehicle_index, route_index));
+        listOfJourneys.remove(index);
+
+    }
 }

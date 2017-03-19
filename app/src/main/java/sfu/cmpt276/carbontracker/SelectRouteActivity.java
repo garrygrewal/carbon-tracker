@@ -54,6 +54,8 @@ public class SelectRouteActivity extends AppCompatActivity {
                 Intent intent = new Intent(SelectRouteActivity.this, AddNameActivity.class);
                 intent.putExtra("route_index", position);
                 intent.putExtra("vehicle_index", idx);
+                Intent getExtra = getIntent();
+                intent.putExtra("journey_index", getExtra.getIntExtra("journey_index", -1));
                 startActivity(intent);
             }
         });
@@ -76,7 +78,7 @@ public class SelectRouteActivity extends AppCompatActivity {
         switch (item.getTitle().toString()) {
             case "Edit":
                 // sends relevant information to AddRouteActivity
-                Route clicked_route = CarbonModel.getInstance().getRoute(info.position);
+                //Route clicked_route = CarbonModel.getInstance().getRoute(info.position);
                 index = info.position;
                 Intent intent = new Intent(SelectRouteActivity.this, AddRouteActivity.class);
                 intent.putExtra("name", CarbonModel.getInstance().getRouteName(info.position));

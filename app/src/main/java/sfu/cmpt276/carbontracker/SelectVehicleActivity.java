@@ -45,6 +45,8 @@ public class SelectVehicleActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
                 intent.putExtra("car_index", CarbonModel.getInstance().getRealVehicleIndex(position));
+                Intent getExtra = getIntent();
+                intent.putExtra("journey_index", getExtra.getIntExtra("journey_index", -1));
                 startActivity(intent);
             }
         });
@@ -141,6 +143,8 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
                 intent.putExtra("car_index", idx);
                 CarbonModel.getInstance().hideVehicle(idx);
+                Intent getExtra = getIntent();
+                intent.putExtra("journey_index", getExtra.getIntExtra("journey_index", -1));
                 startActivity(intent);
             }
         });
@@ -157,6 +161,8 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
                 intent.putExtra("car_index", idx);
                 CarbonModel.getInstance().hideVehicle(idx);
+                Intent getExtra = getIntent();
+                intent.putExtra("journey_index", getExtra.getIntExtra("journey_index", -1));
                 startActivity(intent);
             }
         });
@@ -174,6 +180,8 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
                 intent.putExtra("car_index", idx);
                 CarbonModel.getInstance().hideVehicle(idx);
+                Intent getExtra = getIntent();
+                intent.putExtra("journey_index", getExtra.getIntExtra("journey_index", -1));
                 startActivity(intent);
             }
         });

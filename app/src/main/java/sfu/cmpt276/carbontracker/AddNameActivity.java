@@ -23,6 +23,7 @@ public class AddNameActivity extends AppCompatActivity {
 
     private int new_journey_index;
     //boolean dateEntered = false;
+    private int journey_index; // for editing
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,6 @@ public class AddNameActivity extends AppCompatActivity {
         EditText in_name = (EditText) findViewById(R.id.journeyName);
         String name = in_name.getText().toString();
         CarbonModel.getInstance().addJourneyName(new_journey_index, name);
-
     }
 
     private void showEmissions() {
@@ -60,16 +60,22 @@ public class AddNameActivity extends AppCompatActivity {
         hwy_emis.setText(Double.toString(journey.getCo2PerHighway()));
         TextView total_emis = (TextView) findViewById(R.id.total_emissions);
         total_emis.setText(Double.toString(journey.getTotalCO2Emission()));
-
     }
 
 
     private void premakeJourney() {
         Intent intent = getIntent();
+        journey_index = intent.getIntExtra("journey_index", -1);
+        if (journey_index != -1) {
+            EditText name = (EditText) findViewById(R.id.journeyName);
+            name.setText(CarbonModel.getInstance().getJourneyName(journey_index));
+            new_journey_index = journey_index;
+        }
         int route_index = intent.getIntExtra("route_index", 0);
         int vehicle_index = intent.getIntExtra("vehicle_index", 0);
         CarbonModel.getInstance().newJourney(vehicle_index, route_index);
         new_journey_index = CarbonModel.getInstance().newJourneyIndex();
+
     }
 
     private void setupButtons() {
@@ -79,9 +85,15 @@ public class AddNameActivity extends AppCompatActivity {
         final int mYear = c.get(Calendar.YEAR); // current year
         final int mMonth = c.get(Calendar.MONTH); // current month
         final int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
-        //set current date as default
-        CarbonModel.getInstance().getJourney(new_journey_index).setDate(mYear, mMonth+1, mDay);
-        date.setText(mDay + "/" + (mMonth + 1) + "/" + mYear);
+
+        if (journey_index != -1) {
+            date.setText(CarbonModel.getInstance().getJourneyDate(journey_index));
+        }
+        else {
+            //set current date as default
+            CarbonModel.getInstance().getJourney(new_journey_index).setDate(mYear, mMonth+1, mDay);
+            date.setText(mDay + "/" + (mMonth + 1) + "/" + mYear);
+        }
 
         date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +119,14 @@ public class AddNameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (checkInput() == 0) {
                     setResult(Activity.RESULT_CANCELED);
-                } else {
+                } else if (journey_index != -1) {
+                    addName();
+
+                    CarbonModel.getInstance().deleteJourney(journey_index);
+                    Intent intent = new Intent(AddNameActivity.this, TotalFootprintActivity.class);
+                    startActivity(intent);
+                }
+                else {
                     addName();
 
                     Intent intent = new Intent(AddNameActivity.this, MainMenuActivity.class);
@@ -167,8 +186,8 @@ public class AddNameActivity extends AppCompatActivity {
         //delete premade route
         CarbonModel.getInstance().deleteJourney(new_journey_index);
 
-        Intent intent = new Intent();
+        Intent intent = new Intent(AddNameActivity.this, SelectRouteActivity.class);
         setResult(Activity.RESULT_CANCELED, intent);
-        finish();
+        startActivity(intent);
     }
 }
