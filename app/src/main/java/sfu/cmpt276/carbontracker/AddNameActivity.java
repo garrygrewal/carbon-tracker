@@ -22,7 +22,7 @@ import sfu.cmpt276.carbontracker.model.Journey;
 public class AddNameActivity extends AppCompatActivity {
 
     private int new_journey_index;
-    boolean dateEntered = false;
+    //boolean dateEntered = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,34 +65,38 @@ public class AddNameActivity extends AppCompatActivity {
 
 
     private void premakeJourney() {
-        new_journey_index = CarbonModel.getInstance().newJourneyIndex();
         Intent intent = getIntent();
         int route_index = intent.getIntExtra("route_index", 0);
         int vehicle_index = intent.getIntExtra("vehicle_index", 0);
         CarbonModel.getInstance().newJourney(vehicle_index, route_index);
+        new_journey_index = CarbonModel.getInstance().newJourneyIndex();
     }
 
     private void setupButtons() {
         //date picker
         final EditText date = (EditText) findViewById(R.id.date);
+        final Calendar c = Calendar.getInstance();
+        final int mYear = c.get(Calendar.YEAR); // current year
+        final int mMonth = c.get(Calendar.MONTH); // current month
+        final int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+        //set current date as default
+        CarbonModel.getInstance().getJourney(new_journey_index).setDate(mYear, mMonth+1, mDay);
+        date.setText(mDay + "/" + (mMonth + 1) + "/" + mYear);
+
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar c = Calendar.getInstance();
-                int mYear = c.get(Calendar.YEAR); // current year
-                int mMonth = c.get(Calendar.MONTH); // current month
-                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
                 // date picker dialog
                 Dialog datePickerDialog = new DatePickerDialog(AddNameActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         // set day of month , month and year value in the edit text
                         date.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                        CarbonModel.getInstance().getJourney(new_journey_index).setDate(year, monthOfYear, dayOfMonth);
+                        CarbonModel.getInstance().getJourney(new_journey_index).setDate(year, monthOfYear+1, dayOfMonth);
                     }
                 }, mYear, mMonth, mDay);
                 datePickerDialog.show();
-                dateEntered = true;
+                //dateEntered = true;
             }
         });
 
@@ -133,12 +137,13 @@ public class AddNameActivity extends AppCompatActivity {
         EditText in_date = (EditText) findViewById(R.id.date);
         String name = in_name.getText().toString();
         //check if input is valid
-        //
+        /*
         if(dateEntered == false){
         Toast toast = Toast.makeText(getApplicationContext(), "Please enter a date." ,Toast.LENGTH_SHORT);
         toast.show();
         return 0;
-         }
+        }
+        */
 
         if (name.equals(null) || name.replaceAll("\\s+", "").equals("")) {
             Toast toast = Toast.makeText(getApplicationContext(), "Journey name cannot be empty.", Toast.LENGTH_SHORT);

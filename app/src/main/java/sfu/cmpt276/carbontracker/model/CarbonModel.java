@@ -24,6 +24,7 @@ public class CarbonModel {
     private final double GASOLINE_CO2_EMISSION = 8.89;
     private final double ELECTRIC_CO2_EMISSION = 0;
     private final double DIESEL_CO2_EMISSION = 10.16;
+    private final double CO2_EMISSION = 1;
     private final double kmToMiles = 0.621371;
 
 
@@ -90,6 +91,10 @@ public class CarbonModel {
 
     public int countCars() {
         return listOfInputVehicles.size() - listOfHiddenVehicles.size();
+    }
+
+    public int countAllCars() {
+        return listOfInputVehicles.size();
     }
 
     //for integrating with ArrayAdapter
@@ -223,9 +228,13 @@ public class CarbonModel {
         listOfBills.add(new Bill(0,0,0,0));
     }
 
+//    public void newJourney(int in_vehicle, int in_route) {
+//        String temp_name = "temp";
+//        listOfJourneys.add(new Journey(temp_name, getRealVehicleIndex(in_vehicle), getRealRouteIndex(in_route)));
+//    }
     public void newJourney(int in_vehicle, int in_route) {
         String temp_name = "temp";
-        listOfJourneys.add(new Journey(temp_name, getRealVehicleIndex(in_vehicle), getRealRouteIndex(in_route)));
+        listOfJourneys.add(new Journey(temp_name, (in_vehicle), (in_route)));
     }
 
     private int getRealRouteIndex(int indexWithoutAccountingHidden) {
@@ -237,7 +246,7 @@ public class CarbonModel {
         return indexWithoutAccountingHidden;
     }
 
-    private int getRealVehicleIndex(int indexWithoutAccountingHidden) {
+    public int getRealVehicleIndex(int indexWithoutAccountingHidden) {
         for (int i = 0; i < listOfHiddenVehicles.size(); i++) {
             if (listOfHiddenVehicles.get(i) <= indexWithoutAccountingHidden) {
                 indexWithoutAccountingHidden++;
@@ -258,6 +267,10 @@ public class CarbonModel {
             co2EmittedPerGallonOfFuel = ELECTRIC_CO2_EMISSION;
         } else if (listOfInputVehicles.get(journey.getVehicleIndex()).getFuelType().toLowerCase().contains("diesel")) {
             co2EmittedPerGallonOfFuel = DIESEL_CO2_EMISSION;
+        } else if (listOfInputVehicles.get(journey.getVehicleIndex()).getFuelType().toLowerCase().contains("n/a")) {
+            co2EmittedPerGallonOfFuel = ELECTRIC_CO2_EMISSION;
+        } else if (listOfInputVehicles.get(journey.getVehicleIndex()).getFuelType().toLowerCase().contains("other")) {
+            co2EmittedPerGallonOfFuel = CO2_EMISSION;
         } else {
             throw new IllegalArgumentException(); //crash
         }

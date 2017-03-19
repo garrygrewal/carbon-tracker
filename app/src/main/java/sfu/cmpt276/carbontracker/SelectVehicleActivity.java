@@ -44,7 +44,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
-                intent.putExtra("car_index", position);
+                intent.putExtra("car_index", CarbonModel.getInstance().getRealVehicleIndex(position));
                 startActivity(intent);
             }
         });
@@ -68,9 +68,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 // sends relevant information to AddVehicleActivity
                 index = info.position;
                 Intent intent = new Intent(SelectVehicleActivity.this, AddVehicleActivity.class);
-
                 intent.putExtra("index", index);
-
                 startActivityForResult(intent, 1100);
                 break;
             case "Delete":
@@ -108,7 +106,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
                     break;
                 } else
                     break;
-                //edit clicked vehicle
+            //edit clicked vehicle
             case 1100:
                 if (resultCode == Activity.RESULT_OK) {
                     Vehicle edited_vehicle = new Vehicle();
@@ -133,6 +131,54 @@ public class SelectVehicleActivity extends AppCompatActivity {
     }
 
     private void setupButtons() {
+        // walk/bike button
+        Button walk = (Button) findViewById(R.id.buttonWalk);
+        walk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CarbonModel.getInstance().addVehicle("Walk", "n/a", "n/a", "n/a", "0", "0", "n/a", "n/a", "n/a");
+                int idx = CarbonModel.getInstance().countAllCars()-1;
+                Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
+                intent.putExtra("car_index", idx);
+                CarbonModel.getInstance().hideVehicle(idx);
+                startActivity(intent);
+            }
+        });
+
+        // bus button
+        Button bus = (Button) findViewById(R.id.buttonBus);
+        bus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Conversion base : 1 mpg = 6553.55772216 g/km CO2
+                // - Assume 89g of CO2 emissions per km of bus travel.
+                CarbonModel.getInstance().addVehicle("Bus", "n/a", "n/a", "n/a", "73.63548002427", "73.63548002427", "other", "n/a", "n/a");
+                int idx = CarbonModel.getInstance().countAllCars()-1;
+                Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
+                intent.putExtra("car_index", idx);
+                CarbonModel.getInstance().hideVehicle(idx);
+                startActivity(intent);
+            }
+        });
+
+        // skytrain button
+        Button skytrain = (Button) findViewById(R.id.buttonSkytrain);
+        skytrain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // - Find some reasonable number of CO2 per km of Skytrain travel.
+                // NEED MORE RESEARCH
+                // PLACEHOLDER CO2----------------------------------------------------------------------------------------------------------------------------------------------------------
+                CarbonModel.getInstance().addVehicle("SkyTrain", "n/a", "n/a", "n/a", "57.89", "57.89", "other", "n/a", "n/a");
+                int idx = CarbonModel.getInstance().countAllCars()-1;
+                Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
+                intent.putExtra("car_index", idx);
+                CarbonModel.getInstance().hideVehicle(idx);
+                startActivity(intent);
+            }
+        });
+
+
         //add new vehicle button
         Button btn_new = (Button) findViewById(R.id.buttonAddVehicle);
         btn_new.setOnClickListener(new View.OnClickListener() {
