@@ -1,18 +1,28 @@
 package sfu.cmpt276.carbontracker;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import sfu.cmpt276.carbontracker.model.Bill;
 import sfu.cmpt276.carbontracker.model.CarbonModel;
+import sfu.cmpt276.carbontracker.model.Vehicle;
 
 public class TotalFootprintActivity extends AppCompatActivity {
 
@@ -22,6 +32,7 @@ public class TotalFootprintActivity extends AppCompatActivity {
         setContentView(R.layout.activity_total_footprint);
         setupButtons();
         listJourneys();
+        listBills();
     }
 
     private void listJourneys() {
@@ -33,6 +44,24 @@ public class TotalFootprintActivity extends AppCompatActivity {
 
         //Context Menu for long press
         registerForContextMenu(journey_list);
+    }
+
+    private void listBills(){
+        ListView listViewBills = (ListView) findViewById(R.id.listViewBills);
+        ArrayList billList = getBillList();
+
+        listViewBills.setAdapter(new BillAdapter(this, billList));
+
+        //context menu for long press here
+    }
+
+    public ArrayList getBillList() {
+        ArrayList<Bill> result = new ArrayList<Bill>();
+        for (int i=0; i<CarbonModel.getInstance().countBills(); i++) {
+            result.add(CarbonModel.getInstance().getBill(i));
+        }
+
+        return result;
     }
 
     private void setupButtons() {
@@ -85,6 +114,65 @@ public class TotalFootprintActivity extends AppCompatActivity {
                 return false;
         }
         return true;
+    }
+
+
+    public class BillAdapter extends BaseAdapter {
+        private ArrayList<Bill> listData;
+        private LayoutInflater layoutInflater;
+
+        public BillAdapter(Context aContext, ArrayList<Bill> listData) {
+            this.listData = listData;
+            layoutInflater = LayoutInflater.from(aContext);
+        }
+
+        @Override
+        public int getCount() {
+            return CarbonModel.getInstance().countBills();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return CarbonModel.getInstance().getBill(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            TotalFootprintActivity.BillAdapter.ViewHolder holder;
+            if (convertView == null) {
+                convertView = layoutInflater.inflate(R.layout.list_bill, null);
+                holder = new TotalFootprintActivity.BillAdapter.ViewHolder();
+                holder.name = (TextView) convertView.findViewById(R.id.bill_type);
+                holder.details = (TextView) convertView.findViewById(R.id.bill_details);
+                holder.period = (TextView) convertView.findViewById(R.id.bill_period);
+                convertView.setTag(holder);
+            } else {
+                holder = (TotalFootprintActivity.BillAdapter.ViewHolder) convertView.getTag();
+            }
+
+            Bill bill = listData.get(position);
+            holder.name.setText(bill.getType());
+            if(bill.getType().equals("Electricity")){
+                holder.details.setText(bill.getElectricity()+" kg of CO2, From: " + bill.getStartDate().getString() + ", To: " + bill.getEndDate().getString());
+            }
+            else if(bill.getType().equals("Natural Gas")){
+                holder.details.setText(bill.getNaturalGas()+" kg of CO2, From: " + bill.getStartDate().getString() + ", To: " + bill.getEndDate().getString());
+
+            }
+            holder.period.setText("Total Days: " + bill.getPeriod());
+            return convertView;
+        }
+
+        class ViewHolder {
+            TextView name;
+            TextView details;
+            TextView period;
+        }
     }
 
     //navigation back button

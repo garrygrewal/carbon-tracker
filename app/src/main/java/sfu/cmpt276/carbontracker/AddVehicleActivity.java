@@ -52,7 +52,7 @@ public class AddVehicleActivity extends AppCompatActivity {
 
         if ((index >= 0)) {
             String name = CarbonModel.getInstance().getVehicleName(index);
-            EditText input_name = (EditText) findViewById(R.id.car_name);
+            EditText input_name = (EditText) findViewById(R.id.bill_type);
             input_name.setText(name);
             make = CarbonModel.getInstance().getVehicleMake(index);
             model = CarbonModel.getInstance().getVehicleModel(index);
@@ -162,7 +162,7 @@ public class AddVehicleActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Vehicle vehicle = outputCars.get(position);
-                EditText carNameText = (EditText) findViewById(R.id.car_name);
+                EditText carNameText = (EditText) findViewById(R.id.bill_type);
                 vehicle.setName(carNameText.getText().toString());
 
                 if (checkInput(vehicle.getName()) == 0) {

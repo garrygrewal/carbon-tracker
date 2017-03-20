@@ -11,17 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
@@ -254,7 +248,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
             if (convertView == null) {
                 convertView = layoutInflater.inflate(R.layout.list_vehicle, null);
                 holder = new ViewHolder();
-                holder.name = (TextView) convertView.findViewById(R.id.car_name);
+                holder.name = (TextView) convertView.findViewById(R.id.bill_type);
                 holder.details = (TextView) convertView.findViewById(R.id.car_details);
                 holder.mileage = (TextView) convertView.findViewById(R.id.car_mileage);
                 convertView.setTag(holder);

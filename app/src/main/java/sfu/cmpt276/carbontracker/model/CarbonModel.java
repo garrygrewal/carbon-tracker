@@ -89,6 +89,10 @@ public class CarbonModel {
         listOfInputVehicles.add(getRealVehicleIndex(index), vehicle);
     }
 
+    public int countBills(){
+        return listOfBills.size();
+    }
+
     public int countCars() {
         return listOfInputVehicles.size() - listOfHiddenVehicles.size();
     }
