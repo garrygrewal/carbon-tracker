@@ -3,30 +3,22 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="2dp" >
+    android:padding="8dp" >
 
     <TextView
-        android:id="@+id/route_name"
+        android:id="@+id/car_model"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/car_name"
         android:layout_marginTop="2dp"
         android:textColor="#343434"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/route_city"
+        android:id="@+id/car_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/route_name"
-        android:layout_marginTop="2dp"
-        android:textColor="#343434"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/route_hwy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/route_city"
+        android:layout_below="@id/car_model"
         android:layout_marginBottom="3dp"
         android:textColor="#343434"
         android:textSize="14sp" />
