@@ -13,8 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
@@ -34,6 +38,7 @@ public class AddBillActivity extends AppCompatActivity {
         setupButtons();
         premakeBill();
         showEmissions();
+        showRadioButtons();
     }
 
     private void premakeBill() {
@@ -134,7 +139,8 @@ public class AddBillActivity extends AppCompatActivity {
                     setResult(Activity.RESULT_CANCELED);
                 } else {
                     CarbonModel.getInstance().getBill(new_bill_index).setPeriod();
-
+                    Toast toast = Toast.makeText(getApplicationContext(), "Bill added to Carbon Footprint", Toast.LENGTH_SHORT);
+                    toast.show();
                     Intent intent = new Intent(AddBillActivity.this, MainMenuActivity.class);
                     startActivity(intent);
                 }
@@ -166,17 +172,18 @@ public class AddBillActivity extends AppCompatActivity {
 
         //check if input is valid
         if (!dateStartEntered || !dateEndEntered) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a date.", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a date", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
-        if (in_electricity.getText().toString().trim().isEmpty()) {
+
+        if(in_electricity.getVisibility() == View.VISIBLE && in_electricity.getText().toString().trim().isEmpty()){
             Toast toast = Toast.makeText(getApplicationContext(), "Please enter your electricity usage", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
 
-        if (in_naturalGas.getText().toString().trim().isEmpty()) {
+        if(in_naturalGas.getVisibility() == View.VISIBLE && in_naturalGas.getText().toString().trim().isEmpty()){
             Toast toast = Toast.makeText(getApplicationContext(), "Please enter your natural gas usage", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
@@ -187,7 +194,7 @@ public class AddBillActivity extends AppCompatActivity {
             toast.show();
             return 0;
         } else if (in_dateStart.equals("Select Date") || in_dateEnd.equals("Select Date")) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please select date.", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), "Please select date", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         } else {
@@ -203,6 +210,63 @@ public class AddBillActivity extends AppCompatActivity {
         Intent intent = new Intent();
         setResult(Activity.RESULT_CANCELED, intent);
         finish();
+    }
+
+    private void showRadioButtons(){
+        final TextView emissionsNaturalGas = (TextView) findViewById(R.id.textNaturalGasEmission);
+        final TextView emissionsElectricity = (TextView) findViewById(R.id.textElectricityEmission);
+        final EditText editNaturalGasUse = (EditText) findViewById(R.id.editTextNaturalGas);
+        final TextView textNaturalGas = (TextView) findViewById(R.id.textNaturalGas);
+        final EditText editElectricityUse = (EditText) findViewById(R.id.editTextElectricity);
+        final TextView textElectricity = (TextView) findViewById(R.id.textElectricity);
+        final TextView displayElectricityEmissions = (TextView) findViewById(R.id.textUserElectricityEmissions);
+        final TextView displayNaturalGasEmissions = (TextView) findViewById(R.id.textUserNaturalGasEmissions);
+
+        RadioGroup group = (RadioGroup) findViewById(R.id.radioGroupType);
+
+
+        String []billsType = getResources().getStringArray(R.array.type_bill);
+
+        for(int i = 0; i < billsType.length; i++){
+            final String type = billsType[i];
+
+            RadioButton button = new RadioButton(this);
+            button.setText(type);
+            button.setPadding(0,0,100,0);
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CarbonModel.getInstance().getBill(new_bill_index).setType(type);
+                    if(type.equals("Electricity")){
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGas(0);
+
+                        displayElectricityEmissions.setVisibility(TextView.VISIBLE);
+                        displayNaturalGasEmissions.setVisibility(TextView.INVISIBLE);
+                        textElectricity.setVisibility(TextView.VISIBLE);
+                        editElectricityUse.setVisibility(EditText.VISIBLE);
+                        emissionsElectricity.setVisibility(TextView.VISIBLE);
+                        textNaturalGas.setVisibility(TextView.INVISIBLE);
+                        editNaturalGasUse.setVisibility(EditText.INVISIBLE);
+                        emissionsNaturalGas.setVisibility(TextView.INVISIBLE);
+                    }
+                    else if(type.equals("Natural Gas")){
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricity(0);
+
+                        displayElectricityEmissions.setVisibility(TextView.INVISIBLE);
+                        displayNaturalGasEmissions.setVisibility(TextView.VISIBLE);
+                        textNaturalGas.setVisibility(TextView.VISIBLE);
+                        editNaturalGasUse.setVisibility(EditText.VISIBLE);
+                        emissionsNaturalGas.setVisibility(TextView.VISIBLE);
+                        emissionsElectricity.setVisibility(TextView.INVISIBLE);
+                        textElectricity.setVisibility(TextView.INVISIBLE);
+                        editElectricityUse.setVisibility(EditText.INVISIBLE);
+                    }
+                }
+            });
+
+            group.addView(button);
+        }
     }
 
     private void showEmissions() {
