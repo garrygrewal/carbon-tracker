@@ -34,18 +34,6 @@ public class AddBillActivity extends AppCompatActivity {
         setupButtons();
         premakeBill();
         showEmissions();
-        showTotalDays();
-    }
-
-    private void showTotalDays(){
-        final TextView totalDays = (TextView) findViewById(R.id.textDays);
-
-        if(dateStartEntered && dateEndEntered){
-            CarbonModel.getInstance().getBill(new_bill_index).setPeriod();
-            String period = Integer.toString(CarbonModel.getInstance().getBill(new_bill_index).getPeriod());
-            Log.d("my app", "Bill period in days: " + CarbonModel.getInstance().getBill(new_bill_index).getPeriod());
-            totalDays.setText(period);
-        }
     }
 
     private void premakeBill() {
@@ -137,6 +125,7 @@ public class AddBillActivity extends AppCompatActivity {
             }
         });
 
+
         Button btn_ok = (Button) findViewById(R.id.buttonAddBill);
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +133,8 @@ public class AddBillActivity extends AppCompatActivity {
                 if (checkInput() == 0) {
                     setResult(Activity.RESULT_CANCELED);
                 } else {
+                    CarbonModel.getInstance().getBill(new_bill_index).setPeriod();
+
                     Intent intent = new Intent(AddBillActivity.this, MainMenuActivity.class);
                     startActivity(intent);
                 }
@@ -163,6 +154,7 @@ public class AddBillActivity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
     private int checkInput() {
@@ -173,7 +165,7 @@ public class AddBillActivity extends AppCompatActivity {
         EditText in_numberOfPeople = (EditText) findViewById(R.id.editTextNumberOfPeople);
 
         //check if input is valid
-        if (dateStartEntered == false || dateEndEntered == false) {
+        if (!dateStartEntered || !dateEndEntered) {
             Toast toast = Toast.makeText(getApplicationContext(), "Please enter a date.", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
