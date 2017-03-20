@@ -3,31 +3,42 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="5dip" >
+    android:padding="10dp" >
 
     <TextView
         android:id="@+id/car_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:typeface="sans" />
+        android:layout_marginTop="2dp"
+        android:typeface="sans"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/car_model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/car_name"
+        android:layout_marginTop="2dp"
+        android:textColor="#343434"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/car_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/car_name"
-        android:layout_marginTop="5dip"
+        android:layout_below="@id/car_model"
+        android:layout_marginBottom="5dp"
         android:textColor="#343434"
         android:textSize="12sp" />
 
     <TextView
-        android:id="@+id/car_mileage"
+        android:id="@+id/car_mpg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/car_details"
-        android:layout_alignBottom="@+id/car_details"
+        android:layout_alignBottom="@+id/car_name"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
         android:textColor="#343434"
-        android:textSize="12sp" />
+        android:textSize="14sp" />
 </RelativeLayout>

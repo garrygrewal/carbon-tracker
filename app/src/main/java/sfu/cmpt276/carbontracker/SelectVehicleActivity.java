@@ -11,17 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
@@ -114,7 +108,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
                     break;
                 } else
                     break;
-            //edit clicked vehicle
+                //edit clicked vehicle
             case 1100:
                 if (resultCode == Activity.RESULT_OK) {
                     Vehicle edited_vehicle = new Vehicle();
@@ -215,16 +209,15 @@ public class SelectVehicleActivity extends AppCompatActivity {
         });
     }
 
-    public ArrayList getVehicleList() {
+    private ArrayList getVehicleList() {
         ArrayList<Vehicle> result = new ArrayList<Vehicle>();
         for (int i=0; i<CarbonModel.getInstance().countCars(); i++) {
             result.add(CarbonModel.getInstance().getVehicle(i));
         }
-
         return result;
     }
 
-    public class VehicleAdapter extends BaseAdapter {
+    private class VehicleAdapter extends BaseAdapter {
         private ArrayList<Vehicle> listData;
         private LayoutInflater layoutInflater;
 
@@ -235,12 +228,12 @@ public class SelectVehicleActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return CarbonModel.getInstance().countCars();
+            return listData.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return CarbonModel.getInstance().getVehicle(position);
+            return listData.get(position);
         }
 
         @Override
@@ -255,8 +248,9 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 convertView = layoutInflater.inflate(R.layout.list_vehicle, null);
                 holder = new ViewHolder();
                 holder.name = (TextView) convertView.findViewById(R.id.car_name);
+                holder.model = (TextView) convertView.findViewById(R.id.car_model);
                 holder.details = (TextView) convertView.findViewById(R.id.car_details);
-                holder.mileage = (TextView) convertView.findViewById(R.id.car_mileage);
+                holder.mpg = (TextView) convertView.findViewById(R.id.car_mpg);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
@@ -264,15 +258,17 @@ public class SelectVehicleActivity extends AppCompatActivity {
 
             Vehicle vehicle = listData.get(position);
             holder.name.setText(vehicle.getName());
-            holder.details.setText(vehicle.getMake() + ", " + vehicle.getModel() + ", " + vehicle.getYear() + ", " + vehicle.getFuelType() + ", " + vehicle.getTransmission() + ", " + vehicle.getEngineDisplacement());
-            holder.mileage.setText(vehicle.getCity() + " City, " + vehicle.getHighway() + " Highway");
+            holder.model.setText(vehicle.getYear() + " " + vehicle.getMake() + " " + vehicle.getModel());
+            holder.details.setText(vehicle.getEngineDisplacement() + " " + vehicle.getTransmission() + ", " + vehicle.getFuelType());
+            holder.mpg.setText(vehicle.getCity() + " City MPG, " + vehicle.getHighway() + " Highway MPG");
             return convertView;
         }
 
         class ViewHolder {
             TextView name;
+            TextView model;
             TextView details;
-            TextView mileage;
+            TextView mpg;
         }
     }
 
