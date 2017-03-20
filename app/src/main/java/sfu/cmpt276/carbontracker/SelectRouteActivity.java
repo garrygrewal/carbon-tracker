@@ -1,19 +1,27 @@
 package sfu.cmpt276.carbontracker;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 import sfu.cmpt276.carbontracker.model.Route;
+import sfu.cmpt276.carbontracker.model.Vehicle;
 
 public class SelectRouteActivity extends AppCompatActivity {
 
@@ -32,11 +40,11 @@ public class SelectRouteActivity extends AppCompatActivity {
 
     //listView existing routes
     private void listRoutes() {
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.list_route, CarbonModel.getInstance().getRouteInfo());
         ListView route_list = (ListView) findViewById(R.id.listViewRoutes);
 
         //List Adapter
-        route_list.setAdapter(adapter);
+        ArrayList routeList = getRouteList();
+        route_list.setAdapter(new RouteAdapter(this, routeList));
 
         //Context Menu for long press
         registerForContextMenu(route_list);
@@ -155,6 +163,65 @@ public class SelectRouteActivity extends AppCompatActivity {
                 } else
                     break;
             }
+        }
+    }
+    private ArrayList getRouteList() {
+        ArrayList<Route> result = new ArrayList<Route>();
+        for (int i=0; i<CarbonModel.getInstance().countRoutes(); i++) {
+            result.add(CarbonModel.getInstance().getRoute(i));
+        }
+        return result;
+    }
+
+    private class RouteAdapter extends BaseAdapter {
+        private ArrayList<Route> listData;
+        private LayoutInflater layoutInflater;
+
+        public RouteAdapter(Context aContext, ArrayList<Route> listData) {
+            this.listData = listData;
+            layoutInflater = LayoutInflater.from(aContext);
+        }
+
+        @Override
+        public int getCount() {
+            return listData.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return listData.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            SelectRouteActivity.RouteAdapter.ViewHolder holder;
+            if (convertView == null) {
+                convertView = layoutInflater.inflate(R.layout.list_route, null);
+                holder = new SelectRouteActivity.RouteAdapter.ViewHolder();
+                holder.name = (TextView) convertView.findViewById(R.id.route_name);
+                holder.city = (TextView) convertView.findViewById(R.id.route_city);
+                holder.hwy = (TextView) convertView.findViewById(R.id.route_hwy);
+                convertView.setTag(holder);
+            } else {
+                holder = (SelectRouteActivity.RouteAdapter.ViewHolder) convertView.getTag();
+            }
+
+            Route route = listData.get(position);
+            holder.name.setText(route.getName());
+            holder.city.setText(route.getCity() + " City Distance");
+            holder.hwy.setText(route.getHwy() + " Highway Distance");
+            return convertView;
+        }
+
+        class ViewHolder {
+            TextView name;
+            TextView city;
+            TextView hwy;
         }
     }
 

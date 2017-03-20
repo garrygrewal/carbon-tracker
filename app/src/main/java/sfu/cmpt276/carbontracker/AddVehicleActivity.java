@@ -5,14 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -147,12 +151,12 @@ public class AddVehicleActivity extends AppCompatActivity {
     }
 
     public void populateListView() {
+        ListView list = (ListView) findViewById(R.id.listviewCars);
+
         outputCars = CarbonModel.getInstance().getRemainingCars(make, model, year);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, CarbonModel.getInstance().getRemainingCarInfo(outputCars));
+        list.setAdapter(new VehicleAdapter(this, (new ArrayList<>(outputCars))));
 
-        ListView list = (ListView) findViewById(R.id.listviewCars);
-        list.setAdapter(adapter);
     }
 
     public void registerClickCallBackForList() {
@@ -212,6 +216,55 @@ public class AddVehicleActivity extends AppCompatActivity {
 
     public static Intent makeIntent(Context context) {
         return new Intent(context, AddVehicleActivity.class);
+    }
+
+    private class VehicleAdapter extends BaseAdapter {
+        private ArrayList<Vehicle> listData;
+        private LayoutInflater layoutInflater;
+
+        public VehicleAdapter(Context aContext, ArrayList<Vehicle> listData) {
+            this.listData = listData;
+            layoutInflater = LayoutInflater.from(aContext);
+        }
+
+        @Override
+        public int getCount() {
+            return listData.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return listData.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            AddVehicleActivity.VehicleAdapter.ViewHolder holder;
+            if (convertView == null) {
+                convertView = layoutInflater.inflate(R.layout.list_add_vehicle, null);
+                holder = new AddVehicleActivity.VehicleAdapter.ViewHolder();
+                holder.model = (TextView) convertView.findViewById(R.id.car_model);
+                holder.details = (TextView) convertView.findViewById(R.id.car_details);
+                convertView.setTag(holder);
+            } else {
+                holder = (AddVehicleActivity.VehicleAdapter.ViewHolder) convertView.getTag();
+            }
+
+            Vehicle vehicle = listData.get(position);
+            holder.model.setText(vehicle.getYear() + " " + vehicle.getMake() + " " + vehicle.getModel());
+            holder.details.setText(vehicle.getEngineDisplacement() + " " + vehicle.getTransmission() + ", " + vehicle.getFuelType());
+            return convertView;
+        }
+
+        class ViewHolder {
+            TextView model;
+            TextView details;
+        }
     }
 
     //navigation back button
