@@ -158,10 +158,10 @@ public class TotalFootprintActivity extends AppCompatActivity {
             Bill bill = listData.get(position);
             holder.name.setText(bill.getType());
             if(bill.getType().equals("Electricity")){
-                holder.details.setText(bill.getElectricity()+" kg of CO2, From: " + bill.getStartDate().getString() + ", To: " + bill.getEndDate().getString() + ", with " +bill.getNumberOfPeople() +" person(s)");
+                holder.details.setText(bill.calculateTotalElectricity_kgCO2()+" kg of CO2, From: " + bill.getStartDate().getString() + ", To: " + bill.getEndDate().getString() + ", with " +bill.getNumberOfPeople() +" person(s)");
             }
             else if(bill.getType().equals("Natural Gas")){
-                holder.details.setText(bill.getNaturalGas()+" kg of CO2, From: " + bill.getStartDate().getString() + ", To: " + bill.getEndDate().getString() + ", with " +bill.getNumberOfPeople() +" person(s)");
+                holder.details.setText(bill.calculateTotalNaturalGas_kgCO2()+" kg of CO2, From: " + bill.getStartDate().getString() + ", To: " + bill.getEndDate().getString() + ", with " +bill.getNumberOfPeople() +" person(s)");
 
             }
             holder.period.setText("Total Days: " + bill.getPeriod());

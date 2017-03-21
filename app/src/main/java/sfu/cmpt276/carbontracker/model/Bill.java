@@ -9,6 +9,9 @@ public class Bill {
     private Day endDate;
     private int period;
     private String type;
+    private final double electricityToKg = 9000;
+    private final double kwhTogwh = 0.000001;
+    private final double naturalGasToKg = 56.1;
 
     public Bill(float electricity, float naturalGas, int numberOfPeople, int period, String type) {
         this.electricity = electricity;
@@ -61,6 +64,7 @@ public class Bill {
     public Day getStartDate() {
         return startDate;
     }
+
     public boolean hasTheDayOf(Day date){
         if(date.getJulian() <=  endDate.getJulian() && date.getJulian() >= startDate.getJulian()){
             return true;
@@ -68,9 +72,7 @@ public class Bill {
             return false;
         }
     }
-    public float getKGofCO2forADay(Day date){
-        return electricity;
-    }
+
     public Day getEndDate() {
         return endDate;
     }
@@ -82,18 +84,18 @@ public class Bill {
     public void setPeriod() {
         period = endDate.daysFrom(startDate);
     }
-
+    public float calculateTotalNaturalGas_kgCO2(){
+        return (float) (naturalGas*naturalGasToKg);
+    }
+    public float calculateTotalElectricity_kgCO2(){
+        return (float) (electricity *kwhTogwh * electricityToKg);
+    }
     public float calculateNaturalGasPerPerson() {
-        double naturalGasToKg = 56.1;
-        naturalGas = (float) ((naturalGas / numberOfPeople) * naturalGasToKg);
-        return naturalGas;
+        return (float) ((naturalGas / numberOfPeople) * naturalGasToKg);
     }
 
     public float calculateElectricityPerPerson() {
-        double electricityToKg = 9000;
-        double kwhTogwh = 0.000001;
-        electricity = (float) (((electricity / numberOfPeople) * kwhTogwh) * electricityToKg);
-        return electricity;
+        return (float) (((electricity / numberOfPeople) * kwhTogwh) * electricityToKg);
     }
 
     public float calculateElectricityPerPersonPerDay(){
@@ -105,4 +107,13 @@ public class Bill {
         float naturalGas = calculateNaturalGasPerPerson()/period;
         return naturalGas;
     }
+
+    public float calculateElectricityKgC02PerDay(){
+        return (float) ((electricity*kwhTogwh*electricityToKg)/period);
+    }
+
+    public float calculateNaturalGasPerDay(){
+        return (float) ((naturalGas*naturalGasToKg)/period);
+    }
+
 }

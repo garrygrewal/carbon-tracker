@@ -36,12 +36,9 @@ public class Day {
     }
 
     public int getJulian(){
-        if(julianValid) {
-            return julian;
-        } else {
-            ensureJulian();
-            return julian;
-        }
+        ensureJulian();
+        return julian;
+
     }
 
     public int daysFrom(Day other) {
