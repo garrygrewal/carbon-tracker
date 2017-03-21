@@ -89,6 +89,10 @@ public class CarbonModel {
         listOfInputVehicles.add(getRealVehicleIndex(index), vehicle);
     }
 
+    public int countBills(){
+        return listOfBills.size();
+    }
+
     public int countCars() {
         return listOfInputVehicles.size() - listOfHiddenVehicles.size();
     }
@@ -225,7 +229,7 @@ public class CarbonModel {
     }
 
     public void newBill(){
-        listOfBills.add(new Bill(0,0,0,0));
+        listOfBills.add(new Bill(0,0,0,0,""));
     }
 
 //    public void newJourney(int in_vehicle, int in_route) {

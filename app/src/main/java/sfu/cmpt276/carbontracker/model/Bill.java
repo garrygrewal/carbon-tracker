@@ -8,12 +8,21 @@ public class Bill {
     private Day startDate;
     private Day endDate;
     private int period;
+    private String type;
 
-    public Bill(float electricity, float naturalGas, int numberOfPeople, int period) {
+    public Bill(float electricity, float naturalGas, int numberOfPeople, int period, String type) {
         this.electricity = electricity;
         this.naturalGas = naturalGas;
         this.numberOfPeople = numberOfPeople;
         this.period = period;
+        this.type = type;
+    }
+
+    public String getType(){
+        return type;
+    }
+    public void setType(String type){
+        this.type = type;
     }
 
     public float getElectricity() {
@@ -75,5 +84,15 @@ public class Bill {
         double kwhTogwh = 0.000001;
         electricity = (float) (((electricity / numberOfPeople) * kwhTogwh) * electricityToKg);
         return electricity;
+    }
+
+    public float calculateElectricityPerPersonPerDay(){
+        float electricity = calculateElectricityPerPerson()/period;
+        return electricity;
+    }
+
+    public float calculateNaturalGasPerPersonPerDay(){
+        float naturalGas = calculateNaturalGasPerPerson()/period;
+        return naturalGas;
     }
 }
