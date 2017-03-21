@@ -93,6 +93,10 @@ public class CarbonModel {
         return listOfBills.size();
     }
 
+    public int countJourneys(){
+        return listOfJourneys.size();
+    }
+
     public int countCars() {
         return listOfInputVehicles.size() - listOfHiddenVehicles.size();
     }

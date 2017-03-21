@@ -111,7 +111,7 @@ public class AddBillActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         // set day of month , month and year value in the edit text
                         editStartDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                        CarbonModel.getInstance().getBill(new_bill_index).setStartDate(year, monthOfYear, dayOfMonth);
+                        CarbonModel.getInstance().getBill(new_bill_index).setStartDate(year, monthOfYear+1, dayOfMonth);
                     }
                 }, mYear, mMonth, mDay);
                 datePickerDialog.show();
@@ -146,7 +146,7 @@ public class AddBillActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         // set day of month , month and year value in the edit text
                         editEndDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                        CarbonModel.getInstance().getBill(new_bill_index).setEndDate(year, monthOfYear, dayOfMonth);
+                        CarbonModel.getInstance().getBill(new_bill_index).setEndDate(year, monthOfYear+1, dayOfMonth);
                     }
                 }, mYear2, mMonth2, mDay2);
                 datePickerDialog.show();

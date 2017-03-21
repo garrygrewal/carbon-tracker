@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -19,9 +18,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import sfu.cmpt276.carbontracker.model.Bill;
 import sfu.cmpt276.carbontracker.model.CarbonModel;
+import sfu.cmpt276.carbontracker.model.Journey;
 
 public class TotalFootprintActivity extends AppCompatActivity {
 
@@ -40,11 +41,11 @@ public class TotalFootprintActivity extends AppCompatActivity {
     }
 
     private void listJourneys() {
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.list_journey, CarbonModel.getInstance().getJourneyInfo());
         ListView journey_list = (ListView) findViewById(R.id.listViewTotalFootprint);
+        ArrayList journeyList = getJourneyList();
 
         //List Adapter
-        journey_list.setAdapter(adapter);
+        journey_list.setAdapter(new JourneyAdapter(this, journeyList));
 
         //Context Menu for long press
         registerForContextMenu(journey_list);
@@ -58,6 +59,15 @@ public class TotalFootprintActivity extends AppCompatActivity {
 
         //context menu for long press here
         registerForContextMenu(bill_list);
+    }
+
+    public ArrayList getJourneyList(){
+        ArrayList<Journey> result = new ArrayList<>();
+        for (int i=0; i<CarbonModel.getInstance().countJourneys(); i++) {
+            result.add(CarbonModel.getInstance().getJourney(i));
+        }
+
+        return result;
     }
 
     public ArrayList getBillList() {
@@ -139,6 +149,57 @@ public class TotalFootprintActivity extends AppCompatActivity {
         return true;
     }
 
+    public class JourneyAdapter extends  BaseAdapter{
+        private ArrayList<Journey> listData;
+        private LayoutInflater layoutInflater;
+
+        public JourneyAdapter(Context aContext, ArrayList<Journey> listData) {
+            this.listData = listData;
+            layoutInflater = LayoutInflater.from(aContext);
+        }
+        @Override
+        public int getCount() {
+            return CarbonModel.getInstance().countJourneys();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return CarbonModel.getInstance().getJourney(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            TotalFootprintActivity.JourneyAdapter.ViewHolder holder;
+            if (convertView == null) {
+                convertView = layoutInflater.inflate(R.layout.list_journey, null);
+                holder = new TotalFootprintActivity.JourneyAdapter.ViewHolder();
+                holder.name = (TextView) convertView.findViewById(R.id.journey_name);
+                holder.details = (TextView) convertView.findViewById(R.id.journey_details);
+                holder.date = (TextView) convertView.findViewById(R.id.journey_date);
+                convertView.setTag(holder);
+            } else {
+                holder = (TotalFootprintActivity.JourneyAdapter.ViewHolder) convertView.getTag();
+            }
+
+            Journey journey = listData.get(position);
+            holder.name.setText(journey.getJourneyName());
+            holder.details.setText(journey.getCo2PerCity() + " kg of CO2 by city, " + journey.getCo2PerHighway() + " kg of CO2 by highway");
+            holder.date.setText(journey.getDate());
+            return convertView;
+        }
+
+        class ViewHolder {
+            TextView name;
+            TextView details;
+            TextView date;
+        }
+
+    }
 
     public class BillAdapter extends BaseAdapter {
         private ArrayList<Bill> listData;
@@ -181,10 +242,10 @@ public class TotalFootprintActivity extends AppCompatActivity {
             Bill bill = listData.get(position);
             holder.name.setText(bill.getType());
             if(bill.getType().equals("Electricity")){
-                holder.details.setText(bill.getElectricityEmissions()+" kg of CO2, with " + bill.getElectricityUse() +"kWh, From: " + bill.getStartDate().getString() + ", To: " + bill.getEndDate().getString() + ", with " +bill.getNumberOfPeople() +" person(s)");
+                holder.details.setText(bill.getElectricityEmissions()+" kg of CO2, by " + bill.getElectricityUse() +"kWh of electricity, From: " + bill.getStartDate().getActualDate() + ", To: " + bill.getEndDate().getActualDate() + ", with " +bill.getNumberOfPeople() +" person(s)");
             }
             else if(bill.getType().equals("Natural Gas")){
-                holder.details.setText(bill.getNaturalGasEmissions()+" kg of CO2, with " +bill.getNaturalGasUse() + "GJ, From: " + bill.getStartDate().getString() + ", To: " + bill.getEndDate().getString() + ", with " +bill.getNumberOfPeople() +" person(s)");
+                holder.details.setText(bill.getNaturalGasEmissions()+" kg of CO2, by " +bill.getNaturalGasUse() + "GJ of natural gas, From: " + bill.getStartDate().getActualDate() + ", To: " + bill.getEndDate().getActualDate() + ", with " +bill.getNumberOfPeople() +" person(s)");
 
             }
             holder.period.setText("Total Days: " + bill.getPeriod());
