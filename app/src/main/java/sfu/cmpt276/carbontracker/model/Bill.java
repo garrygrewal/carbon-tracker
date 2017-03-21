@@ -48,10 +48,20 @@ public class Bill {
         endDate = new Day(year, month, day);
     }
 
+
     public Day getStartDate() {
         return startDate;
     }
-
+    public boolean hasTheDayOf(Day date){
+        if(date.getJulian() <=  endDate.getJulian() && date.getJulian() >= startDate.getJulian()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public float getKGofCO2forADay(Day date){
+        return electricity;
+    }
     public Day getEndDate() {
         return endDate;
     }

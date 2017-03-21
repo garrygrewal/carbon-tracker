@@ -2,6 +2,8 @@ package sfu.cmpt276.carbontracker.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static android.media.CamcorderProfile.get;
 
@@ -420,4 +422,11 @@ public class CarbonModel {
         listOfJourneys.remove(index);
 
     }
+    public float getBillEmissionsForDay(Day date){
+
+        float kgCO2FromUtilities;
+        return 0;
+
+    }
+
 }

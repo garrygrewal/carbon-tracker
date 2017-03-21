@@ -35,6 +35,15 @@ public class Day {
         return getYear() + "-" + getMonth() + "-" + getDate();
     }
 
+    public int getJulian(){
+        if(julianValid) {
+            return julian;
+        } else {
+            ensureJulian();
+            return julian;
+        }
+    }
+
     public int daysFrom(Day other) {
         ensureJulian();
         other.ensureJulian();
