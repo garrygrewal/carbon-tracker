@@ -56,7 +56,7 @@
     <string name="from">From:</string>
     <string name="total_emissions_per_person">Total Emissions Per Person</string>
     <string name="emissions_from_journeys">Emissions From Journeys</string>
-    <string name="_0_kgco2">0 KgCO2</string>
+    <string name="_0_kgco2">0 kgCO2</string>
     <string name="total_emissions">Total Emissions</string>
     <string name="emissions_from_utilities">Emissions From Utilities</string>
 </resources>
