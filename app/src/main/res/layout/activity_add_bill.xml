@@ -403,7 +403,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/electricity_emissions"
+                        android:text="@string/electricity_emissions_kg_of_c02"
                         android:visibility="invisible"/>
 
                     <TextView
@@ -411,7 +411,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textAlignment="textEnd"
+                        android:textAlignment="textStart"
                         android:visibility="invisible"/>
                 </LinearLayout>
 
@@ -445,7 +445,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/natural_gas_emissions"
+                        android:text="@string/natural_gas_emissions_kg_of_c02"
                         android:visibility="invisible"/>
 
                     <TextView
@@ -453,7 +453,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textAlignment="textEnd"
+                        android:textAlignment="textStart"
                         android:visibility="invisible"/>
                 </LinearLayout>
             </LinearLayout>

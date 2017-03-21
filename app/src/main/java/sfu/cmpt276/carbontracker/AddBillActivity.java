@@ -27,6 +27,9 @@ import sfu.cmpt276.carbontracker.model.CarbonModel;
 public class AddBillActivity extends AppCompatActivity {
 
     private int new_bill_index;
+    //for edit
+    private int bill_index;
+
     boolean dateStartEntered = false;
     boolean dateEndEntered = false;
 
@@ -35,15 +38,41 @@ public class AddBillActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_bill);
 
-        setupButtons();
         premakeBill();
+        setupButtons();
         showEmissions();
         showRadioButtons();
     }
 
     private void premakeBill() {
-        new_bill_index = CarbonModel.getInstance().newBillIndex();
-        CarbonModel.getInstance().newBill();
+        Intent intent = getIntent();
+        bill_index = intent.getIntExtra("bill_index", -1);
+        if(bill_index != -1){
+            final EditText startDate = (EditText) findViewById(R.id.startDate);
+            final EditText endDate = (EditText) findViewById(R.id.endDate);
+            final EditText numbPeople = (EditText) findViewById(R.id.editTextNumberOfPeople);
+            final EditText electricityUse = (EditText) findViewById(R.id.editTextElectricity);
+            final EditText naturalGasUse = (EditText) findViewById(R.id.editTextNaturalGas);
+            final TextView electricityEmissions = (TextView) findViewById(R.id.textUserElectricityEmissions);
+            final TextView naturalGasEmissions = (TextView) findViewById(R.id.textUserNaturalGasEmissions);
+
+            startDate.setText(CarbonModel.getInstance().getBill(bill_index).getStartDate().getActualDate());
+            endDate.setText(CarbonModel.getInstance().getBill(bill_index).getEndDate().getActualDate());
+            numbPeople.setText(String.valueOf(CarbonModel.getInstance().getBill(bill_index).getNumberOfPeople()));
+
+            if(CarbonModel.getInstance().getBill(bill_index).getType().equals("Electricity")){
+                electricityUse.setText(String.valueOf(CarbonModel.getInstance().getBill(bill_index).getElectricityUse()));
+                electricityEmissions.setText(String.valueOf(CarbonModel.getInstance().getBill(bill_index).getElectricityEmissions()));
+            }
+            else if(CarbonModel.getInstance().getBill(bill_index).getType().equals("Natural Gas")){
+                naturalGasUse.setText(String.valueOf(CarbonModel.getInstance().getBill(bill_index).getNaturalGasUse()));
+                naturalGasEmissions.setText(String.valueOf(CarbonModel.getInstance().getBill(bill_index).getNaturalGasEmissions()));
+            }
+            new_bill_index = bill_index;
+        }else {
+            new_bill_index = CarbonModel.getInstance().newBillIndex();
+            CarbonModel.getInstance().newBill();
+        }
     }
 
     private void setupButtons() {
@@ -51,14 +80,31 @@ public class AddBillActivity extends AppCompatActivity {
         final TextView emissionsEndDate = (TextView) findViewById(R.id.textEmissionsEndDate);
         final EditText editStartDate = (EditText) findViewById(R.id.startDate);
         final EditText editEndDate = (EditText) findViewById(R.id.endDate);
+        final TextView emissionsElectricity = (TextView) findViewById(R.id.textUserElectricityEmissions);
+        final TextView emissionsNaturalGas = (TextView) findViewById(R.id.textUserNaturalGasEmissions);
+        final EditText useElectricity = (EditText) findViewById(R.id.editTextElectricity);
+        final EditText useNaturalGas = (EditText) findViewById(R.id.editTextNaturalGas);
+
+        //start Date
+        final Calendar c = Calendar.getInstance();
+        final int mYear = c.get(Calendar.YEAR); // current year
+        final int mMonth = c.get(Calendar.MONTH); // current month
+        final int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+
+        //end Date
+        final Calendar c2 = Calendar.getInstance();
+        final int mYear2 = c2.get(Calendar.YEAR); // current year
+        final int mMonth2 = c2.get(Calendar.MONTH); // current month
+        final int mDay2 = c2.get(Calendar.DAY_OF_MONTH); // current day
+
+        if(bill_index != -1){
+            dateEndEntered=true;
+            dateStartEntered=true;
+        }
 
         editStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar c = Calendar.getInstance();
-                int mYear = c.get(Calendar.YEAR); // current year
-                int mMonth = c.get(Calendar.MONTH); // current month
-                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
                 // date picker dialog
                 Dialog datePickerDialog = new DatePickerDialog(AddBillActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
@@ -94,10 +140,6 @@ public class AddBillActivity extends AppCompatActivity {
         editEndDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar c = Calendar.getInstance();
-                int mYear = c.get(Calendar.YEAR); // current year
-                int mMonth = c.get(Calendar.MONTH); // current month
-                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
                 // date picker dialog
                 Dialog datePickerDialog = new DatePickerDialog(AddBillActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
@@ -106,7 +148,7 @@ public class AddBillActivity extends AppCompatActivity {
                         editEndDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                         CarbonModel.getInstance().getBill(new_bill_index).setEndDate(year, monthOfYear, dayOfMonth);
                     }
-                }, mYear, mMonth, mDay);
+                }, mYear2, mMonth2, mDay2);
                 datePickerDialog.show();
                 dateEndEntered = true;
             }
@@ -137,8 +179,40 @@ public class AddBillActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (checkInput() == 0) {
                     setResult(Activity.RESULT_CANCELED);
-                } else {
+                }
+                else if(bill_index != -1){
+                    CarbonModel.getInstance().getBill(bill_index).setPeriod();
+                    if(CarbonModel.getInstance().getBill(bill_index).getType().equals("Electricity")){
+                        CarbonModel.getInstance().getBill(bill_index).setElectricityUse(Float.parseFloat(useElectricity.getText().toString()));
+                        CarbonModel.getInstance().getBill(bill_index).setElectricityEmissions(Float.parseFloat(emissionsElectricity.getText().toString()));
+                        CarbonModel.getInstance().getBill(bill_index).setNaturalGasUse(0);
+                        CarbonModel.getInstance().getBill(bill_index).setNaturalGasEmissions(0);
+                    }
+                    else if(CarbonModel.getInstance().getBill(bill_index).getType().equals("Natural Gas")){
+                        CarbonModel.getInstance().getBill(bill_index).setNaturalGasUse(Float.parseFloat(useNaturalGas.getText().toString()));
+                        CarbonModel.getInstance().getBill(bill_index).setElectricityEmissions(Float.parseFloat(emissionsNaturalGas.getText().toString()));
+                        CarbonModel.getInstance().getBill(bill_index).setElectricityUse(0);
+                        CarbonModel.getInstance().getBill(bill_index).setElectricityEmissions(0);
+                    }
+
+                    Intent intent = new Intent(AddBillActivity.this, TotalFootprintActivity.class);
+                    startActivity(intent);
+                }
+                else {
                     CarbonModel.getInstance().getBill(new_bill_index).setPeriod();
+                    if(CarbonModel.getInstance().getBill(new_bill_index).getType().equals("Electricity")){
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityUse(Float.parseFloat(useElectricity.getText().toString()));
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(Float.parseFloat(emissionsElectricity.getText().toString()));
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasUse(0);
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasEmissions(0);
+                    }
+                    else if(CarbonModel.getInstance().getBill(new_bill_index).getType().equals("Natural Gas")){
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasUse(Float.parseFloat(useNaturalGas.getText().toString()));
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(Float.parseFloat(emissionsNaturalGas.getText().toString()));
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityUse(0);
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(0);
+                    }
+
                     Toast toast = Toast.makeText(getApplicationContext(), "Bill added to Carbon Footprint", Toast.LENGTH_SHORT);
                     toast.show();
                     Intent intent = new Intent(AddBillActivity.this, MainMenuActivity.class);
@@ -152,12 +226,18 @@ public class AddBillActivity extends AppCompatActivity {
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //delete premade bill
-                CarbonModel.getInstance().deleteBill(new_bill_index);
+                if(bill_index != -1){
+                    Intent intent = new Intent();
+                    setResult(Activity.RESULT_CANCELED, intent);
+                    finish();
+                }else {
+                    //delete premade bill
+                    CarbonModel.getInstance().deleteBill(new_bill_index);
 
-                Intent intent = new Intent();
-                setResult(Activity.RESULT_CANCELED, intent);
-                finish();
+                    Intent intent = new Intent();
+                    setResult(Activity.RESULT_CANCELED, intent);
+                    finish();
+                }
             }
         });
 
@@ -213,15 +293,6 @@ public class AddBillActivity extends AppCompatActivity {
     }
 
     private void showRadioButtons(){
-        final TextView emissionsNaturalGas = (TextView) findViewById(R.id.textNaturalGasEmission);
-        final TextView emissionsElectricity = (TextView) findViewById(R.id.textElectricityEmission);
-        final EditText editNaturalGasUse = (EditText) findViewById(R.id.editTextNaturalGas);
-        final TextView textNaturalGas = (TextView) findViewById(R.id.textNaturalGas);
-        final EditText editElectricityUse = (EditText) findViewById(R.id.editTextElectricity);
-        final TextView textElectricity = (TextView) findViewById(R.id.textElectricity);
-        final TextView displayElectricityEmissions = (TextView) findViewById(R.id.textUserElectricityEmissions);
-        final TextView displayNaturalGasEmissions = (TextView) findViewById(R.id.textUserNaturalGasEmissions);
-
         RadioGroup group = (RadioGroup) findViewById(R.id.radioGroupType);
 
 
@@ -239,34 +310,64 @@ public class AddBillActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     CarbonModel.getInstance().getBill(new_bill_index).setType(type);
                     if(type.equals("Electricity")){
-                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGas(0);
-
-                        displayElectricityEmissions.setVisibility(TextView.VISIBLE);
-                        displayNaturalGasEmissions.setVisibility(TextView.INVISIBLE);
-                        textElectricity.setVisibility(TextView.VISIBLE);
-                        editElectricityUse.setVisibility(EditText.VISIBLE);
-                        emissionsElectricity.setVisibility(TextView.VISIBLE);
-                        textNaturalGas.setVisibility(TextView.INVISIBLE);
-                        editNaturalGasUse.setVisibility(EditText.INVISIBLE);
-                        emissionsNaturalGas.setVisibility(TextView.INVISIBLE);
+                        electricityBill();
                     }
                     else if(type.equals("Natural Gas")){
-                        CarbonModel.getInstance().getBill(new_bill_index).setElectricity(0);
-
-                        displayElectricityEmissions.setVisibility(TextView.INVISIBLE);
-                        displayNaturalGasEmissions.setVisibility(TextView.VISIBLE);
-                        textNaturalGas.setVisibility(TextView.VISIBLE);
-                        editNaturalGasUse.setVisibility(EditText.VISIBLE);
-                        emissionsNaturalGas.setVisibility(TextView.VISIBLE);
-                        emissionsElectricity.setVisibility(TextView.INVISIBLE);
-                        textElectricity.setVisibility(TextView.INVISIBLE);
-                        editElectricityUse.setVisibility(EditText.INVISIBLE);
+                        naturalGasBill();
                     }
                 }
             });
-
             group.addView(button);
         }
+
+        if(bill_index != -1) {
+            if(CarbonModel.getInstance().getBill(bill_index).getType().equals("Electricity")){
+                    electricityBill();
+            }
+            else if(CarbonModel.getInstance().getBill(bill_index).getType().equals("Natural Gas")){
+                    naturalGasBill();
+            }
+        }
+    }
+
+    private void electricityBill(){
+        final TextView emissionsNaturalGas = (TextView) findViewById(R.id.textNaturalGasEmission);
+        final TextView emissionsElectricity = (TextView) findViewById(R.id.textElectricityEmission);
+        final EditText editNaturalGasUse = (EditText) findViewById(R.id.editTextNaturalGas);
+        final TextView textNaturalGas = (TextView) findViewById(R.id.textNaturalGas);
+        final EditText editElectricityUse = (EditText) findViewById(R.id.editTextElectricity);
+        final TextView textElectricity = (TextView) findViewById(R.id.textElectricity);
+        final TextView displayElectricityEmissions = (TextView) findViewById(R.id.textUserElectricityEmissions);
+        final TextView displayNaturalGasEmissions = (TextView) findViewById(R.id.textUserNaturalGasEmissions);
+
+        displayElectricityEmissions.setVisibility(TextView.VISIBLE);
+        displayNaturalGasEmissions.setVisibility(TextView.INVISIBLE);
+        textElectricity.setVisibility(TextView.VISIBLE);
+        editElectricityUse.setVisibility(EditText.VISIBLE);
+        emissionsElectricity.setVisibility(TextView.VISIBLE);
+        textNaturalGas.setVisibility(TextView.INVISIBLE);
+        editNaturalGasUse.setVisibility(EditText.INVISIBLE);
+        emissionsNaturalGas.setVisibility(TextView.INVISIBLE);
+    }
+
+    private void naturalGasBill(){
+        final TextView emissionsNaturalGas = (TextView) findViewById(R.id.textNaturalGasEmission);
+        final TextView emissionsElectricity = (TextView) findViewById(R.id.textElectricityEmission);
+        final EditText editNaturalGasUse = (EditText) findViewById(R.id.editTextNaturalGas);
+        final TextView textNaturalGas = (TextView) findViewById(R.id.textNaturalGas);
+        final EditText editElectricityUse = (EditText) findViewById(R.id.editTextElectricity);
+        final TextView textElectricity = (TextView) findViewById(R.id.textElectricity);
+        final TextView displayElectricityEmissions = (TextView) findViewById(R.id.textUserElectricityEmissions);
+        final TextView displayNaturalGasEmissions = (TextView) findViewById(R.id.textUserNaturalGasEmissions);
+
+        displayElectricityEmissions.setVisibility(TextView.INVISIBLE);
+        displayNaturalGasEmissions.setVisibility(TextView.VISIBLE);
+        textNaturalGas.setVisibility(TextView.VISIBLE);
+        editNaturalGasUse.setVisibility(EditText.VISIBLE);
+        emissionsNaturalGas.setVisibility(TextView.VISIBLE);
+        emissionsElectricity.setVisibility(TextView.INVISIBLE);
+        textElectricity.setVisibility(TextView.INVISIBLE);
+        editElectricityUse.setVisibility(EditText.INVISIBLE);
     }
 
     private void showEmissions() {
@@ -296,9 +397,10 @@ public class AddBillActivity extends AppCompatActivity {
                     if (electricityUse.length() == 0 || numberOfPeople.length() == 0) {
                         displayElectricityEmissions.setText("");
                     } else {
-                        CarbonModel.getInstance().getBill(new_bill_index).setElectricity(Float.parseFloat((editElectricityUse.getText().toString())));
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityUse(Float.parseFloat(electricityUse));
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(Float.parseFloat(electricityUse));
                         float electricity = CarbonModel.getInstance().getBill(new_bill_index).calculateElectricityPerPerson();
-                        displayElectricityEmissions.setText("" + electricity + "kg of CO2");
+                        displayElectricityEmissions.setText("" + electricity);
                     }
                 } catch (NumberFormatException e) {
                 }
@@ -325,9 +427,9 @@ public class AddBillActivity extends AppCompatActivity {
                     if (naturalGasUse.length() == 0 || numberOfPeople.length() == 0) {
                         displayNaturalGasEmissions.setText("");
                     } else {
-                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGas(Float.parseFloat((editNaturalGasUse.getText().toString())));
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasEmissions(Float.parseFloat((editNaturalGasUse.getText().toString())));
                         float naturalGas = CarbonModel.getInstance().getBill(new_bill_index).calculateNaturalGasPerPerson();
-                        displayNaturalGasEmissions.setText("" + naturalGas + "kg of CO2");
+                        displayNaturalGasEmissions.setText("" + naturalGas);
                     }
                 } catch (NumberFormatException e) {
                 }
@@ -353,9 +455,9 @@ public class AddBillActivity extends AppCompatActivity {
                     if (naturalGasUse.length() == 0 || numberOfPeople.length() == 0) {
                         displayNaturalGasEmissions.setText("");
                     } else {
-                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGas(Float.parseFloat((editNaturalGasUse.getText().toString())));
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasEmissions(Float.parseFloat((editNaturalGasUse.getText().toString())));
                         float naturalGas = CarbonModel.getInstance().getBill(new_bill_index).calculateNaturalGasPerPerson();
-                        displayNaturalGasEmissions.setText("" + naturalGas + "kg of CO2");
+                        displayNaturalGasEmissions.setText("" + naturalGas);
                     }
                 } catch (NumberFormatException e) {
                 }
@@ -364,9 +466,10 @@ public class AddBillActivity extends AppCompatActivity {
                     if (electricityUse.length() == 0 || numberOfPeople.length() == 0) {
                         displayElectricityEmissions.setText("");
                     } else {
-                        CarbonModel.getInstance().getBill(new_bill_index).setElectricity(Float.parseFloat((editElectricityUse.getText().toString())));
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityUse(Float.parseFloat(electricityUse));
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(Float.parseFloat(electricityUse));
                         float electricity = CarbonModel.getInstance().getBill(new_bill_index).calculateElectricityPerPerson();
-                        displayElectricityEmissions.setText("" + electricity + "kg of CO2");
+                        displayElectricityEmissions.setText("" + electricity);
                     }
                 } catch (NumberFormatException e) {
                 }

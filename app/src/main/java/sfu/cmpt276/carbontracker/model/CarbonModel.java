@@ -229,7 +229,7 @@ public class CarbonModel {
     }
 
     public void newBill(){
-        listOfBills.add(new Bill(0,0,0,0,""));
+        listOfBills.add(new Bill(0,0,0,0,0,0,""));
     }
 
 //    public void newJourney(int in_vehicle, int in_route) {

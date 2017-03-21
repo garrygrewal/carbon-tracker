@@ -55,4 +55,6 @@
     <string name="to">To:</string>
     <string name="from">From:</string>
     <string name="total_emissions_per_person">Total Emissions Per Person</string>
+    <string name="natural_gas_emissions_kg_of_c02">Natural Gas Emissions (KG of C02):</string>
+    <string name="electricity_emissions_kg_of_c02">Electricity Emissions (KG of C02):</string>
 </resources>

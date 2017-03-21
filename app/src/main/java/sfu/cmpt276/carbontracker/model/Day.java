@@ -35,6 +35,10 @@ public class Day {
         return getYear() + "-" + getMonth() + "-" + getDate();
     }
 
+    public String getActualDate(){
+        return getDate()+"/"+getMonth()+"/"+getYear();
+    }
+
     public int daysFrom(Day other) {
         ensureJulian();
         other.ensureJulian();
