@@ -2,8 +2,10 @@ package sfu.cmpt276.carbontracker.model;
 
 
 public class Bill {
-    private float electricity;
-    private float naturalGas;
+    private float electricityUse;
+    private float naturalGasUse;
+    private float electricityEmissions;
+    private float naturalGasEmissions;
     private int numberOfPeople;
     private Day startDate;
     private Day endDate;
@@ -13,12 +15,30 @@ public class Bill {
     private final double kwhTogwh = 0.000001;
     private final double naturalGasToKg = 56.1;
 
-    public Bill(float electricity, float naturalGas, int numberOfPeople, int period, String type) {
-        this.electricity = electricity;
-        this.naturalGas = naturalGas;
+    public Bill(float electricityUse, float naturalGasUse, float electricityEmissions, float naturalGasEmissions, int numberOfPeople, int period, String type) {
+        this.electricityUse = electricityUse;
+        this.naturalGasUse = naturalGasUse;
+        this.electricityEmissions = electricityEmissions;
+        this.naturalGasEmissions = naturalGasEmissions;
         this.numberOfPeople = numberOfPeople;
         this.period = period;
         this.type = type;
+    }
+
+    public float getElectricityEmissions() {
+        return electricityEmissions;
+    }
+
+    public void setElectricityEmissions(float electricityEmissions) {
+        this.electricityEmissions = electricityEmissions;
+    }
+
+    public float getNaturalGasEmissions() {
+        return naturalGasEmissions;
+    }
+
+    public void setNaturalGasEmissions(float naturalGasEmissions) {
+        this.naturalGasEmissions = naturalGasEmissions;
     }
 
     public String getType(){
@@ -28,20 +48,20 @@ public class Bill {
         this.type = type;
     }
 
-    public float getElectricity() {
-        return electricity;
+    public float getElectricityUse() {
+        return electricityUse;
     }
 
-    public void setElectricity(float electricity) {
-        this.electricity = electricity;
+    public void setElectricityUse(float electricityUse) {
+        this.electricityUse = electricityUse;
     }
 
-    public float getNaturalGas() {
-        return naturalGas;
+    public float getNaturalGasUse() {
+        return naturalGasUse;
     }
 
-    public void setNaturalGas(float naturalGas) {
-        this.naturalGas = naturalGas;
+    public void setNaturalGasUse(float naturalGasUse) {
+        this.naturalGasUse = naturalGasUse;
     }
 
     public int getNumberOfPeople() {
@@ -85,27 +105,27 @@ public class Bill {
         period = endDate.daysFrom(startDate);
     }
     public float calculateTotalNaturalGas_kgCO2(){
-        return (float) (naturalGas*naturalGasToKg);
+        return (float) (naturalGasEmissions *naturalGasToKg);
     }
     public float calculateTotalElectricity_kgCO2(){
-        return (float) (electricity *kwhTogwh * electricityToKg);
+        return (float) (electricityEmissions *kwhTogwh * electricityToKg);
     }
     public float calculateNaturalGasPerPerson() {
-        return (float) ((naturalGas / numberOfPeople) * naturalGasToKg);
+        return (float) ((naturalGasEmissions / numberOfPeople) * naturalGasToKg);
     }
 
     public float calculateElectricityPerPerson() {
-        return (float) (((electricity / numberOfPeople) * kwhTogwh) * electricityToKg);
+        return (float) (((electricityEmissions / numberOfPeople) * kwhTogwh) * electricityToKg);
     }
 
     public float calculateElectricityPerPersonPerDay(){
-        float electricity = calculateElectricityPerPerson()/period;
-        return electricity;
+        electricityEmissions = calculateElectricityPerPerson()/period;
+        return electricityEmissions;
     }
 
     public float calculateNaturalGasPerPersonPerDay(){
-        float naturalGas = calculateNaturalGasPerPerson()/period;
-        return naturalGas;
+        naturalGasEmissions = calculateNaturalGasPerPerson()/period;
+        return naturalGasEmissions;
     }
 
     public float calculateElectricityKgC02PerDay(){

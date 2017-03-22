@@ -38,7 +38,10 @@ public class Day {
     public int getJulian(){
         ensureJulian();
         return julian;
+    }
 
+    public String getActualDate(){
+        return getDate()+"/"+getMonth()+"/"+getYear();
     }
 
     public int daysFrom(Day other) {

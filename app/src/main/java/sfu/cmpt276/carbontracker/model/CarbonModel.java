@@ -93,6 +93,10 @@ public class CarbonModel {
         return listOfBills.size();
     }
 
+    public int countJourneys(){
+        return listOfJourneys.size();
+    }
+
     public int countCars() {
         return listOfInputVehicles.size() - listOfHiddenVehicles.size();
     }
@@ -228,8 +232,8 @@ public class CarbonModel {
         }
     }
 
-    public void newBill() {
-        listOfBills.add(new Bill(0, 0, 0, 0, ""));
+    public void newBill(){
+        listOfBills.add(new Bill(0,0,0,0,0,0,""));
     }
 
     //    public void newJourney(int in_vehicle, int in_route) {
@@ -430,7 +434,7 @@ public class CarbonModel {
         float kgOfCO2 = 0;
 
         for (Bill bill : listOfBills) {
-            if (bill.getElectricity() != 0) { // is electric bill
+            if (bill.getElectricityEmissions() != 0) { // is electric bill
                 if (bill.hasTheDayOf(date)) {
                     kgOfCO2 = bill.calculateElectricityKgC02PerDay();
                     return kgOfCO2;
@@ -447,7 +451,7 @@ public class CarbonModel {
         float closestkgOfCO2 = 0;
 
         for (Bill bill : listOfBills) {
-            if (bill.getElectricity() != 0) {
+            if (bill.getElectricityEmissions() != 0) {
                 if (bill.getEndDate().getJulian() > closestDate.getJulian()
                         && bill.getEndDate().getJulian() < date.getJulian()) {
                     closestDate = bill.getEndDate();
@@ -464,7 +468,7 @@ public class CarbonModel {
         float kgOfCO2 = 0;
 
         for (Bill bill : listOfBills) {
-            if (bill.getNaturalGas() != 0) { // is electric bill
+            if (bill.getNaturalGasEmissions() != 0) { // is electric bill
                 if (bill.hasTheDayOf(date)) {
                     return bill.calculateNaturalGasPerDay();
                 }
@@ -479,7 +483,7 @@ public class CarbonModel {
         float closestkgOfCO2 = 0;
 
         for (Bill bill : listOfBills) {
-            if (bill.getNaturalGas() != 0) {
+            if (bill.getNaturalGasEmissions() != 0) {
                 if (bill.getEndDate().getJulian() > closestDate.getJulian()
                         && bill.getEndDate().getJulian() < date.getJulian()) {
                     closestDate = bill.getEndDate();
