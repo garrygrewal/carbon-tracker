@@ -56,8 +56,12 @@ public class Journey {
         date = new Day(year, month, day);
     }
 
-    public String getDate() {
+    public String getStringDate() {
         return this.date.getString();
+    }
+
+    public Day getDay() {
+        return date;
     }
 
     public int getVehicleIndex() {
