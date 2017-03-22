@@ -89,7 +89,7 @@ public class CarbonModel {
         listOfInputVehicles.add(getRealVehicleIndex(index), vehicle);
     }
 
-    public int countBills(){
+    public int countBills() {
         return listOfBills.size();
     }
 
@@ -111,7 +111,7 @@ public class CarbonModel {
         for (int i = 0; i < countCars(); i++) {
             Vehicle vehicle = getVehicle(i);
             info[i] = vehicle.getName() + ", " + vehicle.getMake() + ", " + vehicle.getModel() + ", " + vehicle.getYear() + ", " + vehicle.getFuelType() + ", " + vehicle.getTransmission() + ", " + vehicle.getEngineDisplacement();
-                    vehicle.getEngineDisplacement();
+            vehicle.getEngineDisplacement();
         }
         return info;
     }
@@ -236,7 +236,7 @@ public class CarbonModel {
         listOfBills.add(new Bill(0,0,0,0,0,0,""));
     }
 
-//    public void newJourney(int in_vehicle, int in_route) {
+    //    public void newJourney(int in_vehicle, int in_route) {
 //        String temp_name = "temp";
 //        listOfJourneys.add(new Journey(temp_name, getRealVehicleIndex(in_vehicle), getRealRouteIndex(in_route)));
 //    }
@@ -283,7 +283,7 @@ public class CarbonModel {
             throw new IllegalArgumentException(); //crash
         }
         float co2PerCity = (float) (((listOfInputRoutes.get(journey.getRouteIndex()).getCity() * kmToMiles) / cityMilesPerGallon) * co2EmittedPerGallonOfFuel);
-        float co2PerHighway = (float) (((listOfInputRoutes.get(journey.getRouteIndex()).getHwy()* kmToMiles) / highwayMilesPerGallon) * co2EmittedPerGallonOfFuel);
+        float co2PerHighway = (float) (((listOfInputRoutes.get(journey.getRouteIndex()).getHwy() * kmToMiles) / highwayMilesPerGallon) * co2EmittedPerGallonOfFuel);
         float totalCO2Emission = co2PerCity + co2PerHighway;
 
         journey.setCo2PerCity(co2PerCity);
@@ -296,14 +296,14 @@ public class CarbonModel {
         return listOfJourneys.get(index);
     }
 
-    public Bill getBill(int index){
+    public Bill getBill(int index) {
         return listOfBills.get(index);
     }
 
-    public int newBillIndex(){
+    public int newBillIndex() {
         int i;
-        for(i = 0; i<getSizeOfBillsList(); i++){
-            if(getBill(i).getNumberOfPeople() == 0){
+        for (i = 0; i < getSizeOfBillsList(); i++) {
+            if (getBill(i).getNumberOfPeople() == 0) {
                 break;
             }
         }
@@ -330,7 +330,7 @@ public class CarbonModel {
         for (int i = 0; i < getSizeOfJourneysList(); i++) {
             Journey journey = getJourney(i);
             calculateCarbonEmissions(journey);
-            info[i] = journey.getDate() + ", " + journey.getJourneyName() + ", " + listOfInputVehicles.get(journey.getVehicleIndex()).getName()
+            info[i] = journey.getStringDate() + ", " + journey.getJourneyName() + ", " + listOfInputVehicles.get(journey.getVehicleIndex()).getName()
                     + ", " + listOfInputRoutes.get(journey.getRouteIndex()).getName() + ", " + journey.getTotalCO2Emission() + " kgC02";
         }
         return info;
@@ -341,11 +341,11 @@ public class CarbonModel {
         listOfJourneys.remove(index);
     }
 
-    public void deleteBill(int index){
+    public void deleteBill(int index) {
         listOfBills.remove(index);
     }
 
-    public int getSizeOfBillsList(){
+    public int getSizeOfBillsList() {
         return listOfBills.size();
     }
 
@@ -420,12 +420,83 @@ public class CarbonModel {
     }
 
     public String getJourneyDate(int journeyIndex) {
-        return (listOfJourneys.get(journeyIndex)).getDate();
+        return (listOfJourneys.get(journeyIndex)).getStringDate();
     }
 
     public void editJourney(int index, int vehicle_index, int route_index) {
         listOfJourneys.add(new Journey(listOfJourneys.get(index).getJourneyName(), vehicle_index, route_index));
         listOfJourneys.remove(index);
 
+    }
+
+    public float getElectricityC02Emissions(int year, int month, int day) {
+        Day date = new Day(year, month, day);
+        float kgOfCO2 = 0;
+
+        for (Bill bill : listOfBills) {
+            if (bill.getElectricityEmissions() != 0) { // is electric bill
+                if (bill.hasTheDayOf(date)) {
+                    kgOfCO2 = bill.calculateElectricityKgC02PerDay();
+                    return kgOfCO2;
+                }
+            }
+        }
+
+
+        return getPreviousBillElectricity(date);
+    }
+
+    private float getPreviousBillElectricity(Day date) {
+        Day closestDate = new Day(0, 0, 0);
+        float closestkgOfCO2 = 0;
+
+        for (Bill bill : listOfBills) {
+            if (bill.getElectricityEmissions() != 0) {
+                if (bill.getEndDate().getJulian() > closestDate.getJulian()
+                        && bill.getEndDate().getJulian() < date.getJulian()) {
+                    closestDate = bill.getEndDate();
+                    closestkgOfCO2 = bill.calculateElectricityKgC02PerDay();
+                }
+            }
+        }
+
+        return closestkgOfCO2;
+    }
+
+    public float getGasC02Emissions(int year, int month, int day) {
+        Day date = new Day(year, month, day);
+        float kgOfCO2 = 0;
+
+        for (Bill bill : listOfBills) {
+            if (bill.getNaturalGasEmissions() != 0) { // is electric bill
+                if (bill.hasTheDayOf(date)) {
+                    return bill.calculateNaturalGasPerDay();
+                }
+            }
+        }
+
+        return getPreviousBillNaturalGas(date);
+    }
+
+    private float getPreviousBillNaturalGas(Day date) {
+        Day closestDate = new Day(0, 0, 0);
+        float closestkgOfCO2 = 0;
+
+        for (Bill bill : listOfBills) {
+            if (bill.getNaturalGasEmissions() != 0) {
+                if (bill.getEndDate().getJulian() > closestDate.getJulian()
+                        && bill.getEndDate().getJulian() < date.getJulian()) {
+                    closestDate = bill.getEndDate();
+                    closestkgOfCO2 = bill.calculateNaturalGasPerDay();
+                }
+            }
+        }
+
+        return closestkgOfCO2;
+    }
+
+    public int getJulian(int year, int month, int date) {
+        Day day = new Day(year, month, date);
+        return day.getJulian();
     }
 }

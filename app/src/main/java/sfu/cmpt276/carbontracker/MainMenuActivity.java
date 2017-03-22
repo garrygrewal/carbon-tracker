@@ -54,6 +54,15 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button btn_singleDayGraph = (Button) findViewById(R.id.buttonDisplayDay);
+        btn_singleDayGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenuActivity.this, SingleDayGraphActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //navigation back button

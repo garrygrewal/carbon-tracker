@@ -23,7 +23,8 @@
         <activity android:name=".AddNameActivity" />
         <activity android:name=".TotalFootprintActivity" />
         <activity android:name=".PieGraphActivity" />
-        <activity android:name=".AddBillActivity"></activity>
+        <activity android:name=".AddBillActivity" />
+        <activity android:name=".SingleDayGraphActivity"></activity>
     </application>
 
 </manifest>
