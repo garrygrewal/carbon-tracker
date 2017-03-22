@@ -61,4 +61,7 @@
     <string name="emissions_from_utilities">Emissions From Utilities</string>
     <string name="natural_gas_emissions_kg_of_c02">Natural Gas Emissions (kg of C02):</string>
     <string name="electricity_emissions_kg_of_c02">Electricity Emissions (kg of C02):</string>
+    <string name="emissions_for_a_single_day">Emissions For a single day</string>
+    <string name="emissions_from_previous_days">Emissions From Previous Days</string>
+    <string name="emissions_history">Emissions history</string>
 </resources>

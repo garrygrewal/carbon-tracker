@@ -58,12 +58,13 @@ public class SingleDayGraphActivity extends AppCompatActivity {
                 totalJourneyCO2 += CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
             }
         }
-        journeyCO2.setText(totalJourneyCO2 + " kgCO2");
+
 
         totalUtilitiesCO2 = CarbonModel.getInstance().getElectricityC02Emissions(graphYear, graphMonth, graphDay) +
                 CarbonModel.getInstance().getGasC02Emissions(graphYear, graphMonth, graphDay);
-        utilitiesCO2.setText(totalUtilitiesCO2 + " kgCO2");
 
+        journeyCO2.setText(totalJourneyCO2 + " kgCO2");
+        utilitiesCO2.setText(totalUtilitiesCO2 + " kgCO2");
         float journeyAndUtilitiesCO2 = totalUtilitiesCO2 + totalJourneyCO2;
         totalCO2.setText(journeyAndUtilitiesCO2 + " kgCO2");
     }
