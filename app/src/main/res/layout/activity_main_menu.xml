@@ -154,7 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/emissions_from_previous_days" />
+                    android:text="@string/emissions_history" />
 
             </LinearLayout>
         </LinearLayout>

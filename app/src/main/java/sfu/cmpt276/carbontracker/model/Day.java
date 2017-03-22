@@ -16,7 +16,7 @@ public class Day {
         this.year = year;
         this.month = month;
         this.date = date;
-        julianValid=false;
+        julianValid = false;
     }
 
     public int getYear() {
@@ -35,7 +35,11 @@ public class Day {
         return getYear() + "-" + getMonth() + "-" + getDate();
     }
 
-    public int getJulian(){
+    public int[] getDayFromPast(int numberOfDaysAgo){
+        return fromJulian(getJulian()- numberOfDaysAgo);
+    }
+
+    public int getJulian() {
         ensureJulian();
         return julian;
 
@@ -78,5 +82,32 @@ public class Day {
             jul += 2 - ja + (int) (0.25 * ja);
         }
         return jul;
+    }
+
+    private static int[] fromJulian(int j) {
+        int ja = j;
+
+        // The Julian day number of the adoption of the Gregorian calendar
+        int JGREG = 2299161;
+
+        // Cross-over to Gregorian Calendar produces this correction
+        if (j >= JGREG) {
+            int jalpha = (int) (((float) (j - 1867216) - 0.25) / 36524.25);
+            ja += 1 + jalpha - (int) (0.25 * jalpha);
+        }
+        int jb = ja + 1524;
+        int jc = (int) (6680.0 + ((float) (jb - 2439870) - 122.1) / 365.25);
+        int jd = (int) (365 * jc + (0.25 * jc));
+        int je = (int) ((jb - jd) / 30.6001);
+        int date = jb - jd - (int) (30.6001 * je);
+        int month = je - 1;
+        if (month > 12)
+            month -= 12;
+        int year = jc - 4715;
+        if (month > 2)
+            --year;
+        if (year <= 0)
+            --year;
+        return new int[]{year, month, date};
     }
 }

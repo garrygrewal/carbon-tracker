@@ -70,7 +70,9 @@ public class CarbonModel {
     public static CarbonModel getInstance() {
         return instance;
     }
-
+    public Vehicle getVehicleFromHidden(int index){
+        return listOfInputVehicles.get(index);
+    }
     public Vehicle getVehicle(int index) {
         for (int i = 0; i < listOfHiddenVehicles.size(); i++) {
             if (listOfHiddenVehicles.get(i) <= index) {
@@ -99,27 +101,6 @@ public class CarbonModel {
 
     public int countAllCars() {
         return listOfInputVehicles.size();
-    }
-
-    //for integrating with ArrayAdapter
-    public String[] getCarInfo() {
-        String[] info = new String[countCars()];
-        for (int i = 0; i < countCars(); i++) {
-            Vehicle vehicle = getVehicle(i);
-            info[i] = vehicle.getName() + ", " + vehicle.getMake() + ", " + vehicle.getModel() + ", " + vehicle.getYear() + ", " + vehicle.getFuelType() + ", " + vehicle.getTransmission() + ", " + vehicle.getEngineDisplacement();
-            vehicle.getEngineDisplacement();
-        }
-        return info;
-    }
-
-    public String[] getRemainingCarInfo(List<Vehicle> vehicles) {
-        String[] info = new String[vehicles.size()];
-        for (int i = 0; i < vehicles.size(); i++) {
-            Vehicle vehicle = vehicles.get(i);
-            info[i] = vehicle.getMake() + ", " + vehicle.getModel() + ", " + vehicle.getYear() + ", " + vehicle.getFuelType() + ", " + vehicle.getTransmission() + ", " + vehicle.getEngineDisplacement();
-            vehicle.getEngineDisplacement();
-        }
-        return info;
     }
 
     public void addCar(Vehicle car) {
@@ -168,37 +149,6 @@ public class CarbonModel {
         return years;
     }
 
-    //get transmission after select make,model, year
-    public String getTransmissionFromRemain(String make, String model, String year) {
-        String transmission = "";
-        for (int i = 0; i < countCars(); i++) {
-            Vehicle car = getCar(i);
-            if (make.equals(car.getMake())) {
-                if (model.equals(car.getModel())) {
-                    if (year.equals(car.getYear())) {
-                        transmission = car.getTransmission();
-                    }
-                }
-            }
-        }
-        return transmission;
-    }
-
-    //get engineDisplacement after select make,model,year
-    public String getEngineDiplacementFromRemain(String make, String model, String year) {
-        String engineDisplacement = "";
-        for (int i = 0; i < countCars(); i++) {
-            Vehicle car = getCar(i);
-            if (make.equals(car.getMake())) {
-                if (model.equals(car.getModel())) {
-                    if (year.equals(car.getYear())) {
-                        engineDisplacement = car.getTransmission();
-                    }
-                }
-            }
-        }
-        return engineDisplacement;
-    }
 
     public List<Vehicle> getRemainingCars(String make, String model, String year) {
         List<String> remainingCars = new ArrayList<>();
@@ -232,10 +182,6 @@ public class CarbonModel {
         listOfBills.add(new Bill(0, 0, 0, 0, ""));
     }
 
-    //    public void newJourney(int in_vehicle, int in_route) {
-//        String temp_name = "temp";
-//        listOfJourneys.add(new Journey(temp_name, getRealVehicleIndex(in_vehicle), getRealRouteIndex(in_route)));
-//    }
     public void newJourney(int in_vehicle, int in_route) {
         String temp_name = "temp";
         listOfJourneys.add(new Journey(temp_name, (in_vehicle), (in_route)));
@@ -423,6 +369,11 @@ public class CarbonModel {
         listOfJourneys.add(new Journey(listOfJourneys.get(index).getJourneyName(), vehicle_index, route_index));
         listOfJourneys.remove(index);
 
+    }
+
+    public int[] getYearMonthDayOfPreviousDate(int numberOfDays, int currentYear, int currentMonth, int currentDay){
+        Day today = new Day(currentYear,currentMonth,currentDay);
+        return today.getDayFromPast(numberOfDays);
     }
 
     public float getElectricityC02Emissions(int year, int month, int day) {

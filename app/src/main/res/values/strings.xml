@@ -61,4 +61,5 @@
     <string name="emissions_from_utilities">Emissions From Utilities</string>
     <string name="emissions_for_a_single_day">Emissions For a single day</string>
     <string name="emissions_from_previous_days">Emissions From Previous Days</string>
+    <string name="emissions_history">Emissions history</string>
 </resources>
