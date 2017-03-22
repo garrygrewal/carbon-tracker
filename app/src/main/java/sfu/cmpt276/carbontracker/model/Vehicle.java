@@ -1,4 +1,5 @@
 package sfu.cmpt276.carbontracker.model;
+import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,7 +9,7 @@ import java.util.List;
  * Vehicle class, contains the vehicle information
  */
 
-public class Vehicle {
+public class Vehicle implements Serializable{
     private String make;
     private String name;
     private String model;

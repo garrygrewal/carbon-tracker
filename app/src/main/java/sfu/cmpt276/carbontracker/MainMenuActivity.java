@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+
+
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 
 
@@ -20,9 +22,9 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
         setupButtons();
     }
-
 
     private void setupButtons() {
         //create journey button

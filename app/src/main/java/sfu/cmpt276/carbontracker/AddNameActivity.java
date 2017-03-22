@@ -1,5 +1,6 @@
 package sfu.cmpt276.carbontracker;
 
+
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 import sfu.cmpt276.carbontracker.model.Journey;
+
 
 public class AddNameActivity extends AppCompatActivity {
 
@@ -125,12 +127,16 @@ public class AddNameActivity extends AppCompatActivity {
                     CarbonModel.getInstance().deleteJourney(journey_index);
                     Intent intent = new Intent(AddNameActivity.this, TotalFootprintActivity.class);
                     startActivity(intent);
+                    //save data
+                    CarbonModel.getInstance().SaveData();
                 }
                 else {
                     addName();
 
                     Intent intent = new Intent(AddNameActivity.this, MainMenuActivity.class);
                     startActivity(intent);
+                    //save data
+                    CarbonModel.getInstance().SaveData();
                 }
             }
         });

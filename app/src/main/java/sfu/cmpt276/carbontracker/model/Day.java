@@ -1,10 +1,11 @@
 package sfu.cmpt276.carbontracker.model;
+import java.io.Serializable;
 
 /**
  * Day Class, holds a day of the year
  */
 
-public class Day {
+public class Day implements Serializable {
     private int year;
     private int month;
     private int date;

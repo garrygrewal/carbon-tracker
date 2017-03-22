@@ -197,6 +197,9 @@ public class AddBillActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(AddBillActivity.this, TotalFootprintActivity.class);
                     startActivity(intent);
+
+                    //save data
+                    CarbonModel.getInstance().SaveData();
                 }
                 else {
                     CarbonModel.getInstance().getBill(new_bill_index).setPeriod();
@@ -221,6 +224,9 @@ public class AddBillActivity extends AppCompatActivity {
                     toast.show();
                     Intent intent = new Intent(AddBillActivity.this, MainMenuActivity.class);
                     startActivity(intent);
+
+                    //save data
+                    CarbonModel.getInstance().SaveData();
                 }
             }
         });
