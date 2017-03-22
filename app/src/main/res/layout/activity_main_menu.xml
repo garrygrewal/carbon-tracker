@@ -112,16 +112,42 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/buttonDisplayDay"
-                android:layout_width="333dp"
-                android:layout_height="37dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/gradient_button"
-                android:text="Emissions For A Single Day"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/buttonDisplayDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="37dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="1"
+                        android:background="@drawable/gradient_button"
+                        android:text="Emissions For Single Day"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF" />
+
+                    <Button
+                        android:id="@+id/buttonDisplayMultiDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="37dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="1"
+                        android:background="@drawable/gradient_button"
+                        android:text="@string/emissions_history"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF" />
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
@@ -129,7 +155,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_weight="0.07">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,7 +166,7 @@
 
             <Button
                 android:id="@+id/buttonDisplayTotal"
-                android:layout_width="334dp"
+                android:layout_width="match_parent"
                 android:layout_height="37dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
@@ -150,22 +177,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/buttonDisplayMultiDay"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/emissions_history" />
-
-            </LinearLayout>
-        </LinearLayout>
-
     </LinearLayout>
 
 </LinearLayout>
+
