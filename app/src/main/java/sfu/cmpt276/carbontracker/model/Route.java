@@ -1,10 +1,11 @@
 package sfu.cmpt276.carbontracker.model;
+import java.io.Serializable;
 
 /**
  * Route Class, Contains the route information such as the city distance and the highway distance along with the name of the route.
  */
 
-public class Route {
+public class Route implements Serializable{
     private String name;
     private float city;
     private float hwy;

@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+
+
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 
 
@@ -20,9 +22,9 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
         setupButtons();
     }
-
 
     private void setupButtons() {
         //create journey button
@@ -60,6 +62,15 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, SingleDayGraphActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btn_multiDayGraph = (Button) findViewById(R.id.buttonDisplayMultiDay);
+        btn_multiDayGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenuActivity.this, MultiDayGraphActivity.class);
                 startActivity(intent);
             }
         });

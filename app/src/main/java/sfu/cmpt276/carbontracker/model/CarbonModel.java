@@ -1,15 +1,26 @@
 package sfu.cmpt276.carbontracker.model;
 
+import android.os.Environment;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
 
-import static android.media.CamcorderProfile.get;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import sfu.cmpt276.carbontracker.model.KnownCars;
 
 /**
  * CarbonModel is the Singleton Class-
  */
 
-public class CarbonModel {
+public class CarbonModel implements Serializable {
+    private static final long serialVersionUID = 123456;
+
     private static CarbonModel instance = new CarbonModel();
 
     private List<Route> listOfInputRoutes = new ArrayList<>();
@@ -17,7 +28,7 @@ public class CarbonModel {
     private List<Vehicle> listOfInputVehicles = new ArrayList<>();
     private List<Integer> listOfHiddenVehicles = new ArrayList<>();
     private List<Journey> listOfJourneys = new ArrayList<>();
-    private List<Vehicle> listOfKnownCars = new ArrayList<>();
+    //private List<Vehicle> listOfKnownCars = new ArrayList<>();
     private List<Bill> listOfBills = new ArrayList<>();
 
 
@@ -27,6 +38,7 @@ public class CarbonModel {
     private final double CO2_EMISSION = 1;
     private final double kmToMiles = 0.621371;
 
+    //DBAdapter CarbonTrackerDB;
 
     private CarbonModel() {
     }
@@ -70,7 +82,9 @@ public class CarbonModel {
     public static CarbonModel getInstance() {
         return instance;
     }
-
+    public Vehicle getVehicleFromHidden(int index){
+        return listOfInputVehicles.get(index);
+    }
     public Vehicle getVehicle(int index) {
         for (int i = 0; i < listOfHiddenVehicles.size(); i++) {
             if (listOfHiddenVehicles.get(i) <= index) {
@@ -105,38 +119,17 @@ public class CarbonModel {
         return listOfInputVehicles.size();
     }
 
-    //for integrating with ArrayAdapter
-    public String[] getCarInfo() {
-        String[] info = new String[countCars()];
-        for (int i = 0; i < countCars(); i++) {
-            Vehicle vehicle = getVehicle(i);
-            info[i] = vehicle.getName() + ", " + vehicle.getMake() + ", " + vehicle.getModel() + ", " + vehicle.getYear() + ", " + vehicle.getFuelType() + ", " + vehicle.getTransmission() + ", " + vehicle.getEngineDisplacement();
-            vehicle.getEngineDisplacement();
-        }
-        return info;
-    }
-
-    public String[] getRemainingCarInfo(List<Vehicle> vehicles) {
-        String[] info = new String[vehicles.size()];
-        for (int i = 0; i < vehicles.size(); i++) {
-            Vehicle vehicle = vehicles.get(i);
-            info[i] = vehicle.getMake() + ", " + vehicle.getModel() + ", " + vehicle.getYear() + ", " + vehicle.getFuelType() + ", " + vehicle.getTransmission() + ", " + vehicle.getEngineDisplacement();
-            vehicle.getEngineDisplacement();
-        }
-        return info;
-    }
-
     public void addCar(Vehicle car) {
-        listOfKnownCars.add(car);
+        KnownCars.getInstance().listOfKnownCars.add(car);
     }
 
     public Vehicle getCar(int i) {
-        return listOfKnownCars.get(i);
+        return KnownCars.getInstance().listOfKnownCars.get(i);
     }
 
     public List<String> getMakes(int index) {
         List<String> makes = new ArrayList<>();
-        for (int i = 0; i < listOfKnownCars.size(); i++) {
+        for (int i = 0; i < KnownCars.getInstance().listOfKnownCars.size(); i++) {
             Vehicle car = getCar(i);
             if (!makes.contains(car.getMake())) {
                 makes.add(car.getMake());
@@ -148,7 +141,7 @@ public class CarbonModel {
 
     public List<String> getModels(String make, int index) {
         List<String> models = new ArrayList<>();
-        for (int i = 0; i < listOfKnownCars.size(); i++) {
+        for (int i = 0; i < KnownCars.getInstance().listOfKnownCars.size(); i++) {
             Vehicle car = getCar(i);
             if (make.equals(car.getMake())) {
                 if (!models.contains(car.getModel())) {
@@ -161,7 +154,7 @@ public class CarbonModel {
 
     public List<String> getYears(String model, int index) {
         List<String> years = new ArrayList<>();
-        for (int i = 0; i < listOfKnownCars.size(); i++) {
+        for (int i = 0; i < KnownCars.getInstance().listOfKnownCars.size(); i++) {
             Vehicle car = getCar(i);
             if (model.equals(car.getModel())) {
                 if (!years.contains(car.getYear())) {
@@ -172,42 +165,11 @@ public class CarbonModel {
         return years;
     }
 
-    //get transmission after select make,model, year
-    public String getTransmissionFromRemain(String make, String model, String year) {
-        String transmission = "";
-        for (int i = 0; i < countCars(); i++) {
-            Vehicle car = getCar(i);
-            if (make.equals(car.getMake())) {
-                if (model.equals(car.getModel())) {
-                    if (year.equals(car.getYear())) {
-                        transmission = car.getTransmission();
-                    }
-                }
-            }
-        }
-        return transmission;
-    }
-
-    //get engineDisplacement after select make,model,year
-    public String getEngineDiplacementFromRemain(String make, String model, String year) {
-        String engineDisplacement = "";
-        for (int i = 0; i < countCars(); i++) {
-            Vehicle car = getCar(i);
-            if (make.equals(car.getMake())) {
-                if (model.equals(car.getModel())) {
-                    if (year.equals(car.getYear())) {
-                        engineDisplacement = car.getTransmission();
-                    }
-                }
-            }
-        }
-        return engineDisplacement;
-    }
 
     public List<Vehicle> getRemainingCars(String make, String model, String year) {
         List<String> remainingCars = new ArrayList<>();
         List<Vehicle> vehiclesLeft = new ArrayList<>();
-        for (int i = 0; i < listOfKnownCars.size(); i++) {
+        for (int i = 0; i < KnownCars.getInstance().listOfKnownCars.size(); i++) {
             Vehicle car = getCar(i);
             if (make.equals(car.getMake())) {
                 if (model.equals(car.getModel())) {
@@ -228,7 +190,7 @@ public class CarbonModel {
 
     public void fillList(int rows) {
         for (int i = 0; i < rows; i++) {
-            listOfKnownCars.add(new Vehicle());
+            KnownCars.getInstance().listOfKnownCars.add(new Vehicle());
         }
     }
 
@@ -236,10 +198,6 @@ public class CarbonModel {
         listOfBills.add(new Bill(0,0,0,0,0,0,""));
     }
 
-    //    public void newJourney(int in_vehicle, int in_route) {
-//        String temp_name = "temp";
-//        listOfJourneys.add(new Journey(temp_name, getRealVehicleIndex(in_vehicle), getRealRouteIndex(in_route)));
-//    }
     public void newJourney(int in_vehicle, int in_route) {
         String temp_name = "temp";
         listOfJourneys.add(new Journey(temp_name, (in_vehicle), (in_route)));
@@ -429,6 +387,11 @@ public class CarbonModel {
 
     }
 
+    public int[] getYearMonthDayOfPreviousDate(int numberOfDays, int currentYear, int currentMonth, int currentDay){
+        Day today = new Day(currentYear,currentMonth,currentDay);
+        return today.getDayFromPast(numberOfDays);
+    }
+
     public float getElectricityC02Emissions(int year, int month, int day) {
         Day date = new Day(year, month, day);
         float kgOfCO2 = 0;
@@ -499,4 +462,42 @@ public class CarbonModel {
         Day day = new Day(year, month, date);
         return day.getJulian();
     }
+
+
+    public void SaveData() {
+        try {
+            String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(fullPath, "CarbonTrackerData.bin")));
+
+            oos.writeObject(this.getInstance());
+            oos.flush();
+            oos.close();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void LoadData() {
+        String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+        CarbonModel saved = (CarbonModel) openFile(new File(fullPath, "CarbonTrackerData.bin"));
+        if (saved != null) {
+            this.instance = saved;
+        }
+    }
+
+    private Object openFile(File f) {
+        try
+        {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+            Object o = ois.readObject();
+            return o;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

@@ -24,7 +24,9 @@
         <activity android:name=".TotalFootprintActivity" />
         <activity android:name=".PieGraphActivity" />
         <activity android:name=".AddBillActivity" />
-        <activity android:name=".SingleDayGraphActivity"></activity>
+        <activity android:name=".SingleDayGraphActivity" />
+        <activity android:name=".MultiDayGraphActivity"></activity>
     </application>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>

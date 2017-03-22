@@ -42,6 +42,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 readFile();
                 startActivity(new Intent(WelcomeActivity.this, MainMenuActivity.class));
 
+                CarbonModel.getInstance().LoadData();
             }
 
             @Override
