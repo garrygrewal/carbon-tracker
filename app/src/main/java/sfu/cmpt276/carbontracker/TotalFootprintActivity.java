@@ -133,6 +133,8 @@ public class TotalFootprintActivity extends AppCompatActivity {
             case J_DELETE:
                 CarbonModel.getInstance().deleteJourney(info.position);
                 listJourneys();
+                //save data
+                CarbonModel.getInstance().SaveData();
                 break;
             case B_EDIT:
                 Intent  intentBill = new Intent(TotalFootprintActivity.this, AddBillActivity.class);
@@ -142,6 +144,8 @@ public class TotalFootprintActivity extends AppCompatActivity {
             case B_DELETE:
                 CarbonModel.getInstance().deleteBill(info.position);
                 listBills();
+                //save data
+                CarbonModel.getInstance().SaveData();
                 break;
             default:
                 return false;

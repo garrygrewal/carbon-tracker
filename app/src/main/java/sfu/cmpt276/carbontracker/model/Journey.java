@@ -1,4 +1,5 @@
 package sfu.cmpt276.carbontracker.model;
+import java.io.Serializable;
 
 
 import android.util.Log;
@@ -7,7 +8,7 @@ import android.util.Log;
  * Journey Class, holds the journey information
  */
 
-public class Journey {
+public class Journey implements Serializable{
     private String journeyName;
     private int vehicleIndex;
     private int routeIndex;
