@@ -104,6 +104,7 @@ public class Bill {
     public void setPeriod() {
         period = endDate.daysFrom(startDate);
     }
+
     public float calculateTotalNaturalGas_kgCO2(){
         return (float) (naturalGasEmissions *naturalGasToKg);
     }
@@ -129,11 +130,11 @@ public class Bill {
     }
 
     public float calculateElectricityKgC02PerDay(){
-        return (float) ((electricity*kwhTogwh*electricityToKg)/period);
+        return (electricityEmissions)/period;
     }
 
     public float calculateNaturalGasPerDay(){
-        return (float) ((naturalGas*naturalGasToKg)/period);
+        return (naturalGasEmissions)/period;
     }
 
 }

@@ -212,6 +212,10 @@ public class AddBillActivity extends AppCompatActivity {
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityUse(0);
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(0);
                     }
+                    Log.d("my apppppppp", "gas ems:"+CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasEmissions());
+                    Log.d("my apppppppp", "gas use:"+CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasUse());
+                    Log.d("my apppppppp", "elec ems:"+CarbonModel.getInstance().getBill(new_bill_index).getElectricityEmissions());
+                    Log.d("my apppppppp", "elec use:"+CarbonModel.getInstance().getBill(new_bill_index).getElectricityUse());
 
                     Toast toast = Toast.makeText(getApplicationContext(), "Bill added to Carbon Footprint", Toast.LENGTH_SHORT);
                     toast.show();
@@ -400,6 +404,7 @@ public class AddBillActivity extends AppCompatActivity {
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityUse(Float.parseFloat(electricityUse));
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(Float.parseFloat(electricityUse));
                         float electricity = CarbonModel.getInstance().getBill(new_bill_index).calculateElectricityPerPerson();
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(electricity);
                         displayElectricityEmissions.setText("" + electricity);
                     }
                 } catch (NumberFormatException e) {
@@ -427,8 +432,10 @@ public class AddBillActivity extends AppCompatActivity {
                     if (naturalGasUse.length() == 0 || numberOfPeople.length() == 0) {
                         displayNaturalGasEmissions.setText("");
                     } else {
-                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasEmissions(Float.parseFloat((editNaturalGasUse.getText().toString())));
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasUse(Float.parseFloat(naturalGasUse));
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasEmissions(Float.parseFloat(naturalGasUse));
                         float naturalGas = CarbonModel.getInstance().getBill(new_bill_index).calculateNaturalGasPerPerson();
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasEmissions(naturalGas);
                         displayNaturalGasEmissions.setText("" + naturalGas);
                     }
                 } catch (NumberFormatException e) {
@@ -455,8 +462,10 @@ public class AddBillActivity extends AppCompatActivity {
                     if (naturalGasUse.length() == 0 || numberOfPeople.length() == 0) {
                         displayNaturalGasEmissions.setText("");
                     } else {
-                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasEmissions(Float.parseFloat((editNaturalGasUse.getText().toString())));
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasUse(Float.parseFloat(naturalGasUse));
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasEmissions(Float.parseFloat(naturalGasUse));
                         float naturalGas = CarbonModel.getInstance().getBill(new_bill_index).calculateNaturalGasPerPerson();
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasEmissions(naturalGas);
                         displayNaturalGasEmissions.setText("" + naturalGas);
                     }
                 } catch (NumberFormatException e) {
@@ -469,6 +478,7 @@ public class AddBillActivity extends AppCompatActivity {
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityUse(Float.parseFloat(electricityUse));
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(Float.parseFloat(electricityUse));
                         float electricity = CarbonModel.getInstance().getBill(new_bill_index).calculateElectricityPerPerson();
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(electricity);
                         displayElectricityEmissions.setText("" + electricity);
                     }
                 } catch (NumberFormatException e) {

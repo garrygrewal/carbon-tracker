@@ -189,7 +189,7 @@ public class TotalFootprintActivity extends AppCompatActivity {
             Journey journey = listData.get(position);
             holder.name.setText(journey.getJourneyName());
             holder.details.setText(journey.getCo2PerCity() + " kg of CO2 by city, " + journey.getCo2PerHighway() + " kg of CO2 by highway");
-            holder.date.setText(journey.getDate());
+            holder.date.setText(journey.getStringDate());
             return convertView;
         }
 
