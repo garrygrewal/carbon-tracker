@@ -1,6 +1,7 @@
 package sfu.cmpt276.carbontracker.model;
 
 import android.os.Environment;
+import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -243,6 +244,7 @@ public class CarbonModel implements Serializable {
         } else if (listOfInputVehicles.get(journey.getVehicleIndex()).getFuelType().toLowerCase().contains("n/a")) {
             co2EmittedPerGallonOfFuel = ELECTRIC_CO2_EMISSION;
         } else if (listOfInputVehicles.get(journey.getVehicleIndex()).getFuelType().toLowerCase().contains("other")) {
+            //input already converted
             co2EmittedPerGallonOfFuel = CO2_EMISSION;
         } else {
             throw new IllegalArgumentException(); //crash
@@ -493,6 +495,7 @@ public class CarbonModel implements Serializable {
         }
     }
 
+    @Nullable
     private Object openFile(File f) {
         try
         {

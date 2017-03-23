@@ -1,12 +1,13 @@
 package sfu.cmpt276.carbontracker.model;
 
+import java.io.Serializable;
 import java.util.Collections;
 
 /**
  * Creates and holds all tips
  */
 
-public class TipsArray {
+public class TipsArray implements Serializable{
     private Tip[] tips = new Tip[15];
     private float highestJourneyEmission;
     private float highestElectricityEmission;

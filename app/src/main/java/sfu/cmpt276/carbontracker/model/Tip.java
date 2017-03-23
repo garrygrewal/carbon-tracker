@@ -1,10 +1,12 @@
 package sfu.cmpt276.carbontracker.model;
 
+import java.io.Serializable;
+
 /**
  * Tip class holds the countdown till next available output.
  */
 
-public class Tip {
+public class Tip implements Serializable{
     private String info;
     private int countdown;
     boolean exists;
