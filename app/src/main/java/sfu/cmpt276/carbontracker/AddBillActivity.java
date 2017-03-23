@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -18,12 +17,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.Calendar;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
-import sfu.cmpt276.carbontracker.model.TipsArray;
+
+/*
+Bill Activity allows user to add monthly utilities
+*/
 
 public class AddBillActivity extends AppCompatActivity {
 
@@ -226,10 +226,6 @@ public class AddBillActivity extends AppCompatActivity {
 
                         displayTips();
                     }
-                    Log.d("my apppppppp", "gas ems:" + CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasEmissions());
-                    Log.d("my apppppppp", "gas use:" + CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasUse());
-                    Log.d("my apppppppp", "elec ems:" + CarbonModel.getInstance().getBill(new_bill_index).getElectricityEmissions());
-                    Log.d("my apppppppp", "elec use:" + CarbonModel.getInstance().getBill(new_bill_index).getElectricityUse());
 
                     Toast toast = Toast.makeText(getApplicationContext(), "Bill added to Carbon Footprint", Toast.LENGTH_SHORT);
                     toast.show();
@@ -267,7 +263,7 @@ public class AddBillActivity extends AppCompatActivity {
     private void displayTips() {
         String message = CarbonModel.getInstance().getTipsArray().getNextTipInfo();
         if(message != null && !message.isEmpty()) {
-            Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
             toast.show();
         }
     }

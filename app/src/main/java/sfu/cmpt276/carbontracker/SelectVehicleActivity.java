@@ -27,6 +27,9 @@ import java.util.ArrayList;
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 import sfu.cmpt276.carbontracker.model.Vehicle;
 
+/*
+Allows user to add transportation method
+ */
 
 public class SelectVehicleActivity extends AppCompatActivity {
 

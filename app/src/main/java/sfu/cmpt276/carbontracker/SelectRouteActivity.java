@@ -21,7 +21,10 @@ import java.util.ArrayList;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 import sfu.cmpt276.carbontracker.model.Route;
-import sfu.cmpt276.carbontracker.model.Vehicle;
+
+/*
+Allows user to select a known route
+ */
 
 public class SelectRouteActivity extends AppCompatActivity {
 

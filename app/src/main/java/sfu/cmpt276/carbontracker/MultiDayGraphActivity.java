@@ -27,6 +27,10 @@ import java.util.List;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 
+/*
+displays multi-day graphs
+ */
+
 public class MultiDayGraphActivity extends AppCompatActivity {
     public static final int FOUR_WEEKS = 28;
     private TextView textView;

@@ -5,7 +5,7 @@ import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 /**
- *
+ *value formatter for week axis
  */
 public class WeekAxisValueFormatter implements IAxisValueFormatter
 {

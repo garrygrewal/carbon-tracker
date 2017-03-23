@@ -15,6 +15,10 @@ import java.nio.charset.Charset;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 
+/*
+splash screen, also reads in cvs
+ */
+
 public class WelcomeActivity extends AppCompatActivity {
 
     @Override

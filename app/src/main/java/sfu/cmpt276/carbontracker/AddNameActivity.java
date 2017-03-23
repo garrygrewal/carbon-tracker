@@ -1,6 +1,5 @@
 package sfu.cmpt276.carbontracker;
 
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -20,6 +19,9 @@ import android.widget.Toast;
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 import sfu.cmpt276.carbontracker.model.Journey;
 
+/*
+Add name activity allows user to add name and date to journey
+ */
 
 public class AddNameActivity extends AppCompatActivity {
 
@@ -166,7 +168,7 @@ public class AddNameActivity extends AppCompatActivity {
     private void displayTips() {
         String message = CarbonModel.getInstance().getTipsArray().getNextTipInfo();
         if(message != null && !message.isEmpty()) {
-            Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
             toast.show();
         }
     }

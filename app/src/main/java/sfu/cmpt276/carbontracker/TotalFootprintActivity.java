@@ -24,6 +24,10 @@ import sfu.cmpt276.carbontracker.model.Bill;
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 import sfu.cmpt276.carbontracker.model.Journey;
 
+/*
+displays all known journeys and bills
+ */
+
 public class TotalFootprintActivity extends AppCompatActivity {
 
     final int J_EDIT = 0;

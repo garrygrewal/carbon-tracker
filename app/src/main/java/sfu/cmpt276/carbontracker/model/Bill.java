@@ -1,6 +1,9 @@
 package sfu.cmpt276.carbontracker.model;
 import java.io.Serializable;
 
+/*
+Bill class holds bill objects
+ */
 
 public class Bill implements Serializable {
     private float electricityUse;

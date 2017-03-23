@@ -13,6 +13,10 @@ import static sfu.cmpt276.carbontracker.R.id.route_city;
 import static sfu.cmpt276.carbontracker.R.id.route_hwy;
 import static sfu.cmpt276.carbontracker.R.id.route_name;
 
+/*
+Add route activity allow user to add different routes to journey
+ */
+
 public class AddRouteActivity extends AppCompatActivity {
 
     @Override

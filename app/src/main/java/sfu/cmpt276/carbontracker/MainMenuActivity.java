@@ -30,7 +30,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private void displayTips() {
         String message = CarbonModel.getInstance().getTipsArray().getNextTipInfo();
         if(message != null && !message.isEmpty()) {
-            Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
             toast.show();
         }
     }
