@@ -403,10 +403,10 @@ public class CarbonModel implements Serializable {
         Day date = new Day(year, month, day);
         float kgOfCO2 = 0;
 
-        for (Bill bill : listOfBills) {
-            if (bill.getElectricityEmissions() != 0) { // is electric bill
-                if (bill.hasTheDayOf(date)) {
-                    kgOfCO2 = bill.calculateElectricityKgC02PerDay();
+        for (int i = 0; i < listOfBills.size(); i++) {
+            if (listOfBills.get(i).getElectricityEmissions() != 0) { // is electric bill
+                if (listOfBills.get(i).hasTheDayOf(date)) {
+                    kgOfCO2 = listOfBills.get(i).getElectricityEmissions();
                     return kgOfCO2;
                 }
             }
@@ -420,12 +420,12 @@ public class CarbonModel implements Serializable {
         Day closestDate = new Day(0, 0, 0);
         float closestkgOfCO2 = 0;
 
-        for (Bill bill : listOfBills) {
-            if (bill.getElectricityEmissions() != 0) {
-                if (bill.getEndDate().getJulian() > closestDate.getJulian()
-                        && bill.getEndDate().getJulian() < date.getJulian()) {
-                    closestDate = bill.getEndDate();
-                    closestkgOfCO2 = bill.calculateElectricityKgC02PerDay();
+        for (int i = 0; i < listOfBills.size(); i++) {
+            if (listOfBills.get(i).getElectricityEmissions() != 0) {
+                if (listOfBills.get(i).getEndDate().getJulian() > closestDate.getJulian()
+                        && listOfBills.get(i).getEndDate().getJulian() < date.getJulian()) {
+                    closestDate = listOfBills.get(i).getEndDate();
+                    closestkgOfCO2 = listOfBills.get(i).getElectricityEmissions();
                 }
             }
         }
@@ -437,10 +437,10 @@ public class CarbonModel implements Serializable {
         Day date = new Day(year, month, day);
         float kgOfCO2 = 0;
 
-        for (Bill bill : listOfBills) {
-            if (bill.getNaturalGasEmissions() != 0) { // is electric bill
-                if (bill.hasTheDayOf(date)) {
-                    return bill.calculateNaturalGasPerDay();
+        for (int i = 0; i < listOfBills.size(); i++) {
+            if (listOfBills.get(i).getNaturalGasEmissions() != 0) { // is electric bill
+                if (listOfBills.get(i).hasTheDayOf(date)) {
+                    return listOfBills.get(i).getNaturalGasEmissions();
                 }
             }
         }
@@ -452,12 +452,12 @@ public class CarbonModel implements Serializable {
         Day closestDate = new Day(0, 0, 0);
         float closestkgOfCO2 = 0;
 
-        for (Bill bill : listOfBills) {
-            if (bill.getNaturalGasEmissions() != 0) {
-                if (bill.getEndDate().getJulian() > closestDate.getJulian()
-                        && bill.getEndDate().getJulian() < date.getJulian()) {
-                    closestDate = bill.getEndDate();
-                    closestkgOfCO2 = bill.calculateNaturalGasPerDay();
+        for (int i = 0; i < listOfBills.size(); i++) {
+            if (listOfBills.get(i).getNaturalGasEmissions() != 0) {
+                if (listOfBills.get(i).getEndDate().getJulian() > closestDate.getJulian()
+                        && listOfBills.get(i).getEndDate().getJulian() < date.getJulian()) {
+                    closestDate = listOfBills.get(i).getEndDate();
+                    closestkgOfCO2 = listOfBills.get(i).getNaturalGasEmissions();
                 }
             }
         }

@@ -48,7 +48,7 @@ public class AddBillActivity extends AppCompatActivity {
     private void premakeBill() {
         Intent intent = getIntent();
         bill_index = intent.getIntExtra("bill_index", -1);
-        if(bill_index != -1){
+        if (bill_index != -1) {
             final EditText startDate = (EditText) findViewById(R.id.startDate);
             final EditText endDate = (EditText) findViewById(R.id.endDate);
             final EditText numbPeople = (EditText) findViewById(R.id.editTextNumberOfPeople);
@@ -61,16 +61,15 @@ public class AddBillActivity extends AppCompatActivity {
             endDate.setText(CarbonModel.getInstance().getBill(bill_index).getEndDate().getActualDate());
             numbPeople.setText(String.valueOf(CarbonModel.getInstance().getBill(bill_index).getNumberOfPeople()));
 
-            if(CarbonModel.getInstance().getBill(bill_index).getType().equals("Electricity")){
+            if (CarbonModel.getInstance().getBill(bill_index).getType().equals("Electricity")) {
                 electricityUse.setText(String.valueOf(CarbonModel.getInstance().getBill(bill_index).getElectricityUse()));
                 electricityEmissions.setText(String.valueOf(CarbonModel.getInstance().getBill(bill_index).getElectricityEmissions()));
-            }
-            else if(CarbonModel.getInstance().getBill(bill_index).getType().equals("Natural Gas")){
+            } else if (CarbonModel.getInstance().getBill(bill_index).getType().equals("Natural Gas")) {
                 naturalGasUse.setText(String.valueOf(CarbonModel.getInstance().getBill(bill_index).getNaturalGasUse()));
                 naturalGasEmissions.setText(String.valueOf(CarbonModel.getInstance().getBill(bill_index).getNaturalGasEmissions()));
             }
             new_bill_index = bill_index;
-        }else {
+        } else {
             new_bill_index = CarbonModel.getInstance().newBillIndex();
             CarbonModel.getInstance().newBill();
         }
@@ -98,9 +97,9 @@ public class AddBillActivity extends AppCompatActivity {
         final int mMonth2 = c2.get(Calendar.MONTH); // current month
         final int mDay2 = c2.get(Calendar.DAY_OF_MONTH); // current day
 
-        if(bill_index != -1){
-            dateEndEntered=true;
-            dateStartEntered=true;
+        if (bill_index != -1) {
+            dateEndEntered = true;
+            dateStartEntered = true;
         }
 
         editStartDate.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +111,7 @@ public class AddBillActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         // set day of month , month and year value in the edit text
                         editStartDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                        CarbonModel.getInstance().getBill(new_bill_index).setStartDate(year, monthOfYear+1, dayOfMonth);
+                        CarbonModel.getInstance().getBill(new_bill_index).setStartDate(year, monthOfYear + 1, dayOfMonth);
                     }
                 }, mYear, mMonth, mDay);
                 datePickerDialog.show();
@@ -147,7 +146,7 @@ public class AddBillActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         // set day of month , month and year value in the edit text
                         editEndDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                        CarbonModel.getInstance().getBill(new_bill_index).setEndDate(year, monthOfYear+1, dayOfMonth);
+                        CarbonModel.getInstance().getBill(new_bill_index).setEndDate(year, monthOfYear + 1, dayOfMonth);
                     }
                 }, mYear2, mMonth2, mDay2);
                 datePickerDialog.show();
@@ -180,26 +179,24 @@ public class AddBillActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (checkInput() == 0) {
                     setResult(Activity.RESULT_CANCELED);
-                }
-                else if(bill_index != -1){
+                } else if (bill_index != -1) {
                     CarbonModel.getInstance().getBill(bill_index).setPeriod();
-                    if(CarbonModel.getInstance().getBill(bill_index).getType().equals("Electricity")){
+                    if (CarbonModel.getInstance().getBill(bill_index).getType().equals("Electricity")) {
                         CarbonModel.getInstance().getBill(bill_index).setElectricityUse(Float.parseFloat(useElectricity.getText().toString()));
                         CarbonModel.getInstance().getBill(bill_index).setElectricityEmissions(Float.parseFloat(emissionsElectricity.getText().toString()));
                         CarbonModel.getInstance().getBill(bill_index).setNaturalGasUse(0);
                         CarbonModel.getInstance().getBill(bill_index).setNaturalGasEmissions(0);
-                        CarbonModel.getInstance().getTipsArray().generateElectricityTip(Float.parseFloat(emissionsElectricity.getText().toString()));
-                        Toast toast = Toast.makeText(getApplicationContext(), CarbonModel.getInstance().getTipsArray().getNextTipInfo(), Toast.LENGTH_SHORT);
-                        toast.show();
-                    }
-                    else if(CarbonModel.getInstance().getBill(bill_index).getType().equals("Natural Gas")){
+                        CarbonModel.getInstance().getTipsArray().generateElectricityTip(CarbonModel.getInstance().getBill(new_bill_index).getElectricityEmissions());
+
+                        displayTips();
+                    } else if (CarbonModel.getInstance().getBill(bill_index).getType().equals("Natural Gas")) {
                         CarbonModel.getInstance().getBill(bill_index).setNaturalGasUse(Float.parseFloat(useNaturalGas.getText().toString()));
                         CarbonModel.getInstance().getBill(bill_index).setElectricityEmissions(Float.parseFloat(emissionsNaturalGas.getText().toString()));
                         CarbonModel.getInstance().getBill(bill_index).setElectricityUse(0);
                         CarbonModel.getInstance().getBill(bill_index).setElectricityEmissions(0);
-                        CarbonModel.getInstance().getTipsArray().generateNaturalGasTip(Float.parseFloat(emissionsNaturalGas.getText().toString()));
-                        Toast toast = Toast.makeText(getApplicationContext(), CarbonModel.getInstance().getTipsArray().getNextTipInfo(), Toast.LENGTH_SHORT);
-                        toast.show();
+                        CarbonModel.getInstance().getTipsArray().generateNaturalGasTip(CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasEmissions());
+
+                        displayTips();
 
                     }
 
@@ -207,34 +204,32 @@ public class AddBillActivity extends AppCompatActivity {
                     startActivity(intent);
 
 
-
                     //save data
                     CarbonModel.getInstance().SaveData();
-                }
-                else {
+                } else {
                     CarbonModel.getInstance().getBill(new_bill_index).setPeriod();
-                    if(CarbonModel.getInstance().getBill(new_bill_index).getType().equals("Electricity")){
+                    if (CarbonModel.getInstance().getBill(new_bill_index).getType().equals("Electricity")) {
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityUse(Float.parseFloat(useElectricity.getText().toString()));
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(Float.parseFloat(emissionsElectricity.getText().toString()));
                         CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasUse(0);
                         CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasEmissions(0);
-                        CarbonModel.getInstance().getTipsArray().generateElectricityTip(Float.parseFloat(emissionsElectricity.getText().toString()));
-                        Toast toast = Toast.makeText(getApplicationContext(), CarbonModel.getInstance().getTipsArray().getNextTipInfo(), Toast.LENGTH_SHORT);
-                        toast.show();
-                    }
-                    else if(CarbonModel.getInstance().getBill(new_bill_index).getType().equals("Natural Gas")){
+                        CarbonModel.getInstance().getTipsArray().generateElectricityTip(CarbonModel.getInstance().getBill(new_bill_index).getElectricityEmissions());
+
+                        displayTips();
+
+                    } else if (CarbonModel.getInstance().getBill(new_bill_index).getType().equals("Natural Gas")) {
                         CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasUse(Float.parseFloat(useNaturalGas.getText().toString()));
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(Float.parseFloat(emissionsNaturalGas.getText().toString()));
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityUse(0);
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(0);
-                        CarbonModel.getInstance().getTipsArray().generateNaturalGasTip(Float.parseFloat(emissionsNaturalGas.getText().toString()));
-                        Toast toast = Toast.makeText(getApplicationContext(), CarbonModel.getInstance().getTipsArray().getNextTipInfo(), Toast.LENGTH_SHORT);
-                        toast.show();
+                        CarbonModel.getInstance().getTipsArray().generateNaturalGasTip(CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasEmissions());
+
+                        displayTips();
                     }
-                    Log.d("my apppppppp", "gas ems:"+CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasEmissions());
-                    Log.d("my apppppppp", "gas use:"+CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasUse());
-                    Log.d("my apppppppp", "elec ems:"+CarbonModel.getInstance().getBill(new_bill_index).getElectricityEmissions());
-                    Log.d("my apppppppp", "elec use:"+CarbonModel.getInstance().getBill(new_bill_index).getElectricityUse());
+                    Log.d("my apppppppp", "gas ems:" + CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasEmissions());
+                    Log.d("my apppppppp", "gas use:" + CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasUse());
+                    Log.d("my apppppppp", "elec ems:" + CarbonModel.getInstance().getBill(new_bill_index).getElectricityEmissions());
+                    Log.d("my apppppppp", "elec use:" + CarbonModel.getInstance().getBill(new_bill_index).getElectricityUse());
 
                     Toast toast = Toast.makeText(getApplicationContext(), "Bill added to Carbon Footprint", Toast.LENGTH_SHORT);
                     toast.show();
@@ -252,11 +247,11 @@ public class AddBillActivity extends AppCompatActivity {
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(bill_index != -1){
+                if (bill_index != -1) {
                     Intent intent = new Intent();
                     setResult(Activity.RESULT_CANCELED, intent);
                     finish();
-                }else {
+                } else {
                     //delete premade bill
                     CarbonModel.getInstance().deleteBill(new_bill_index);
 
@@ -267,6 +262,14 @@ public class AddBillActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void displayTips() {
+        String message = CarbonModel.getInstance().getTipsArray().getNextTipInfo();
+        if(message != null && !message.isEmpty()) {
+            Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     private int checkInput() {
@@ -283,13 +286,13 @@ public class AddBillActivity extends AppCompatActivity {
             return 0;
         }
 
-        if(in_electricity.getVisibility() == View.VISIBLE && in_electricity.getText().toString().trim().isEmpty()){
+        if (in_electricity.getVisibility() == View.VISIBLE && in_electricity.getText().toString().trim().isEmpty()) {
             Toast toast = Toast.makeText(getApplicationContext(), "Please enter your electricity usage", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
 
-        if(in_naturalGas.getVisibility() == View.VISIBLE && in_naturalGas.getText().toString().trim().isEmpty()){
+        if (in_naturalGas.getVisibility() == View.VISIBLE && in_naturalGas.getText().toString().trim().isEmpty()) {
             Toast toast = Toast.makeText(getApplicationContext(), "Please enter your natural gas usage", Toast.LENGTH_SHORT);
             toast.show();
             return 0;
@@ -318,27 +321,26 @@ public class AddBillActivity extends AppCompatActivity {
         finish();
     }
 
-    private void showRadioButtons(){
+    private void showRadioButtons() {
         RadioGroup group = (RadioGroup) findViewById(R.id.radioGroupType);
 
 
-        String []billsType = getResources().getStringArray(R.array.type_bill);
+        String[] billsType = getResources().getStringArray(R.array.type_bill);
 
-        for(int i = 0; i < billsType.length; i++){
+        for (int i = 0; i < billsType.length; i++) {
             final String type = billsType[i];
 
             RadioButton button = new RadioButton(this);
             button.setText(type);
-            button.setPadding(0,0,100,0);
+            button.setPadding(0, 0, 100, 0);
 
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     CarbonModel.getInstance().getBill(new_bill_index).setType(type);
-                    if(type.equals("Electricity")){
+                    if (type.equals("Electricity")) {
                         electricityBill();
-                    }
-                    else if(type.equals("Natural Gas")){
+                    } else if (type.equals("Natural Gas")) {
                         naturalGasBill();
                     }
                 }
@@ -346,17 +348,16 @@ public class AddBillActivity extends AppCompatActivity {
             group.addView(button);
         }
 
-        if(bill_index != -1) {
-            if(CarbonModel.getInstance().getBill(bill_index).getType().equals("Electricity")){
-                    electricityBill();
-            }
-            else if(CarbonModel.getInstance().getBill(bill_index).getType().equals("Natural Gas")){
-                    naturalGasBill();
+        if (bill_index != -1) {
+            if (CarbonModel.getInstance().getBill(bill_index).getType().equals("Electricity")) {
+                electricityBill();
+            } else if (CarbonModel.getInstance().getBill(bill_index).getType().equals("Natural Gas")) {
+                naturalGasBill();
             }
         }
     }
 
-    private void electricityBill(){
+    private void electricityBill() {
         final TextView emissionsNaturalGas = (TextView) findViewById(R.id.textNaturalGasEmission);
         final TextView emissionsElectricity = (TextView) findViewById(R.id.textElectricityEmission);
         final EditText editNaturalGasUse = (EditText) findViewById(R.id.editTextNaturalGas);
@@ -376,7 +377,7 @@ public class AddBillActivity extends AppCompatActivity {
         emissionsNaturalGas.setVisibility(TextView.INVISIBLE);
     }
 
-    private void naturalGasBill(){
+    private void naturalGasBill() {
         final TextView emissionsNaturalGas = (TextView) findViewById(R.id.textNaturalGasEmission);
         final TextView emissionsElectricity = (TextView) findViewById(R.id.textElectricityEmission);
         final EditText editNaturalGasUse = (EditText) findViewById(R.id.editTextNaturalGas);
