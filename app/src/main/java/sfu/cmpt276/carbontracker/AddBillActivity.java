@@ -23,6 +23,7 @@ import org.w3c.dom.Text;
 import java.util.Calendar;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
+import sfu.cmpt276.carbontracker.model.TipsArray;
 
 public class AddBillActivity extends AppCompatActivity {
 
@@ -187,16 +188,25 @@ public class AddBillActivity extends AppCompatActivity {
                         CarbonModel.getInstance().getBill(bill_index).setElectricityEmissions(Float.parseFloat(emissionsElectricity.getText().toString()));
                         CarbonModel.getInstance().getBill(bill_index).setNaturalGasUse(0);
                         CarbonModel.getInstance().getBill(bill_index).setNaturalGasEmissions(0);
+                        CarbonModel.getInstance().getTipsArray().generateElectricityTip(Float.parseFloat(emissionsElectricity.getText().toString()));
+                        Toast toast = Toast.makeText(getApplicationContext(), CarbonModel.getInstance().getTipsArray().getNextTipInfo(), Toast.LENGTH_SHORT);
+                        toast.show();
                     }
                     else if(CarbonModel.getInstance().getBill(bill_index).getType().equals("Natural Gas")){
                         CarbonModel.getInstance().getBill(bill_index).setNaturalGasUse(Float.parseFloat(useNaturalGas.getText().toString()));
                         CarbonModel.getInstance().getBill(bill_index).setElectricityEmissions(Float.parseFloat(emissionsNaturalGas.getText().toString()));
                         CarbonModel.getInstance().getBill(bill_index).setElectricityUse(0);
                         CarbonModel.getInstance().getBill(bill_index).setElectricityEmissions(0);
+                        CarbonModel.getInstance().getTipsArray().generateNaturalGasTip(Float.parseFloat(emissionsNaturalGas.getText().toString()));
+                        Toast toast = Toast.makeText(getApplicationContext(), CarbonModel.getInstance().getTipsArray().getNextTipInfo(), Toast.LENGTH_SHORT);
+                        toast.show();
+
                     }
 
                     Intent intent = new Intent(AddBillActivity.this, TotalFootprintActivity.class);
                     startActivity(intent);
+
+
 
                     //save data
                     CarbonModel.getInstance().SaveData();
@@ -208,12 +218,18 @@ public class AddBillActivity extends AppCompatActivity {
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(Float.parseFloat(emissionsElectricity.getText().toString()));
                         CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasUse(0);
                         CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasEmissions(0);
+                        CarbonModel.getInstance().getTipsArray().generateElectricityTip(Float.parseFloat(emissionsElectricity.getText().toString()));
+                        Toast toast = Toast.makeText(getApplicationContext(), CarbonModel.getInstance().getTipsArray().getNextTipInfo(), Toast.LENGTH_SHORT);
+                        toast.show();
                     }
                     else if(CarbonModel.getInstance().getBill(new_bill_index).getType().equals("Natural Gas")){
                         CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasUse(Float.parseFloat(useNaturalGas.getText().toString()));
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(Float.parseFloat(emissionsNaturalGas.getText().toString()));
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityUse(0);
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(0);
+                        CarbonModel.getInstance().getTipsArray().generateNaturalGasTip(Float.parseFloat(emissionsNaturalGas.getText().toString()));
+                        Toast toast = Toast.makeText(getApplicationContext(), CarbonModel.getInstance().getTipsArray().getNextTipInfo(), Toast.LENGTH_SHORT);
+                        toast.show();
                     }
                     Log.d("my apppppppp", "gas ems:"+CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasEmissions());
                     Log.d("my apppppppp", "gas use:"+CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasUse());

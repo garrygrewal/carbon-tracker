@@ -10,6 +10,7 @@ import android.widget.Button;
 
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
+import sfu.cmpt276.carbontracker.model.TipsArray;
 
 
 /*
@@ -44,6 +45,7 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, TotalFootprintActivity.class);
                 startActivity(intent);
+
 
             }
         });

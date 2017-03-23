@@ -28,7 +28,10 @@ public class CarbonModel implements Serializable {
     private List<Vehicle> listOfInputVehicles = new ArrayList<>();
     private List<Integer> listOfHiddenVehicles = new ArrayList<>();
     private List<Journey> listOfJourneys = new ArrayList<>();
+    private TipsArray tipsArray = new TipsArray();
+
     //private List<Vehicle> listOfKnownCars = new ArrayList<>();
+
     private List<Bill> listOfBills = new ArrayList<>();
 
 
@@ -41,6 +44,10 @@ public class CarbonModel implements Serializable {
     //DBAdapter CarbonTrackerDB;
 
     private CarbonModel() {
+    }
+
+    public TipsArray getTipsArray(){
+        return tipsArray;
     }
 
     public void hideRoute(int index) {
