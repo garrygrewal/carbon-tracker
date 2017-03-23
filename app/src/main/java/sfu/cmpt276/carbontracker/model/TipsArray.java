@@ -42,7 +42,7 @@ public class TipsArray implements Serializable{
 
     public void generateElectricityTip(float electricityEmissions) {
         if(highestElectricityEmission < electricityEmissions) {
-            String turnOffLightsTip = "You generated " + electricityEmissions + " kgCO2 in a day,consider turning off the lights during the day to help with your emissions.";
+            String turnOffLightsTip = "You generated " + electricityEmissions + " kgCO2 in a day, consider turning off the lights during the day to help with your emissions.";
             String blanketTip = "You generated " + electricityEmissions + " kgCO2 in a day, consider using a blanket instead of turning down up the heat.";
             String clothesTip = "You generated  " + electricityEmissions + " kgCO2 in a day, consider wearing more clothes instead of turning up the heat.";
             String insulateHome = "You generated  " + electricityEmissions + " kgCO2 in a day, consider insulating your home to reduce drafts and air leaks instead of turning up the heat.";

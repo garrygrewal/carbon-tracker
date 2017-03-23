@@ -41,7 +41,7 @@ public class MainMenuActivity extends AppCompatActivity {
         btn_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayTips();
+                //displayTips();
                 Intent intent = new Intent(MainMenuActivity.this, SelectVehicleActivity.class);
                 startActivity(intent);
             }
@@ -52,7 +52,7 @@ public class MainMenuActivity extends AppCompatActivity {
         btn_total.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayTips();
+                //displayTips();
                 Intent intent = new Intent(MainMenuActivity.this, TotalFootprintActivity.class);
                 startActivity(intent);
 
@@ -64,7 +64,7 @@ public class MainMenuActivity extends AppCompatActivity {
         btn_bill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayTips();
+                //displayTips();
                 Intent intent = new Intent(MainMenuActivity.this, AddBillActivity.class);
                 startActivity(intent);
             }
@@ -74,7 +74,7 @@ public class MainMenuActivity extends AppCompatActivity {
         btn_singleDayGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayTips();
+                //displayTips();
                 Intent intent = new Intent(MainMenuActivity.this, SingleDayGraphActivity.class);
                 startActivity(intent);
             }
@@ -84,7 +84,7 @@ public class MainMenuActivity extends AppCompatActivity {
         btn_multiDayGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayTips();
+                //displayTips();
                 Intent intent = new Intent(MainMenuActivity.this, MultiDayGraphActivity.class);
                 startActivity(intent);
             }
