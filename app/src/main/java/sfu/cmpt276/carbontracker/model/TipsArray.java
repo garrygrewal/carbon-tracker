@@ -71,7 +71,7 @@ public class TipsArray {
             }
 
         }
-        return null;
+        return "";
 
     }
 
