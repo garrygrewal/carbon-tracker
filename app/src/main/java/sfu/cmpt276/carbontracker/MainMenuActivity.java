@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
+import android.widget.Toast;
 
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
+import sfu.cmpt276.carbontracker.model.TipsArray;
 
 
 /*
@@ -26,12 +27,21 @@ public class MainMenuActivity extends AppCompatActivity {
         setupButtons();
     }
 
+    private void displayTips() {
+        String message = CarbonModel.getInstance().getTipsArray().getNextTipInfo();
+        if(message != null && !message.isEmpty()) {
+            Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
     private void setupButtons() {
         //create journey button
         Button btn_new = (Button) findViewById(R.id.buttonCreateJourney);
         btn_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                displayTips();
                 Intent intent = new Intent(MainMenuActivity.this, SelectVehicleActivity.class);
                 startActivity(intent);
             }
@@ -42,8 +52,10 @@ public class MainMenuActivity extends AppCompatActivity {
         btn_total.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                displayTips();
                 Intent intent = new Intent(MainMenuActivity.this, TotalFootprintActivity.class);
                 startActivity(intent);
+
 
             }
         });
@@ -52,6 +64,7 @@ public class MainMenuActivity extends AppCompatActivity {
         btn_bill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                displayTips();
                 Intent intent = new Intent(MainMenuActivity.this, AddBillActivity.class);
                 startActivity(intent);
             }
@@ -61,6 +74,7 @@ public class MainMenuActivity extends AppCompatActivity {
         btn_singleDayGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                displayTips();
                 Intent intent = new Intent(MainMenuActivity.this, SingleDayGraphActivity.class);
                 startActivity(intent);
             }
@@ -70,6 +84,7 @@ public class MainMenuActivity extends AppCompatActivity {
         btn_multiDayGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                displayTips();
                 Intent intent = new Intent(MainMenuActivity.this, MultiDayGraphActivity.class);
                 startActivity(intent);
             }

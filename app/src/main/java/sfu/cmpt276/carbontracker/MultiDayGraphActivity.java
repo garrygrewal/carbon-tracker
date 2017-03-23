@@ -74,6 +74,8 @@ public class MultiDayGraphActivity extends AppCompatActivity {
 
         setupSeekBar();
         setupCharts();
+
+
     }
 
     private void setupPieGraph() {

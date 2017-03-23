@@ -49,6 +49,8 @@ public class AddNameActivity extends AppCompatActivity {
     private void addName() {
         EditText in_name = (EditText) findViewById(R.id.journeyName);
         String name = in_name.getText().toString();
+
+        CarbonModel.getInstance().getTipsArray().generateCarTip(CarbonModel.getInstance().getJourney(new_journey_index).getTotalCO2Emission());
         CarbonModel.getInstance().addJourneyName(new_journey_index, name);
     }
 
@@ -127,6 +129,8 @@ public class AddNameActivity extends AppCompatActivity {
                     CarbonModel.getInstance().deleteJourney(journey_index);
                     Intent intent = new Intent(AddNameActivity.this, TotalFootprintActivity.class);
                     startActivity(intent);
+
+                    displayTips();
                     //save data
                     CarbonModel.getInstance().SaveData();
                 }
@@ -135,6 +139,8 @@ public class AddNameActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(AddNameActivity.this, MainMenuActivity.class);
                     startActivity(intent);
+
+                    displayTips();
                     //save data
                     CarbonModel.getInstance().SaveData();
                 }
@@ -155,6 +161,14 @@ public class AddNameActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void displayTips() {
+        String message = CarbonModel.getInstance().getTipsArray().getNextTipInfo();
+        if(message != null && !message.isEmpty()) {
+            Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     private int checkInput() {
