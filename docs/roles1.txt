@@ -1,4 +1,4 @@
-Product Owner - btian @btian	
-Team Member - chaoyix @chaoyix
-Scrum Master - garryg @garryg
-Repo Manager - lochee @lochee
+Product Owner - chaoyix @chaoyix
+Team Member - garryg @garry
+Scrum Master - lochee @lochee
+Repo Manager - btian @btian
