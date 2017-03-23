@@ -1,7 +1,7 @@
 package sfu.cmpt276.carbontracker.model;
 
 /**
- * Created by btian on 3/22/17.
+ * Tip class holds the countdown till next available output.
  */
 
 public class Tip {
