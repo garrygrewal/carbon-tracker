@@ -2,9 +2,15 @@ package sfu.cmpt276.carbontracker;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.TypedArray;
+import android.media.Image;
+import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,12 +22,15 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
@@ -204,6 +213,25 @@ public class AddVehicleActivity extends AppCompatActivity {
     }
 
     private void setupButtons() {
+        //set icon button
+        ImageButton iconBtn = (ImageButton) findViewById(R.id.iconButton);
+        iconBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String[] items = new String[] {"1", "2", "3", "4", "5"};
+                final Integer[] icons = new Integer[] {R.mipmap.coupe, R.mipmap.hatch, R.mipmap.suv, R.mipmap.van, R.mipmap.truck};
+                ListAdapter adapter = new iconArrayAdapter(AddVehicleActivity.this, items, icons);
+
+                new AlertDialog.Builder(getApplicationContext()).setTitle("Select Icon").setAdapter(adapter, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int item ) {
+                        Toast.makeText(AddVehicleActivity.this, "Item Selected: " + item, Toast.LENGTH_SHORT).show();
+
+
+                    }
+                }).show();
+            }
+        });
+
         //cancel button
         Button btn_cancel = (Button) findViewById(R.id.buttonCancel);
         btn_cancel.setOnClickListener(new View.OnClickListener() {
@@ -215,6 +243,33 @@ public class AddVehicleActivity extends AppCompatActivity {
             }
         });
     }
+
+    private class iconArrayAdapter extends ArrayAdapter<String> {
+        private List<Integer> images;
+
+        public iconArrayAdapter(Context context, String[] items, Integer[] images) {
+            super(context, android.R.layout.select_dialog_item, items);
+            this.images = Arrays.asList(images);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = super.getView(position, convertView, parent);
+            TextView textView = (TextView) view.findViewById(android.R.id.text1);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                textView.setCompoundDrawablesRelativeWithIntrinsicBounds(images.get(position), 0, 0, 0);
+            } else {
+                textView.setCompoundDrawablesWithIntrinsicBounds(images.get(position), 0, 0, 0);
+            }
+            textView.setCompoundDrawablePadding(
+                    (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 12, getContext().getResources().getDisplayMetrics()));
+            return view;
+        }
+
+    }
+
+
 
     public static Intent makeIntent(Context context) {
         return new Intent(context, AddVehicleActivity.class);

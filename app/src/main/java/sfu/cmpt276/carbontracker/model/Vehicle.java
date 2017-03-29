@@ -19,6 +19,7 @@ public class Vehicle implements Serializable{
     private String fuelType;
     private String transmission;
     private String engineDisplacement;
+    private int icon;
 
     public String getMake() {
         return make;
@@ -92,4 +93,11 @@ public class Vehicle implements Serializable{
         return name;
     }
 
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
+    }
 }
