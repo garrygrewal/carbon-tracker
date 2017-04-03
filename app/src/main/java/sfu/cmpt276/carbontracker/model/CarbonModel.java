@@ -512,16 +512,18 @@ public class CarbonModel implements Serializable {
         return null;
     }
 
+    //check how many journeys user has entered for current day
     public int numberOfJourneysOnCurrentDay(){
         Calendar calendar = Calendar.getInstance();
         int journeys=0;
 
         Day currentDay = new Day(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH));
 
-        for(Journey j: listOfJourneys){
-            Log.d("my apppppppp", "Days from current day: "+j.getDay().daysFrom(currentDay));
-            if(j.getDay().daysFrom(currentDay) == 0){
-                journeys++;
+        if(listOfBills.size()>0) {
+            for (Journey j : listOfJourneys) {
+                if (j.getDay().daysFrom(currentDay) == 0) {
+                    journeys++;
+                }
             }
         }
 
@@ -535,9 +537,11 @@ public class CarbonModel implements Serializable {
         Calendar calendar = Calendar.getInstance();
         Day currentDay = new Day(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH));
 
-        for(Bill b: listOfBills){
-            if(currentDay.daysFrom(b.getStartDate()) > 0 && currentDay.daysFrom(b.getEndDate()) < 0){
-                enteredBillToday=true;
+        if(listOfBills.size()>0) {
+            for (Bill b : listOfBills) {
+                if (currentDay.daysFrom(b.getStartDate()) > 0 && currentDay.daysFrom(b.getEndDate()) < 0) {
+                    enteredBillToday = true;
+                }
             }
         }
         return enteredBillToday;

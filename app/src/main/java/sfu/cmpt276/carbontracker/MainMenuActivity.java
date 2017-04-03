@@ -12,8 +12,6 @@ import android.widget.Toast;
 
 
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 import sfu.cmpt276.carbontracker.model.TipsArray;
@@ -30,8 +28,9 @@ public class MainMenuActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         setupButtons();
+
+
         pushNotificationSetup();
-        Log.d("my app", "size of bills list : " +CarbonModel.getInstance().getSizeOfJourneysList());
     }
 
     public void pushNotificationSetup(){

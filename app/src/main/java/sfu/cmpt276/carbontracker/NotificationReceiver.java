@@ -18,8 +18,8 @@ public class NotificationReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        //if user has not entered a bill for todays date
-        if(!(CarbonModel.getInstance().enteredBillOnCurrentDay())){
+        //if user has entered a journey for today but has not entered a bill for todays date
+        if(CarbonModel.getInstance().numberOfJourneysOnCurrentDay()>=1 && !(CarbonModel.getInstance().enteredBillOnCurrentDay())){
             Intent intent1 = new Intent(context, AddBillActivity.class);
             intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 100, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
