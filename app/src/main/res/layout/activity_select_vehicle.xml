@@ -5,12 +5,13 @@
     android:id="@+id/activity_select_transportation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:layout_marginTop="?android:attr/actionBarSize"
+    android:background="@drawable/car"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="?android:attr/actionBarSize"
     android:visibility="visible"
     android:weightSum="1"
     tools:context="sfu.cmpt276.carbontracker.SelectVehicleActivity">
@@ -77,6 +78,7 @@
             android:id="@+id/buttonWalk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_default"
             android:text="Walk/Bike" />
 
         <LinearLayout
