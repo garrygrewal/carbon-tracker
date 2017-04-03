@@ -2,8 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:background="@android:drawable/edit_text"
     android:orientation="horizontal"
-    android:padding="8dp" >
+    android:padding="8dp"
+    android:paddingTop="?android:attr/actionBarSize"
+    android:layout_marginTop="?android:attr/actionBarSize">
 
     <TextView
         android:id="@+id/car_model"

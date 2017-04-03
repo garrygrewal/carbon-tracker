@@ -2,17 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:background="@android:drawable/edit_text"
     android:orientation="horizontal"
-    android:padding="10dp" >
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/car_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:layout_marginTop="2dp"
-        android:typeface="sans"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="sans" />
 
     <TextView
         android:id="@+id/car_model"

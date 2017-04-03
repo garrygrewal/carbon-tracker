@@ -2,8 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:background="@android:drawable/edit_text"
     android:orientation="horizontal"
-    android:padding="2dp" >
+    android:padding="2dp">
 
     <TextView
         android:id="@+id/route_name"
