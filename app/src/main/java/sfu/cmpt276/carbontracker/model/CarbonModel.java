@@ -2,8 +2,10 @@ package sfu.cmpt276.carbontracker.model;
 
 import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.io.Serializable;
 
@@ -508,6 +510,41 @@ public class CarbonModel implements Serializable {
             e.printStackTrace();
         }
         return null;
+    }
+
+    //check how many journeys user has entered for current day
+    public int numberOfJourneysOnCurrentDay(){
+        Calendar calendar = Calendar.getInstance();
+        int journeys=0;
+
+        Day currentDay = new Day(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH));
+
+        if(listOfBills.size()>0) {
+            for (Journey j : listOfJourneys) {
+                if (j.getDay().daysFrom(currentDay) == 0) {
+                    journeys++;
+                }
+            }
+        }
+
+        return journeys;
+    }
+
+    //check if there is a already a bill for current day
+    //if there is no bill for currentday check when was the last time user entered bill
+    public boolean enteredBillOnCurrentDay(){
+        boolean enteredBillToday = false;
+        Calendar calendar = Calendar.getInstance();
+        Day currentDay = new Day(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH));
+
+        if(listOfBills.size()>0) {
+            for (Bill b : listOfBills) {
+                if (currentDay.daysFrom(b.getStartDate()) > 0 && currentDay.daysFrom(b.getEndDate()) < 0) {
+                    enteredBillToday = true;
+                }
+            }
+        }
+        return enteredBillToday;
     }
 
 }
