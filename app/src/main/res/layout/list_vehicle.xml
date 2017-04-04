@@ -37,9 +37,9 @@
         android:id="@+id/car_mpg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/car_name"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
         android:textColor="#343434"
         android:textSize="14sp" />
+
 </RelativeLayout>

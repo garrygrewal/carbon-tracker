@@ -41,6 +41,7 @@ public class AddVehicleActivity extends AppCompatActivity {
     private String model;
     private String year;
     private int index;
+    private int icon;
     private List<Vehicle> outputCars = new ArrayList<>();
 
     @Override
@@ -50,6 +51,9 @@ public class AddVehicleActivity extends AppCompatActivity {
 
         //prevents keyboard from appearing when activity stars
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        //get preselected icon
+        icon = Integer.parseInt(CarbonModel.getInstance().getVehicleIcon(index));
 
         setupButtons();
         Intent intent = getIntent();
@@ -193,6 +197,7 @@ public class AddVehicleActivity extends AppCompatActivity {
                     intent.putExtra("vehicle_fuel", vehicle.getFuelType());
                     intent.putExtra("vehicle_transmission", vehicle.getTransmission());
                     intent.putExtra("vehicle_engineDisplacement", vehicle.getEngineDisplacement());
+                    intent.putExtra("vehicle_icon", Integer.toString(icon)); //vehicle icon global variable
                     setResult(Activity.RESULT_OK, intent);
                     finish();
                 }
@@ -214,21 +219,63 @@ public class AddVehicleActivity extends AppCompatActivity {
 
     private void setupButtons() {
         //set icon button
-        ImageButton iconBtn = (ImageButton) findViewById(R.id.iconButton);
+        final ImageButton iconBtn = (ImageButton) findViewById(R.id.iconButton);
+        //set icon
+        switch(icon) {
+            case 0:
+                iconBtn.setBackgroundResource(R.mipmap.coupe);
+                break;
+            case 1:
+                iconBtn.setBackgroundResource(R.mipmap.hatch);
+                break;
+            case 2:
+                iconBtn.setBackgroundResource(R.mipmap.suv);
+                break;
+            case 3:
+                iconBtn.setBackgroundResource(R.mipmap.van);
+                break;
+            case 4:
+                iconBtn.setBackgroundResource(R.mipmap.truck);
+                break;
+            default:
+                iconBtn.setBackgroundResource(R.mipmap.hatch);
+                break;
+        }
         iconBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String[] items = new String[] {"1", "2", "3", "4", "5"};
+                final String [] items = new String[] {"Coupe", "Hatchback", "Suv", "Van", "Truck"};
                 final Integer[] icons = new Integer[] {R.mipmap.coupe, R.mipmap.hatch, R.mipmap.suv, R.mipmap.van, R.mipmap.truck};
-                ListAdapter adapter = new iconArrayAdapter(AddVehicleActivity.this, items, icons);
+                ListAdapter adapter = new ArrayAdapterWithIcon(AddVehicleActivity.this, items, icons);
 
-                new AlertDialog.Builder(getApplicationContext()).setTitle("Select Icon").setAdapter(adapter, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int item ) {
-                        Toast.makeText(AddVehicleActivity.this, "Item Selected: " + item, Toast.LENGTH_SHORT).show();
-
-
-                    }
-                }).show();
+                new AlertDialog.Builder(AddVehicleActivity.this).setTitle("Select Vehicle Icon")
+                        .setAdapter(adapter, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int item ) {
+                                //Toast.makeText(AddVehicleActivity.this, "Item Selected: " + item, Toast.LENGTH_SHORT).show();
+                                icon = item;
+                                //change to selected icon
+                                switch(icon) {
+                                    case 0:
+                                        iconBtn.setBackgroundResource(R.mipmap.coupe);
+                                        break;
+                                    case 1:
+                                        iconBtn.setBackgroundResource(R.mipmap.hatch);
+                                        break;
+                                    case 2:
+                                        iconBtn.setBackgroundResource(R.mipmap.suv);
+                                        break;
+                                    case 3:
+                                        iconBtn.setBackgroundResource(R.mipmap.van);
+                                        break;
+                                    case 4:
+                                        iconBtn.setBackgroundResource(R.mipmap.truck);
+                                        break;
+                                    default:
+                                        iconBtn.setBackgroundResource(R.mipmap.hatch);
+                                        break;
+                                }
+                            }
+                        }).show();
             }
         });
 
@@ -244,13 +291,16 @@ public class AddVehicleActivity extends AppCompatActivity {
         });
     }
 
-    private class iconArrayAdapter extends ArrayAdapter<String> {
+    //icon select dialog adapter
+    public class ArrayAdapterWithIcon extends ArrayAdapter<String> {
+
         private List<Integer> images;
 
-        public iconArrayAdapter(Context context, String[] items, Integer[] images) {
+        public ArrayAdapterWithIcon(Context context, String[] items, Integer[] images) {
             super(context, android.R.layout.select_dialog_item, items);
             this.images = Arrays.asList(images);
         }
+
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {

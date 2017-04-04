@@ -331,7 +331,7 @@ public class CarbonModel implements Serializable {
         return listOfJourneys.get(index).getTotalCO2Emission();
     }
 
-    public void addVehicle(String name, String make, String model, String year, String city, String hwy, String fuelType, String transmission, String displacement) {
+    public void addVehicle(String name, String make, String model, String year, String city, String hwy, String fuelType, String transmission, String displacement, String icon) {
         Vehicle vehicle = new Vehicle();
 
         vehicle.setName(name);
@@ -348,6 +348,7 @@ public class CarbonModel implements Serializable {
             vehicle.setTransmission(transmission);
             vehicle.setEngineDisplacement(displacement);
         }
+        vehicle.setIcon(icon);
         listOfInputVehicles.add(vehicle);
     }
 
@@ -367,7 +368,9 @@ public class CarbonModel implements Serializable {
         return listOfInputVehicles.get(index).getYear();
     }
 
-
+    public String getVehicleIcon(int index) {
+        return listOfInputVehicles.get(index).getIcon();
+    }
     public String getRouteName(int index) {
         return listOfInputRoutes.get(index).getName();
     }
@@ -546,5 +549,6 @@ public class CarbonModel implements Serializable {
         }
         return enteredBillToday;
     }
+
 
 }
