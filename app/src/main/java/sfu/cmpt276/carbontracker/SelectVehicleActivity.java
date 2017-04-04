@@ -291,6 +291,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 case 4:
                     icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.truck, 0, 0, 0);
                     break;
+                /*
                 case 5:
                     icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.bike, 0, 0, 0);
                     break;
@@ -300,6 +301,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 case 7:
                     icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.train, 0, 0, 0);
                     break;
+                */
                 default:
                     icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.hatch, 0, 0, 0);
                     break;

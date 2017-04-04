@@ -84,6 +84,39 @@ public class AddNameActivity extends AppCompatActivity {
         CarbonModel.getInstance().newJourney(vehicle_index, route_index);
         new_journey_index = CarbonModel.getInstance().newJourneyIndex();
 
+        //vehicle icon
+        TextView icon = (TextView) findViewById(R.id.iconView);
+        int i = Integer.parseInt(CarbonModel.getInstance().getVehicleIcon(vehicle_index));
+        switch(i) {
+            case 0:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.coupe, 0, 0, 0);
+                break;
+            case 1:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.hatch, 0, 0, 0);
+                break;
+            case 2:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.suv, 0, 0, 0);
+                break;
+            case 3:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.van, 0, 0, 0);
+                break;
+            case 4:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.truck, 0, 0, 0);
+                break;
+            case 5:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.bike, 0, 0, 0);
+                break;
+            case 6:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.bus, 0, 0, 0);
+                break;
+            case 7:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.train, 0, 0, 0);
+                break;
+            default:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.hatch, 0, 0, 0);
+                break;
+        }
+
     }
 
     private void setupButtons() {
