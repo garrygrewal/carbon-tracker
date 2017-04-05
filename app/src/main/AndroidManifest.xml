@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".SelectVehicleActivity" />
         <activity android:name=".MainMenuActivity" />
+        <activity android:name=".AboutActivity" />
         <activity android:name=".SelectRouteActivity" />
         <activity android:name=".AddVehicleActivity" />
         <activity android:name=".AddRouteActivity" />

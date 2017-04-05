@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -113,7 +115,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
             //add new vehicle
             case 30:
                 if (resultCode == Activity.RESULT_OK) {
-                    CarbonModel.getInstance().addVehicle(data.getStringExtra("vehicle_name"), data.getStringExtra("vehicle_make"), data.getStringExtra("vehicle_model"), data.getStringExtra("vehicle_year"), data.getStringExtra("vehicle_city"), data.getStringExtra("vehicle_hwy"), data.getStringExtra("vehicle_fuel"), data.getStringExtra("vehicle_transmission"), data.getStringExtra("vehicle_engineDisplacement"));
+                    CarbonModel.getInstance().addVehicle(data.getStringExtra("vehicle_name"), data.getStringExtra("vehicle_make"), data.getStringExtra("vehicle_model"), data.getStringExtra("vehicle_year"), data.getStringExtra("vehicle_city"), data.getStringExtra("vehicle_hwy"), data.getStringExtra("vehicle_fuel"), data.getStringExtra("vehicle_transmission"), data.getStringExtra("vehicle_engineDisplacement"), data.getStringExtra("vehicle_icon"));
                     listCars();
                     break;
                 } else
@@ -133,6 +135,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
                     double highWay = Double.parseDouble(data.getStringExtra("vehicle_hwy"));
                     edited_vehicle.setHighway(highWay);
                     edited_vehicle.setFuelType(data.getStringExtra("vehicle_fuel"));
+                    edited_vehicle.setIcon(data.getStringExtra("vehicle_icon"));
                     CarbonModel.getInstance().editVehicle(edited_vehicle, index);
                     listCars();
                     break;
@@ -148,7 +151,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
         walk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CarbonModel.getInstance().addVehicle("Walk", "n/a", "n/a", "n/a", "0", "0", "n/a", "n/a", "n/a");
+                CarbonModel.getInstance().addVehicle("Walk", "n/a", "n/a", "n/a", "0", "0", "n/a", "n/a", "n/a", "5");
                 int idx = CarbonModel.getInstance().countAllCars()-1;
                 Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
                 intent.putExtra("car_index", idx);
@@ -166,7 +169,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Conversion base : 1 mpg = 6553.55772216 g/km CO2
                 // - Assume 89g of CO2 emissions per km of bus travel.
-                CarbonModel.getInstance().addVehicle("Bus", "n/a", "n/a", "n/a", "73.63548002427", "73.63548002427", "other", "n/a", "n/a");
+                CarbonModel.getInstance().addVehicle("Bus", "n/a", "n/a", "n/a", "73.63548002427", "73.63548002427", "other", "n/a", "n/a", "6");
                 int idx = CarbonModel.getInstance().countAllCars()-1;
                 Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
                 intent.putExtra("car_index", idx);
@@ -185,7 +188,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 // - Find some reasonable number of CO2 per km of Skytrain travel.
                 // NEED MORE RESEARCH
                 // PLACEHOLDER CO2----------------------------------------------------------------------------------------------------------------------------------------------------------
-                CarbonModel.getInstance().addVehicle("SkyTrain", "n/a", "n/a", "n/a", "57.89", "57.89", "other", "n/a", "n/a");
+                CarbonModel.getInstance().addVehicle("SkyTrain", "n/a", "n/a", "n/a", "57.89", "57.89", "other", "n/a", "n/a", "7");
                 int idx = CarbonModel.getInstance().countAllCars()-1;
                 Intent intent = new Intent(SelectVehicleActivity.this, SelectRouteActivity.class);
                 intent.putExtra("car_index", idx);
@@ -260,7 +263,7 @@ public class SelectVehicleActivity extends AppCompatActivity {
                 holder.name = (TextView) convertView.findViewById(R.id.car_name);
                 holder.model = (TextView) convertView.findViewById(R.id.car_model);
                 holder.details = (TextView) convertView.findViewById(R.id.car_details);
-                holder.mpg = (TextView) convertView.findViewById(R.id.car_mpg);
+                //holder.mpg = (TextView) convertView.findViewById(R.id.car_mpg);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
@@ -268,9 +271,45 @@ public class SelectVehicleActivity extends AppCompatActivity {
 
             Vehicle vehicle = listData.get(position);
             holder.name.setText(vehicle.getName());
+
+            //icon
+            TextView icon = (TextView) convertView.findViewById(R.id.car_mpg);
+            int i = Integer.parseInt(vehicle.getIcon());
+            switch(i) {
+                case 0:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.coupe, 0, 0, 0);
+                    break;
+                case 1:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.hatch, 0, 0, 0);
+                    break;
+                case 2:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.suv, 0, 0, 0);
+                    break;
+                case 3:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.van, 0, 0, 0);
+                    break;
+                case 4:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.truck, 0, 0, 0);
+                    break;
+                /*
+                case 5:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.bike, 0, 0, 0);
+                    break;
+                case 6:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.bus, 0, 0, 0);
+                    break;
+                case 7:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.train, 0, 0, 0);
+                    break;
+                */
+                default:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.hatch, 0, 0, 0);
+                    break;
+            }
+
             holder.model.setText(vehicle.getYear() + " " + vehicle.getMake() + " " + vehicle.getModel());
             holder.details.setText(vehicle.getEngineDisplacement() + " " + vehicle.getTransmission() + ", " + vehicle.getFuelType());
-            holder.mpg.setText(vehicle.getCity() + " City MPG, " + vehicle.getHighway() + " Highway MPG");
+            //holder.mpg.setText(vehicle.getCity() + " City MPG, " + vehicle.getHighway() + " Highway MPG");
             return convertView;
         }
 
@@ -278,7 +317,6 @@ public class SelectVehicleActivity extends AppCompatActivity {
             TextView name;
             TextView model;
             TextView details;
-            TextView mpg;
         }
     }
 
@@ -300,11 +338,13 @@ public class SelectVehicleActivity extends AppCompatActivity {
             finish();
             return(true);
         case R.id.about:
-            //waiting for about page implementation
-            //startActivity(new Intent(SelectVehicleActivity.this, AboutActivity.class));
+            startActivity(new Intent(SelectVehicleActivity.this, AboutActivity.class));
             return(true);
         case R.id.exit:
-            System.exit(0);
+            Intent exit = new Intent(Intent.ACTION_MAIN);
+            exit.addCategory(Intent.CATEGORY_HOME);
+            exit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(exit);
             return(true);
     }
         return(super.onOptionsItemSelected(item));
