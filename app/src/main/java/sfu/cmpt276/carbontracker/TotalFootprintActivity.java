@@ -319,8 +319,7 @@ public class TotalFootprintActivity extends AppCompatActivity {
             finish();
             return(true);
         case R.id.about:
-            //waiting for about page implementation
-            //startActivity(new Intent(SelectVehicleActivity.this, AboutActivity.class));
+            startActivity(new Intent(TotalFootprintActivity.this, AboutActivity.class));
             return(true);
         case R.id.exit:
             Intent exit = new Intent(Intent.ACTION_MAIN);
