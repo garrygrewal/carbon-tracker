@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="Enter Bill Info"
+                    android:text="@string/enter_bill_info"
                     android:textAlignment="viewStart"
                     android:textAllCaps="false"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -81,7 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Start Date" />
+                        android:text="@string/start_date" />
 
                     <EditText
                         android:id="@+id/startDate"
@@ -126,7 +126,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="End Date" />
+                        android:text="@string/end_date" />
 
                     <EditText
                         android:id="@+id/endDate"

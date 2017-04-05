@@ -29,9 +29,7 @@ public class MainMenuActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main_menu);
         setupButtons();
 
-
         pushNotificationSetup();
-        displayTips();
     }
 
     public void pushNotificationSetup(){

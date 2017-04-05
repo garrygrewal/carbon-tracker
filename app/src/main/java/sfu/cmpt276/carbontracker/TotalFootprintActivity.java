@@ -197,7 +197,7 @@ public class TotalFootprintActivity extends AppCompatActivity {
 
             Journey journey = listData.get(position);
             holder.name.setText(journey.getJourneyName());
-            holder.details.setText(journey.getCo2PerCity() + " kg of CO2 by city, " + journey.getCo2PerHighway() + " kg of CO2 by highway");
+            holder.details.setText(journey.getCo2PerCity() +" "+ getString(R.string.kgC02City) +" "+ journey.getCo2PerHighway() +" "+ getString(R.string.kgC02highway));
             holder.date.setText(journey.getStringDate());
             return convertView;
         }
@@ -251,13 +251,13 @@ public class TotalFootprintActivity extends AppCompatActivity {
             Bill bill = listData.get(position);
             holder.name.setText(bill.getType());
             if(bill.getType().equals("Electricity")){
-                holder.details.setText(bill.getElectricityEmissions()+" kg of CO2, by " + bill.getElectricityUse() +"kWh of electricity, From: " + bill.getStartDate().getActualDate() + ", To: " + bill.getEndDate().getActualDate() + ", with " +bill.getNumberOfPeople() +" person(s)");
+                holder.details.setText(bill.getElectricityEmissions()+" "+getString(R.string.kgOfCO2by) +" "+ bill.getElectricityUse() +" "+getString(R.string.kwhElectricityFrom) +" "+ bill.getStartDate().getActualDate() + ", " + getString(R.string.too) +" "+ bill.getEndDate().getActualDate() + ", " +getString(R.string.with) +" "+bill.getNumberOfPeople() +" "+getString(R.string.persons));
             }
             else if(bill.getType().equals("Natural Gas")){
-                holder.details.setText(bill.getNaturalGasEmissions()+" kg of CO2, by " +bill.getNaturalGasUse() + "GJ of natural gas, From: " + bill.getStartDate().getActualDate() + ", To: " + bill.getEndDate().getActualDate() + ", with " +bill.getNumberOfPeople() +" person(s)");
+                holder.details.setText(bill.getNaturalGasEmissions()+" "+getString(R.string.kgOfCO2by) +" "+bill.getNaturalGasUse() +" "+ getString(R.string.GJofNaturalGasFrom) +" "+ bill.getStartDate().getActualDate() + ", " + getString(R.string.too) +" "+ bill.getEndDate().getActualDate() + ", " + getString(R.string.with) +" "+bill.getNumberOfPeople() +" "+getString(R.string.persons));
 
             }
-            holder.period.setText("Total Days: " + bill.getPeriod());
+            holder.period.setText(getString(R.string.totalDays) +" "+ bill.getPeriod());
             return convertView;
         }
 

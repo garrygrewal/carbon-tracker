@@ -77,7 +77,7 @@ public class SingleDayGraphActivity extends AppCompatActivity {
         //populating a list of PieEntries;
         List<PieEntry> pieEntries = new ArrayList<>();
 
-        pieEntries.add(new PieEntry(CarbonModel.getInstance().getGasC02Emissions(graphYear, graphMonth, graphDay), "Natural Gas Emissions"));
+        pieEntries.add(new PieEntry(CarbonModel.getInstance().getGasC02Emissions(graphYear, graphMonth, graphDay), getString(R.string.naturalgasemissions)));
         for (int i = 0; i < CarbonModel.getInstance().getSizeOfJourneysList(); i++) {
             if(CarbonModel.getInstance().getJourney(i).getDay().getJulian() == CarbonModel.getInstance().getJulian(graphYear, graphMonth, graphDay) ) {
                 pieEntries.add(new PieEntry(CarbonModel.getInstance().getJourneyTotalCO2Emissions(i)
@@ -86,9 +86,9 @@ public class SingleDayGraphActivity extends AppCompatActivity {
         }
         Log.i("ATT", " "+ graphDay+ ", " +graphMonth + ", " + graphYear);
 
-        pieEntries.add(new PieEntry(CarbonModel.getInstance().getElectricityC02Emissions(graphYear, graphMonth, graphDay), "Electricity Emissions"));
+        pieEntries.add(new PieEntry(CarbonModel.getInstance().getElectricityC02Emissions(graphYear, graphMonth, graphDay), getString(R.string.electricityemissions)));
 
-        PieDataSet dataSet = new PieDataSet(pieEntries, "CO2 Emissions for Day");
+        PieDataSet dataSet = new PieDataSet(pieEntries, getString(R.string.co2emissionsforday));
         dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         dataSet.setValueTextSize(20f);
         dataSet.setValueFormatter(new PercentFormatter());
