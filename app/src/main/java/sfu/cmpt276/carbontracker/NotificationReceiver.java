@@ -27,8 +27,8 @@ public class NotificationReceiver extends BroadcastReceiver {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context).
                     setContentIntent(pendingIntent).
                     setSmallIcon(R.drawable.logo).
-                    setContentText("You haven't entered any utility bills for today").
-                    setContentTitle("Add More Bills").
+                    setContentText(context.getString(R.string.pushNotificationBills)).
+                    setContentTitle(context.getString(R.string.AddMoreBills)).
 
                     setAutoCancel(true);
             notificationManager.notify(100, builder.build());
@@ -43,8 +43,8 @@ public class NotificationReceiver extends BroadcastReceiver {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context).
                     setContentIntent(pendingIntent).
                     setSmallIcon(R.drawable.logo).
-                    setContentText("You have entered " + CarbonModel.getInstance().numberOfJourneysOnCurrentDay() + " journey(s) for today").
-                    setContentTitle("Add More Journeys").
+                    setContentText(context.getString(R.string.pushNotificationJourneys, CarbonModel.getInstance().numberOfJourneysOnCurrentDay())).
+                    setContentTitle(context.getString(R.string.AddMoreJourneys)).
 
                     setAutoCancel(true);
             notificationManager.notify(100, builder.build());

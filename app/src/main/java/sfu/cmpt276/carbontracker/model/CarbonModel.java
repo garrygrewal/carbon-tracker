@@ -546,5 +546,4 @@ public class CarbonModel implements Serializable {
         }
         return enteredBillToday;
     }
-
 }

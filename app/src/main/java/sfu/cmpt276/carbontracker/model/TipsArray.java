@@ -1,7 +1,12 @@
 package sfu.cmpt276.carbontracker.model;
 
+import android.content.res.Resources;
+
 import java.io.Serializable;
 import java.util.Collections;
+
+import sfu.cmpt276.carbontracker.App;
+import sfu.cmpt276.carbontracker.R;
 
 /**
  * Creates and holds all tips
@@ -26,10 +31,10 @@ public class TipsArray implements Serializable{
     public void generateCarTip(float journeyEmissions) {
         if (journeyEmissions != 0) {
             if(journeyEmissions > highestJourneyEmission) {
-                String walkInsteadTip = "You generated " + journeyEmissions + " kgCO2 in a single journey, consider walking to reduce your emissions.";
-                String busInsteadTip = "You generated " + journeyEmissions + " kgCO2 in a single journey, consider busing to reduce your emissions.";
-                String bikeInsteadTip = "You generated " + journeyEmissions + " kgCO2 in a single journey, consider biking to reduce your emissions.";
-                String stayAtHome = "You generated " + journeyEmissions + " kgCO2 in a single journey, consider staying at home instead";
+                String walkInsteadTip = App.getContext().getResources().getString(R.string.walkingTip, journeyEmissions);
+                String busInsteadTip = App.getContext().getResources().getString(R.string.busTip, journeyEmissions);
+                String bikeInsteadTip = App.getContext().getResources().getString(R.string.bikeTip, journeyEmissions);
+                String stayAtHome = App.getContext().getResources().getString(R.string.stayTip, journeyEmissions);
 
                 setTip(0, busInsteadTip);
                 setTip(1, walkInsteadTip);
@@ -42,12 +47,12 @@ public class TipsArray implements Serializable{
 
     public void generateElectricityTip(float electricityEmissions) {
         if(highestElectricityEmission < electricityEmissions) {
-            String turnOffLightsTip = "You generated " + electricityEmissions + " kgCO2 in a day,consider turning off the lights during the day to help with your emissions.";
-            String blanketTip = "You generated " + electricityEmissions + " kgCO2 in a day, consider using a blanket instead of turning down up the heat.";
-            String clothesTip = "You generated  " + electricityEmissions + " kgCO2 in a day, consider wearing more clothes instead of turning up the heat.";
-            String insulateHome = "You generated  " + electricityEmissions + " kgCO2 in a day, consider insulating your home to reduce drafts and air leaks instead of turning up the heat.";
-            String betterAppliances = "You generated  " + electricityEmissions + " kgCO2 in a day, consider purchasing appliances that have superior efficiency";
-            String solar = "You generated  " + electricityEmissions + " kgCO2 in a day, consider installing solar panels to your roof.";
+            String turnOffLightsTip =App.getContext().getResources().getString(R.string.lightTip, electricityEmissions);
+            String blanketTip = App.getContext().getResources().getString(R.string.blanketTip, electricityEmissions);
+            String clothesTip =App.getContext().getResources().getString(R.string.clothesTip, electricityEmissions);
+            String insulateHome =App.getContext().getResources().getString(R.string.insulateTip, electricityEmissions);
+            String betterAppliances = App.getContext().getResources().getString(R.string.appliancesTip, electricityEmissions);
+            String solar = App.getContext().getResources().getString(R.string.solarTip, electricityEmissions);
 
             setTip(4, solar);
             setTip(5, turnOffLightsTip);
@@ -90,11 +95,11 @@ public class TipsArray implements Serializable{
 
     public void generateNaturalGasTip(float naturalGasEmissions) {
         if(highestNaturalGasEmssion < naturalGasEmissions) {
-            String turnOffLightsTip = "You generated " + naturalGasEmissions + " kgCO2 in a day,consider turning off the lights during the day to help with your emissions.";
-            String blanketTip = "You generated " + naturalGasEmissions + " kgCO2 in a day, consider using a blanket instead of turning down up the heat.";
-            String clothesTip = "You generated  " + naturalGasEmissions + " kgCO2 in a day, consider wearing more clothes instead of turning up the heat.";
-            String insulateHome = "You generated  " + naturalGasEmissions + " kgCO2 in a day, consider insulating your home to reduce drafts and air leaks instead of turning up the heat.";
-            String waterUsage = "You generated  " + naturalGasEmissions + " kgCO2 in a day, consider taking shorter baths.";
+            String turnOffLightsTip = App.getContext().getResources().getString(R.string.lightTip, naturalGasEmissions);
+            String blanketTip = App.getContext().getResources().getString(R.string.blanketTip, naturalGasEmissions);
+            String clothesTip = App.getContext().getResources().getString(R.string.clothesTip, naturalGasEmissions);
+            String insulateHome = App.getContext().getResources().getString(R.string.insulateTip, naturalGasEmissions);
+            String waterUsage = App.getContext().getResources().getString(R.string.waterTip, naturalGasEmissions);
 
             setTip(10, turnOffLightsTip);
             setTip(11, blanketTip);

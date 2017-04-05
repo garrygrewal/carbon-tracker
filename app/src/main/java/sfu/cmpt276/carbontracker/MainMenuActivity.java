@@ -31,6 +31,7 @@ public class MainMenuActivity extends AppCompatActivity{
 
 
         pushNotificationSetup();
+        displayTips();
     }
 
     public void pushNotificationSetup(){
