@@ -89,8 +89,7 @@ public class PieGraphActivity extends AppCompatActivity {
             finish();
             return(true);
         case R.id.about:
-            //waiting for about page implementation
-            //startActivity(new Intent(SelectVehicleActivity.this, AboutActivity.class));
+            startActivity(new Intent(PieGraphActivity.this, AboutActivity.class));
             return(true);
         case R.id.exit:
             System.exit(0);

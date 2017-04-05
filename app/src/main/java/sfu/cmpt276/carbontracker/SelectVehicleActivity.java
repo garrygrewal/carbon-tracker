@@ -317,7 +317,6 @@ public class SelectVehicleActivity extends AppCompatActivity {
             TextView name;
             TextView model;
             TextView details;
-            TextView mpg;
         }
     }
 
@@ -339,11 +338,13 @@ public class SelectVehicleActivity extends AppCompatActivity {
             finish();
             return(true);
         case R.id.about:
-            //waiting for about page implementation
-            //startActivity(new Intent(SelectVehicleActivity.this, AboutActivity.class));
+            startActivity(new Intent(SelectVehicleActivity.this, AboutActivity.class));
             return(true);
         case R.id.exit:
-            System.exit(0);
+            Intent exit = new Intent(Intent.ACTION_MAIN);
+            exit.addCategory(Intent.CATEGORY_HOME);
+            exit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(exit);
             return(true);
     }
         return(super.onOptionsItemSelected(item));
