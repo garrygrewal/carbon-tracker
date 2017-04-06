@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="type_bill">
+        <item>Electricidad</item>
+        <item>Gas natural</item>
+    </string-array>
+</resources>

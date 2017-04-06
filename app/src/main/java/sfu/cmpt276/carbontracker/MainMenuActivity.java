@@ -14,7 +14,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
-import sfu.cmpt276.carbontracker.model.TipsArray;
+import sfu.cmpt276.carbontracker.model.Tip;
 
 
 /*
@@ -28,7 +28,7 @@ public class MainMenuActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         setupButtons();
-
+        regenerateTipsDiffLanguage();
         pushNotificationSetup();
     }
 
@@ -131,5 +131,82 @@ public class MainMenuActivity extends AppCompatActivity{
 
         System.exit(0);
         //moveTaskToBack(true);// sends the app to background instead
+    }
+
+
+    public void regenerateTipsDiffLanguage(){
+        for(Tip t: CarbonModel.getInstance().getTipsArray().tips){
+            if(CarbonModel.getInstance().getTipsArray().tips[0] != null){
+                String text1 = App.getMyContext().getResources().getString(R.string.walkingTip, CarbonModel.getInstance().getHighestJourneyEmission());
+                CarbonModel.getInstance().getTipsArray().setTip(0, text1);
+            }
+            if(CarbonModel.getInstance().getTipsArray().tips[1] != null){
+                String text2 = App.getMyContext().getResources().getString(R.string.busTip, CarbonModel.getInstance().getHighestJourneyEmission());
+                CarbonModel.getInstance().getTipsArray().setTip(1, text2);
+            }
+            if(CarbonModel.getInstance().getTipsArray().tips[2] != null){
+                String text3 = App.getMyContext().getResources().getString(R.string.bikeTip, CarbonModel.getInstance().getHighestJourneyEmission());
+                CarbonModel.getInstance().getTipsArray().setTip(2, text3);
+            }
+            if(CarbonModel.getInstance().getTipsArray().tips[3] != null){
+                String text4 = App.getMyContext().getResources().getString(R.string.stayTip,CarbonModel.getInstance().getHighestJourneyEmission());
+                CarbonModel.getInstance().getTipsArray().setTip(3, text4);
+            }
+            if(CarbonModel.getInstance().getTipsArray().tips[4] != null){
+                String text5 = App.getMyContext().getResources().getString(R.string.lightTip,CarbonModel.getInstance().getHighestElectricityEmission());
+                CarbonModel.getInstance().getTipsArray().setTip(4, text5);
+
+            }
+            if(CarbonModel.getInstance().getTipsArray().tips[5] != null){
+                String text6 = App.getMyContext().getResources().getString(R.string.blanketTip,CarbonModel.getInstance().getHighestElectricityEmission());
+                CarbonModel.getInstance().getTipsArray().setTip(5, text6);
+
+            }
+            if(CarbonModel.getInstance().getTipsArray().tips[6] != null){
+                String text7 = App.getMyContext().getResources().getString(R.string.clothesTip,CarbonModel.getInstance().getHighestElectricityEmission());
+
+                CarbonModel.getInstance().getTipsArray().setTip(6, text7);
+            }
+            if(CarbonModel.getInstance().getTipsArray().tips[7] != null){
+                String text8 = App.getMyContext().getResources().getString(R.string.insulateTip,CarbonModel.getInstance().getHighestElectricityEmission());
+
+                CarbonModel.getInstance().getTipsArray().setTip(7, text8);
+            }
+            if(CarbonModel.getInstance().getTipsArray().tips[8] != null){
+                String text9 = App.getMyContext().getResources().getString(R.string.appliancesTip,CarbonModel.getInstance().getHighestElectricityEmission());
+
+                CarbonModel.getInstance().getTipsArray().setTip(8, text9);
+            }
+            if(CarbonModel.getInstance().getTipsArray().tips[9] != null){
+                String text10 = App.getMyContext().getResources().getString(R.string.solarTip,CarbonModel.getInstance().getHighestElectricityEmission());
+
+                CarbonModel.getInstance().getTipsArray().setTip(9, text10);
+            }
+            if(CarbonModel.getInstance().getTipsArray().tips[10] != null){
+                String text11 = App.getMyContext().getResources().getString(R.string.lightTip,CarbonModel.getInstance().getHighestNaturalGasEmission());
+
+                CarbonModel.getInstance().getTipsArray().setTip(10, text11);
+            }
+            if(CarbonModel.getInstance().getTipsArray().tips[11] != null){
+                String text12 = App.getMyContext().getResources().getString(R.string.blanketTip,CarbonModel.getInstance().getHighestNaturalGasEmission());
+
+                CarbonModel.getInstance().getTipsArray().setTip(11, text12);
+            }
+            if(CarbonModel.getInstance().getTipsArray().tips[12] != null){
+                String text13 = App.getMyContext().getResources().getString(R.string.clothesTip,CarbonModel.getInstance().getHighestNaturalGasEmission());
+
+                CarbonModel.getInstance().getTipsArray().setTip(12, text13);
+            }
+            if(CarbonModel.getInstance().getTipsArray().tips[13] != null){
+                String text14 = App.getMyContext().getResources().getString(R.string.insulateTip,CarbonModel.getInstance().getHighestNaturalGasEmission());
+
+                CarbonModel.getInstance().getTipsArray().setTip(13, text14);
+            }
+            if(CarbonModel.getInstance().getTipsArray().tips[14] != null){
+                String text15 = App.getMyContext().getResources().getString(R.string.waterTip,CarbonModel.getInstance().getHighestNaturalGasEmission());
+
+                CarbonModel.getInstance().getTipsArray().setTip(14, text15);
+            }
+        }
     }
 }

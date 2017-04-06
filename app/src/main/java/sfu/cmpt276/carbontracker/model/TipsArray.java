@@ -3,7 +3,6 @@ package sfu.cmpt276.carbontracker.model;
 import android.content.res.Resources;
 
 import java.io.Serializable;
-import java.util.Collections;
 
 import sfu.cmpt276.carbontracker.App;
 import sfu.cmpt276.carbontracker.R;
@@ -13,7 +12,7 @@ import sfu.cmpt276.carbontracker.R;
  */
 
 public class TipsArray implements Serializable{
-    private Tip[] tips = new Tip[15];
+    public Tip[] tips = new Tip[15];
     private float highestJourneyEmission;
     private float highestElectricityEmission;
     private float highestNaturalGasEmssion;
@@ -31,10 +30,10 @@ public class TipsArray implements Serializable{
     public void generateCarTip(float journeyEmissions) {
         if (journeyEmissions != 0) {
             if(journeyEmissions > highestJourneyEmission) {
-                String walkInsteadTip = App.getContext().getResources().getString(R.string.walkingTip, journeyEmissions);
-                String busInsteadTip = App.getContext().getResources().getString(R.string.busTip, journeyEmissions);
-                String bikeInsteadTip = App.getContext().getResources().getString(R.string.bikeTip, journeyEmissions);
-                String stayAtHome = App.getContext().getResources().getString(R.string.stayTip, journeyEmissions);
+                String walkInsteadTip = App.getMyContext().getResources().getString(R.string.walkingTip, journeyEmissions);
+                String busInsteadTip = App.getMyContext().getResources().getString(R.string.busTip, journeyEmissions);
+                String bikeInsteadTip = App.getMyContext().getResources().getString(R.string.bikeTip, journeyEmissions);
+                String stayAtHome = App.getMyContext().getResources().getString(R.string.stayTip, journeyEmissions);
 
                 setTip(0, busInsteadTip);
                 setTip(1, walkInsteadTip);
@@ -47,12 +46,12 @@ public class TipsArray implements Serializable{
 
     public void generateElectricityTip(float electricityEmissions) {
         if(highestElectricityEmission < electricityEmissions) {
-            String turnOffLightsTip =App.getContext().getResources().getString(R.string.lightTip, electricityEmissions);
-            String blanketTip = App.getContext().getResources().getString(R.string.blanketTip, electricityEmissions);
-            String clothesTip =App.getContext().getResources().getString(R.string.clothesTip, electricityEmissions);
-            String insulateHome =App.getContext().getResources().getString(R.string.insulateTip, electricityEmissions);
-            String betterAppliances = App.getContext().getResources().getString(R.string.appliancesTip, electricityEmissions);
-            String solar = App.getContext().getResources().getString(R.string.solarTip, electricityEmissions);
+            String turnOffLightsTip =App.getMyContext().getResources().getString(R.string.lightTip, electricityEmissions);
+            String blanketTip = App.getMyContext().getResources().getString(R.string.blanketTip, electricityEmissions);
+            String clothesTip =App.getMyContext().getResources().getString(R.string.clothesTip, electricityEmissions);
+            String insulateHome =App.getMyContext().getResources().getString(R.string.insulateTip, electricityEmissions);
+            String betterAppliances = App.getMyContext().getResources().getString(R.string.appliancesTip, electricityEmissions);
+            String solar = App.getMyContext().getResources().getString(R.string.solarTip, electricityEmissions);
 
             setTip(4, solar);
             setTip(5, turnOffLightsTip);
@@ -88,18 +87,18 @@ public class TipsArray implements Serializable{
         }
     }
 
-    private void setTip(int index, String info) {
+    public void setTip(int index, String info) {
         tips[index].setExists(true);
         tips[index].setInfo(info);
     }
 
     public void generateNaturalGasTip(float naturalGasEmissions) {
         if(highestNaturalGasEmssion < naturalGasEmissions) {
-            String turnOffLightsTip = App.getContext().getResources().getString(R.string.lightTip, naturalGasEmissions);
-            String blanketTip = App.getContext().getResources().getString(R.string.blanketTip, naturalGasEmissions);
-            String clothesTip = App.getContext().getResources().getString(R.string.clothesTip, naturalGasEmissions);
-            String insulateHome = App.getContext().getResources().getString(R.string.insulateTip, naturalGasEmissions);
-            String waterUsage = App.getContext().getResources().getString(R.string.waterTip, naturalGasEmissions);
+            String turnOffLightsTip = App.getMyContext().getResources().getString(R.string.lightTip, naturalGasEmissions);
+            String blanketTip = App.getMyContext().getResources().getString(R.string.blanketTip, naturalGasEmissions);
+            String clothesTip = App.getMyContext().getResources().getString(R.string.clothesTip, naturalGasEmissions);
+            String insulateHome = App.getMyContext().getResources().getString(R.string.insulateTip, naturalGasEmissions);
+            String waterUsage = App.getMyContext().getResources().getString(R.string.waterTip, naturalGasEmissions);
 
             setTip(10, turnOffLightsTip);
             setTip(11, blanketTip);

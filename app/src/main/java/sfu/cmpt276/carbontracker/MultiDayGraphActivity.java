@@ -215,7 +215,7 @@ public class MultiDayGraphActivity extends AppCompatActivity {
                                     (yearMonthDayOfPreviousDate[0],
                                             yearMonthDayOfPreviousDate[1],
                                             yearMonthDayOfPreviousDate[2])) {
-                        journeyEmissions += CarbonModel.getInstance().getJourney(i).getTotalCO2Emission();
+                        journeyEmissions += CarbonModel.getInstance().getJourney(ii).getTotalCO2Emission();
 
                         addToVehicleEmissionsList(CarbonModel.getInstance().getJourney(ii).getVehicleIndex(),CarbonModel.getInstance().getJourney(ii).getTotalCO2Emission());
                     }
