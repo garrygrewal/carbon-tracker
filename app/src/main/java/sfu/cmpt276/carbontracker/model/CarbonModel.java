@@ -40,6 +40,8 @@ public class CarbonModel implements Serializable {
 
     private List<Bill> listOfBills = new ArrayList<>();
 
+    private Boolean humanRelatableUnitEnabled;
+
 
     private final double GASOLINE_CO2_EMISSION = 8.89;
     private final double ELECTRIC_CO2_EMISSION = 0;
@@ -589,4 +591,11 @@ public class CarbonModel implements Serializable {
     }
 
 
+    public Boolean getHumanRelatableUnitEnabled() {
+        return humanRelatableUnitEnabled;
+    }
+
+    public void setHumanRelatableUnitEnabled(Boolean humanRelatableUnitEnabled) {
+        this.humanRelatableUnitEnabled = humanRelatableUnitEnabled;
+    }
 }

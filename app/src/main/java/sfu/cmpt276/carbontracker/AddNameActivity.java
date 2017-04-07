@@ -63,12 +63,21 @@ public class AddNameActivity extends AppCompatActivity {
 
         Journey journey = CarbonModel.getInstance().getJourney(new_journey_index);
         CarbonModel.getInstance().calculateCarbonEmissions(journey);
+
         TextView city_emis = (TextView) findViewById(R.id.city_emissions);
-        city_emis.setText(Double.toString(journey.getCo2PerCity()));
         TextView hwy_emis = (TextView) findViewById(R.id.hwy_emissions);
-        hwy_emis.setText(Double.toString(journey.getCo2PerHighway()));
         TextView total_emis = (TextView) findViewById(R.id.total_emissions);
-        total_emis.setText(Double.toString(journey.getTotalCO2Emission()));
+
+        if (!CarbonModel.getInstance().getHumanRelatableUnitEnabled()) {
+            city_emis.setText(Double.toString(journey.getCo2PerCity()) + "Kg CO2");
+            hwy_emis.setText(Double.toString(journey.getCo2PerHighway() ) + "Kg CO2");
+            total_emis.setText(Double.toString(journey.getTotalCO2Emission()) + "Kg CO2");
+        }
+        else {
+            city_emis.setText(Double.toString(journey.getTreesPerCity()) + " trees");
+            hwy_emis.setText(Double.toString(journey.getTreesPerHighway()) + " trees");
+            total_emis.setText(Double.toString(journey.getTotalTreesEmission()) + " trees");
+        }
     }
 
 

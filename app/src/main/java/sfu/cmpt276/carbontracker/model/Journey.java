@@ -77,4 +77,18 @@ public class Journey implements Serializable{
         return totalCO2Emission;
     }
 
+    public double getTreesPerCity() {
+        //IMPLEMENT HERE
+        return 0;
+    }
+
+    public double getTreesPerHighway() {
+        //IMPLEMENT HERE
+        return 0;
+    }
+
+    public double getTotalTreesEmission() {
+        //IMPLEMENT HERE
+        return 0;
+    }
 }

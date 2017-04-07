@@ -179,5 +179,21 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:orientation="vertical"></LinearLayout>
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_button"
+        android:checked="false"
+        android:text="ToggleButton"
+        android:textColor="@android:color/background_light"
+        android:textOff="Unit: Kg CO2"
+        android:textOn="Unit: Trees" />
+
 </LinearLayout>
 

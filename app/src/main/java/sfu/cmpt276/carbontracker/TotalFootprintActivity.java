@@ -197,7 +197,12 @@ public class TotalFootprintActivity extends AppCompatActivity {
 
             Journey journey = listData.get(position);
             holder.name.setText(journey.getJourneyName());
-            holder.details.setText(journey.getCo2PerCity() + " " + getString(R.string.kgC02City)+"\n" + journey.getCo2PerHighway() +" "+ getString(R.string.kgC02highway));
+            if (!CarbonModel.getInstance().getHumanRelatableUnitEnabled()) {
+                holder.details.setText(journey.getCo2PerCity() + " " + getString(R.string.kgC02City) + "\n" + journey.getCo2PerHighway() + " " + getString(R.string.kgC02highway));
+            }
+            else {
+                holder.details.setText(journey.getTreesPerCity() + " " + "trees by city" + "\n" + journey.getTreesPerCity() + " " + "trees by highway");
+            }
             holder.date.setText(journey.getStringDate());
 
             //vehicle icon
@@ -284,11 +289,20 @@ public class TotalFootprintActivity extends AppCompatActivity {
             Bill bill = listData.get(position);
             holder.name.setText(bill.getType());
             if(bill.getType().equals("Electricity")){
-                holder.details.setText(bill.getElectricityEmissions()+" "+getString(R.string.kgOfCO2by) +" "+ bill.getElectricityUse() +" "+getString(R.string.kwhElectricityFrom) +" "+ bill.getStartDate().getActualDate() + ", " + getString(R.string.too) +" "+ bill.getEndDate().getActualDate() + ", " +getString(R.string.with) +" "+bill.getNumberOfPeople() +" "+getString(R.string.persons));
+                if (!CarbonModel.getInstance().getHumanRelatableUnitEnabled()) {
+                    holder.details.setText(bill.getElectricityEmissions() + " " + getString(R.string.kgOfCO2by) + " " + bill.getElectricityUse() + " " + getString(R.string.kwhElectricityFrom) + " " + bill.getStartDate().getActualDate() + ", " + getString(R.string.too) + " " + bill.getEndDate().getActualDate() + ", " + getString(R.string.with) + " " + bill.getNumberOfPeople() + " " + getString(R.string.persons));
+                }
+                else {
+                    holder.details.setText(bill.getElectricityTreesEmissions() + " " + "trees, by" + " " + bill.getElectricityUse() + " " + getString(R.string.kwhElectricityFrom) + " " + bill.getStartDate().getActualDate() + ", " + getString(R.string.too) + " " + bill.getEndDate().getActualDate() + ", " + getString(R.string.with) + " " + bill.getNumberOfPeople() + " " + getString(R.string.persons));
+                }
             }
             else if(bill.getType().equals("Natural Gas")){
-                holder.details.setText(bill.getNaturalGasEmissions()+" "+getString(R.string.kgOfCO2by) +" "+bill.getNaturalGasUse() +" "+ getString(R.string.GJofNaturalGasFrom) +" "+ bill.getStartDate().getActualDate() + ", " + getString(R.string.too) +" "+ bill.getEndDate().getActualDate() + ", " + getString(R.string.with) +" "+bill.getNumberOfPeople() +" "+getString(R.string.persons));
-
+                if (!CarbonModel.getInstance().getHumanRelatableUnitEnabled()) {
+                    holder.details.setText(bill.getNaturalGasEmissions() + " " + getString(R.string.kgOfCO2by) + " " + bill.getNaturalGasUse() + "\n" + getString(R.string.GJofNaturalGasFrom) + " " + bill.getStartDate().getActualDate() + ", " + getString(R.string.too) + " " + bill.getEndDate().getActualDate() + ", " + getString(R.string.with) + " " + bill.getNumberOfPeople() + " " + getString(R.string.persons));
+                }
+                else {
+                    holder.details.setText(bill.getNaturalGasTreesEmissions() + " " + "trees, by" + " " + bill.getNaturalGasUse() + " " + getString(R.string.GJofNaturalGasFrom) + " " + bill.getStartDate().getActualDate() + ", " + getString(R.string.too) + " " + bill.getEndDate().getActualDate() + ", " + getString(R.string.with) + " " + bill.getNumberOfPeople() + " " + getString(R.string.persons));
+                }
             }
             holder.period.setText(getString(R.string.totalDays) +" "+ bill.getPeriod());
             return convertView;
