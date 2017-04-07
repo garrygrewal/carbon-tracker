@@ -518,9 +518,18 @@ public class AddBillActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) { switch(item.getItemId()) {
         case R.id.reset:
-            Intent back = new Intent();
-            setResult(Activity.RESULT_CANCELED, back);
-            finish();
+            if (bill_index != -1) {
+                Intent intent = new Intent();
+                setResult(Activity.RESULT_CANCELED, intent);
+                finish();
+            } else {
+                //delete premade bill
+                CarbonModel.getInstance().deleteBill(new_bill_index);
+
+                Intent intent = new Intent();
+                setResult(Activity.RESULT_CANCELED, intent);
+                finish();
+            }
             return(true);
         case R.id.about:
             startActivity(new Intent(AddBillActivity.this, AboutActivity.class));
