@@ -111,4 +111,8 @@
     <string name="totalDays">Días totales:</string>
     <string name="kgC02City">kg de CO2 Por ciudad,</string>
     <string name="kgC02highway">kg de CO2 Por carretera</string>
+    <string name="carbon_tracker_v1_0">Carbon Tracker V1.0</string>
+    <string name="created_in_2017">Creado en 2017</string>
+    <string name="leave_us_a_rating">Dejanos una calificación</string>
+    <string name="icons_by_freepik">Iconos de Freepik</string>
 </resources>

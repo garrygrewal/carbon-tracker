@@ -197,7 +197,7 @@ public class TotalFootprintActivity extends AppCompatActivity {
 
             Journey journey = listData.get(position);
             holder.name.setText(journey.getJourneyName());
-            holder.details.setText(journey.getCo2PerCity() + " kg of CO2 by city\n" + journey.getCo2PerHighway() + " kg of CO2 by highway");
+            holder.details.setText(journey.getCo2PerCity() + " " + getString(R.string.kgC02City)+"\n" + journey.getCo2PerHighway() +" "+ getString(R.string.kgC02highway));
             holder.date.setText(journey.getStringDate());
 
             //vehicle icon

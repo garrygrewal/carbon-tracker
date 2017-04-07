@@ -111,4 +111,8 @@
     <string name="totalDays">Nombre total de jours:</string>
     <string name="kgC02City">Kg de CO2 par ville,</string>
     <string name="kgC02highway">Kg de CO2 par autoroute</string>
+    <string name="carbon_tracker_v1_0">Tracker du carbone V1.0</string>
+    <string name="created_in_2017">Créé en 2017</string>
+    <string name="leave_us_a_rating">Laissez-nous une note</string>
+    <string name="icons_by_freepik">Icônes par Freepik</string>
 </resources>
