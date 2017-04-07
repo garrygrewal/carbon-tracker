@@ -179,5 +179,12 @@
         android:text="@string/route"
         android:textSize="18sp" />
 
+    <TextView
+        android:id="@+id/iconView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textTransportationMode"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

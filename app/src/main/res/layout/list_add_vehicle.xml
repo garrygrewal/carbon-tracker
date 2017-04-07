@@ -4,9 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@android:drawable/edit_text"
     android:orientation="horizontal"
-    android:padding="8dp"
-    android:paddingTop="?android:attr/actionBarSize"
-    android:layout_marginTop="?android:attr/actionBarSize">
+    android:padding="8dp">
 
     <TextView
         android:id="@+id/car_model"

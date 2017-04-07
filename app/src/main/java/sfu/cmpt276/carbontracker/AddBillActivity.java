@@ -45,6 +45,7 @@ public class AddBillActivity extends AppCompatActivity {
         setupButtons();
         showEmissions();
         showRadioButtons();
+        UiChangeListener();
     }
 
     private void premakeBill() {
@@ -279,29 +280,29 @@ public class AddBillActivity extends AppCompatActivity {
 
         //check if input is valid
         if (!dateStartEntered || !dateEndEntered) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a date", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.pleaseEnterDate, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
 
         if (in_electricity.getVisibility() == View.VISIBLE && in_electricity.getText().toString().trim().isEmpty()) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter your electricity usage", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.pleaseEnterElectricity, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
 
         if (in_naturalGas.getVisibility() == View.VISIBLE && in_naturalGas.getText().toString().trim().isEmpty()) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter your natural gas usage", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.pleaseEnterGas, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
 
         if (in_numberOfPeople.getText().toString().trim().isEmpty() || Integer.parseInt(in_numberOfPeople.getText().toString()) == 0) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter the number of people in your household", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.pleaseEnterPeople, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         } else if (in_dateStart.equals("Select Date") || in_dateEnd.equals("Select Date")) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please select date", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.pleaseSelectDate, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         } else {
@@ -522,11 +523,13 @@ public class AddBillActivity extends AppCompatActivity {
             finish();
             return(true);
         case R.id.about:
-            //waiting for about page implementation
-            //startActivity(new Intent(SelectVehicleActivity.this, AboutActivity.class));
+            startActivity(new Intent(AddBillActivity.this, AboutActivity.class));
             return(true);
         case R.id.exit:
-            System.exit(0);
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
             return(true);
     }
         return(super.onOptionsItemSelected(item));
@@ -544,5 +547,21 @@ public class AddBillActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
+    }
+    public void UiChangeListener()
+    {
+        final View decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener (new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
+                    decorView.setSystemUiVisibility(
+                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+                }
+            }
+        });
     }
 }

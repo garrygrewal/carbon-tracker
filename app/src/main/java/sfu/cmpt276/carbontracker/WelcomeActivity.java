@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
+import sfu.cmpt276.carbontracker.model.TipsArray;
 
 /*
 splash screen, also reads in cvs

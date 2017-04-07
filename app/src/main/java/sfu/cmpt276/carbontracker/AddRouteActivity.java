@@ -28,6 +28,7 @@ public class AddRouteActivity extends AppCompatActivity {
 
         prefillRoute();
         setupButtons();
+        UiChangeListener();
     }
 
     //prefill EditText for when user is editing an existing route
@@ -43,6 +44,12 @@ public class AddRouteActivity extends AppCompatActivity {
             String hwy = intent.getStringExtra("hwy");
             EditText in_hwy = (EditText) findViewById(route_hwy);
             in_hwy.setText(hwy);
+        }
+        else {
+            EditText in_city = (EditText) findViewById(route_city);
+            in_city.setText("0");
+            EditText in_hwy = (EditText) findViewById(route_hwy);
+            in_hwy.setText("0");
         }
     }
 
@@ -124,11 +131,13 @@ public class AddRouteActivity extends AppCompatActivity {
             finish();
             return(true);
         case R.id.about:
-            //waiting for about page implementation
-            //startActivity(new Intent(SelectVehicleActivity.this, AboutActivity.class));
+            startActivity(new Intent(AddRouteActivity.this, AboutActivity.class));
             return(true);
         case R.id.exit:
-            System.exit(0);
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
             return(true);
     }
         return(super.onOptionsItemSelected(item));
@@ -146,6 +155,22 @@ public class AddRouteActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
+    }
+    public void UiChangeListener()
+    {
+        final View decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener (new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
+                    decorView.setSystemUiVisibility(
+                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+                }
+            }
+        });
     }
 
     //navigation back button
