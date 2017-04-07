@@ -280,29 +280,29 @@ public class AddBillActivity extends AppCompatActivity {
 
         //check if input is valid
         if (!dateStartEntered || !dateEndEntered) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a date", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.pleaseEnterDate, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
 
         if (in_electricity.getVisibility() == View.VISIBLE && in_electricity.getText().toString().trim().isEmpty()) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter your electricity usage", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.pleaseEnterElectricity, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
 
         if (in_naturalGas.getVisibility() == View.VISIBLE && in_naturalGas.getText().toString().trim().isEmpty()) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter your natural gas usage", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.pleaseEnterGas, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
 
         if (in_numberOfPeople.getText().toString().trim().isEmpty() || Integer.parseInt(in_numberOfPeople.getText().toString()) == 0) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter the number of people in your household", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.pleaseEnterPeople, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         } else if (in_dateStart.equals("Select Date") || in_dateEnd.equals("Select Date")) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please select date", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.pleaseSelectDate, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         } else {

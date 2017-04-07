@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.io.Serializable;
+import android.content.Context;
+
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import sfu.cmpt276.carbontracker.App;
 import sfu.cmpt276.carbontracker.model.KnownCars;
 
 /**
@@ -49,9 +52,43 @@ public class CarbonModel implements Serializable {
     private CarbonModel() {
     }
 
+    public float getHighestJourneyEmission(){
+        float currentJourneyEmissions = 0;
+        for(Journey j: listOfJourneys){
+            if(currentJourneyEmissions<j.getTotalCO2Emission()){
+                currentJourneyEmissions = j.getTotalCO2Emission();
+            }
+        }
+        return currentJourneyEmissions;
+    }
+
+    public float getHighestElectricityEmission(){
+        float currentElectricityEmission = 0;
+        for(Bill b: listOfBills){
+            if(b.getType().equals("Electricity"));
+            if(currentElectricityEmission<b.getElectricityEmissions()){
+                currentElectricityEmission = b.getElectricityEmissions();
+            }
+        }
+        return currentElectricityEmission;
+    }
+
+    public float getHighestNaturalGasEmission(){
+        float currentNaturalGasEmissions = 0;
+        for(Bill b: listOfBills){
+            if(b.getType().equals("Natural Gas")) {
+                if (currentNaturalGasEmissions < b.getNaturalGasEmissions()) {
+                    currentNaturalGasEmissions = b.getNaturalGasEmissions();
+                }
+            }
+        }
+        return currentNaturalGasEmissions;
+    }
+
     public TipsArray getTipsArray(){
         return tipsArray;
     }
+
 
     public void hideRoute(int index) {
         listOfHiddenRoutes.add(index);
@@ -92,6 +129,7 @@ public class CarbonModel implements Serializable {
     public static CarbonModel getInstance() {
         return instance;
     }
+
     public Vehicle getVehicleFromHidden(int index){
         return listOfInputVehicles.get(index);
     }
@@ -522,7 +560,7 @@ public class CarbonModel implements Serializable {
 
         Day currentDay = new Day(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH));
 
-        if(listOfBills.size()>0) {
+        if(listOfJourneys.size()>0) {
             for (Journey j : listOfJourneys) {
                 if (j.getDay().daysFrom(currentDay) == 0) {
                     journeys++;

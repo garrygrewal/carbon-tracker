@@ -73,7 +73,7 @@ public class MultiDayGraphActivity extends AppCompatActivity {
 
 
         numberOfDaysToDisplay = 28;
-        textView.setText("" + numberOfDaysToDisplay + " days");
+        textView.setText("" + numberOfDaysToDisplay + getString(R.string.days));
         IAxisValueFormatter xAxisFormatter = new DayAxisValueFormatter(barChart);
 
         xAxis = barChart.getXAxis();
@@ -92,10 +92,10 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         totalUtilitiesEmissions = totalElectricEmissions+ totalNaturalGasEmissions;
         totalJourneyEmissions = totalBusEmissions + totalSkyTrainEmissions;
 
-        pieEntries.add(new PieEntry(totalBusEmissions, "Bus"));
-        pieEntries.add(new PieEntry(totalSkyTrainEmissions, "Skytrain"));
-        pieEntries.add(new PieEntry(totalNaturalGasEmissions, "Natural Gas"));
-        pieEntries.add(new PieEntry(totalElectricEmissions, "Electric"));
+        pieEntries.add(new PieEntry(totalBusEmissions, getString(R.string.bus)));
+        pieEntries.add(new PieEntry(totalSkyTrainEmissions, getString(R.string.skytrain)));
+        pieEntries.add(new PieEntry(totalNaturalGasEmissions, getString(R.string.naturalgas)));
+        pieEntries.add(new PieEntry(totalElectricEmissions, getString(R.string.electricity)));
 
         for(int i = 0; i < listOfVehicleNames.size(); i++){
             pieEntries.add(new PieEntry(listOfVehicleEmissions.get(i),listOfVehicleNames.get(i)));
@@ -104,7 +104,7 @@ public class MultiDayGraphActivity extends AppCompatActivity {
 
 
 
-        PieDataSet dataSet = new PieDataSet(pieEntries, "Total Carbon Emissions");
+        PieDataSet dataSet = new PieDataSet(pieEntries, getString(R.string.totalcarbonemissions));
         int[] allColors = new int[ColorTemplate.COLORFUL_COLORS.length +ColorTemplate.JOYFUL_COLORS.length];
         System.arraycopy(ColorTemplate.COLORFUL_COLORS, 0, allColors, 0,ColorTemplate.COLORFUL_COLORS.length);
         System.arraycopy(ColorTemplate.JOYFUL_COLORS, 0, allColors, ColorTemplate.COLORFUL_COLORS.length, ColorTemplate.JOYFUL_COLORS.length);
@@ -146,10 +146,10 @@ public class MultiDayGraphActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 numberOfDaysToDisplay = progress;
-                textView.setText("" + numberOfDaysToDisplay + " days");
+                textView.setText("" + numberOfDaysToDisplay + " "+getString(R.string.days));
                 if (progress == 0) {
                     numberOfDaysToDisplay = 1;
-                    textView.setText("" + numberOfDaysToDisplay + " days");
+                    textView.setText("" + numberOfDaysToDisplay +" "+ getString(R.string.days));
                 }
                 setupCharts();
             }
@@ -215,7 +215,7 @@ public class MultiDayGraphActivity extends AppCompatActivity {
                                     (yearMonthDayOfPreviousDate[0],
                                             yearMonthDayOfPreviousDate[1],
                                             yearMonthDayOfPreviousDate[2])) {
-                        journeyEmissions += CarbonModel.getInstance().getJourney(i).getTotalCO2Emission();
+                        journeyEmissions += CarbonModel.getInstance().getJourney(ii).getTotalCO2Emission();
 
                         addToVehicleEmissionsList(CarbonModel.getInstance().getJourney(ii).getVehicleIndex(),CarbonModel.getInstance().getJourney(ii).getTotalCO2Emission());
                     }
@@ -274,9 +274,9 @@ public class MultiDayGraphActivity extends AppCompatActivity {
 
         BarDataSet set1;
 
-        set1 = new BarDataSet(yVals, "Carbon Emissions");
+        set1 = new BarDataSet(yVals, getString(R.string.carbonEmissions));
         set1.setColors(getColors());
-        set1.setStackLabels(new String[]{"Electricity", "NaturalGas", "Journeys"});
+        set1.setStackLabels(new String[]{getString(R.string.electricity), getString(R.string.naturalgas), getString(R.string.naturalgas)});
 
         ArrayList<IBarDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
