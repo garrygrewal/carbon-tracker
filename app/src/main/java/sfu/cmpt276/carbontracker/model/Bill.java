@@ -141,4 +141,13 @@ public class Bill implements Serializable {
         return (naturalGasEmissions)/period;
     }
 
+    public String getElectricityTreesEmissions() {
+        //IMPLEMENT HERE
+        return "0";
+    }
+
+    public String getNaturalGasTreesEmissions() {
+        //IMPLEMENT HERE
+        return "0";
+    }
 }

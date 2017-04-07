@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 
 import java.util.Calendar;
@@ -107,7 +108,36 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //human relatable CO2 units
+        ToggleButton unit = (ToggleButton) findViewById(R.id.toggleButton);
+        if (CarbonModel.getInstance().getHumanRelatableUnitEnabled() == null) {
+            //default Kg CO2
+            CarbonModel.getInstance().setHumanRelatableUnitEnabled(false);
+        }
+        else if (CarbonModel.getInstance().getHumanRelatableUnitEnabled()) {
+            unit.setChecked(true);
+        }
+        else {
+            unit.setChecked(false);
+        }
+        unit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CarbonModel.getInstance().getHumanRelatableUnitEnabled()) {
+                    CarbonModel.getInstance().setHumanRelatableUnitEnabled(false);
+                    Toast.makeText(getApplicationContext(), "Now displaying emissions in Kg of CO2", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    CarbonModel.getInstance().setHumanRelatableUnitEnabled(true);
+                    Toast.makeText(getApplicationContext(), "Now displaying emissions in Trees", Toast.LENGTH_SHORT).show();
+                }
+                CarbonModel.getInstance().SaveData();
+            }
+        });
+
     }
+
 
     //hide navigation bar
     @Override
