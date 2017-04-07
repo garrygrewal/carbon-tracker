@@ -40,6 +40,7 @@ public class AddNameActivity extends AppCompatActivity {
         showVehicleAndRoute();
         showEmissions();
         setupButtons();
+        UiChangeListener();
     }
 
     private void showVehicleAndRoute() {
@@ -83,6 +84,39 @@ public class AddNameActivity extends AppCompatActivity {
         int vehicle_index = intent.getIntExtra("vehicle_index", 0);
         CarbonModel.getInstance().newJourney(vehicle_index, route_index);
         new_journey_index = CarbonModel.getInstance().newJourneyIndex();
+
+        //vehicle icon
+        TextView icon = (TextView) findViewById(R.id.iconView);
+        int i = Integer.parseInt(CarbonModel.getInstance().getVehicleIcon(vehicle_index));
+        switch(i) {
+            case 0:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.coupe, 0, 0, 0);
+                break;
+            case 1:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.hatch, 0, 0, 0);
+                break;
+            case 2:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.suv, 0, 0, 0);
+                break;
+            case 3:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.van, 0, 0, 0);
+                break;
+            case 4:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.truck, 0, 0, 0);
+                break;
+            case 5:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.bike, 0, 0, 0);
+                break;
+            case 6:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.bus, 0, 0, 0);
+                break;
+            case 7:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.train, 0, 0, 0);
+                break;
+            default:
+                icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.hatch, 0, 0, 0);
+                break;
+        }
 
     }
 
@@ -218,11 +252,13 @@ public class AddNameActivity extends AppCompatActivity {
             finish();
             return(true);
         case R.id.about:
-            //waiting for about page implementation
-            //startActivity(new Intent(SelectVehicleActivity.this, AboutActivity.class));
+           startActivity(new Intent(AddNameActivity.this, AboutActivity.class));
             return(true);
         case R.id.exit:
-            System.exit(0);
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
             return(true);
     }
         return(super.onOptionsItemSelected(item));
@@ -240,6 +276,22 @@ public class AddNameActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
+    }
+    public void UiChangeListener()
+    {
+        final View decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener (new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
+                    decorView.setSystemUiVisibility(
+                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+                }
+            }
+        });
     }
 
     //navigation back button

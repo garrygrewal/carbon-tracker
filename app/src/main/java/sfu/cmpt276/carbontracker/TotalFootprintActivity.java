@@ -197,8 +197,41 @@ public class TotalFootprintActivity extends AppCompatActivity {
 
             Journey journey = listData.get(position);
             holder.name.setText(journey.getJourneyName());
-            holder.details.setText(journey.getCo2PerCity() +" "+ getString(R.string.kgC02City) +" "+ journey.getCo2PerHighway() +" "+ getString(R.string.kgC02highway));
+            holder.details.setText(journey.getCo2PerCity() + " kg of CO2 by city\n" + journey.getCo2PerHighway() + " kg of CO2 by highway");
             holder.date.setText(journey.getStringDate());
+
+            //vehicle icon
+            TextView icon = (TextView) convertView.findViewById(R.id.iconView);
+            int i = Integer.parseInt(CarbonModel.getInstance().getVehicleIcon((journey.getVehicleIndex())));
+            switch(i) {
+                case 0:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.coupe, 0, 0, 0);
+                    break;
+                case 1:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.hatch, 0, 0, 0);
+                    break;
+                case 2:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.suv, 0, 0, 0);
+                    break;
+                case 3:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.van, 0, 0, 0);
+                    break;
+                case 4:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.truck, 0, 0, 0);
+                    break;
+                case 5:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.bike, 0, 0, 0);
+                    break;
+                case 6:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.bus, 0, 0, 0);
+                    break;
+                case 7:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.train, 0, 0, 0);
+                    break;
+                default:
+                    icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.hatch, 0, 0, 0);
+                    break;
+            }
             return convertView;
         }
 
@@ -286,11 +319,13 @@ public class TotalFootprintActivity extends AppCompatActivity {
             finish();
             return(true);
         case R.id.about:
-            //waiting for about page implementation
-            //startActivity(new Intent(SelectVehicleActivity.this, AboutActivity.class));
+            startActivity(new Intent(TotalFootprintActivity.this, AboutActivity.class));
             return(true);
         case R.id.exit:
-            System.exit(0);
+            Intent exit = new Intent(Intent.ACTION_MAIN);
+            exit.addCategory(Intent.CATEGORY_HOME);
+            exit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(exit);
             return(true);
     }
         return(super.onOptionsItemSelected(item));
