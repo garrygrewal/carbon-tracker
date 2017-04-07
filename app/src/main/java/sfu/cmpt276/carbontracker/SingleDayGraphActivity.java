@@ -7,13 +7,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -23,11 +23,11 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 
@@ -36,18 +36,32 @@ public class SingleDayGraphActivity extends AppCompatActivity {
     private int graphDay;
     private int graphMonth;
     private int graphYear;
+    private Switch routeModeSwitch;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_day_graph);
         Calendar c = Calendar.getInstance();
         graphYear = c.get(Calendar.YEAR); // current graphYear
-        graphMonth = c.get(Calendar.MONTH)+1; // current graphMonth
+        graphMonth = c.get(Calendar.MONTH) + 1; // current graphMonth
         graphDay = c.get(Calendar.DAY_OF_MONTH); // current graphDay
 
-        setupPieChart();
+        setupPieChart(false);
         setupButtons();
+        setupSwitch();
         updateTextViews();
+    }
+
+    private void setupSwitch() {
+        routeModeSwitch = (Switch) findViewById(R.id.switchRouteMode);
+        routeModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setupPieChart(isChecked);
+            }
+        });
+
     }
 
     private void updateTextViews() {
@@ -58,7 +72,7 @@ public class SingleDayGraphActivity extends AppCompatActivity {
         TextView totalCO2 = (TextView) findViewById(R.id.textViewTotalCO2Number);
 
         for (int i = 0; i < CarbonModel.getInstance().getSizeOfJourneysList(); i++) {
-            if(CarbonModel.getInstance().getJourney(i).getDay().getJulian() == CarbonModel.getInstance().getJulian(graphYear, graphMonth, graphDay) ) {
+            if (CarbonModel.getInstance().getJourney(i).getDay().getJulian() == CarbonModel.getInstance().getJulian(graphYear, graphMonth, graphDay)) {
                 totalJourneyCO2 += CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
             }
         }
@@ -73,19 +87,49 @@ public class SingleDayGraphActivity extends AppCompatActivity {
         totalCO2.setText(journeyAndUtilitiesCO2 + " kgCO2");
     }
 
-    private void setupPieChart() {
+    private void setupPieChart(boolean isChecked) {
         //populating a list of PieEntries;
         List<PieEntry> pieEntries = new ArrayList<>();
-
-        pieEntries.add(new PieEntry(CarbonModel.getInstance().getGasC02Emissions(graphYear, graphMonth, graphDay), "Natural Gas Emissions"));
-        for (int i = 0; i < CarbonModel.getInstance().getSizeOfJourneysList(); i++) {
-            if(CarbonModel.getInstance().getJourney(i).getDay().getJulian() == CarbonModel.getInstance().getJulian(graphYear, graphMonth, graphDay) ) {
-                pieEntries.add(new PieEntry(CarbonModel.getInstance().getJourneyTotalCO2Emissions(i)
-                        , CarbonModel.getInstance().getJourneyName(i)));
+        Map<String, Float> emissions = new TreeMap<>();
+        if (isChecked) {
+            for (int i = 0; i < CarbonModel.getInstance().getSizeOfJourneysList(); i++) {
+                if (CarbonModel.getInstance().getJourney(i).getDay().getJulian() == CarbonModel.getInstance().getJulian(graphYear, graphMonth, graphDay)) {
+                    String name = CarbonModel.getInstance().getRouteName(CarbonModel.getInstance().getJourney(i).getRouteIndex());
+                    float newValue;
+                    if (emissions.containsKey(name)) {
+                        newValue= emissions.get(CarbonModel.getInstance().getRouteName(CarbonModel.getInstance().getJourney(i).getRouteIndex()));
+                        newValue = newValue + CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
+                        emissions.put(name, newValue);
+                    } else {
+                        newValue = CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
+                        emissions.put(name, newValue);
+                    }
+                }
+            }
+        } else {
+            for (int i = 0; i < CarbonModel.getInstance().getSizeOfJourneysList(); i++) {
+                if (CarbonModel.getInstance().getJourney(i).getDay().getJulian() == CarbonModel.getInstance().getJulian(graphYear, graphMonth, graphDay)) {
+                    String name = CarbonModel.getInstance().getVehicleName(CarbonModel.getInstance().getJourney(i).getVehicleIndex());
+                    float newValue;
+                    if (emissions.containsKey(name)) {
+                        newValue= emissions.get(CarbonModel.getInstance().getVehicleName(CarbonModel.getInstance().getJourney(i).getVehicleIndex()));
+                        newValue = newValue + CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
+                        emissions.put(name, newValue);
+                    } else {
+                        newValue = CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
+                        emissions.put(name, newValue);
+                    }
+                }
             }
         }
-        Log.i("ATT", " "+ graphDay+ ", " +graphMonth + ", " + graphYear);
+        for (String string : emissions.keySet()) {
+            pieEntries.add(new PieEntry(emissions.get(string)
+                    , string));
+        }
 
+        Log.i("ATT", " " + graphDay + ", " + graphMonth + ", " + graphYear);
+
+        pieEntries.add(new PieEntry(CarbonModel.getInstance().getGasC02Emissions(graphYear, graphMonth, graphDay), "Natural Gas Emissions"));
         pieEntries.add(new PieEntry(CarbonModel.getInstance().getElectricityC02Emissions(graphYear, graphMonth, graphDay), "Electricity Emissions"));
 
         PieDataSet dataSet = new PieDataSet(pieEntries, "CO2 Emissions for Day");
@@ -130,22 +174,24 @@ public class SingleDayGraphActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_view, menu);
         return true;
     }
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) { switch(item.getItemId()) {
-        case R.id.reset:
-            Intent back = new Intent();
-            setResult(Activity.RESULT_CANCELED, back);
-            finish();
-            return(true);
-        case R.id.about:
-            //waiting for about page implementation
-            //startActivity(new Intent(SelectVehicleActivity.this, AboutActivity.class));
-            return(true);
-        case R.id.exit:
-            System.exit(0);
-            return(true);
-    }
-        return(super.onOptionsItemSelected(item));
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.reset:
+                Intent back = new Intent();
+                setResult(Activity.RESULT_CANCELED, back);
+                finish();
+                return (true);
+            case R.id.about:
+                //waiting for about page implementation
+                //startActivity(new Intent(SelectVehicleActivity.this, AboutActivity.class));
+                return (true);
+            case R.id.exit:
+                System.exit(0);
+                return (true);
+        }
+        return (super.onOptionsItemSelected(item));
     }
 
     //hide navigation bar
@@ -180,12 +226,12 @@ public class SingleDayGraphActivity extends AppCompatActivity {
                         // set graphDay of graphMonth , graphMonth and graphYear value in the edit text
                         editPieGraphDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                         graphDay = dayOfMonth;
-                        graphMonth = monthOfYear+1;
+                        graphMonth = monthOfYear + 1;
                         graphYear = year;
-                        setupPieChart();
+                        setupPieChart(false);
                         updateTextViews();
                     }
-                }, graphYear, graphMonth-1, graphDay);
+                }, graphYear, graphMonth - 1, graphDay);
                 datePickerDialog.show();
             }
         });

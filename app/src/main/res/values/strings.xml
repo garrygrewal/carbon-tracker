@@ -64,4 +64,7 @@
     <string name="emissions_for_a_single_day">Emissions For a single day</string>
     <string name="emissions_from_previous_days">Emissions From Previous Days</string>
     <string name="emissions_history">Emissions history</string>
+    <string name="total_electricity_emissions">Total Electricity Emissions</string>
+    <string name="total_naturalGas_emissions">Total Natural Gas Emissions</string>
+    <string name="route_mode">Route Mode</string>
 </resources>

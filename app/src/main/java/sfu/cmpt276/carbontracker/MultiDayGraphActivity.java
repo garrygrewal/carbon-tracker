@@ -8,15 +8,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.CombinedData;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -29,6 +33,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import sfu.cmpt276.carbontracker.model.CarbonModel;
 
@@ -40,7 +46,7 @@ public class MultiDayGraphActivity extends AppCompatActivity {
     public static final int FOUR_WEEKS = 28;
     private TextView textView;
     private SeekBar seekBarX;
-    private BarChart barChart;
+    private CombinedChart combinedChart;
     private PieChart pieChart;
     private float totalElectricEmissions;
     private float totalNaturalGasEmissions;
@@ -50,8 +56,7 @@ public class MultiDayGraphActivity extends AppCompatActivity {
     private List<String> listOfVehicleNames;
     private float totalJourneyEmissions;
     private float totalUtilitiesEmissions;
-
-
+    private Switch routeModeSwitch;
 
     private int numberOfDaysToDisplay;
     private XAxis xAxis;
@@ -62,10 +67,10 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         setContentView(R.layout.activity_multi_day_graph);
         textView = (TextView) findViewById(R.id.textViewForSeek);
         seekBarX = (SeekBar) findViewById(R.id.seekBar);
-        barChart = (BarChart) findViewById(R.id.barChart);
+        combinedChart = (CombinedChart) findViewById(R.id.barChart);
         pieChart = (PieChart) findViewById(R.id.pieChart2);
 
-
+        setUpSwitch();
         totalBusEmissions = 0;
         totalNaturalGasEmissions = 0;
         totalSkyTrainEmissions = 0;
@@ -74,9 +79,9 @@ public class MultiDayGraphActivity extends AppCompatActivity {
 
         numberOfDaysToDisplay = 28;
         textView.setText("" + numberOfDaysToDisplay + " days");
-        IAxisValueFormatter xAxisFormatter = new DayAxisValueFormatter(barChart);
+        IAxisValueFormatter xAxisFormatter = new DayAxisValueFormatter(combinedChart);
 
-        xAxis = barChart.getXAxis();
+        xAxis = combinedChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setGranularity(1f);
         xAxis.setValueFormatter(xAxisFormatter);
@@ -87,19 +92,59 @@ public class MultiDayGraphActivity extends AppCompatActivity {
 
     }
 
-    private void setupPieGraph() {
+    private void setUpSwitch() {
+        routeModeSwitch = (Switch) findViewById(R.id.switchRouteMode2);
+        routeModeSwitch.setChecked(false);
+        routeModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setupPieGraph(isChecked);
+            }
+        });
+    }
+
+    private void setupPieGraph(boolean isChecked) {
+        Map<String, Float> emissions = new TreeMap<>();
         List<PieEntry> pieEntries = new ArrayList<>();
         totalUtilitiesEmissions = totalElectricEmissions+ totalNaturalGasEmissions;
         totalJourneyEmissions = totalBusEmissions + totalSkyTrainEmissions;
 
-        pieEntries.add(new PieEntry(totalBusEmissions, "Bus"));
-        pieEntries.add(new PieEntry(totalSkyTrainEmissions, "Skytrain"));
+
         pieEntries.add(new PieEntry(totalNaturalGasEmissions, "Natural Gas"));
         pieEntries.add(new PieEntry(totalElectricEmissions, "Electric"));
 
-        for(int i = 0; i < listOfVehicleNames.size(); i++){
-            pieEntries.add(new PieEntry(listOfVehicleEmissions.get(i),listOfVehicleNames.get(i)));
-            totalJourneyEmissions += listOfVehicleEmissions.get(i);
+        if (isChecked) {
+            for (int i = 0; i < CarbonModel.getInstance().getSizeOfJourneysList(); i++) {
+                    String name = CarbonModel.getInstance().getRouteName(CarbonModel.getInstance().getJourney(i).getRouteIndex());
+                    float newValue;
+                    if (emissions.containsKey(name)) {
+                        newValue= emissions.get(CarbonModel.getInstance().getRouteName(CarbonModel.getInstance().getJourney(i).getRouteIndex()));
+                        newValue = newValue + CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
+                        addToMap(emissions, name, newValue);
+                    } else {
+                        newValue = CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
+                        addToMap(emissions, name, newValue);
+                    }
+            }
+        } else {
+            for (int i = 0; i < CarbonModel.getInstance().getSizeOfJourneysList(); i++) {
+
+                    String name = CarbonModel.getInstance().getVehicleName(CarbonModel.getInstance().getJourney(i).getVehicleIndex());
+                    float newValue;
+                    if (emissions.containsKey(name)) {
+                        newValue= emissions.get(CarbonModel.getInstance().getVehicleName(CarbonModel.getInstance().getJourney(i).getVehicleIndex()));
+                        newValue = newValue + CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
+                        addToMap(emissions, name, newValue);
+                    } else {
+                        newValue = CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
+                        addToMap(emissions, name, newValue);
+                    }
+
+            }
+        }
+        for (String string : emissions.keySet()) {
+            pieEntries.add(new PieEntry(emissions.get(string)
+                    , string));
         }
 
 
@@ -140,6 +185,14 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         setUpTextViews();
     }
 
+    private void addToMap(Map<String, Float> emissions, String name, float newValue) {
+        if(name.equals("")){
+            emissions.put("Unknown", newValue);
+        } else {
+            emissions.put(name, newValue);
+        }
+    }
+
     private void setupSeekBar() {
         seekBarX.setProgress(numberOfDaysToDisplay);
         seekBarX.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -168,13 +221,14 @@ public class MultiDayGraphActivity extends AppCompatActivity {
 
     private void setupCharts() {
 
-        barChart.getDescription().setEnabled(false);
+        combinedChart.getDescription().setEnabled(false);
 
         Calendar c = Calendar.getInstance();
         int currentYear = c.get(Calendar.YEAR); // current graphYear
         int currentMonth = c.get(Calendar.MONTH) + 1; // current graphMonth
         int currentDay = c.get(Calendar.DAY_OF_MONTH); // current graphDay
         ArrayList<BarEntry> yVals = new ArrayList<>();
+
         float start = (c.get(Calendar.DAY_OF_YEAR)) + 365;
         float electricityEmissions = 0;
         float naturalGasEmissions = 0;
@@ -221,7 +275,7 @@ public class MultiDayGraphActivity extends AppCompatActivity {
                     }
                 }
 
-                xAxis.setValueFormatter(new DayAxisValueFormatter(barChart));
+                xAxis.setValueFormatter(new DayAxisValueFormatter(combinedChart));
                 yVals.add(new BarEntry(
                         start - i,
                         new float[]{electricityEmissions, naturalGasEmissions, journeyEmissions}
@@ -266,7 +320,7 @@ public class MultiDayGraphActivity extends AppCompatActivity {
                     journeyEmissions = 0;
 
                 }
-                xAxis.setValueFormatter(new WeekAxisValueFormatter(barChart));
+                xAxis.setValueFormatter(new WeekAxisValueFormatter(combinedChart));
             }
 
         }
@@ -281,21 +335,24 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         ArrayList<IBarDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
 
-        BarData data = new BarData(dataSets);
+        BarData barData = new BarData(dataSets);
 
-        data.setValueTextSize(10);
-        data.setValueFormatter(new StackedValueFormatter(false, "", 2));
-        data.setValueTextColor(Color.WHITE);
+        barData.setValueTextSize(10);
+        barData.setValueFormatter(new StackedValueFormatter(false, "", 2));
+        barData.setValueTextColor(Color.WHITE);
 
-        barChart.setMaxVisibleValueCount(20);
-        barChart.setPinchZoom(false);
-        barChart.setData(data);
-        barChart.setDrawBarShadow(false);
-        barChart.setDrawGridBackground(false);
-        barChart.setFitBars(true);
-        barChart.invalidate();
+        CombinedData data = new CombinedData();
+        data.setData(barData);
 
-        setupPieGraph();
+
+        combinedChart.setMaxVisibleValueCount(20);
+        combinedChart.setPinchZoom(false);
+        combinedChart.setData(data);
+        combinedChart.setDrawBarShadow(false);
+        combinedChart.setDrawGridBackground(false);
+        combinedChart.invalidate();
+
+        setupPieGraph(false);
     }
 
     private void addToVehicleEmissionsList(int vehicleIndex, float kgCO2Emission) {
