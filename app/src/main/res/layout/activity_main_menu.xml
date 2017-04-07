@@ -192,8 +192,8 @@
         android:checked="false"
         android:text="ToggleButton"
         android:textColor="@android:color/background_light"
-        android:textOff="Unit: Kg CO2"
-        android:textOn="Unit: Trees" />
+        android:textOff="@string/unit_kg_co2"
+        android:textOn="@string/unit_trees" />
 
 </LinearLayout>
 

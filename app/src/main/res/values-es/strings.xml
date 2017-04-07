@@ -117,4 +117,8 @@
     <string name="icons_by_freepik">Iconos de Freepik</string>
     <string name="end_datebill">Fecha final</string>
     <string name="start_datebill">Fecha de inicio</string>
+    <string name="nowDisplayingkgco2">Ahora se muestran las emisiones en Kg de CO2</string>
+    <string name="nowdisplayingtrees">Ahora se muestran las emisiones en los árboles</string>
+    <string name="unit_kg_co2">Unidad: Kg CO2</string>
+    <string name="unit_trees">Unidad: Árboles</string>
 </resources>

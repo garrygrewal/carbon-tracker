@@ -126,11 +126,11 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (CarbonModel.getInstance().getHumanRelatableUnitEnabled()) {
                     CarbonModel.getInstance().setHumanRelatableUnitEnabled(false);
-                    Toast.makeText(getApplicationContext(), "Now displaying emissions in Kg of CO2", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.nowDisplayingkgco2, Toast.LENGTH_SHORT).show();
                 }
                 else {
                     CarbonModel.getInstance().setHumanRelatableUnitEnabled(true);
-                    Toast.makeText(getApplicationContext(), "Now displaying emissions in Trees", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.nowdisplayingtrees, Toast.LENGTH_SHORT).show();
                 }
                 CarbonModel.getInstance().SaveData();
             }

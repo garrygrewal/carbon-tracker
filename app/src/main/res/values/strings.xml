@@ -117,4 +117,8 @@
     <string name="icons_by_freepik">Icons by Freepik</string>
     <string name="end_datebill">End Date</string>
     <string name="start_datebill">Start Date</string>
+    <string name="nowDisplayingkgco2">Now displaying emissions in Kg of CO2</string>
+    <string name="nowdisplayingtrees">Now displaying emissions in Trees</string>
+    <string name="unit_kg_co2">Unit: Kg CO2</string>
+    <string name="unit_trees">Unit: Trees</string>
 </resources>
