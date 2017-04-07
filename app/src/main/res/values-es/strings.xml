@@ -115,4 +115,6 @@
     <string name="created_in_2017">Creado en 2017</string>
     <string name="leave_us_a_rating">Dejanos una calificación</string>
     <string name="icons_by_freepik">Iconos de Freepik</string>
+    <string name="end_datebill">Fecha final</string>
+    <string name="start_datebill">Fecha de inicio</string>
 </resources>
