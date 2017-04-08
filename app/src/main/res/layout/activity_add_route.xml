@@ -18,7 +18,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:text="@string/add_route" />
+        android:layout_toEndOf="@+id/textRouteHwy"
+        android:text="@string/add_route"
+        android:drawableLeft="@android:drawable/checkbox_on_background"
+        tools:ignore="RtlHardcoded" />
 
     <Button
         android:id="@+id/buttonCancel"
@@ -26,7 +29,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/buttonAddRoute"
-        android:text="@string/cancelAddRoute" />
+        android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel"
+        android:text="@string/cancelAddRoute"
+        android:layout_alignTop="@+id/buttonAddRoute"
+        tools:ignore="RtlHardcoded" />
 
     <TextView
         android:id="@+id/textRouteName"

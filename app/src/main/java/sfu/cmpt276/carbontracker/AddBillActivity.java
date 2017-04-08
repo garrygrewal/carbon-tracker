@@ -244,7 +244,7 @@ public class AddBillActivity extends AppCompatActivity {
                         displayTips();
                     }
 
-                    Toast toast = Toast.makeText(getApplicationContext(), "Bill added to Carbon Footprint", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), R.string.billadded, Toast.LENGTH_SHORT);
                     toast.show();
                     Intent intent = new Intent(AddBillActivity.this, MainMenuActivity.class);
                     startActivity(intent);

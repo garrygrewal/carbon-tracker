@@ -129,4 +129,12 @@
     <string name="trees_by_highway">Árboles por carretera</string>
     <string name="trees_by_city">Árboles por ciudad</string>
     <string name="trees_by">Árboles, por</string>
+    <string name="billadded">Proyecto de ley añadido a la huella de carbono</string>
+    <string name="journeynameempty">El nombre del viaje no puede estar vacío.</string>
+    <string name="selectDateplease">Por favor, seleccione la fecha.</string>
+    <string name="routeNameEmpty">Le nom de l\'itinéraire ne peut pas être vide.</string>
+    <string name="DistanceEmpty">La distance ne peut pas être vide.</string>
+    <string name="distanceZero">La distance ne peut pas être 0.</string>
+    <string name="routeOptions">Options d\'itinéraire</string>
+    <string name="vehicleOptions">Options du véhicule</string>
 </resources>

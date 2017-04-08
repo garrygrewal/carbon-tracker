@@ -114,13 +114,13 @@ public class TotalFootprintActivity extends AppCompatActivity {
         switch(v.getId()) {
             case R.id.listViewTotalFootprint:
                 menu.setHeaderTitle(R.string.journey_options);
-                menu.add(0, J_EDIT, 0, R.string.edit);
-                menu.add(0, J_DELETE, 0, R.string.delete);
+                menu.add(0, J_EDIT, 0, "Edit");
+                menu.add(0, J_DELETE, 0, "Delete");
                 break;
             case R.id.listViewBills:
                 menu.setHeaderTitle(R.string.bill_options);
-                menu.add(0, B_EDIT, 0, R.string.edit);
-                menu.add(0, B_DELETE, 0, R.string.delete);
+                menu.add(0, B_EDIT, 0, "Edit");
+                menu.add(0, B_DELETE, 0, "Delete");
                 break;
         }
     }

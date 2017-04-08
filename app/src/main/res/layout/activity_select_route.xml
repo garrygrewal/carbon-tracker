@@ -85,6 +85,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_toStartOf="@+id/buttonAddRoute"
                 android:layout_weight="1"
+                android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel"
                 android:text="@string/cancelSelectRoute" />
 
             <Button
@@ -94,6 +95,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_weight="1"
+                android:drawableLeft="@android:drawable/ic_menu_add"
                 android:text="@string/add_new_route" />
         </LinearLayout>
     </LinearLayout>

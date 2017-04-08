@@ -96,8 +96,7 @@ public class AddNameActivity extends AppCompatActivity {
 
         //vehicle icon
         TextView icon = (TextView) findViewById(R.id.iconView);
-        int i = Integer.parseInt(CarbonModel.getInstance().getVehicleIcon(vehicle_index));
-        switch(i) {
+        switch(Integer.parseInt(CarbonModel.getInstance().getVehicle(vehicle_index).getIcon())) {
             case 0:
                 icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.coupe, 0, 0, 0);
                 break;
@@ -232,12 +231,12 @@ public class AddNameActivity extends AppCompatActivity {
         */
 
         if (name.equals(null) || name.replaceAll("\\s+", "").equals("")) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Journey name cannot be empty.", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.journeynameempty, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
         else if (in_date.equals("Select Date")) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please select date.", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.selectDateplease, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
