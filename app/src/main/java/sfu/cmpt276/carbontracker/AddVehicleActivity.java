@@ -52,15 +52,16 @@ public class AddVehicleActivity extends AppCompatActivity {
         //prevents keyboard from appearing when activity stars
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        //program crashes b/c of this line when list of input vehicles is 0
-        //get preselected icon
-        //icon = Integer.parseInt(CarbonModel.getInstance().getVehicleIcon(index));
 
         //hides navigation bar after keyboard
         UiChangeListener();
-        setupButtons();
         Intent intent = getIntent();
         index = intent.getIntExtra("index", -1);
+        //get preselected icon
+        if (index != -1) {
+            icon = Integer.parseInt(CarbonModel.getInstance().getVehicle(index).getIcon());
+        }
+        setupButtons();
         extractDataFromIntent();
         populateSpinnerMake(index);
         registerClickCallBackForMake();

@@ -404,23 +404,23 @@ public class CarbonModel implements Serializable {
     }
 
     public String getVehicleName(int index) {
-        return listOfInputVehicles.get(index).getName();
+        return getVehicle(index).getName();
     }
 
     public String getVehicleMake(int index) {
-        return listOfInputVehicles.get(index).getMake();
+        return getVehicle(index).getMake();
     }
 
     public String getVehicleModel(int index) {
-        return listOfInputVehicles.get(index).getModel();
+        return getVehicle(index).getModel();
     }
 
     public String getVehicleYear(int index) {
-        return listOfInputVehicles.get(index).getYear();
+        return getVehicle(index).getYear();
     }
 
     public String getVehicleIcon(int index) {
-        return listOfInputVehicles.get(index).getIcon();
+        return getVehicle(index).getIcon();
     }
     public String getRouteName(int index) {
         return listOfInputRoutes.get(index).getName();
