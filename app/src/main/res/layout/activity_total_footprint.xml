@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Journeys"
+                    android:text="@string/journeys"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textStyle="bold" />
@@ -99,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Bills"
+                        android:text="@string/bills"
                         android:textAlignment="center"
                         android:textAllCaps="true"
                         android:textStyle="bold" />

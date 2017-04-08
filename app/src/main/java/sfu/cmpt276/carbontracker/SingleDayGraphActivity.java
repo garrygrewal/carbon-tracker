@@ -129,10 +129,10 @@ public class SingleDayGraphActivity extends AppCompatActivity {
 
         Log.i("ATT", " " + graphDay + ", " + graphMonth + ", " + graphYear);
 
-        pieEntries.add(new PieEntry(CarbonModel.getInstance().getGasC02Emissions(graphYear, graphMonth, graphDay), "Natural Gas Emissions"));
-        pieEntries.add(new PieEntry(CarbonModel.getInstance().getElectricityC02Emissions(graphYear, graphMonth, graphDay), "Electricity Emissions"));
+        pieEntries.add(new PieEntry(CarbonModel.getInstance().getGasC02Emissions(graphYear, graphMonth, graphDay),  getString(R.string.naturalgasemissions)));
+        pieEntries.add(new PieEntry(CarbonModel.getInstance().getElectricityC02Emissions(graphYear, graphMonth, graphDay) getString(R.string.electricityemissions)));
 
-        PieDataSet dataSet = new PieDataSet(pieEntries, "CO2 Emissions for Day");
+        PieDataSet dataSet = new PieDataSet(pieEntries, getString(R.string.co2emissionsforday));
         dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         dataSet.setValueTextSize(20f);
         dataSet.setValueFormatter(new PercentFormatter());
@@ -176,22 +176,23 @@ public class SingleDayGraphActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.reset:
-                Intent back = new Intent();
-                setResult(Activity.RESULT_CANCELED, back);
-                finish();
-                return (true);
-            case R.id.about:
-                //waiting for about page implementation
-                //startActivity(new Intent(SelectVehicleActivity.this, AboutActivity.class));
-                return (true);
-            case R.id.exit:
-                System.exit(0);
-                return (true);
-        }
-        return (super.onOptionsItemSelected(item));
+    public boolean onOptionsItemSelected(MenuItem item) { switch(item.getItemId()) {
+        case R.id.reset:
+            Intent back = new Intent();
+            setResult(Activity.RESULT_CANCELED, back);
+            finish();
+            return(true);
+        case R.id.about:
+            startActivity(new Intent(SingleDayGraphActivity.this, AboutActivity.class));
+            return(true);
+        case R.id.exit:
+            Intent exit = new Intent(Intent.ACTION_MAIN);
+            exit.addCategory(Intent.CATEGORY_HOME);
+            exit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(exit);
+            return(true);
+    }
+        return(super.onOptionsItemSelected(item));
     }
 
     //hide navigation bar

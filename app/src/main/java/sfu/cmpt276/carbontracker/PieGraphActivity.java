@@ -43,7 +43,7 @@ public class PieGraphActivity extends AppCompatActivity {
         pieEntries.add(new PieEntry(CarbonModel.getInstance().getTotalElectricityC02Emissions(), getString(R.string.total_electricity_emissions)));
         pieEntries.add(new PieEntry(CarbonModel.getInstance().getTotalGasC02Emissions(), getString(R.string.total_naturalGas_emissions)));
 
-        PieDataSet dataSet = new PieDataSet(pieEntries, "Total CO2 Emissions");
+        PieDataSet dataSet = new PieDataSet(pieEntries, getString(R.string.totalCO2Emissions));
         dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         dataSet.setValueTextSize(20f);
         dataSet.setValueFormatter(new PercentFormatter());
@@ -93,8 +93,7 @@ public class PieGraphActivity extends AppCompatActivity {
             finish();
             return(true);
         case R.id.about:
-            //waiting for about page implementation
-            //startActivity(new Intent(SelectVehicleActivity.this, AboutActivity.class));
+            startActivity(new Intent(PieGraphActivity.this, AboutActivity.class));
             return(true);
         case R.id.exit:
             System.exit(0);

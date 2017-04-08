@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.io.Serializable;
+import android.content.Context;
+
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import sfu.cmpt276.carbontracker.App;
 import sfu.cmpt276.carbontracker.model.KnownCars;
 
 /**
@@ -37,6 +40,8 @@ public class CarbonModel implements Serializable {
 
     private List<Bill> listOfBills = new ArrayList<>();
 
+    private boolean humanRelatableUnitEnabled;
+
 
     private final double GASOLINE_CO2_EMISSION = 8.89;
     private final double ELECTRIC_CO2_EMISSION = 0;
@@ -48,14 +53,51 @@ public class CarbonModel implements Serializable {
     private final double DAYS_IN_YEAR = 365;
     private final double TARGET_PERCENT = 0.70;
 
+    //On average a single young tree can absorb 11.8 kg of CO2 per year
+    private final double kgCo2ToTrees = 0.08474576271;
+
     //DBAdapter CarbonTrackerDB;
 
     private CarbonModel() {
     }
 
+    public float getHighestJourneyEmission(){
+        float currentJourneyEmissions = 0;
+        for(Journey j: listOfJourneys){
+            if(currentJourneyEmissions<j.getTotalCO2Emission()){
+                currentJourneyEmissions = j.getTotalCO2Emission();
+            }
+        }
+        return currentJourneyEmissions;
+    }
+
+    public float getHighestElectricityEmission(){
+        float currentElectricityEmission = 0;
+        for(Bill b: listOfBills){
+            if(b.getType().equals("Electricity"));
+            if(currentElectricityEmission<b.getElectricityEmissions()){
+                currentElectricityEmission = b.getElectricityEmissions();
+            }
+        }
+        return currentElectricityEmission;
+    }
+
+    public float getHighestNaturalGasEmission(){
+        float currentNaturalGasEmissions = 0;
+        for(Bill b: listOfBills){
+            if(b.getType().equals("Natural Gas")) {
+                if (currentNaturalGasEmissions < b.getNaturalGasEmissions()) {
+                    currentNaturalGasEmissions = b.getNaturalGasEmissions();
+                }
+            }
+        }
+        return currentNaturalGasEmissions;
+    }
+
     public TipsArray getTipsArray(){
         return tipsArray;
     }
+
 
     public void hideRoute(int index) {
         listOfHiddenRoutes.add(index);
@@ -83,6 +125,16 @@ public class CarbonModel implements Serializable {
     public void editRoute(Route route, int index) {
         listOfInputRoutes.remove(getRealRouteIndex(index));
         listOfInputRoutes.add(getRealRouteIndex(index), route);
+    }
+
+    //for integrating with ArrayAdapter
+    public String[] getRouteInfo() {
+        String[] info = new String[countRoutes()];
+        for (int i = 0; i < countRoutes(); i++) {
+            Route route = getRoute(i);
+            info[i] = route.getName() + ", " + route.getCity() + " (km), " + route.getHwy() + " (km).";
+        }
+        return info;
     }
 
     public void addRoute(Route route) {
@@ -254,9 +306,17 @@ public class CarbonModel implements Serializable {
         float co2PerHighway = (float) (((listOfInputRoutes.get(journey.getRouteIndex()).getHwy() * kmToMiles) / highwayMilesPerGallon) * co2EmittedPerGallonOfFuel);
         float totalCO2Emission = co2PerCity + co2PerHighway;
 
+        float treePerCity = (float) (co2PerCity*kgCo2ToTrees);
+        float treePerHighway = (float) (co2PerHighway*kgCo2ToTrees);
+        float totalTreeEmission = treePerCity + treePerHighway;
+
         journey.setCo2PerCity(co2PerCity);
         journey.setCo2PerHighway(co2PerHighway);
         journey.setTotalCO2Emission(totalCO2Emission);
+
+        journey.setTreesPerCity(treePerCity);
+        journey.setTreesPerHighway(treePerHighway);
+        journey.setTotalTreesEmission(totalTreeEmission);
     }
 
     public Journey getJourney(int index) {
@@ -328,7 +388,7 @@ public class CarbonModel implements Serializable {
         return listOfJourneys.get(index).getTotalCO2Emission();
     }
 
-    public void addVehicle(String name, String make, String model, String year, String city, String hwy, String fuelType, String transmission, String displacement) {
+    public void addVehicle(String name, String make, String model, String year, String city, String hwy, String fuelType, String transmission, String displacement, String icon) {
         Vehicle vehicle = new Vehicle();
 
         vehicle.setName(name);
@@ -345,6 +405,7 @@ public class CarbonModel implements Serializable {
             vehicle.setTransmission(transmission);
             vehicle.setEngineDisplacement(displacement);
         }
+        vehicle.setIcon(icon);
         listOfInputVehicles.add(vehicle);
     }
 
@@ -364,7 +425,9 @@ public class CarbonModel implements Serializable {
         return listOfInputVehicles.get(index).getYear();
     }
 
-
+    public String getVehicleIcon(int index) {
+        return listOfInputVehicles.get(index).getIcon();
+    }
     public String getRouteName(int index) {
         return listOfInputRoutes.get(index).getName();
     }
@@ -531,7 +594,7 @@ public class CarbonModel implements Serializable {
 
         Day currentDay = new Day(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH));
 
-        if(listOfBills.size()>0) {
+        if(listOfJourneys.size()>0) {
             for (Journey j : listOfJourneys) {
                 if (j.getDay().daysFrom(currentDay) == 0) {
                     journeys++;
@@ -557,6 +620,15 @@ public class CarbonModel implements Serializable {
             }
         }
         return enteredBillToday;
+    }
+
+
+    public Boolean getHumanRelatableUnitEnabled() {
+        return humanRelatableUnitEnabled;
+    }
+
+    public void setHumanRelatableUnitEnabled(Boolean humanRelatableUnitEnabled) {
+        this.humanRelatableUnitEnabled = humanRelatableUnitEnabled;
     }
 
 }

@@ -32,6 +32,8 @@ public class AddBillActivity extends AppCompatActivity {
     private int new_bill_index;
     //for edit
     private int bill_index;
+    private final double kgCo2ToTrees = 0.08474576271;
+
 
     boolean dateStartEntered = false;
     boolean dateEndEntered = false;
@@ -45,6 +47,7 @@ public class AddBillActivity extends AppCompatActivity {
         setupButtons();
         showEmissions();
         showRadioButtons();
+        UiChangeListener();
     }
 
     private void premakeBill() {
@@ -186,6 +189,9 @@ public class AddBillActivity extends AppCompatActivity {
                     if (CarbonModel.getInstance().getBill(bill_index).getType().equals("Electricity")) {
                         CarbonModel.getInstance().getBill(bill_index).setElectricityUse(Float.parseFloat(useElectricity.getText().toString()));
                         CarbonModel.getInstance().getBill(bill_index).setElectricityEmissions(Float.parseFloat(emissionsElectricity.getText().toString()));
+                        float electricityTreeEmission = (float) (Float.parseFloat(emissionsElectricity.getText().toString()) * kgCo2ToTrees);
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityTreesEmissions(electricityTreeEmission);
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasTreesEmissions(0);
                         CarbonModel.getInstance().getBill(bill_index).setNaturalGasUse(0);
                         CarbonModel.getInstance().getBill(bill_index).setNaturalGasEmissions(0);
                         CarbonModel.getInstance().getTipsArray().generateElectricityTip(CarbonModel.getInstance().getBill(new_bill_index).getElectricityEmissions());
@@ -193,7 +199,10 @@ public class AddBillActivity extends AppCompatActivity {
                         displayTips();
                     } else if (CarbonModel.getInstance().getBill(bill_index).getType().equals("Natural Gas")) {
                         CarbonModel.getInstance().getBill(bill_index).setNaturalGasUse(Float.parseFloat(useNaturalGas.getText().toString()));
-                        CarbonModel.getInstance().getBill(bill_index).setElectricityEmissions(Float.parseFloat(emissionsNaturalGas.getText().toString()));
+                        CarbonModel.getInstance().getBill(bill_index).setNaturalGasEmissions(Float.parseFloat(emissionsNaturalGas.getText().toString()));
+                        float naturalGasTreeEmission = (float) (Float.parseFloat(emissionsNaturalGas.getText().toString()) * kgCo2ToTrees);
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasTreesEmissions(naturalGasTreeEmission);
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityTreesEmissions(0);
                         CarbonModel.getInstance().getBill(bill_index).setElectricityUse(0);
                         CarbonModel.getInstance().getBill(bill_index).setElectricityEmissions(0);
                         CarbonModel.getInstance().getTipsArray().generateNaturalGasTip(CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasEmissions());
@@ -213,6 +222,9 @@ public class AddBillActivity extends AppCompatActivity {
                     if (CarbonModel.getInstance().getBill(new_bill_index).getType().equals("Electricity")) {
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityUse(Float.parseFloat(useElectricity.getText().toString()));
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(Float.parseFloat(emissionsElectricity.getText().toString()));
+                        float electricityTreeEmission = (float) (Float.parseFloat(emissionsElectricity.getText().toString()) * kgCo2ToTrees);
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityTreesEmissions(electricityTreeEmission);
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasTreesEmissions(0);
                         CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasUse(0);
                         CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasEmissions(0);
                         CarbonModel.getInstance().getTipsArray().generateElectricityTip(CarbonModel.getInstance().getBill(new_bill_index).getElectricityEmissions());
@@ -221,7 +233,10 @@ public class AddBillActivity extends AppCompatActivity {
 
                     } else if (CarbonModel.getInstance().getBill(new_bill_index).getType().equals("Natural Gas")) {
                         CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasUse(Float.parseFloat(useNaturalGas.getText().toString()));
-                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(Float.parseFloat(emissionsNaturalGas.getText().toString()));
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasEmissions(Float.parseFloat(emissionsNaturalGas.getText().toString()));
+                        float naturalGasTreeEmission = (float) (Float.parseFloat(emissionsNaturalGas.getText().toString()) * kgCo2ToTrees);
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasTreesEmissions(naturalGasTreeEmission);
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityTreesEmissions(0);
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityUse(0);
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(0);
                         CarbonModel.getInstance().getTipsArray().generateNaturalGasTip(CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasEmissions());
@@ -279,29 +294,29 @@ public class AddBillActivity extends AppCompatActivity {
 
         //check if input is valid
         if (!dateStartEntered || !dateEndEntered) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a date", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.pleaseEnterDate, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
 
         if (in_electricity.getVisibility() == View.VISIBLE && in_electricity.getText().toString().trim().isEmpty()) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter your electricity usage", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.pleaseEnterElectricity, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
 
         if (in_naturalGas.getVisibility() == View.VISIBLE && in_naturalGas.getText().toString().trim().isEmpty()) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter your natural gas usage", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.pleaseEnterGas, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         }
 
         if (in_numberOfPeople.getText().toString().trim().isEmpty() || Integer.parseInt(in_numberOfPeople.getText().toString()) == 0) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter the number of people in your household", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.pleaseEnterPeople, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         } else if (in_dateStart.equals("Select Date") || in_dateEnd.equals("Select Date")) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please select date", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), R.string.pleaseSelectDate, Toast.LENGTH_SHORT);
             toast.show();
             return 0;
         } else {
@@ -517,16 +532,27 @@ public class AddBillActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) { switch(item.getItemId()) {
         case R.id.reset:
-            Intent back = new Intent();
-            setResult(Activity.RESULT_CANCELED, back);
-            finish();
+            if (bill_index != -1) {
+                Intent intent = new Intent();
+                setResult(Activity.RESULT_CANCELED, intent);
+                finish();
+            } else {
+                //delete premade bill
+                CarbonModel.getInstance().deleteBill(new_bill_index);
+
+                Intent intent = new Intent();
+                setResult(Activity.RESULT_CANCELED, intent);
+                finish();
+            }
             return(true);
         case R.id.about:
-            //waiting for about page implementation
-            //startActivity(new Intent(SelectVehicleActivity.this, AboutActivity.class));
+            startActivity(new Intent(AddBillActivity.this, AboutActivity.class));
             return(true);
         case R.id.exit:
-            System.exit(0);
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
             return(true);
     }
         return(super.onOptionsItemSelected(item));
@@ -544,5 +570,21 @@ public class AddBillActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
+    }
+    public void UiChangeListener()
+    {
+        final View decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener (new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
+                    decorView.setSystemUiVisibility(
+                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+                }
+            }
+        });
     }
 }
