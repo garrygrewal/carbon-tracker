@@ -62,9 +62,10 @@ public class MultiDayGraphActivity extends AppCompatActivity {
     private float totalJourneyEmissions;
     private float totalUtilitiesEmissions;
     private Switch routeModeSwitch;
-
     private int numberOfDaysToDisplay;
     private XAxis xAxis;
+    private boolean treemode;
+    private float kgCo2ToTrees;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +75,8 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         seekBarX = (SeekBar) findViewById(R.id.seekBar);
         combinedChart = (CombinedChart) findViewById(R.id.barChart);
         pieChart = (PieChart) findViewById(R.id.pieChart2);
-
+        treemode = CarbonModel.getInstance().getHumanRelatableUnitEnabled();
+        kgCo2ToTrees = (float) CarbonModel.getInstance().getKgCo2ToTrees();
         setUpSwitch();
         totalBusEmissions = 0;
         totalNaturalGasEmissions = 0;
@@ -82,14 +84,14 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         totalElectricEmissions = 0;
 
 
+
+
         numberOfDaysToDisplay = 28;
         textView.setText("" + numberOfDaysToDisplay + getString(R.string.days));
-        IAxisValueFormatter xAxisFormatter = new DayAxisValueFormatter(combinedChart);
 
         xAxis = combinedChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setGranularity(1f);
-        xAxis.setValueFormatter(xAxisFormatter);
 
         setupSeekBar();
         setupCharts();
@@ -111,7 +113,7 @@ public class MultiDayGraphActivity extends AppCompatActivity {
     private void setupPieGraph(boolean isChecked) {
         Map<String, Float> emissions = new TreeMap<>();
         List<PieEntry> pieEntries = new ArrayList<>();
-        totalUtilitiesEmissions = totalElectricEmissions+ totalNaturalGasEmissions;
+        totalUtilitiesEmissions = totalElectricEmissions + totalNaturalGasEmissions;
         totalJourneyEmissions = totalBusEmissions + totalSkyTrainEmissions;
 
 
@@ -120,30 +122,30 @@ public class MultiDayGraphActivity extends AppCompatActivity {
 
         if (isChecked) {
             for (int i = 0; i < CarbonModel.getInstance().getSizeOfJourneysList(); i++) {
-                    String name = CarbonModel.getInstance().getRouteName(CarbonModel.getInstance().getJourney(i).getRouteIndex());
-                    float newValue;
-                    if (emissions.containsKey(name)) {
-                        newValue= emissions.get(CarbonModel.getInstance().getRouteName(CarbonModel.getInstance().getJourney(i).getRouteIndex()));
-                        newValue = newValue + CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
-                        addToMap(emissions, name, newValue);
-                    } else {
-                        newValue = CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
-                        addToMap(emissions, name, newValue);
-                    }
+                String name = CarbonModel.getInstance().getRouteName(CarbonModel.getInstance().getJourney(i).getRouteIndex());
+                float newValue;
+                if (emissions.containsKey(name)) {
+                    newValue = emissions.get(CarbonModel.getInstance().getRouteName(CarbonModel.getInstance().getJourney(i).getRouteIndex()));
+                    newValue = newValue + CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
+                    addToMap(emissions, name, newValue);
+                } else {
+                    newValue = CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
+                    addToMap(emissions, name, newValue);
+                }
             }
         } else {
             for (int i = 0; i < CarbonModel.getInstance().getSizeOfJourneysList(); i++) {
 
-                    String name = CarbonModel.getInstance().getVehicleName(CarbonModel.getInstance().getJourney(i).getVehicleIndex());
-                    float newValue;
-                    if (emissions.containsKey(name)) {
-                        newValue= emissions.get(CarbonModel.getInstance().getVehicleName(CarbonModel.getInstance().getJourney(i).getVehicleIndex()));
-                        newValue = newValue + CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
-                        addToMap(emissions, name, newValue);
-                    } else {
-                        newValue = CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
-                        addToMap(emissions, name, newValue);
-                    }
+                String name = CarbonModel.getInstance().getVehicleName(CarbonModel.getInstance().getJourney(i).getVehicleIndex());
+                float newValue;
+                if (emissions.containsKey(name)) {
+                    newValue = emissions.get(CarbonModel.getInstance().getVehicleName(CarbonModel.getInstance().getJourney(i).getVehicleIndex()));
+                    newValue = newValue + CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
+                    addToMap(emissions, name, newValue);
+                } else {
+                    newValue = CarbonModel.getInstance().getJourneyTotalCO2Emissions(i);
+                    addToMap(emissions, name, newValue);
+                }
 
             }
         }
@@ -153,10 +155,9 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         }
 
 
-
         PieDataSet dataSet = new PieDataSet(pieEntries, getString(R.string.totalcarbonemissions));
-        int[] allColors = new int[ColorTemplate.COLORFUL_COLORS.length +ColorTemplate.JOYFUL_COLORS.length];
-        System.arraycopy(ColorTemplate.COLORFUL_COLORS, 0, allColors, 0,ColorTemplate.COLORFUL_COLORS.length);
+        int[] allColors = new int[ColorTemplate.COLORFUL_COLORS.length + ColorTemplate.JOYFUL_COLORS.length];
+        System.arraycopy(ColorTemplate.COLORFUL_COLORS, 0, allColors, 0, ColorTemplate.COLORFUL_COLORS.length);
         System.arraycopy(ColorTemplate.JOYFUL_COLORS, 0, allColors, ColorTemplate.COLORFUL_COLORS.length, ColorTemplate.JOYFUL_COLORS.length);
         dataSet.setColors(allColors);
         dataSet.setValueTextSize(20f);
@@ -191,7 +192,7 @@ public class MultiDayGraphActivity extends AppCompatActivity {
     }
 
     private void addToMap(Map<String, Float> emissions, String name, float newValue) {
-        if(name.equals("")){
+        if (name.equals("")) {
             emissions.put("Unknown", newValue);
         } else {
             emissions.put(name, newValue);
@@ -204,10 +205,10 @@ public class MultiDayGraphActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 numberOfDaysToDisplay = progress;
-                textView.setText("" + numberOfDaysToDisplay + " "+getString(R.string.days));
+                textView.setText("" + numberOfDaysToDisplay + " " + getString(R.string.days));
                 if (progress == 0) {
                     numberOfDaysToDisplay = 1;
-                    textView.setText("" + numberOfDaysToDisplay +" "+ getString(R.string.days));
+                    textView.setText("" + numberOfDaysToDisplay + " " + getString(R.string.days));
                 }
                 setupCharts();
             }
@@ -234,12 +235,10 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         int currentDay = c.get(Calendar.DAY_OF_MONTH); // current graphDay
         ArrayList<BarEntry> yVals = new ArrayList<>();
 
-        float start = (c.get(Calendar.DAY_OF_YEAR)) + 365;
+        float start = 0;
         float electricityEmissions = 0;
         float naturalGasEmissions = 0;
         float journeyEmissions = 0;
-        int count = 0;
-        int weekCount = 0;
 
         //reset data;
         totalElectricEmissions = 0;
@@ -254,82 +253,42 @@ public class MultiDayGraphActivity extends AppCompatActivity {
             int[] yearMonthDayOfPreviousDate = CarbonModel.getInstance().
                     getYearMonthDayOfPreviousDate(i, currentYear, currentMonth, currentDay);
 
+            journeyEmissions = 0;
 
-            if (numberOfDaysToDisplay < 40) {
-                journeyEmissions = 0;
+            electricityEmissions =
+                    CarbonModel.getInstance().getElectricityC02Emissions
+                            (yearMonthDayOfPreviousDate[0], yearMonthDayOfPreviousDate[1], yearMonthDayOfPreviousDate[2]);
+            totalElectricEmissions += electricityEmissions;
 
-                electricityEmissions =
-                        CarbonModel.getInstance().getElectricityC02Emissions
-                                (yearMonthDayOfPreviousDate[0], yearMonthDayOfPreviousDate[1], yearMonthDayOfPreviousDate[2]);
-                totalElectricEmissions += electricityEmissions;
+            naturalGasEmissions =
+                    CarbonModel.getInstance().getGasC02Emissions
+                            (yearMonthDayOfPreviousDate[0], yearMonthDayOfPreviousDate[1], yearMonthDayOfPreviousDate[2]);
+            totalNaturalGasEmissions += naturalGasEmissions;
 
-                naturalGasEmissions =
-                        CarbonModel.getInstance().getGasC02Emissions
-                                (yearMonthDayOfPreviousDate[0], yearMonthDayOfPreviousDate[1], yearMonthDayOfPreviousDate[2]);
-                totalNaturalGasEmissions += naturalGasEmissions;
+            for (int ii = 0; ii < CarbonModel.getInstance().getSizeOfJourneysList(); ii++) {
+                if (CarbonModel.getInstance().getJourney(ii).getDay().getJulian() ==
+                        CarbonModel.getInstance().getJulian
+                                (yearMonthDayOfPreviousDate[0],
+                                        yearMonthDayOfPreviousDate[1],
+                                        yearMonthDayOfPreviousDate[2])) {
+                    journeyEmissions += CarbonModel.getInstance().getJourney(ii).getTotalCO2Emission();
 
-                for (int ii = 0; ii < CarbonModel.getInstance().getSizeOfJourneysList(); ii++) {
-                    if (CarbonModel.getInstance().getJourney(ii).getDay().getJulian() ==
-                            CarbonModel.getInstance().getJulian
-                                    (yearMonthDayOfPreviousDate[0],
-                                            yearMonthDayOfPreviousDate[1],
-                                            yearMonthDayOfPreviousDate[2])) {
-                        journeyEmissions += CarbonModel.getInstance().getJourney(ii).getTotalCO2Emission();
-
-                        addToVehicleEmissionsList(CarbonModel.getInstance().getJourney(ii).getVehicleIndex(),CarbonModel.getInstance().getJourney(ii).getTotalCO2Emission());
-                    }
+                    addToVehicleEmissionsList(CarbonModel.getInstance().getJourney(ii).getVehicleIndex(), CarbonModel.getInstance().getJourney(ii).getTotalCO2Emission());
                 }
-
-                xAxis.setValueFormatter(new DayAxisValueFormatter(combinedChart));
+            }
+            if (treemode) {
                 yVals.add(new BarEntry(
-                        start - i,
+                        start + i,
+                        new float[]{electricityEmissions * kgCo2ToTrees, naturalGasEmissions * kgCo2ToTrees, journeyEmissions * kgCo2ToTrees}
+                ));
+            } else {
+                yVals.add(new BarEntry(
+                        start + i,
                         new float[]{electricityEmissions, naturalGasEmissions, journeyEmissions}
                 ));
-
-
-            } else {
-
-                electricityEmissions +=
-                        CarbonModel.getInstance().getElectricityC02Emissions
-                                (yearMonthDayOfPreviousDate[0], yearMonthDayOfPreviousDate[1], yearMonthDayOfPreviousDate[2]);
-                totalElectricEmissions += electricityEmissions;
-
-                naturalGasEmissions +=
-                        CarbonModel.getInstance().getGasC02Emissions
-                                (yearMonthDayOfPreviousDate[0], yearMonthDayOfPreviousDate[1], yearMonthDayOfPreviousDate[2]);
-                totalNaturalGasEmissions += naturalGasEmissions;
-
-                for (int iii = 0; iii < CarbonModel.getInstance().getSizeOfJourneysList(); iii++) {
-                    if (CarbonModel.getInstance().getJourney(iii).getDay().getJulian() ==
-                            CarbonModel.getInstance().getJulian
-                                    (yearMonthDayOfPreviousDate[0],
-                                            yearMonthDayOfPreviousDate[1],
-                                            yearMonthDayOfPreviousDate[2])) {
-                        journeyEmissions += CarbonModel.getInstance().getJourney(i).getTotalCO2Emission();
-
-                        addToVehicleEmissionsList(CarbonModel.getInstance().getJourney(iii).getVehicleIndex(),CarbonModel.getInstance().getJourney(iii).getTotalCO2Emission());
-
-                    }
-                }
-                count++;
-                if (count == 7) {
-                    weekCount++;
-
-                    yVals.add(new BarEntry(
-                            start / 7 - (weekCount),
-                            new float[]{electricityEmissions, naturalGasEmissions, journeyEmissions}
-                    ));
-                    count = 0;
-                    electricityEmissions = 0;
-                    naturalGasEmissions = 0;
-                    journeyEmissions = 0;
-
-                }
-                xAxis.setValueFormatter(new WeekAxisValueFormatter(combinedChart));
             }
 
         }
-
 
         BarDataSet set1;
 
@@ -353,7 +312,6 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         data.setData(barData);
 
         data.setData(generateAverageData(start));
-      //  data.setData(generateTargetData(start));
         combinedChart.setMaxVisibleValueCount(20);
         combinedChart.setPinchZoom(false);
         combinedChart.setData(data);
@@ -366,19 +324,19 @@ public class MultiDayGraphActivity extends AppCompatActivity {
 
     private LineDataSet generateTargetData(float start) {
         ArrayList<Entry> entries = new ArrayList<>();
-        if(numberOfDaysToDisplay>40) {
-            for (int index = 0; index < 500; index++) {
-                entries.add(new Entry(start - 500 + index,
-                        CarbonModel.getInstance().getNationalAverageAndParisAccordPerday()[1] *7));
-            }
 
-        } else {
-            for (int index = 0; index < 500; index++) {
-                entries.add(new Entry(start - 500 + index,
+        for (int index = 0; index < numberOfDaysToDisplay; index++) {
+            if (treemode) {
+                entries.add(new Entry(start + index,
+                        CarbonModel.getInstance().getNationalAverageAndParisAccordPerday()[1] * kgCo2ToTrees));
+            } else {
+                entries.add(new Entry(start + index,
                         CarbonModel.getInstance().getNationalAverageAndParisAccordPerday()[1]));
             }
+
         }
-        LineDataSet set = new LineDataSet(entries, "Target Emissions");
+
+        LineDataSet set = new LineDataSet(entries, getString(R.string.target_emissions));
         set.setColor(Color.BLUE);
         set.setLineWidth(1f);
         set.setCircleColor(Color.BLUE);
@@ -396,18 +354,19 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         LineData lineData = new LineData();
 
         ArrayList<Entry> entries = new ArrayList<>();
-        if(numberOfDaysToDisplay> 40) {
-            for (int index = 0; index < 500; index++) {
-                entries.add(new Entry(start - 500 + index,
-                        CarbonModel.getInstance().getNationalAverageAndParisAccordPerday()[0] *7));
-            }
-        } else {
-            for (int index = 0; index < 500; index++) {
-                entries.add(new Entry(start - 500 + index,
+
+
+        for (int index = 0; index < numberOfDaysToDisplay; index++) {
+            if (treemode) {
+                entries.add(new Entry(start + index,
+                        CarbonModel.getInstance().getNationalAverageAndParisAccordPerday()[0] * kgCo2ToTrees));
+            } else {
+                entries.add(new Entry(start + index,
                         CarbonModel.getInstance().getNationalAverageAndParisAccordPerday()[0]));
             }
         }
-        LineDataSet set = new LineDataSet(entries, "Average Emissions");
+
+        LineDataSet set = new LineDataSet(entries, getString(R.string.average_emissions));
         set.setColor(Color.BLACK);
         set.setLineWidth(1f);
         set.setCircleColor(Color.BLACK);
@@ -427,7 +386,7 @@ public class MultiDayGraphActivity extends AppCompatActivity {
     private void addToVehicleEmissionsList(int vehicleIndex, float kgCO2Emission) {
         String vehicleName = CarbonModel.getInstance().getVehicleFromHidden(vehicleIndex).getName();
 
-        switch (vehicleName){
+        switch (vehicleName) {
             case "Bus":
                 totalBusEmissions += kgCO2Emission;
                 break;
@@ -438,10 +397,10 @@ public class MultiDayGraphActivity extends AppCompatActivity {
                 break;
             default:
 
-                if(listOfVehicleNames.contains(vehicleName)){
+                if (listOfVehicleNames.contains(vehicleName)) {
                     int index = listOfVehicleNames.indexOf(vehicleName);
                     float oldValue = listOfVehicleEmissions.get(index);
-                    listOfVehicleEmissions.add(index, oldValue+kgCO2Emission);
+                    listOfVehicleEmissions.add(index, oldValue + kgCO2Emission);
                 } else {
                     listOfVehicleNames.add(vehicleName);
                     int index = listOfVehicleNames.indexOf(vehicleName);
@@ -450,18 +409,29 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         }
 
 
-
     }
-    private void setUpTextViews(){
+
+    private void setUpTextViews() {
         TextView journeyCO2 = (TextView) findViewById(R.id.textViewJourneyCO2Number2);
         TextView utilitiesCO2 = (TextView) findViewById(R.id.textViewUtilitiesCO2Number2);
         TextView totalCO2 = (TextView) findViewById(R.id.textViewTotalCO2Number2);
 
-        journeyCO2.setText( totalJourneyEmissions + " kgCO2");
-        utilitiesCO2.setText(totalUtilitiesEmissions + " kgCO2");
+
         float journeyAndUtilitiesCO2 = totalJourneyEmissions + totalUtilitiesEmissions;
-        totalCO2.setText(journeyAndUtilitiesCO2 + " kgCO2");
+
+        if (treemode) {
+            journeyCO2.setText(totalJourneyEmissions * kgCo2ToTrees + " " + getString(R.string.tree));
+            utilitiesCO2.setText(totalUtilitiesEmissions * kgCo2ToTrees + " " + getString(R.string.tree));
+            totalCO2.setText(journeyAndUtilitiesCO2 * kgCo2ToTrees + " " + getString(R.string.tree));
+        } else {
+            journeyCO2.setText(totalJourneyEmissions + " kgCO2");
+            utilitiesCO2.setText(totalUtilitiesEmissions + " kgCO2");
+            totalCO2.setText(journeyAndUtilitiesCO2 + " kgCO2");
+
+        }
+
     }
+
     private int[] getColors() {
 
         int stacksize = 3;
@@ -482,24 +452,26 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_view, menu);
         return true;
     }
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) { switch(item.getItemId()) {
-        case R.id.reset:
-            Intent back = new Intent();
-            setResult(Activity.RESULT_CANCELED, back);
-            finish();
-            return(true);
-        case R.id.about:
-           startActivity(new Intent(MultiDayGraphActivity.this, AboutActivity.class));
-            return(true);
-        case R.id.exit:
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            return(true);
-    }
-        return(super.onOptionsItemSelected(item));
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.reset:
+                Intent back = new Intent();
+                setResult(Activity.RESULT_CANCELED, back);
+                finish();
+                return (true);
+            case R.id.about:
+                startActivity(new Intent(MultiDayGraphActivity.this, AboutActivity.class));
+                return (true);
+            case R.id.exit:
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                return (true);
+        }
+        return (super.onOptionsItemSelected(item));
     }
 
     //hide navigation bar

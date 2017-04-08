@@ -37,6 +37,8 @@ public class SingleDayGraphActivity extends AppCompatActivity {
     private int graphMonth;
     private int graphYear;
     private Switch routeModeSwitch;
+    private boolean treemode;
+    private float kgCo2ToTrees;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,8 @@ public class SingleDayGraphActivity extends AppCompatActivity {
         graphYear = c.get(Calendar.YEAR); // current graphYear
         graphMonth = c.get(Calendar.MONTH) + 1; // current graphMonth
         graphDay = c.get(Calendar.DAY_OF_MONTH); // current graphDay
-
+        treemode = CarbonModel.getInstance().getHumanRelatableUnitEnabled();
+        kgCo2ToTrees = (float) CarbonModel.getInstance().getKgCo2ToTrees();
         setupPieChart(false);
         setupButtons();
         setupSwitch();
@@ -81,10 +84,16 @@ public class SingleDayGraphActivity extends AppCompatActivity {
         totalUtilitiesCO2 = CarbonModel.getInstance().getElectricityC02Emissions(graphYear, graphMonth, graphDay) +
                 CarbonModel.getInstance().getGasC02Emissions(graphYear, graphMonth, graphDay);
 
-        journeyCO2.setText(totalJourneyCO2 + " kgCO2");
-        utilitiesCO2.setText(totalUtilitiesCO2 + " kgCO2");
         float journeyAndUtilitiesCO2 = totalUtilitiesCO2 + totalJourneyCO2;
-        totalCO2.setText(journeyAndUtilitiesCO2 + " kgCO2");
+        if(treemode) {
+            journeyCO2.setText(totalJourneyCO2* kgCo2ToTrees + " " + getString(R.string.tree));
+            utilitiesCO2.setText(totalUtilitiesCO2 * kgCo2ToTrees+ " " + getString(R.string.tree));
+            totalCO2.setText(journeyAndUtilitiesCO2 * kgCo2ToTrees+ " " + getString(R.string.tree));
+        } else {
+            journeyCO2.setText(totalJourneyCO2 + " kgCO2");
+            utilitiesCO2.setText(totalUtilitiesCO2 + " kgCO2");
+            totalCO2.setText(journeyAndUtilitiesCO2 + " kgCO2");
+        }
     }
 
     private void setupPieChart(boolean isChecked) {

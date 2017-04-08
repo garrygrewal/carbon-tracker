@@ -61,6 +61,10 @@ public class CarbonModel implements Serializable {
     private CarbonModel() {
     }
 
+    public double getKgCo2ToTrees(){
+        return kgCo2ToTrees;
+    }
+
     public float getHighestJourneyEmission(){
         float currentJourneyEmissions = 0;
         for(Journey j: listOfJourneys){

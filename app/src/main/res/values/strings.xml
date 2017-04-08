@@ -132,4 +132,7 @@
     <string name="total_electricity_emissions">Total Electricity Emissions</string>
     <string name="total_naturalGas_emissions">Total Natural Gas Emissions</string>
     <string name="route_mode">Route Mode</string>
+    <string name="target_emissions">Target Emissions</string>
+    <string name="average_emissions">Average Emissions</string>
+    <string name="tree">trees</string>
 </resources>
