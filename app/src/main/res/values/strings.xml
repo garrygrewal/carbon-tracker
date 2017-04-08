@@ -129,6 +129,12 @@
     <string name="trees_by_highway">trees by highway</string>
     <string name="trees_by_city">trees by city</string>
     <string name="trees_by">trees, by</string>
+    <string name="total_electricity_emissions">Total Electricity Emissions</string>
+    <string name="total_naturalGas_emissions">Total Natural Gas Emissions</string>
+    <string name="route_mode">Route Mode</string>
+    <string name="target_emissions">Target Emissions</string>
+    <string name="average_emissions">Average Emissions</string>
+    <string name="tree">trees</string>
     <string name="billadded">Bill added to Carbon Footprint</string>
     <string name="journeynameempty">Journey name cannot be empty.</string>
     <string name="selectDateplease">Please select date.</string>

@@ -26,6 +26,7 @@ import sfu.cmpt276.carbontracker.model.KnownCars;
 
 public class CarbonModel implements Serializable {
     private static final long serialVersionUID = 123456;
+    public static final int TONS_TO_KG = 1000;
 
     private static CarbonModel instance = new CarbonModel();
 
@@ -36,11 +37,10 @@ public class CarbonModel implements Serializable {
     private List<Journey> listOfJourneys = new ArrayList<>();
     private TipsArray tipsArray = new TipsArray();
 
-    //private List<Vehicle> listOfKnownCars = new ArrayList<>();
 
     private List<Bill> listOfBills = new ArrayList<>();
 
-    private Boolean humanRelatableUnitEnabled;
+    private boolean humanRelatableUnitEnabled;
 
 
     private final double GASOLINE_CO2_EMISSION = 8.89;
@@ -49,12 +49,20 @@ public class CarbonModel implements Serializable {
     private final double CO2_EMISSION = 1;
     private final double kmToMiles = 0.621371;
 
+    private final double CO2_EMISSIONS_PER_CAPITA_METRIC_TONNES_2013 = 13.532;
+    private final double DAYS_IN_YEAR = 365;
+    private final double TARGET_PERCENT = 0.70;
+
     //On average a single young tree can absorb 11.8 kg of CO2 per year
     private final double kgCo2ToTrees = 0.08474576271;
 
     //DBAdapter CarbonTrackerDB;
 
     private CarbonModel() {
+    }
+
+    public double getKgCo2ToTrees(){
+        return kgCo2ToTrees;
     }
 
     public float getHighestJourneyEmission(){
@@ -99,6 +107,12 @@ public class CarbonModel implements Serializable {
         listOfHiddenRoutes.add(index);
     }
 
+    public float[] getNationalAverageAndParisAccordPerday(){
+        float[] results = new float[2];
+        results[0] =(float)( CO2_EMISSIONS_PER_CAPITA_METRIC_TONNES_2013 / DAYS_IN_YEAR) * TONS_TO_KG;
+        results[1] =(float)(CO2_EMISSIONS_PER_CAPITA_METRIC_TONNES_2013 / DAYS_IN_YEAR * TARGET_PERCENT) *TONS_TO_KG;
+        return results;
+    }
     public int countRoutes() {
         return (listOfInputRoutes.size() - listOfHiddenRoutes.size());
     }
@@ -138,6 +152,7 @@ public class CarbonModel implements Serializable {
     public Vehicle getVehicleFromHidden(int index){
         return listOfInputVehicles.get(index);
     }
+
     public Vehicle getVehicle(int index) {
         for (int i = 0; i < listOfHiddenVehicles.size(); i++) {
             if (listOfHiddenVehicles.get(i) <= index) {
@@ -191,7 +206,6 @@ public class CarbonModel implements Serializable {
         return makes;
     }
 
-
     public List<String> getModels(String make, int index) {
         List<String> models = new ArrayList<>();
         for (int i = 0; i < KnownCars.getInstance().listOfKnownCars.size(); i++) {
@@ -217,7 +231,6 @@ public class CarbonModel implements Serializable {
         }
         return years;
     }
-
 
     public List<Vehicle> getRemainingCars(String make, String model, String year) {
         List<String> remainingCars = new ArrayList<>();
@@ -274,7 +287,6 @@ public class CarbonModel implements Serializable {
         return indexWithoutAccountingHidden;
     }
 
-
     public void calculateCarbonEmissions(Journey journey) {
         double highwayMilesPerGallon = listOfInputVehicles.get(journey.getVehicleIndex()).getHighway();
         double cityMilesPerGallon = listOfInputVehicles.get(journey.getVehicleIndex()).getCity();
@@ -310,7 +322,6 @@ public class CarbonModel implements Serializable {
         journey.setTreesPerHighway(treePerHighway);
         journey.setTotalTreesEmission(totalTreeEmission);
     }
-
 
     public Journey getJourney(int index) {
         return listOfJourneys.get(index);
@@ -355,7 +366,6 @@ public class CarbonModel implements Serializable {
         }
         return info;
     }
-
 
     public void deleteJourney(int index) {
         listOfJourneys.remove(index);
@@ -446,15 +456,31 @@ public class CarbonModel implements Serializable {
         return (listOfJourneys.get(journeyIndex)).getStringDate();
     }
 
-    public void editJourney(int index, int vehicle_index, int route_index) {
-        listOfJourneys.add(new Journey(listOfJourneys.get(index).getJourneyName(), vehicle_index, route_index));
-        listOfJourneys.remove(index);
-
-    }
 
     public int[] getYearMonthDayOfPreviousDate(int numberOfDays, int currentYear, int currentMonth, int currentDay){
         Day today = new Day(currentYear,currentMonth,currentDay);
         return today.getDayFromPast(numberOfDays);
+    }
+    public float getTotalElectricityC02Emissions(){
+        float total = 0;
+        for(int i = 0; i < listOfBills.size(); i++){
+            Bill bill = listOfBills.get(i);
+            if(bill.getType().equals("Electricity")){
+                total = total + bill.getElectricityEmissions();
+            }
+        }
+        return total;
+    }
+
+    public float getTotalGasC02Emissions(){
+        float total = 0;
+        for(int i = 0; i < listOfBills.size(); i++){
+            Bill bill = listOfBills.get(i);
+            if(bill.getType().equals("Natural Gas")){
+                total = total + bill.getNaturalGasEmissions();
+            }
+        }
+        return total;
     }
 
     public float getElectricityC02Emissions(int year, int month, int day) {
@@ -493,7 +519,6 @@ public class CarbonModel implements Serializable {
 
     public float getGasC02Emissions(int year, int month, int day) {
         Day date = new Day(year, month, day);
-        float kgOfCO2 = 0;
 
         for (int i = 0; i < listOfBills.size(); i++) {
             if (listOfBills.get(i).getNaturalGasEmissions() != 0) { // is electric bill

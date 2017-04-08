@@ -39,6 +39,10 @@ public class PieGraphActivity extends AppCompatActivity {
             pieEntries.add(new PieEntry(CarbonModel.getInstance().getJourneyTotalCO2Emissions(i)
                     , CarbonModel.getInstance().getJourneyName(i)));
         }
+
+        pieEntries.add(new PieEntry(CarbonModel.getInstance().getTotalElectricityC02Emissions(), getString(R.string.total_electricity_emissions)));
+        pieEntries.add(new PieEntry(CarbonModel.getInstance().getTotalGasC02Emissions(), getString(R.string.total_naturalGas_emissions)));
+
         PieDataSet dataSet = new PieDataSet(pieEntries, getString(R.string.totalCO2Emissions));
         dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         dataSet.setValueTextSize(20f);
