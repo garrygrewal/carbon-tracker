@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:drawableLeft="@android:drawable/checkbox_on_background"
         android:text="@string/add_journey" />
 
     <Button
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/buttonAddJourney"
+        android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel"
         android:text="@string/canceladdjourney" />
 
     <TextView

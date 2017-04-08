@@ -96,8 +96,7 @@ public class AddNameActivity extends AppCompatActivity {
 
         //vehicle icon
         TextView icon = (TextView) findViewById(R.id.iconView);
-        int i = Integer.parseInt(CarbonModel.getInstance().getVehicleIcon(vehicle_index));
-        switch(i) {
+        switch(Integer.parseInt(CarbonModel.getInstance().getVehicle(vehicle_index).getIcon())) {
             case 0:
                 icon.setCompoundDrawablesRelativeWithIntrinsicBounds(R.mipmap.coupe, 0, 0, 0);
                 break;
