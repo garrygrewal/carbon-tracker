@@ -17,10 +17,14 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.CombinedData;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -28,6 +32,7 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.formatter.StackedValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -333,6 +338,8 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         set1.setStackLabels(new String[]{"Electricity", "NaturalGas", "Journeys"});
 
         ArrayList<IBarDataSet> dataSets = new ArrayList<>();
+
+
         dataSets.add(set1);
 
         BarData barData = new BarData(dataSets);
@@ -341,10 +348,12 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         barData.setValueFormatter(new StackedValueFormatter(false, "", 2));
         barData.setValueTextColor(Color.WHITE);
 
+
         CombinedData data = new CombinedData();
         data.setData(barData);
 
-
+        data.setData(generateAverageData(start));
+      //  data.setData(generateTargetData(start));
         combinedChart.setMaxVisibleValueCount(20);
         combinedChart.setPinchZoom(false);
         combinedChart.setData(data);
@@ -353,6 +362,62 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         combinedChart.invalidate();
 
         setupPieGraph(false);
+    }
+
+    private LineDataSet generateTargetData(float start) {
+        ArrayList<Entry> entries = new ArrayList<>();
+        if(numberOfDaysToDisplay>40) {
+            for (int index = 0; index < 500; index++) {
+                entries.add(new Entry(start - 500 + index, 700f));
+            }
+
+        } else {
+            for (int index = 0; index < 500; index++) {
+                entries.add(new Entry(start - 500 + index, 100f));
+            }
+        }
+        LineDataSet set = new LineDataSet(entries, "Target Emissions");
+        set.setColor(Color.BLUE);
+        set.setLineWidth(2.5f);
+        set.setCircleColor(Color.BLUE);
+        set.setCircleRadius(5f);
+        set.setFillColor(Color.BLUE);
+        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        set.setValueTextColor(Color.BLUE);
+
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+
+        return set;
+    }
+
+    private LineData generateAverageData(float start) {
+        LineData lineData = new LineData();
+
+        ArrayList<Entry> entries = new ArrayList<>();
+        if(numberOfDaysToDisplay> 40) {
+            for (int index = 0; index < 500; index++) {
+                entries.add(new Entry(start - 500 + index, 100f));
+            }
+        } else {
+            for (int index = 0; index < 500; index++) {
+                entries.add(new Entry(start - 500 + index, 100f));
+            }
+        }
+        LineDataSet set = new LineDataSet(entries, "Average Emissions");
+        set.setColor(Color.BLACK);
+        set.setLineWidth(2.5f);
+        set.setCircleColor(Color.BLACK);
+        set.setCircleRadius(5f);
+        set.setFillColor(Color.BLACK);
+        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        set.setValueTextColor(Color.BLACK);
+
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+
+        lineData.addDataSet(set);
+        lineData.addDataSet(generateTargetData(start));
+
+        return lineData;
     }
 
     private void addToVehicleEmissionsList(int vehicleIndex, float kgCO2Emission) {

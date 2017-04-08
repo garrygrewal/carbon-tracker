@@ -60,7 +60,7 @@ public class CarbonModel implements Serializable {
         listOfHiddenRoutes.add(index);
     }
 
-    private float[] getNationalAverageAndParisAccordPerday(){
+    public float[] getNationalAverageAndParisAccordPerday(){
         float[] results = new float[2];
         results[0] =(float)( CO2_EMISSIONS_PER_CAPITA_METRIC_TONNES_2013 / DAYS_IN_YEAR);
         results[1] =(float)(CO2_EMISSIONS_PER_CAPITA_METRIC_TONNES_2013 / DAYS_IN_YEAR * TARGET_PERCENT);
