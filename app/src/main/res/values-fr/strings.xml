@@ -129,4 +129,12 @@
     <string name="trees_by_highway">trees by highway</string>
     <string name="trees_by_city">Arbres par ville</string>
     <string name="trees_by">Arbres, par</string>
+    <string name="billadded">Bill a ajouté à Carbon Footprint</string>
+    <string name="journeynameempty">Journey name cannot be empty.</string>
+    <string name="selectDateplease">Sélectionnez la date.</string>
+    <string name="routeNameEmpty">Le nom de l\'itinéraire ne peut pas être vide.</string>
+    <string name="DistanceEmpty">La distance ne peut pas être vide.</string>
+    <string name="distanceZero">La distance ne peut pas être 0.</string>
+    <string name="routeOptions">Options d\'itinéraire</string>
+    <string name="vehicleOptions">Options du véhicule</string>
 </resources>
