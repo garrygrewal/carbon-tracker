@@ -74,9 +74,9 @@ public class AddNameActivity extends AppCompatActivity {
             total_emis.setText(Double.toString(journey.getTotalCO2Emission()) + "Kg CO2");
         }
         else {
-            city_emis.setText(Double.toString(journey.getTreesPerCity()) + " trees");
-            hwy_emis.setText(Double.toString(journey.getTreesPerHighway()) + " trees");
-            total_emis.setText(Double.toString(journey.getTotalTreesEmission()) + " trees");
+            city_emis.setText(Double.toString(journey.getTreesPerCity()) +" "+ getString(R.string.trees));
+            hwy_emis.setText(Double.toString(journey.getTreesPerHighway()) +" "+ getString(R.string.trees));
+            total_emis.setText(Double.toString(journey.getTotalTreesEmission()) +" "+getString(R.string.trees));
         }
     }
 

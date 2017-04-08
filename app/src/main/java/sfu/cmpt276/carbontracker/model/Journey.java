@@ -14,6 +14,9 @@ public class Journey implements Serializable{
     private int routeIndex;
     private float co2PerCity;
     private float co2PerHighway;
+    private float treesPerCity;
+    private float treesPerHighway;
+    private float totalTreesEmission = 0;
     private float totalCO2Emission = 0;
     private Day date;
 
@@ -78,17 +81,26 @@ public class Journey implements Serializable{
     }
 
     public double getTreesPerCity() {
-        //IMPLEMENT HERE
-        return 0;
+        return treesPerCity;
+    }
+
+    public void setTreesPerCity(float treesPerCity){
+        this.treesPerCity = treesPerCity;
     }
 
     public double getTreesPerHighway() {
-        //IMPLEMENT HERE
-        return 0;
+        return treesPerHighway;
+    }
+
+    public void setTreesPerHighway(float treesPerHighway){
+        this.treesPerHighway = treesPerHighway;
+    }
+
+    public void setTotalTreesEmission(float totalTreesEmission){
+        this.totalTreesEmission = totalTreesEmission;
     }
 
     public double getTotalTreesEmission() {
-        //IMPLEMENT HERE
-        return 0;
+        return totalTreesEmission;
     }
 }
