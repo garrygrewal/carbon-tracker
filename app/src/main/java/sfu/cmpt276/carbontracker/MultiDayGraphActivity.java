@@ -368,19 +368,21 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         ArrayList<Entry> entries = new ArrayList<>();
         if(numberOfDaysToDisplay>40) {
             for (int index = 0; index < 500; index++) {
-                entries.add(new Entry(start - 500 + index, 700f));
+                entries.add(new Entry(start - 500 + index,
+                        CarbonModel.getInstance().getNationalAverageAndParisAccordPerday()[1] *7));
             }
 
         } else {
             for (int index = 0; index < 500; index++) {
-                entries.add(new Entry(start - 500 + index, 100f));
+                entries.add(new Entry(start - 500 + index,
+                        CarbonModel.getInstance().getNationalAverageAndParisAccordPerday()[1]));
             }
         }
         LineDataSet set = new LineDataSet(entries, "Target Emissions");
         set.setColor(Color.BLUE);
-        set.setLineWidth(2.5f);
+        set.setLineWidth(1f);
         set.setCircleColor(Color.BLUE);
-        set.setCircleRadius(5f);
+        set.setCircleRadius(2f);
         set.setFillColor(Color.BLUE);
         set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         set.setValueTextColor(Color.BLUE);
@@ -396,18 +398,20 @@ public class MultiDayGraphActivity extends AppCompatActivity {
         ArrayList<Entry> entries = new ArrayList<>();
         if(numberOfDaysToDisplay> 40) {
             for (int index = 0; index < 500; index++) {
-                entries.add(new Entry(start - 500 + index, 100f));
+                entries.add(new Entry(start - 500 + index,
+                        CarbonModel.getInstance().getNationalAverageAndParisAccordPerday()[0] *7));
             }
         } else {
             for (int index = 0; index < 500; index++) {
-                entries.add(new Entry(start - 500 + index, 100f));
+                entries.add(new Entry(start - 500 + index,
+                        CarbonModel.getInstance().getNationalAverageAndParisAccordPerday()[0]));
             }
         }
         LineDataSet set = new LineDataSet(entries, "Average Emissions");
         set.setColor(Color.BLACK);
-        set.setLineWidth(2.5f);
+        set.setLineWidth(1f);
         set.setCircleColor(Color.BLACK);
-        set.setCircleRadius(5f);
+        set.setCircleRadius(2f);
         set.setFillColor(Color.BLACK);
         set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         set.setValueTextColor(Color.BLACK);

@@ -23,6 +23,7 @@ import sfu.cmpt276.carbontracker.model.KnownCars;
 
 public class CarbonModel implements Serializable {
     private static final long serialVersionUID = 123456;
+    public static final int TONS_TO_KG = 1000;
 
     private static CarbonModel instance = new CarbonModel();
 
@@ -62,8 +63,8 @@ public class CarbonModel implements Serializable {
 
     public float[] getNationalAverageAndParisAccordPerday(){
         float[] results = new float[2];
-        results[0] =(float)( CO2_EMISSIONS_PER_CAPITA_METRIC_TONNES_2013 / DAYS_IN_YEAR);
-        results[1] =(float)(CO2_EMISSIONS_PER_CAPITA_METRIC_TONNES_2013 / DAYS_IN_YEAR * TARGET_PERCENT);
+        results[0] =(float)( CO2_EMISSIONS_PER_CAPITA_METRIC_TONNES_2013 / DAYS_IN_YEAR) * TONS_TO_KG;
+        results[1] =(float)(CO2_EMISSIONS_PER_CAPITA_METRIC_TONNES_2013 / DAYS_IN_YEAR * TARGET_PERCENT) *TONS_TO_KG;
         return results;
     }
     public int countRoutes() {
