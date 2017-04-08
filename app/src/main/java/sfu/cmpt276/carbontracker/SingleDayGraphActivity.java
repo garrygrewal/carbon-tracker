@@ -130,7 +130,7 @@ public class SingleDayGraphActivity extends AppCompatActivity {
         Log.i("ATT", " " + graphDay + ", " + graphMonth + ", " + graphYear);
 
         pieEntries.add(new PieEntry(CarbonModel.getInstance().getGasC02Emissions(graphYear, graphMonth, graphDay),  getString(R.string.naturalgasemissions)));
-        pieEntries.add(new PieEntry(CarbonModel.getInstance().getElectricityC02Emissions(graphYear, graphMonth, graphDay) getString(R.string.electricityemissions)));
+        pieEntries.add(new PieEntry(CarbonModel.getInstance().getElectricityC02Emissions(graphYear, graphMonth, graphDay), getString(R.string.electricityemissions)));
 
         PieDataSet dataSet = new PieDataSet(pieEntries, getString(R.string.co2emissionsforday));
         dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
