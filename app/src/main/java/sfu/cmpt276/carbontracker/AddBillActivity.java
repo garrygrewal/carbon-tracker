@@ -32,6 +32,8 @@ public class AddBillActivity extends AppCompatActivity {
     private int new_bill_index;
     //for edit
     private int bill_index;
+    private final double kgCo2ToTrees = 0.08474576271;
+
 
     boolean dateStartEntered = false;
     boolean dateEndEntered = false;
@@ -187,6 +189,9 @@ public class AddBillActivity extends AppCompatActivity {
                     if (CarbonModel.getInstance().getBill(bill_index).getType().equals("Electricity")) {
                         CarbonModel.getInstance().getBill(bill_index).setElectricityUse(Float.parseFloat(useElectricity.getText().toString()));
                         CarbonModel.getInstance().getBill(bill_index).setElectricityEmissions(Float.parseFloat(emissionsElectricity.getText().toString()));
+                        float electricityTreeEmission = (float) (Float.parseFloat(emissionsElectricity.getText().toString()) * kgCo2ToTrees);
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityTreesEmissions(electricityTreeEmission);
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasTreesEmissions(0);
                         CarbonModel.getInstance().getBill(bill_index).setNaturalGasUse(0);
                         CarbonModel.getInstance().getBill(bill_index).setNaturalGasEmissions(0);
                         CarbonModel.getInstance().getTipsArray().generateElectricityTip(CarbonModel.getInstance().getBill(new_bill_index).getElectricityEmissions());
@@ -194,7 +199,10 @@ public class AddBillActivity extends AppCompatActivity {
                         displayTips();
                     } else if (CarbonModel.getInstance().getBill(bill_index).getType().equals("Natural Gas")) {
                         CarbonModel.getInstance().getBill(bill_index).setNaturalGasUse(Float.parseFloat(useNaturalGas.getText().toString()));
-                        CarbonModel.getInstance().getBill(bill_index).setElectricityEmissions(Float.parseFloat(emissionsNaturalGas.getText().toString()));
+                        CarbonModel.getInstance().getBill(bill_index).setNaturalGasEmissions(Float.parseFloat(emissionsNaturalGas.getText().toString()));
+                        float naturalGasTreeEmission = (float) (Float.parseFloat(emissionsNaturalGas.getText().toString()) * kgCo2ToTrees);
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasTreesEmissions(naturalGasTreeEmission);
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityTreesEmissions(0);
                         CarbonModel.getInstance().getBill(bill_index).setElectricityUse(0);
                         CarbonModel.getInstance().getBill(bill_index).setElectricityEmissions(0);
                         CarbonModel.getInstance().getTipsArray().generateNaturalGasTip(CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasEmissions());
@@ -214,6 +222,9 @@ public class AddBillActivity extends AppCompatActivity {
                     if (CarbonModel.getInstance().getBill(new_bill_index).getType().equals("Electricity")) {
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityUse(Float.parseFloat(useElectricity.getText().toString()));
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(Float.parseFloat(emissionsElectricity.getText().toString()));
+                        float electricityTreeEmission = (float) (Float.parseFloat(emissionsElectricity.getText().toString()) * kgCo2ToTrees);
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityTreesEmissions(electricityTreeEmission);
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasTreesEmissions(0);
                         CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasUse(0);
                         CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasEmissions(0);
                         CarbonModel.getInstance().getTipsArray().generateElectricityTip(CarbonModel.getInstance().getBill(new_bill_index).getElectricityEmissions());
@@ -222,7 +233,10 @@ public class AddBillActivity extends AppCompatActivity {
 
                     } else if (CarbonModel.getInstance().getBill(new_bill_index).getType().equals("Natural Gas")) {
                         CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasUse(Float.parseFloat(useNaturalGas.getText().toString()));
-                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(Float.parseFloat(emissionsNaturalGas.getText().toString()));
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasEmissions(Float.parseFloat(emissionsNaturalGas.getText().toString()));
+                        float naturalGasTreeEmission = (float) (Float.parseFloat(emissionsNaturalGas.getText().toString()) * kgCo2ToTrees);
+                        CarbonModel.getInstance().getBill(new_bill_index).setNaturalGasTreesEmissions(naturalGasTreeEmission);
+                        CarbonModel.getInstance().getBill(new_bill_index).setElectricityTreesEmissions(0);
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityUse(0);
                         CarbonModel.getInstance().getBill(new_bill_index).setElectricityEmissions(0);
                         CarbonModel.getInstance().getTipsArray().generateNaturalGasTip(CarbonModel.getInstance().getBill(new_bill_index).getNaturalGasEmissions());

@@ -10,6 +10,8 @@ public class Bill implements Serializable {
     private float naturalGasUse;
     private float electricityEmissions;
     private float naturalGasEmissions;
+    private float naturalGasTreeEmission;
+    private float electricityTreeEmission;
     private int numberOfPeople;
     private Day startDate;
     private Day endDate;
@@ -18,6 +20,8 @@ public class Bill implements Serializable {
     private final double electricityToKg = 9000;
     private final double kwhTogwh = 0.000001;
     private final double naturalGasToKg = 56.1;
+    private final double kgCo2ToTrees = 0.08474576271;
+
 
     public Bill(float electricityUse, float naturalGasUse, float electricityEmissions, float naturalGasEmissions, int numberOfPeople, int period, String type) {
         this.electricityUse = electricityUse;
@@ -141,13 +145,19 @@ public class Bill implements Serializable {
         return (naturalGasEmissions)/period;
     }
 
-    public String getElectricityTreesEmissions() {
-        //IMPLEMENT HERE
-        return "0";
+    public float getElectricityTreesEmissions() {
+        return electricityTreeEmission;
     }
 
-    public String getNaturalGasTreesEmissions() {
-        //IMPLEMENT HERE
-        return "0";
+    public float getNaturalGasTreesEmissions() {
+        return naturalGasTreeEmission;
+    }
+
+    public void setElectricityTreesEmissions(float electricityTreeEmission) {
+        this.electricityTreeEmission = electricityTreeEmission;
+    }
+
+    public void setNaturalGasTreesEmissions(float naturalGasTreeEmission) {
+        this.naturalGasTreeEmission = naturalGasTreeEmission;
     }
 }

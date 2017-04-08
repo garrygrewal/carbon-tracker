@@ -49,6 +49,9 @@ public class CarbonModel implements Serializable {
     private final double CO2_EMISSION = 1;
     private final double kmToMiles = 0.621371;
 
+    //On average a single young tree can absorb 11.8 kg of CO2 per year
+    private final double kgCo2ToTrees = 0.08474576271;
+
     //DBAdapter CarbonTrackerDB;
 
     private CarbonModel() {
@@ -295,9 +298,17 @@ public class CarbonModel implements Serializable {
         float co2PerHighway = (float) (((listOfInputRoutes.get(journey.getRouteIndex()).getHwy() * kmToMiles) / highwayMilesPerGallon) * co2EmittedPerGallonOfFuel);
         float totalCO2Emission = co2PerCity + co2PerHighway;
 
+        float treePerCity = (float) (co2PerCity*kgCo2ToTrees);
+        float treePerHighway = (float) (co2PerHighway*kgCo2ToTrees);
+        float totalTreeEmission = treePerCity + treePerHighway;
+
         journey.setCo2PerCity(co2PerCity);
         journey.setCo2PerHighway(co2PerHighway);
         journey.setTotalCO2Emission(totalCO2Emission);
+
+        journey.setTreesPerCity(treePerCity);
+        journey.setTreesPerHighway(treePerHighway);
+        journey.setTotalTreesEmission(totalTreeEmission);
     }
 
 
@@ -598,4 +609,5 @@ public class CarbonModel implements Serializable {
     public void setHumanRelatableUnitEnabled(Boolean humanRelatableUnitEnabled) {
         this.humanRelatableUnitEnabled = humanRelatableUnitEnabled;
     }
+
 }

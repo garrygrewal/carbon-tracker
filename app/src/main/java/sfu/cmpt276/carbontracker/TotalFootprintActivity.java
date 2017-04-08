@@ -113,14 +113,14 @@ public class TotalFootprintActivity extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
         switch(v.getId()) {
             case R.id.listViewTotalFootprint:
-                menu.setHeaderTitle("Journey Options");
-                menu.add(0, J_EDIT, 0, "Edit");
-                menu.add(0, J_DELETE, 0, "Delete");
+                menu.setHeaderTitle(R.string.journey_options);
+                menu.add(0, J_EDIT, 0, R.string.edit);
+                menu.add(0, J_DELETE, 0, R.string.delete);
                 break;
             case R.id.listViewBills:
-                menu.setHeaderTitle("Bill Options");
-                menu.add(0, B_EDIT, 0, "Edit");
-                menu.add(0, B_DELETE, 0, "Delete");
+                menu.setHeaderTitle(R.string.bill_options);
+                menu.add(0, B_EDIT, 0, R.string.edit);
+                menu.add(0, B_DELETE, 0, R.string.delete);
                 break;
         }
     }
@@ -201,7 +201,7 @@ public class TotalFootprintActivity extends AppCompatActivity {
                 holder.details.setText(journey.getCo2PerCity() + " " + getString(R.string.kgC02City) + "\n" + journey.getCo2PerHighway() + " " + getString(R.string.kgC02highway));
             }
             else {
-                holder.details.setText(journey.getTreesPerCity() + " " + "trees by city" + "\n" + journey.getTreesPerCity() + " " + "trees by highway");
+                holder.details.setText(journey.getTreesPerCity() + " " + getString(R.string.trees_by_city) + "\n" + journey.getTreesPerCity() + " " + getString(R.string.trees_by_highway));
             }
             holder.date.setText(journey.getStringDate());
 
@@ -293,7 +293,7 @@ public class TotalFootprintActivity extends AppCompatActivity {
                     holder.details.setText(bill.getElectricityEmissions() + " " + getString(R.string.kgOfCO2by) + " " + bill.getElectricityUse() + " " + getString(R.string.kwhElectricityFrom) + " " + bill.getStartDate().getActualDate() + ", " + getString(R.string.too) + " " + bill.getEndDate().getActualDate() + ", " + getString(R.string.with) + " " + bill.getNumberOfPeople() + " " + getString(R.string.persons));
                 }
                 else {
-                    holder.details.setText(bill.getElectricityTreesEmissions() + " " + "trees, by" + " " + bill.getElectricityUse() + " " + getString(R.string.kwhElectricityFrom) + " " + bill.getStartDate().getActualDate() + ", " + getString(R.string.too) + " " + bill.getEndDate().getActualDate() + ", " + getString(R.string.with) + " " + bill.getNumberOfPeople() + " " + getString(R.string.persons));
+                    holder.details.setText(bill.getElectricityTreesEmissions() + " " + getString(R.string.trees_by) + " " + bill.getElectricityUse() + " " + getString(R.string.kwhElectricityFrom) + " " + bill.getStartDate().getActualDate() + ", " + getString(R.string.too) + " " + bill.getEndDate().getActualDate() + ", " + getString(R.string.with) + " " + bill.getNumberOfPeople() + " " + getString(R.string.persons));
                 }
             }
             else if(bill.getType().equals("Natural Gas")){
@@ -301,7 +301,7 @@ public class TotalFootprintActivity extends AppCompatActivity {
                     holder.details.setText(bill.getNaturalGasEmissions() + " " + getString(R.string.kgOfCO2by) + " " + bill.getNaturalGasUse() + "\n" + getString(R.string.GJofNaturalGasFrom) + " " + bill.getStartDate().getActualDate() + ", " + getString(R.string.too) + " " + bill.getEndDate().getActualDate() + ", " + getString(R.string.with) + " " + bill.getNumberOfPeople() + " " + getString(R.string.persons));
                 }
                 else {
-                    holder.details.setText(bill.getNaturalGasTreesEmissions() + " " + "trees, by" + " " + bill.getNaturalGasUse() + " " + getString(R.string.GJofNaturalGasFrom) + " " + bill.getStartDate().getActualDate() + ", " + getString(R.string.too) + " " + bill.getEndDate().getActualDate() + ", " + getString(R.string.with) + " " + bill.getNumberOfPeople() + " " + getString(R.string.persons));
+                    holder.details.setText(bill.getNaturalGasTreesEmissions() + " " + getString(R.string.trees_by) + " " + bill.getNaturalGasUse() + " " + getString(R.string.GJofNaturalGasFrom) + " " + bill.getStartDate().getActualDate() + ", " + getString(R.string.too) + " " + bill.getEndDate().getActualDate() + ", " + getString(R.string.with) + " " + bill.getNumberOfPeople() + " " + getString(R.string.persons));
                 }
             }
             holder.period.setText(getString(R.string.totalDays) +" "+ bill.getPeriod());

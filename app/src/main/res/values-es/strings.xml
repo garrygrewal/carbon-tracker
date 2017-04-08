@@ -121,4 +121,12 @@
     <string name="nowdisplayingtrees">Ahora se muestran las emisiones en los árboles</string>
     <string name="unit_kg_co2">Unidad: Kg CO2</string>
     <string name="unit_trees">Unidad: Árboles</string>
+    <string name="trees">Árboles</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Borrar</string>
+    <string name="journey_options">Opciones de viaje</string>
+    <string name="bill_options">Opciones de Bill</string>
+    <string name="trees_by_highway">Árboles por carretera</string>
+    <string name="trees_by_city">Árboles por ciudad</string>
+    <string name="trees_by">Árboles, por</string>
 </resources>
